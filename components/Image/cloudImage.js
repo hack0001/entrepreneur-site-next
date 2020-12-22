@@ -13,32 +13,29 @@ const CloudImageComponent = ({
 }) => {
 	const cloudfrontUrl = newImageUrl(imagePath);
 	const layoutParams = params[layout] ? params[layout] : params["content"];
+	let cropParams = null;
+	if (imageCrop && imageCropInfo) {
+		const parsedInfo =
+			typeof imageCropInfo === "string"
+				? JSON.parse(imageCropInfo)
+				: imageCropInfo;
+		cropParams = {
+			crop: imageCrop,
+			x: parsedInfo.x ? Math.round(parsedInfo.x) : 0,
+			y: parsedInfo.y ? Math.round(parsedInfo.y) : 0,
+			cropWidth: parsedInfo.width ? Math.round(parsedInfo.width) : null,
+			cropHeight: parsedInfo.height ? Math.round(parsedInfo.height) : null,
+			aspect: parsedInfo.aspect
+				? Math.floor(parsedInfo.aspect * 100) / 100
+				: null,
+		};
+	}
+	const cleanCropParams = cropParams ? clean(cropParams) : null;
 
 	return (
 		<figure className={styles.cloudWrapper}>
 			<picture>
 				{layoutParams.map(imageProps => {
-					let cropParams = null;
-
-					if (imageCrop && imageCropInfo) {
-						const parsedInfo =
-							typeof imageCropInfo === "string"
-								? JSON.parse(imageCropInfo)
-								: imageCropInfo;
-						cropParams = {
-							crop: imageCrop,
-							x: parsedInfo.x ? Math.round(parsedInfo.x) : 0,
-							y: parsedInfo.y ? Math.round(parsedInfo.y) : 0,
-							cropWidth: parsedInfo.width ? Math.round(parsedInfo.width) : null,
-							cropHeight: parsedInfo.height
-								? Math.round(parsedInfo.height)
-								: null,
-							aspect: parsedInfo.aspect
-								? Math.floor(parsedInfo.aspect * 100) / 100
-								: null,
-						};
-					}
-					const cleanCropParams = cropParams ? clean(cropParams) : null;
 					const parameterList = {
 						...imageProps.imageParams,
 						...cleanCropParams,

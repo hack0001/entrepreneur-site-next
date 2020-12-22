@@ -85,6 +85,7 @@ const SlideDetails = ({
 	) {
 		return <ErrorLoader />;
 	}
+
 	const bookEndOpening = slides["opening"][0];
 	const bookEndClosing = slides["closing"][0];
 	const slideData = countdown ? slides["slides"] : slides["slides"];

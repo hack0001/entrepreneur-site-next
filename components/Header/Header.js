@@ -3,6 +3,7 @@ import MenuButton from "./Menu/MenuButton";
 import { links, socialLinks } from "../../data/data";
 import { PropTypes } from "prop-types";
 import styles from "./styles/headerStyles.module.sass";
+import Image from "next/image";
 const Header = ({ menuOpen, onClick }) => {
 	return (
 		<header className="Header">
@@ -10,10 +11,12 @@ const Header = ({ menuOpen, onClick }) => {
 				<div className={styles.logo}>
 					<Link href={"/"}>
 						<a>
-							<img
+							<Image
 								src="/static/business_motivation.svg"
+								width="87px"
 								className={styles.headerIcon}
 								alt="wealthmack_logo"
+								height="50px"
 							/>
 						</a>
 					</Link>
@@ -34,10 +37,12 @@ const Header = ({ menuOpen, onClick }) => {
 						{socialLinks.map(({ href, icon, altName }, index) => (
 							<div className={styles.socialNavMenuItem} key={index}>
 								<a href={href} target="_blank" rel="noopener noreferrer">
-									<img
-										className={styles.socialStyles}
+									<Image
 										src={icon}
+										width="22px"
+										className={styles.socialStyles}
 										alt={altName}
+										height="22px"
 									/>
 								</a>
 							</div>

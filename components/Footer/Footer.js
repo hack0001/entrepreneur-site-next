@@ -1,6 +1,7 @@
 import { footerLinks, socialLinks } from "../../data/data";
 import Link from "next/link";
 import styles from "./styles/footerStyles.module.sass";
+import Image from "next/image";
 import LazyLoad from "react-lazyload";
 const Footer = ({ menuOpen, onClick }) => {
 	return (
@@ -28,13 +29,14 @@ const Footer = ({ menuOpen, onClick }) => {
 										rel="noopener noreferrer"
 										className={styles.footerItemSocial}
 									>
-										<LazyLoad once={true}>
-											<img
-												className={styles.socialImage}
+										<div className={styles.socialImage}>
+											<Image
 												src={icon}
 												alt={altName}
+												height="35px"
+												width="35px"
 											/>
-										</LazyLoad>
+										</div>
 									</a>
 								</li>
 							);
@@ -45,10 +47,12 @@ const Footer = ({ menuOpen, onClick }) => {
 					<span className={styles.footerBrandStyle}>WealthMack</span>
 				</strong>
 				<div className={styles.footerIcon}>
-					<img
-						className={styles.footerBrandImage}
+					<Image
 						src="/static/business_motivation.svg"
+						className={styles.footerBrandImage}
 						alt="wealthmack_logo"
+						width="166px"
+						height="95px"
 					/>
 				</div>
 			</div>

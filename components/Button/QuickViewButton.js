@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./styles/quickViewButtonStyles.module.sass";
 import CloudImage from "../Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
+import Image from "next/image";
 
 const QuickViewButton = ({
 	label,
@@ -43,10 +44,12 @@ const QuickViewButton = ({
 							)}
 						</div>
 						<div className={styles.arrowWrapper}>
-							<img
+							<Image
 								className={styles.arrow}
 								src={"/static/newFatArrowRightWhitex128.png"}
 								alt="right-arrow"
+								height="58px"
+								width="58px"
 							/>
 						</div>
 					</a>

@@ -4,6 +4,8 @@ import styles from "../styles/ads/nextLinkStyles.module.sass";
 import sideHelper from "../../../../helper/sideBarHelper";
 import CloudImage from "../../../../Image/cloudImage";
 import { getImagePath } from "../../../../helper/imageUrlHelper";
+import Image from "next/image";
+
 const NextLink = ({ data, type, id }) => {
 	const {
 		headlineImage,
@@ -42,10 +44,12 @@ const NextLink = ({ data, type, id }) => {
 							<div className={styles.linkLabelBrief}>{kicker}</div>
 						</div>
 						<div className={styles.arrowWrapper}>
-							<img
+							<Image
 								className={styles.arrow}
 								src={"/static/right-arrow.svg"}
 								alt="right-arrow"
+								height="58px"
+								width="58px"
 							/>
 						</div>
 					</a>

@@ -1,9 +1,10 @@
 import App from "next/app";
 import UserContext from "../utils/Context";
-import Cookie from "js-cookie";
-import SignUp from "../components/SignUpModal/signUpModal";
 import TagManager from "react-gtm-module";
-
+import dynamic from "next/dynamic";
+const SignUp = dynamic(() => import("../components/SignUpModal/signUpModal"), {
+	ssr: false,
+});
 const tagManagerArgs = {
 	gtmId: `${process.env.REACT_APP_GOOGLE_TAG_ID}`,
 };

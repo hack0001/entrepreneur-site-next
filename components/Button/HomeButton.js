@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Link from "next/link";
 import styles from "./styles/homeButtonStyles.module.sass";
+import Image from "next/image";
 const SlideLinkButton = ({ label, href }) => {
 	return (
 		<div className={styles.linkSection}>
@@ -11,10 +12,12 @@ const SlideLinkButton = ({ label, href }) => {
 							<div className={styles.linkLabel}>{label}</div>
 						</div>
 						<div className={styles.arrowWrapper}>
-							<img
+							<Image
 								className={styles.arrow}
 								src={"/static/newFatArrowRightWhitex128.png"}
 								alt="right-arrow"
+								height="58px"
+								width="58px"
 							/>
 						</div>
 					</a>

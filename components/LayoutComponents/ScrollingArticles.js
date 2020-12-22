@@ -19,55 +19,6 @@ const ScrollingArticles = ({ data }) => {
 			urlDescription,
 		} = article;
 
-		// if (index === 0) {
-		// 	return (
-		// 		<article key={index} className={styles.largeImageContainer}>
-		// 			<Link
-		// 				href={`/[category]/[url]/article/[id]`}
-		// 				as={`/${category}/${urlDescription}/article/${id}`}
-		// 			>
-		// 				<a className={styles.largeImageMainWrapper}>
-		// 					<LazyLoad once={true}>
-		// 						<div className={styles.largeImageMain}>
-		// 							<CloudImage
-		// 								imagePath={
-		// 									headlineImagePath
-		// 										? headlineImagePath
-		// 										: getImagePath(headlineImage)
-		// 								}
-		// 								imageAlt={headlineImageAlt}
-		// 								layout={"headline"}
-		// 								imageCrop={headlineImageCrop}
-		// 								imageCropInfo={headlineImageCropInfo}
-		// 							/>
-		// 						</div>
-		// 					</LazyLoad>
-		// 				</a>
-		// 			</Link>
-		// 			<div className={styles.largeInfoFirst}>
-		// 				<div className={styles.infoTitle}>
-		// 					<Link
-		// 						href={`/[category]/[url]/article/[id]`}
-		// 						as={`/${category}/${urlDescription}/article/${id}`}
-		// 					>
-		// 						<a className={styles.infoLink}>{headline}</a>
-		// 					</Link>
-		// 					{headline.length < 70 && (
-		// 						<h2 className={styles.infoTitle}>
-		// 							<Link
-		// 								href={`/[category]/[url]/article/[id]`}
-		// 								as={`/${category}/${urlDescription}/article/${id}`}
-		// 							>
-		// 								<a className={styles.categoryLink}>{category}</a>
-		// 							</Link>
-		// 						</h2>
-		// 					)}
-		// 				</div>
-		// 			</div>
-		// 		</article>
-		// 	);
-		// }
-
 		return (
 			<article className={styles.headerSection} key={index}>
 				<Link

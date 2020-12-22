@@ -10,6 +10,9 @@ module.exports = {
 		config.plugins.push(new webpack.EnvironmentPlugin(localEnv));
 		return config;
 	},
+	images: {
+		domains: ["assets.wealthmack.com"],
+	},
 	env: {
 		NEXT_APP_RECAPTCHA_SITEKEY: process.env.NEXT_APP_RECAPTCHA_SITEKEY,
 		REACT_APP_SITE_ID: process.env.REACT_APP_SITE_ID,

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ImageLoader from "../../../../Loading/EditorImageLoader";
 import styles from "../styles/embedImage/embedImageStyles.module.sass";
+import Image from "next/image";
+
 const EmbedImage = ({ node }) => {
 	const { data } = node;
 	const [embedImage, setEmbedImageUrl] = useState({

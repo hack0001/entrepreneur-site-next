@@ -17,6 +17,7 @@ import styles from "./styles/signUpModalStyles.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
 //Set Cookie Expiration if not signed up (in minutes)
 const cookieTime = 60;
+import Image from "next/image";
 
 const SignUpModal = () => {
 	const [formData, setFormData] = useState(INITIAL_STATE);
@@ -131,10 +132,12 @@ const SignUpModal = () => {
 								</div>
 								<div className={styles.headerContainer}>
 									<div className={styles.logoWrapper}>
-										<img
+										<Image
 											src="/static/business_motivation.svg"
 											className={styles.modalLogo}
 											alt="wealthmack_logo"
+											width="133px"
+											height="75px"
 										/>
 									</div>
 									<h1 className={`${styles.header} ${styles.headerPrimary}`}>

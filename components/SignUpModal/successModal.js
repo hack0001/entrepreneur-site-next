@@ -4,6 +4,8 @@ import CrossIcon from "../Icons/crossIcon";
 import PropTypes from "prop-types";
 import styles from "./styles/successModalStyles.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
+import Image from "next/image";
+
 //Set Cookie Expiration if not signed up (in minutes)
 const SuccessModal = ({ successModal, setSuccessModal }) => {
 	const clickAway = useRef(null);
@@ -31,10 +33,12 @@ const SuccessModal = ({ successModal, setSuccessModal }) => {
 									</div>
 								</div>
 								<div className={styles.logoWrapper}>
-									<img
+									<Image
 										src="/static/business_motivation.svg"
 										className={styles.modalLogo}
 										alt="wealthmack_logo"
+										width="133px"
+										height="75px"
 									/>
 								</div>
 								<div className={styles.headerContainer}>

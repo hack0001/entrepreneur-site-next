@@ -3,6 +3,7 @@ import Link from "next/link";
 import CloudImage from "../Image/cloudImage";
 import styles from "./styles/linkButtonStyles.module.sass";
 import { getImagePath } from "../helper/imageUrlHelper";
+import Image from "next/image";
 const SlideLinkButton = ({
 	label,
 	href,
@@ -39,7 +40,7 @@ const SlideLinkButton = ({
 							<div className={styles.linkLabel}>{label}</div>
 						</div>
 						<div className={styles.arrowWrapper}>
-							<img
+							<Image
 								className={styles.arrow}
 								alt="right-arrow"
 								src={"/static/newFatArrowRightBlackx128.png"}

@@ -99,9 +99,9 @@ const MainHeadline = ({ data }) => {
 																	: getImagePath(headlineImage)
 															}
 															imageAlt={headlineImageAlt}
+															layout={"subHeadline"}
 															imageCrop={headlineImageCrop}
 															imageCropInfo={headlineImageCropInfo}
-															layout="subHeadline"
 														/>
 													</div>
 												</LazyLoad>
