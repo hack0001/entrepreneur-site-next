@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Ripples from "../Button/Ripples";
-import Context from "../../utils/Context";
 import CrossIcon from "../Icons/crossIcon";
 import { EMAIL_SIGN_UP } from "../../graphql/emailSignUp";
 import {
@@ -27,10 +26,11 @@ const SignUpModal = () => {
 	const [successModal, setSuccessModal] = useState(false);
 	const [emailCookie, setEmailCookie] = useState(false);
 	const [count, setCount] = useState(0);
+
 	const handleScroll = () => {
 		const top = window.pageYOffset || document.documentElement.scrollTop;
 
-		if (top > 200 && count < 1) {
+		if (top > 400 && count < 1) {
 			setCount(count + 1);
 			setShowModal(top > 200);
 		}
@@ -88,6 +88,13 @@ const SignUpModal = () => {
 			site: "wealthmack",
 			popUp: true,
 		};
+
+		//Track the Email Signup in Tag Manager Manually
+		if (window) {
+			window.dataLayer.push({
+				event: "track_email_signup",
+			});
+		}
 
 		try {
 			const mutationData = {

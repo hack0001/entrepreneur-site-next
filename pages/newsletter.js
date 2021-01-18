@@ -82,8 +82,9 @@ const Newsletter = ({ url }) => {
 					<Image
 						src={"/static/business_cover_photox1024.jpg"}
 						width="1040px"
-						alt={process.env.SITE_NAME}
 						height="585px"
+						priority={true}
+						alt={process.env.SITE_NAME}
 					/>
 					<form className={styles.contactForm} onSubmit={handleSubmit}>
 						<h3>
