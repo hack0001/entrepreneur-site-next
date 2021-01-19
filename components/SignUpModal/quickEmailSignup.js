@@ -61,6 +61,12 @@ const SignUpModal = () => {
 			popUp: false,
 		};
 
+		//Track the Email Signup in Tag Manager Manually
+		if (window) {
+			window.dataLayer.push({
+				event: "track_email_signup",
+			});
+		}
 		try {
 			const mutationData = {
 				query: EMAIL_SIGN_UP,

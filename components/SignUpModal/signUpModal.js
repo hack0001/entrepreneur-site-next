@@ -16,6 +16,7 @@ import styles from "./styles/signUpModalStyles.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
 //Set Cookie Expiration if not signed up (in minutes)
 const cookieTime = 60;
+const fromTop = 550;
 import Image from "next/image";
 
 const SignUpModal = () => {
@@ -25,15 +26,45 @@ const SignUpModal = () => {
 	const [widthModal, setWidthModal] = useState(true);
 	const [successModal, setSuccessModal] = useState(false);
 	const [emailCookie, setEmailCookie] = useState(false);
+	const [cpcCookie, setCpcCookie] = useState(false);
 	const [count, setCount] = useState(0);
+	const [scrollMarker, setScrollMarker] = useState(0);
+	const [scrollUp, setScrollUp] = useState(fromTop);
+
+	useEffect(() => {
+		const top = window.pageYOffset || document.documentElement.scrollTop;
+
+		const absoluteScroll = Math.abs(top - scrollUp);
+
+		const cpcMarker = Cookie.get("CPC") ? JSON.parse(Cookie.get("CPC")) : false;
+
+		if (cpcMarker) {
+			setCpcCookie(cpcMarker);
+		}
+
+		if (scrollMarker > scrollUp + 500) {
+			setScrollUp(scrollMarker - 500);
+		}
+
+		if (scrollMarker < scrollUp) {
+			setScrollUp(fromTop);
+			setScrollMarker(0);
+		}
+
+		if (
+			scrollMarker < scrollUp &&
+			top > fromTop &&
+			count < 1 &&
+			absoluteScroll < 4000
+		) {
+			setCount(count + 1);
+			setShowModal(true);
+		}
+	}, [scrollMarker]);
 
 	const handleScroll = () => {
 		const top = window.pageYOffset || document.documentElement.scrollTop;
-
-		if (top > 400 && count < 1) {
-			setCount(count + 1);
-			setShowModal(top > 200);
-		}
+		setScrollMarker(top);
 	};
 
 	useEffect(() => {
@@ -44,6 +75,8 @@ const SignUpModal = () => {
 			? JSON.parse(Cookie.get("wealth-cookie-email-signup"))
 			: true;
 
+		const cpcMarker = Cookie.get("CPC") ? JSON.parse(Cookie.get("CPC")) : false;
+		setCpcCookie(cpcMarker);
 		setEmailCookie(cookieEmailMarker);
 
 		if (window.innerWidth < 1000) {
@@ -127,7 +160,7 @@ const SignUpModal = () => {
 
 	return (
 		<>
-			{emailCookie && showModal && widthModal && (
+			{emailCookie && showModal && widthModal && !cpcCookie && (
 				<div className={styles.modalBackground}>
 					<div className={styles.modalBox}>
 						<div className={styles.modalContentWrapper}>
