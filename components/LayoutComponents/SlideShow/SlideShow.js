@@ -120,6 +120,7 @@ const SlideDetails = ({
 							totalSlides={content.numSlides}
 							cpcMarker={cpcMarker}
 						/>
+
 						{(position === "opening" || position === "closing") && (
 							<>
 								<QuickBookEnds
@@ -219,6 +220,7 @@ const SlideDetails = ({
 						}
 						embed={bookEndOpening["openingImage-embed"]}
 					/>
+
 					<div>
 						<Adsense client="ca-pub-2068760522034474" slot="8433059648" />
 					</div>

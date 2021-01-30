@@ -61,6 +61,7 @@ const QuizBookEnds = ({
 					imageCropInfo={imageCropInfo}
 					styles={{ width: "100%", height: "100%" }}
 					noMaxHeight={true}
+					wrapperClass={"contentWrapper"}
 				/>
 			</div>
 			{positionClosing && (

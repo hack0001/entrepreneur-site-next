@@ -63,7 +63,6 @@
 
 .sideImageMain
     display: flex
-    height: 12rem
     width: 100%
     background-color: $secondary
 
@@ -84,7 +83,12 @@
     padding: 0
     overflow: hidden
 
-@media only screen and (max-width: 645px) 
+@media only screen and (max-width: 800px) 
+
+    .sideImageMain
+        width: 100%
+
+@media only screen and (max-width: 680px) 
     .categoryLink
         font-size: 0.8rem
 
@@ -95,5 +99,26 @@
     .kicker
         display: none
 
+    .sideHeadlineAnchor
+        width: 30%
+
     .sideImageMain
-        height: 8rem
+        height: 105px
+
+    .sideTitleInfo
+        width: 70%
+
+@media only screen and (max-width: 480px) 
+    .infoLink
+        font-size: 1rem
+        line-height: 1.25rem
+
+    .sideHeadlineAnchor
+        width: 40%
+
+    .sideImageMain
+        height: 95px
+        // width: 45%
+
+    .sideTitleInfo
+        width: 60%

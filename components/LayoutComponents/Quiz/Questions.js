@@ -10,7 +10,7 @@ import styles from "./styles/questionStyles.module.sass";
 import SingleLoader from "../../Loading/SingleLoader";
 import dynamic from "next/dynamic";
 import Adsense from "../../ads/code/adsense/adsense";
-import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
+// import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
 
 const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
 	ssr: false,
@@ -123,6 +123,7 @@ const Questions = ({
 	};
 
 	if (loading) return <SingleLoader />;
+
 	return (
 		<div className={styles.bookendWrapper}>
 			<div className={styles.sectionHeader}>
@@ -143,6 +144,7 @@ const Questions = ({
 							imageCropInfo={questionImageCropInfo}
 							styles={{ width: "100%", height: "100%" }}
 							noMaxHeight={true}
+							wrapperClass={"contentWrapper"}
 						/>
 					</div>
 				)}
@@ -161,9 +163,11 @@ const Questions = ({
 							imageCropInfo={answerImageCropInfo}
 							styles={{ width: "100%", height: "100%" }}
 							noMaxHeight={true}
+							wrapperClass={"contentWrapper"}
 						/>
 					</div>
 				)}
+
 				<div className={styles.multiWrapper}>
 					<Adsense
 						client="ca-pub-2068760522034474"
@@ -196,7 +200,6 @@ const Questions = ({
 				correctAnswerComment={correctAnswerComment}
 				incorrectAnswerComment={incorrectAnswerComment}
 			/>
-
 			{showAnswer && (
 				<QuickViewButton
 					label="Next"

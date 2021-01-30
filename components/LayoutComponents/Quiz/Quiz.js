@@ -115,7 +115,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 							totalQuestions={content.numQuestions}
 							cpcMarker={cpcMarker}
 						/>
-
 						{(position === "opening" || position === "closing") && (
 							<>
 								<BookEnds
@@ -175,7 +174,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 								)}
 							</>
 						)}
-
 						<div className={styles.adsenseWrapper}>
 							<Adsense
 								client="ca-pub-2068760522034474"
@@ -209,7 +207,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 					</div>
 				</>
 			)}
-
 			{!cpcMarker && (
 				<>
 					<Headline
@@ -219,7 +216,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						totalQuestions={content.numQuestions}
 						cpcMarker={cpcMarker}
 					/>
-
 					<BookEnds
 						position={"opening"}
 						image={questions["opening"][0][`openingImage`]}
@@ -244,7 +240,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						finalScore={currentScore}
 						numberQuestions={content.numQuestions}
 					/>
-
 					<LongQuestions
 						total={content.numQuestions}
 						questionData={questions.questions}
@@ -306,6 +301,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 									imageAlt={nextContent[0].headlineImageAlt}
 									imageCrop={nextContent[0].headlineImageCrop}
 									imageCropInfo={nextContent[0].headlineImageCropInfo}
+									wrapperClass={"contentWrapper"}
 								/>
 							)}
 						</>
@@ -334,11 +330,9 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 				headlineUrl={shareUrl}
 				refPath={`/[category]/[url]/quiz/[quizId]/questions/[questionId]`}
 			/>
-
 			<LazyLoad once={true}>
 				<QuickEmailSignUp />
 			</LazyLoad>
-
 			{position === "closing" && (
 				<>
 					<SectionBar

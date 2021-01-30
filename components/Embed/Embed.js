@@ -1,8 +1,12 @@
-import React, { useEffect, useState, useRef, memo } from "react";
+import React, { memo } from "react";
 import SingleSocialLoader from "../Loading/SingleSocialLoader";
 import dynamic from "next/dynamic";
 import ImageLoader from "../Loading/ImageLoader";
 import embedStyles from "./styles/embedStyles.module.sass";
+const Embedo = dynamic(() => import("./embedo/Embed"), {
+	ssr: false,
+	loading: () => <SingleSocialLoader />,
+});
 const EmbedUrl = ({
 	embed,
 	image,
@@ -14,11 +18,8 @@ const EmbedUrl = ({
 	imageCropInfo,
 	styles,
 	noMaxHeight,
+	wrapperClass,
 }) => {
-	const Embedo = dynamic(() => import("./embedo/Embed"), {
-		ssr: false,
-		loading: () => <SingleSocialLoader />,
-	});
 	return (
 		<>
 			{!embed && (
@@ -31,6 +32,8 @@ const EmbedUrl = ({
 					noMaxHeight={noMaxHeight}
 					imageCrop={imageCrop}
 					imageCropInfo={imageCropInfo}
+					unsized={true}
+					wrapperClass={wrapperClass}
 				/>
 			)}
 			{embed && (
@@ -57,4 +60,4 @@ const EmbedUrl = ({
 	);
 };
 
-export default memo(EmbedUrl);
+export default EmbedUrl;

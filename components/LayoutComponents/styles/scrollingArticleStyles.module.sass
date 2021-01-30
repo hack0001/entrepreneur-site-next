@@ -20,7 +20,6 @@
     position: relative
     cursor: pointer
     width: 100%
-
     border-bottom: 1px solid #e0e0e0
     // height: 205px
 
@@ -117,7 +116,7 @@
 .scrollImageMain
     width: 40%
     background-color: $secondary
-    height: 205px
+    display: flex
     &:hover
         opacity: 0.7
 
@@ -168,6 +167,11 @@
 .scrollTitlePad
     padding-left: 0.7rem
 
+@media only screen and (max-width: 800px) 
+
+    .scrollImageMain
+        width: 40%
+
 @media only screen and (max-width: 645px) 
     .infoLink
         font-size: 1.15rem
@@ -176,8 +180,8 @@
         margin: 0.7rem
 
     .scrollTitle
-        font-size: 1.3rem
-        line-height: 1.5rem
+        font-size: 1.1rem
+        line-height: 1.2rem
 
     .scrollTitleContainer
         padding: 0rem 0.5rem
@@ -189,12 +193,11 @@
         width: 100%
 
     .scrollImageMain
-        width: 40%
-        height: auto
+        width: 180px //45%
+        height: 105px
 
     .headerSection
         padding: 0.7rem 0
-        height: 9rem
         margin: 0.25rem 0rem
 
     .scrollTitlePad
@@ -211,21 +214,21 @@
         font-weight: 900
 
     .scrollTitleContainer
-        padding: 0rem 0.5rem
+        padding: 0rem 0.25rem
 
     .scrollTitleWrap
         height: 60%
+        margin: 0
 
     .scrollHeadlineImageWrap
         width: 100%
 
     .scrollImageMain
-        width: 180px //45%
-        height: 105px
+        width: 120px //45%
+        height: 80px
 
     .headerSection
         height: auto
-        // margin: 0.25rem 0rem
 
     .scrollTitlePad
         padding: 0.1rem

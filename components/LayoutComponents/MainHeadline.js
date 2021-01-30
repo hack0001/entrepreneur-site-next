@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 import SectionBar from "./SectionBar";
 import styles from "./styles/mainHeadlineStyles.module.sass";
-import LazyLoad from "react-lazyload";
 import CloudImage from "../Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
 const MainHeadline = ({ data }) => {
@@ -32,21 +31,18 @@ const MainHeadline = ({ data }) => {
 							as={`/${category}/${urlDescription}/article/${id}`}
 						>
 							<a className={styles.headlineImageMainWrapper}>
-								<LazyLoad once={true}>
-									<div className={styles.headlineImageMain}>
-										<CloudImage
-											imagePath={
-												headlineImagePath
-													? headlineImagePath
-													: getImagePath(headlineImage)
-											}
-											imageAlt={headlineImageAlt}
-											layout="headline"
-											imageCrop={headlineImageCrop}
-											imageCropInfo={headlineImageCropInfo}
-										/>
-									</div>
-								</LazyLoad>
+								<CloudImage
+									imagePath={
+										headlineImagePath
+											? headlineImagePath
+											: getImagePath(headlineImage)
+									}
+									imageAlt={headlineImageAlt}
+									imageCrop={headlineImageCrop}
+									imageCropInfo={headlineImageCropInfo}
+									unsized={true}
+									wrapperClass={"mainWrapper"}
+								/>
 							</a>
 						</Link>
 						<Link
@@ -90,21 +86,18 @@ const MainHeadline = ({ data }) => {
 									>
 										<a className={styles.subHeadlineAnchor}>
 											<div className={styles.subHeadlineImageWrap}>
-												<LazyLoad once={true}>
-													<div className={styles.subHeadlineImage}>
-														<CloudImage
-															imagePath={
-																headlineImagePath
-																	? headlineImagePath
-																	: getImagePath(headlineImage)
-															}
-															imageAlt={headlineImageAlt}
-															layout={"subHeadline"}
-															imageCrop={headlineImageCrop}
-															imageCropInfo={headlineImageCropInfo}
-														/>
-													</div>
-												</LazyLoad>
+												<CloudImage
+													imagePath={
+														headlineImagePath
+															? headlineImagePath
+															: getImagePath(headlineImage)
+													}
+													imageAlt={headlineImageAlt}
+													imageCrop={headlineImageCrop}
+													imageCropInfo={headlineImageCropInfo}
+													unsized={true}
+													wrapperClass={"mainSideWrapper"}
+												/>
 											</div>
 											<div className={styles.subTitleContainer}>
 												<div className={styles.subTitleWrap}>

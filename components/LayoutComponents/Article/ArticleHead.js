@@ -78,9 +78,12 @@ const ArticleHead = ({ overview, id, nextSlideShow }) => {
 				imageCrop={headlineImageCrop}
 				imageCropInfo={headlineImageCropInfo}
 				animation={false}
+				unsized={true}
 				styles={{ width: "100%", height: "100%" }}
 				noMaxHeight={true}
+				wrapperClass={"contentWrapper"}
 			/>
+
 			{bulletHeadlines > 0 && (
 				<ul className={styles.sectionList}>
 					{Object.keys(bulletHeadlinesDetails).map((bullet, index) => {
@@ -92,7 +95,6 @@ const ArticleHead = ({ overview, id, nextSlideShow }) => {
 					})}
 				</ul>
 			)}
-
 			<LazyLoad once={true}>
 				<hr className={styles.break} />
 				<ShareButtonVert

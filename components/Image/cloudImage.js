@@ -1,19 +1,21 @@
 import React from "react";
-import params from "./layout";
 import { newImageUrl, clean } from "../helper/imageUrlHelper";
 import styles from "./styles/cloudStyles.module.sass";
-
+import Image from "next/image";
 const CloudImageComponent = ({
 	imagePath,
 	imageAlt,
-	layout,
 	onLoad,
 	imageCrop,
 	imageCropInfo,
+	unsized = true,
+	wrapperClass,
+	fixedHeight,
+	fixedWidth,
 }) => {
 	const cloudfrontUrl = newImageUrl(imagePath);
-	const layoutParams = params[layout] ? params[layout] : params["content"];
 	let cropParams = null;
+
 	if (imageCrop && imageCropInfo) {
 		const parsedInfo =
 			typeof imageCropInfo === "string"
@@ -29,50 +31,65 @@ const CloudImageComponent = ({
 				? Math.floor(parsedInfo.aspect * 100) / 100
 				: null,
 		};
+
+		const cleanCropParams = cropParams ? clean(cropParams) : null;
+
+		const parameterUrl = Object.keys(cleanCropParams)
+			.map(key => {
+				if (cleanCropParams[key] !== null) {
+					return `${key}=${cleanCropParams[key]}`;
+				}
+			})
+			.join("&");
+
+		return (
+			<>
+				{unsized && (
+					<Image
+						key={`${cloudfrontUrl}?${parameterUrl}`}
+						className={
+							styles[`${wrapperClass ? wrapperClass : "cloudWrapper"}`]
+						}
+						alt={imageAlt}
+						src={`${cloudfrontUrl}?${parameterUrl}`}
+						onLoad={onLoad}
+						unsized={unsized}
+					/>
+				)}
+				{!unsized && (
+					<Image
+						key={`${cloudfrontUrl}?${parameterUrl}`}
+						className={
+							styles[`${wrapperClass ? wrapperClass : "cloudWrapper"}`]
+						}
+						alt={imageAlt}
+						src={`${cloudfrontUrl}?${parameterUrl}`}
+						onLoad={onLoad}
+						height={
+							cleanCropParams.cropHeight
+								? cleanCropParams.cropHeight
+								: fixedHeight
+						}
+						width={
+							cleanCropParams.cropWidth ? cleanCropParams.cropWidth : fixedWidth
+						}
+					/>
+				)}
+			</>
+		);
 	}
-	const cleanCropParams = cropParams ? clean(cropParams) : null;
 
 	return (
-		<figure className={styles.cloudWrapper}>
-			<picture>
-				{layoutParams.map(imageProps => {
-					const parameterList = {
-						...imageProps.imageParams,
-						...cleanCropParams,
-					};
-
-					const parameterUrl = Object.keys(parameterList)
-						.map(key => {
-							if (parameterList[key] !== null) {
-								return `${key}=${parameterList[key]}`;
-							}
-						})
-						.join("&");
-
-					return (
-						<source
-							srcSet={`${cloudfrontUrl}?${parameterUrl} ${Math.round(
-								imageProps.imageParams.width * imageProps.ratio,
-								0,
-							)}w`}
-							data-srcSet={`${cloudfrontUrl}?${parameterUrl} ${Math.round(
-								imageProps.imageParams.width * imageProps.ratio,
-								0,
-							)}w`}
-							type={`image/${imageProps.imageParams.format}`}
-							sizes={imageProps.sizes}
-							media={imageProps.media ? imageProps.media : null}
-						/>
-					);
-				})}
-				<img
-					className={styles.baseImage}
-					alt={imageAlt}
-					src={cloudfrontUrl}
-					onLoad={onLoad}
-				/>
-			</picture>
-		</figure>
+		unsized && (
+			<Image
+				key={cloudfrontUrl}
+				className={styles[`${wrapperClass ? wrapperClass : "cloudWrapper"}`]}
+				alt={imageAlt}
+				src={cloudfrontUrl}
+				onLoad={onLoad}
+				unsized={unsized}
+			/>
+		)
 	);
 };
 

@@ -1,10 +1,11 @@
-import { useState, memo } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 export const config = { amp: "hybrid" };
 import { useAmp } from "next/amp";
 import loaderStyles from "./styles/imageLoaderStyles.module.sass";
 import CloudImage from "../Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
+import Image from "next/image";
 const ImageLoader = ({
 	src,
 	alt,
@@ -16,6 +17,7 @@ const ImageLoader = ({
 	imageCrop,
 	imageCropInfo,
 	noMaxHeight,
+	wrapperClass,
 }) => {
 	const [classStyle, setClassStyle] = useState(
 		animation ? "imgLoadingAnimation" : "imgLoading",
@@ -37,7 +39,6 @@ const ImageLoader = ({
 				: `${loaderStyles.imgLoaded} img-loaded`,
 		);
 	};
-
 	return (
 		<>
 			{!isAmp && (
@@ -46,14 +47,26 @@ const ImageLoader = ({
 						<CloudImage
 							imagePath={imagePath ? imagePath : getImagePath(src)}
 							imageAlt={alt}
-							layout={"content"}
 							imageCrop={imageCrop}
 							imageCropInfo={imageCropInfo}
 							onLoad={onLoad}
+							unsized={true}
+							wrapperClass={wrapperClass}
 						/>
 					)}
+
 					{!imageCheck && (
-						<img src={src} alt={alt} style={styles} onLoad={onLoad} />
+						<Image
+							key={src}
+							src={src}
+							alt={alt}
+							style={styles}
+							onLoad={onLoad}
+							unsized={true}
+							className={
+								loaderStyles[wrapperClass] ? loaderStyles[wrapperClass] : ""
+							}
+						/>
 					)}
 				</div>
 			)}

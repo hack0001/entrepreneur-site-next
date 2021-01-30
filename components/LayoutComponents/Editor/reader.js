@@ -107,11 +107,7 @@ const Reader = ({ value }) => {
 				case "horizontal-line":
 					return <span className={style.horizLine}>{children}</span>;
 				case "embed-image":
-					return (
-						<LazyLoad once={true} offset={100}>
-							<EmbedImage node={node} />
-						</LazyLoad>
-					);
+					return <EmbedImage node={node} />;
 				case "embed":
 					return (
 						<LazyLoad once={true} offset={100}>

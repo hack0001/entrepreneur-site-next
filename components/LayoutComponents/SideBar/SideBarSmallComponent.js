@@ -1,5 +1,4 @@
 import Link from "next/link";
-import LazyLoad from "react-lazyload";
 import styles from "./styles/sideBarSmallComponentStyles.module.sass";
 import CloudImage from "../../Image/cloudImage";
 import { getImagePath } from "../../helper/imageUrlHelper";
@@ -20,21 +19,22 @@ const SideBarContent = ({
 			<Link href={refPath} as={contentLink}>
 				<a className={styles.sideHeadlineAnchor}>
 					<div className={styles.sideImageWrapper}>
-						<LazyLoad once={true}>
-							<div className={styles.sideImageMain}>
-								<CloudImage
-									imagePath={
-										headlineImagePath
-											? headlineImagePath
-											: getImagePath(headlineImage)
-									}
-									imageAlt={headlineImageAlt}
-									imageCrop={headlineImageCrop}
-									imageCropInfo={headlineImageCropInfo}
-									layout={"sideSmall"}
-								/>
-							</div>
-						</LazyLoad>
+						<div className={styles.sideImageMain}>
+							<CloudImage
+								imagePath={
+									headlineImagePath
+										? headlineImagePath
+										: getImagePath(headlineImage)
+								}
+								imageAlt={headlineImageAlt}
+								imageCrop={headlineImageCrop}
+								imageCropInfo={headlineImageCropInfo}
+								unsized={true}
+								fixedHeight={441}
+								fixedWidth={750}
+								wrapperClass={"sideBarSmallWrapper"}
+							/>
+						</div>
 					</div>
 				</a>
 			</Link>

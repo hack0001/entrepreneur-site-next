@@ -71,20 +71,19 @@ const Slides = ({
 					/>
 				</div>
 				<div>
-					<LazyLoad once={true}>
-						<Embed
-							embed={slideData["slideImage-embed"]}
-							image={slideImage}
-							imageAlt={slideImageAlt}
-							imageAltAttribution={slideImageAttribution}
-							imageAltAttributionLink={slideImageAttributionLink}
-							imageCrop={slideImageCrop}
-							imageCropInfo={slideImageCropInfo}
-							imagePath={slideImagePath}
-							styles={{ width: "100%", height: "100%" }}
-							noMaxHeight={false}
-						/>
-					</LazyLoad>
+					<Embed
+						embed={slideData["slideImage-embed"]}
+						image={slideImage}
+						imageAlt={slideImageAlt}
+						imageAltAttribution={slideImageAttribution}
+						imageAltAttributionLink={slideImageAttributionLink}
+						imageCrop={slideImageCrop}
+						imageCropInfo={slideImageCropInfo}
+						imagePath={slideImagePath}
+						styles={{ width: "100%", height: "100%" }}
+						noMaxHeight={false}
+						wrapperClass={"contentWrapper"}
+					/>
 				</div>
 				<div className={slideStyles.bottomSectionParagraph}>
 					{bottomSlideDetails && (

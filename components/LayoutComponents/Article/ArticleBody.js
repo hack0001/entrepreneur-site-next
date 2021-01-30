@@ -73,7 +73,6 @@ const ArticleBody = ({
 	return (
 		<div className={styles.sectionPadding}>
 			<Reader value={value} />
-
 			{nextContent[0] && (
 				<div className={styles.nextButtonWrapper}>
 					<QuickViewButton

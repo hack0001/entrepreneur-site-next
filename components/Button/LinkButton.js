@@ -30,9 +30,10 @@ const SlideLinkButton = ({
 								<CloudImage
 									imagePath={imagePath ? imagePath : getImagePath(imgSrc)}
 									imageAlt={imageAlt}
-									layout={"nextButton"}
 									imageCrop={imageCrop}
 									imageCropInfo={imageCropInfo}
+									unsized={true}
+									wrapperClass={"quickViewWrapper"}
 								/>
 							</div>
 						</div>
@@ -44,6 +45,8 @@ const SlideLinkButton = ({
 								className={styles.arrow}
 								alt="right-arrow"
 								src={"/static/newFatArrowRightBlackx128.png"}
+								height="128px"
+								width="128px"
 							/>
 						</div>
 					</a>

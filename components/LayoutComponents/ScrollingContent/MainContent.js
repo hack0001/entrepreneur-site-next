@@ -21,21 +21,22 @@ const MainScrollingContent = ({
 			<Link href={refPath} as={contentLink}>
 				<a className={styles.sideHeadlineAnchor}>
 					<div className={styles.sideImageWrapper}>
-						<LazyLoad once={true}>
-							<div className={styles.sideImageMain}>
-								<CloudImage
-									imagePath={
-										headlineImagePath
-											? headlineImagePath
-											: getImagePath(headlineImage)
-									}
-									imageAlt={headlineImageAlt}
-									imageCrop={headlineImageCrop}
-									imageCropInfo={headlineImageCropInfo}
-									layout={"headline"}
-								/>
-							</div>
-						</LazyLoad>
+						<div className={styles.sideImageMain}>
+							<CloudImage
+								imagePath={
+									headlineImagePath
+										? headlineImagePath
+										: getImagePath(headlineImage)
+								}
+								imageAlt={headlineImageAlt}
+								imageCrop={headlineImageCrop}
+								imageCropInfo={headlineImageCropInfo}
+								unsized={true}
+								fixedHeight={560}
+								fixedWidth={760}
+								wrapperClass={"mainWrapper"}
+							/>
+						</div>
 					</div>
 				</a>
 			</Link>

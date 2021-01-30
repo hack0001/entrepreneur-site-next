@@ -11,7 +11,11 @@ module.exports = {
 		return config;
 	},
 	images: {
-		domains: ["assets.wealthmack.com"],
+		domains: [
+			"assets.wealthmack.com",
+			"content-factory-media.s3.eu-west-1.amazonaws.com",
+			"media3.giphy.com",
+		],
 	},
 	env: {
 		NEXT_APP_RECAPTCHA_SITEKEY: process.env.NEXT_APP_RECAPTCHA_SITEKEY,

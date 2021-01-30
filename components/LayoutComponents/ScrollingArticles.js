@@ -27,21 +27,22 @@ const ScrollingArticles = ({ data }) => {
 				>
 					<a className={styles.scrollImageAnchor}>
 						<div className={styles.scrollImageWrapper}>
-							<LazyLoad once={true}>
-								<div className={styles.scrollImageMain}>
-									<CloudImage
-										imagePath={
-											headlineImagePath
-												? headlineImagePath
-												: getImagePath(headlineImage)
-										}
-										imageAlt={headlineImageAlt}
-										layout={"scrolling"}
-										imageCrop={headlineImageCrop}
-										imageCropInfo={headlineImageCropInfo}
-									/>
-								</div>
-							</LazyLoad>
+							<div className={styles.scrollImageMain}>
+								<CloudImage
+									imagePath={
+										headlineImagePath
+											? headlineImagePath
+											: getImagePath(headlineImage)
+									}
+									imageAlt={headlineImageAlt}
+									imageCrop={headlineImageCrop}
+									imageCropInfo={headlineImageCropInfo}
+									unsized={true}
+									wrapperClass={"cloudWrapper"}
+									fixedHeight={441}
+									fixedWidth={750}
+								/>
+							</div>
 							<div className={styles.scrollTitleContainer}>
 								<div className={styles.scrollTitlePad}>
 									<div className={styles.scrollCategoryWrapper}>

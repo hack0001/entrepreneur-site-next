@@ -73,7 +73,7 @@
     font-weight: 700
     color: $secondary
     font-family: $font
-    text-transform: uppercase
+    text-transform: capitalize
     width: 100%
     border-radius: 3px
     background: #f2f2f2
@@ -94,7 +94,7 @@
     text-transform: capitalize
     margin: 1rem 0
 
-@media only screen and (max-width: 670px) 
+@media only screen and (max-width: 680px) 
 
     .arrowWrapper
         width: 100%
@@ -118,6 +118,10 @@
         width: 100%
         padding: 0rem 1rem
 
+    .quickViewImage
+        width: 100%
+        height: 50%
+
     .quickViewLink
         flex-direction: column
 
@@ -131,9 +135,15 @@
         margin: 0 auto
 
 @media only screen and (max-width: 450px) 
+    .arrowWrapper
+        margin-top: 1rem
+
     .linkLabel
         font-size: 1rem
         line-height: 1.2rem
 
+    .quickViewImage
+        width: 100%
+        height: 105px
     .scrollText
         font-size: 1.25rem

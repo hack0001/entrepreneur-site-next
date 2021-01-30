@@ -1,11 +1,134 @@
+@import "../../../styles/_baseTheme"
+.buttonWrapper
+    padding: 0
+    margin: 0
+    width: 100%
+    height: 95px
+
 .cloudWrapper
+    padding: 0
+    margin: 0
+    width: 100%
+    height: 205px
+
+.contentWrapper
     padding: 0
     margin: 0
     width: 100%
     height: 100%
 
-.baseImage
-    display: flex
-    height: 100%
+.mainWrapper
+    padding: 0
+    margin: 0
     width: 100%
-    object-fit: fit
+    height: 450px
+
+.mainSideWrapper
+    padding: 0
+    margin: 0
+    width: 100%
+    height: calc(450px / 3 - 3px)
+
+.sideBarWrapper
+    padding: 0
+    margin: 0
+    width: 100%
+    height: 250px
+
+.sideBarSmallWrapper
+    padding: 0
+    margin: 0
+    width: 100%
+    height: 112px
+
+.quickViewWrapper
+    padding: 0
+    margin: 0
+    width: 100%
+    // height: 95px
+
+@media only screen and (max-width: 1000px) 
+    .buttonWrapper
+        height: 100%
+
+    .mainSideWrapper
+        height: 100%
+
+    .mainWrapper
+        height: 560px
+
+    .sideBarWrapper
+        height: 460px
+
+    .sideBarSmallWrapper
+        height: 205px
+
+    .quickViewWrapper
+        height: 100%
+
+@media only screen and (max-width: 800px) 
+    .buttonWrapper
+        height: 120px
+    .mainWrapper
+        height: 100%
+
+    .sideBarSmallWrapper
+        height: 175px
+
+    .quickViewWrapper
+        // height: 120px
+
+@media only screen and (max-width: 680px) 
+    .buttonWrapper
+        height: 50%
+        // height: 105px
+        width: 75%
+
+    .cloudWrapper
+        width: 100%
+        height: 105px
+
+        // height: 105px
+
+    .mainSideWrapper
+        height: 105px
+
+    .mainWrapper
+        height: 350px
+
+    .sideBarWrapper
+        height: 325px
+
+    .sideBarSmallWrapper
+        height: 135px
+
+    .quickViewWrapper
+        height: 50%
+        // height: 105px
+        width: 75%
+@media only screen and (max-width: 560px)
+
+    .mainWrapper
+        height: 300px
+
+    .sideBarWrapper
+        height: 275px
+
+    .sideBarSmallWrapper
+        height: 105px
+
+@media only screen and (max-width: 480px)
+
+    .buttonWrapper
+        width: 50%
+        height: 105px
+
+    .cloudWrapper
+        height: 95px
+
+    .sideBarSmallWrapper
+        height: 85px
+
+    .quickViewWrapper
+        width: 100%
+        // height: 105px

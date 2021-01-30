@@ -55,31 +55,36 @@ const EmbedImage = ({ node }) => {
 						width: "100%",
 						centerize: true,
 					}}
+					wrapperClass={"contentWrapper"}
 				/>
 			)}
 			{!embedImage.imageCheck && embedImage.imageUrl && (
-				<img
+				<Image
+					key={embedImage.imageUrl}
 					src={embedImage.imageUrl}
 					alt={embedImage.imageAlt}
 					style={{
 						width: "100%",
 						centerize: true,
 					}}
+					unsized={true}
 				/>
 			)}
-			{embedImage.imageAttribution && (
-				<span>
-					<a
-						href={embedImage.imageAttributionLink}
-						target="_blank"
-						rel="noopener noreferrer"
-						className={styles.embed}
-					>
-						Credit:{embedImage.imageAttribution}
-					</a>
-				</span>
-			)}
-			<div className={styles.comment}>{embedImage.imageComment}</div>
+			<div>
+				{embedImage.imageAttribution && (
+					<span>
+						<a
+							href={embedImage.imageAttributionLink}
+							target="_blank"
+							rel="noopener noreferrer"
+							className={styles.embed}
+						>
+							Credit:{embedImage.imageAttribution}
+						</a>
+					</span>
+				)}
+				<div className={styles.comment}>{embedImage.imageComment}</div>
+			</div>
 		</div>
 	);
 };

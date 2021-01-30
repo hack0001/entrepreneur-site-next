@@ -7,7 +7,6 @@ import LongAnswer from "./LongAnswer";
 import prodRequest from "../../apiRequest/prodRequest";
 import styles from "./styles/questionStyles.module.sass";
 import SingleLoader from "../../Loading/SingleLoader";
-import LazyLoad from "react-lazyload";
 import Adsense from "../../ads/code/adsense/adsense";
 import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
 const Questions = ({
@@ -131,20 +130,19 @@ const Questions = ({
 				<div>
 					{!showAnswer && (
 						<div className={styles.easing}>
-							<LazyLoad once={true}>
-								<Embed
-									embed={longQuestion["questionImage-embed"]}
-									image={questionImage}
-									imageAlt={questionImageAlt}
-									imagePath={questionImagePath}
-									imageAltAttribution={questionImageAttribution}
-									imageAltAttributionLink={questionImageAttributionLink}
-									imageCrop={questionImageCrop}
-									imageCropInfo={questionImageCropInfo}
-									styles={{ width: "100%", height: "100%" }}
-									noMaxHeight={true}
-								/>
-							</LazyLoad>
+							<Embed
+								embed={longQuestion["questionImage-embed"]}
+								image={questionImage}
+								imageAlt={questionImageAlt}
+								imagePath={questionImagePath}
+								imageAltAttribution={questionImageAttribution}
+								imageAltAttributionLink={questionImageAttributionLink}
+								imageCrop={questionImageCrop}
+								imageCropInfo={questionImageCropInfo}
+								styles={{ width: "100%", height: "100%" }}
+								noMaxHeight={true}
+								wrapperClass={"contentWrapper"}
+							/>
 						</div>
 					)}
 				</div>
@@ -162,6 +160,7 @@ const Questions = ({
 								imageCropInfo={answerImageCropInfo}
 								styles={{ width: "100%", height: "100%" }}
 								noMaxHeight={true}
+								wrapperClass={"contentWrapper"}
 							/>
 						</div>
 					)}

@@ -29,7 +29,6 @@ const Quote = ({ node }) => {
 			styleQuote: data.quoteStyle ? data.quoteStyle : "classic",
 		});
 	};
-
 	switch (quote.styleQuote) {
 		case "classic":
 			return <ClassicQuote quote={quote} />;

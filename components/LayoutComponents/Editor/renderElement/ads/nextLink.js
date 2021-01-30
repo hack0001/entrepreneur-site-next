@@ -33,9 +33,9 @@ const NextLink = ({ data, type, id }) => {
 											: getImagePath(headlineImage)
 									}
 									imageAlt={headlineImageAlt}
-									layout={"nextButton"}
 									imageCrop={headlineImageCrop}
 									imageCropInfo={headlineImageCropInfo}
+									wrapperClass={"buttonWrapper"}
 								/>
 							</div>
 						</div>

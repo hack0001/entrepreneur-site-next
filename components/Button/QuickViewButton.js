@@ -27,9 +27,10 @@ const QuickViewButton = ({
 								<CloudImage
 									imagePath={imagePath ? imagePath : getImagePath(imgSrc)}
 									imageAlt={imageAlt}
-									layout={"nextButton"}
 									imageCrop={imageCrop}
 									imageCropInfo={imageCropInfo}
+									unsized={true}
+									wrapperClass={"quickViewWrapper"}
 								/>
 							</div>
 						</div>
@@ -43,14 +44,17 @@ const QuickViewButton = ({
 								</div>
 							)}
 						</div>
+
 						<div className={styles.arrowWrapper}>
-							<Image
-								className={styles.arrow}
-								src={"/static/newFatArrowRightWhitex128.png"}
-								alt="right-arrow"
-								height="58px"
-								width="58px"
-							/>
+							<div className={styles.insideWrapper}>
+								<Image
+									className={styles.arrow}
+									src={"/static/newFatArrowRightWhitex128.png"}
+									alt="right-arrow"
+									height="58px"
+									width="58px"
+								/>
+							</div>
 						</div>
 					</a>
 				</Link>

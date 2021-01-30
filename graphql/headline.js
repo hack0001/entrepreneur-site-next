@@ -9,68 +9,6 @@ export const ALL_POSTS_QUERY = /* GraphQL */ `
 			production
 			categories
 			developmentId
-			# articles {
-			# 	items {
-			# 		id
-			# 		authorId
-			# 		authorName
-			# 		category
-			# 		viewCount
-			# 		development
-			# 		production
-			# 		overview
-			# 		developmentId
-			# 		content
-			# 		schedule
-			# 		original
-			# 		scheduleTime
-			# 		createdAt
-			# 		updatedAt
-			# 	}
-			# 	nextToken
-			# }
-			# quiz {
-			# 	items {
-			# 		id
-			# 		authorId
-			# 		authorName
-			# 		category
-			# 		viewCount
-			# 		development
-			# 		production
-			# 		overview
-			# 		developmentId
-			# 		questions
-			# 		original
-			# 		numQuestions
-			# 		schedule
-			# 		scheduleTime
-			# 		createdAt
-			# 		updatedAt
-			# 	}
-			# 	nextToken
-			# }
-			# slideShows {
-			# 	items {
-			# 		id
-			# 		authorId
-			# 		authorName
-			# 		category
-			# 		viewCount
-			# 		development
-			# 		production
-			# 		overview
-			# 		developmentId
-			# 		slides
-			# 		numSlides
-			# 		original
-			# 		schedule
-			# 		scheduleTime
-			# 		createdAt
-			# 		updatedAt
-			# 	}
-			# 	nextToken
-			# }
 			createdAt
 			updatedAt
 		}

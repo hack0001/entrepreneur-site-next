@@ -5,6 +5,7 @@ import { useAmp } from "next/amp";
 import loadStyles from "./styles/editorImageLoaderStyles.module.sass";
 import CloudImage from "../Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
+import Image from "next/image";
 const ImageLoader = ({
 	src,
 	alt,
@@ -32,14 +33,22 @@ const ImageLoader = ({
 						<CloudImage
 							imagePath={imagePath ? imagePath : getImagePath(src)}
 							imageAlt={alt}
-							layout={"content"}
 							onLoad={onLoad}
 							imageCrop={imageCrop}
 							imageCropInfo={imageCropInfo}
+							unsized={true}
+							wrapperClass={"contentWrapper"}
 						/>
 					)}
 					{!imageCheck && (
-						<img src={src} alt={alt} style={styles} onLoad={onLoad} />
+						<Image
+							key={src}
+							src={src}
+							alt={alt}
+							style={styles}
+							onLoad={onLoad}
+							unsized={true}
+						/>
 					)}
 				</div>
 			)}

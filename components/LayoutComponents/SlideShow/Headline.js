@@ -79,6 +79,7 @@ const BookEnds = ({ data, id, position, cpcMarker }) => {
 					animation={false}
 					styles={{ width: "100%", height: "100%" }}
 					noMaxHeight={true}
+					wrapperClass={"contentWrapper"}
 				/>
 			</div>
 			<hr className={styles.break} />
