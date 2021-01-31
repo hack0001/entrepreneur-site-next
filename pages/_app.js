@@ -27,7 +27,7 @@ class OverviewApp extends App {
 	};
 
 	render() {
-		const { Component, pageProps, initialCookieValue } = this.props;
+		const { Component, pageProps } = this.props;
 		return (
 			<UserContext.Provider
 				value={{

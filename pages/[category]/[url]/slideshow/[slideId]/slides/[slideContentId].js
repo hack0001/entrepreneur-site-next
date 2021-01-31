@@ -19,6 +19,7 @@ const Slide = ({
 	query,
 }) => {
 	const router = useRouter();
+
 	const { handleState, sessionSlideIds } = useContext(Context);
 	if (parseUrl(router.asPath)) {
 		Cookie.set("CPC", JSON.stringify(true), {
@@ -60,7 +61,6 @@ const Slide = ({
 
 export async function getStaticProps(context) {
 	const { url, slideId, slideContentId } = context.params;
-
 	// Fetch data from external API
 	const SLIDESHOW_QUERY = {
 		query: SLIDESHOW,
