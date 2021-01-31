@@ -116,4 +116,5 @@ ImageLoader.propTypes = {
 
 ImageLoader.defaultProps = {
 	isAmp: false,
+	priority: false,
 };

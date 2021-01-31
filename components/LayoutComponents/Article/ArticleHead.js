@@ -83,7 +83,6 @@ const ArticleHead = ({ overview, id, nextSlideShow }) => {
 				noMaxHeight={true}
 				wrapperClass={"contentWrapper"}
 			/>
-
 			{bulletHeadlines > 0 && (
 				<ul className={styles.sectionList}>
 					{Object.keys(bulletHeadlinesDetails).map((bullet, index) => {

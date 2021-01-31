@@ -8,14 +8,13 @@ const CloudImageComponent = ({
 	onLoad,
 	imageCrop,
 	imageCropInfo,
-	unsized = true,
+	unsized,
 	wrapperClass,
 	fixedHeight,
 	fixedWidth,
 }) => {
 	const cloudfrontUrl = newImageUrl(imagePath);
 	let cropParams = null;
-
 	if (imageCrop && imageCropInfo) {
 		const parsedInfo =
 			typeof imageCropInfo === "string"
@@ -93,4 +92,8 @@ const CloudImageComponent = ({
 	);
 };
 
+CloudImageComponent.defaultProps = {
+	unsized: true,
+	priority: false,
+};
 export default CloudImageComponent;

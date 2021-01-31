@@ -8,7 +8,21 @@ const parseUrlQuery = url => {
 			const [keyval, val] = utm[i].split("=");
 			utmObj[keyval] = val;
 		}
-		utmCheck = utmObj.utm_source ? true : false;
+		if (utmObj.utm_source) {
+			switch (utmObj.utm_source) {
+				case "outbrain":
+				case "Outbrain":
+				case "taboola":
+				case "Taboola":
+				case "revContent":
+				case "revcontent":
+				case "contentad":
+				case "contentAd":
+					utmCheck = true;
+				default:
+					utmCheck = false;
+			}
+		}
 	}
 	return utmCheck;
 };
