@@ -22,6 +22,9 @@ const parseUrlQuery = url => {
 				case "rev":
 				case "contentad":
 				case "contentAd":
+				case "facebook":
+				case "fb":
+				case "Facebook":
 					return true;
 				default:
 					return false;
