@@ -59,7 +59,7 @@ const EmbedImage = ({ node }) => {
 				/>
 			)}
 			{!embedImage.imageCheck && embedImage.imageUrl && (
-				<Image
+				<img
 					key={embedImage.imageUrl}
 					src={embedImage.imageUrl}
 					alt={embedImage.imageAlt}
