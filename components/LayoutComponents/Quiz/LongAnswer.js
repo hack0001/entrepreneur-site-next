@@ -50,9 +50,11 @@ const LongAnswer = ({
 								{correct ? correctAnswerComment : incorrectAnswerComment}
 							</div>
 						</div>
-						<div>
-							<Reader value={answer[0].children} />
-						</div>
+						{answer && (
+							<div>
+								<Reader value={answer[0].children} />
+							</div>
+						)}
 					</div>
 				</div>
 			)}
