@@ -35,7 +35,6 @@ const Questions = ({
 	const [correct, setCorrect] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const questionDetails = questionData[0];
-
 	const {
 		answerImage,
 		answerImageAlt,
@@ -59,6 +58,7 @@ const Questions = ({
 		questionImageCropInfo,
 		correctAnswerComment,
 		incorrectAnswerComment,
+		showAnswerImage = true,
 	} = questionDetails;
 	const answerInfo = {
 		...correctAnswerDetails,
@@ -131,7 +131,7 @@ const Questions = ({
 				{question}
 			</div>
 			<div>
-				{!showAnswer && (
+				{(!showAnswer || (showAnswer && !showAnswerImage)) && (
 					<div className={styles.easing}>
 						<Embed
 							embed={questionDetails["questionImage-embed"]}
@@ -150,7 +150,7 @@ const Questions = ({
 				)}
 			</div>
 			<div>
-				{showAnswer && (
+				{showAnswer && showAnswerImage && (
 					<div className={styles.easing}>
 						<Embed
 							embed={questionDetails["answerImage-embed"]}

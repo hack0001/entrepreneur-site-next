@@ -56,6 +56,7 @@ const Questions = ({
 			questionImageCropInfo,
 			correctAnswerComment,
 			incorrectAnswerComment,
+			showAnswerImage,
 		} = longQuestion;
 		const answerInfo = {
 			...correctAnswerDetails,
@@ -128,7 +129,7 @@ const Questions = ({
 					{question}
 				</div>
 				<div>
-					{!showAnswer && (
+					{(!showAnswer || (showAnswer && !showAnswerImage)) && (
 						<div className={styles.easing}>
 							<Embed
 								embed={longQuestion["questionImage-embed"]}
@@ -147,7 +148,7 @@ const Questions = ({
 					)}
 				</div>
 				<div>
-					{showAnswer && (
+					{showAnswer && showAnswerImage && (
 						<div className={styles.easing}>
 							<Embed
 								embed={longQuestion["answerImage-embed"]}
