@@ -1,7 +1,8 @@
-import Link from "next/link";
 import styles from "./styles/sideBarSmallComponentStyles.module.sass";
 import CloudImage from "../../Image/cloudImage";
 import { getImagePath } from "../../helper/imageUrlHelper";
+import CustomLink from "@components/Link/customLink";
+
 const SideBarContent = ({
 	key,
 	headlineImage,
@@ -13,10 +14,17 @@ const SideBarContent = ({
 	category,
 	refPath,
 	contentLink,
+	queryLinkCheck,
+	query,
 }) => {
 	return (
 		<article className={styles.sideContent} key={key}>
-			<Link href={refPath} as={contentLink}>
+			<CustomLink
+				pathname={refPath}
+				alias={contentLink}
+				queryLink={queryLinkCheck}
+				query={query}
+			>
 				<a className={styles.sideHeadlineAnchor}>
 					<div className={styles.sideImageWrapper}>
 						<div className={styles.sideImageMain}>
@@ -37,16 +45,26 @@ const SideBarContent = ({
 						</div>
 					</div>
 				</a>
-			</Link>
+			</CustomLink>
 			<div className={styles.sideTitleInfo}>
-				<Link href={refPath} as={contentLink}>
+				<CustomLink
+					pathname={refPath}
+					alias={contentLink}
+					queryLink={queryLinkCheck}
+					query={query}
+				>
 					<a className={styles.infoLink}>{headline}</a>
-				</Link>
+				</CustomLink>
 				<div className={styles.sideTitle}>
 					<div className={styles.sideTitle}>
-						<Link href={refPath} as={contentLink}>
+						<CustomLink
+							pathname={refPath}
+							alias={contentLink}
+							queryLink={queryLinkCheck}
+							query={query}
+						>
 							<a className={styles.categoryLink}>{category}</a>
-						</Link>
+						</CustomLink>
 					</div>
 				</div>
 			</div>

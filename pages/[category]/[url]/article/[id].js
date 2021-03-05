@@ -1,13 +1,14 @@
 import { useContext, useEffect } from "react";
-import ArticleLayout from "../../../../components/Layouts/ArticleLayout";
-import prodRequest from "../../../../components/apiRequest/prodRequest";
-import { articleQuery } from "../../../../data/queryData/querys";
-import { ARTICLE } from "../../../../graphql/indivArticle";
-import ArticleLoading from "../../../../components/Loading/Layouts/ArticleLoadingLayout";
-import parseUrl from "../../../../components/helper/parseUrl";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
-import Context from "../../../../utils/Context";
+import ArticleLayout from "@components/Layouts/ArticleLayout";
+import prodRequest from "@components/apiRequest/prodRequest";
+import ArticleLoading from "@components/Loading/Layouts/ArticleLoadingLayout";
+import parseUrl from "@components/helper/parseUrl";
+import { articleQuery } from "@data/queryData/querys";
+import { ARTICLE } from "@graphql/indivArticle";
+import Context from "@utils/Context";
+import { queryHandler, getParams } from "@utils/queryHandler";
 
 const Article = ({ individual, quiz, slide, id, category, url }) => {
 	const router = useRouter();
@@ -22,13 +23,31 @@ const Article = ({ individual, quiz, slide, id, category, url }) => {
 	if (!individual || !quiz || !slide) return <ArticleLoading />;
 
 	useEffect(() => {
+		let sessionViews = [];
+
 		if (id) {
-			const sessionViews = sessionArticleIds
+			sessionViews = sessionArticleIds
 				.filter(x => id !== x.id)
 				.concat({ id: id });
-			handleState({ sessionArticleIds: sessionViews });
 		}
+
+		handleState({
+			sessionArticleIds: sessionViews,
+			currentUrlPath: router.asPath ? router.asPath : "",
+		});
 	}, [id]);
+
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+	}, []);
 
 	return (
 		<ArticleLayout

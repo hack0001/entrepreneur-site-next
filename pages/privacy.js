@@ -1,9 +1,32 @@
-import Layout from "../components/Layouts/Layout";
+import { useContext, useEffect, useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
+import { useRouter } from "next/router";
+import Layout from "../components/Layouts/Layout";
 import Vanilla from "../components/Layouts/vanillaLayout";
+import CustomLink from "../components/Link/customLink";
+import Context from "../utils/Context";
+import { queryHandler, getParams } from "../utils/queryHandler";
 import styles from "../styles/privacyStyles.module.sass";
+
 const Privacy = () => {
+	const router = useRouter();
+	const { handleState, query } = useContext(Context);
+	const [queryCheck, setQueryCheck] = useState(false);
+
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+		if (Object.keys(queryParams).length > 0) {
+			setQueryCheck(true);
+		}
+	}, []);
+
 	return (
 		<Layout>
 			<Head>
@@ -238,9 +261,13 @@ const Privacy = () => {
 									a parent or guardian believes that the Website has personally
 									identifiable information of a child under the age of 16 in its
 									database, please contact us immediately&nbsp;
-									<Link href="/contact">
+									<CustomLink
+										queryLink={queryCheck}
+										pathname="/contact"
+										query={query}
+									>
 										<a className={styles.link}>here</a>
-									</Link>{" "}
+									</CustomLink>{" "}
 									and we will use our best efforts to promptly remove such
 									information from our records.
 								</p>
@@ -281,9 +308,13 @@ const Privacy = () => {
 								<h2 className={styles.header}>12. Contact Us</h2>
 								If you have any questions about this Privacy Policy, please
 								contact us&nbsp;
-								<Link href="/contact">
+								<CustomLink
+									queryLink={queryCheck}
+									pathname="/contact"
+									query={query}
+								>
 									<a className={styles.link}>here.</a>
-								</Link>
+								</CustomLink>
 							</ol>
 
 							<h4>This policy is in effect as of 1st September 2019</h4>

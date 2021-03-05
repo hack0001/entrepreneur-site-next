@@ -12,13 +12,26 @@ import {
 } from "../ads/code/amazonBusiness";
 import Adsense from "../ads/code/adsense/adsense";
 
-const SideBarContent = ({ data, type, showAd = false, limit = 0, cpcAd }) => {
+const SideBarContent = ({
+	data,
+	type,
+	showAd = false,
+	limit = 0,
+	cpcAd,
+	queryLinkCheck,
+	query,
+	currentUrlPath,
+}) => {
 	const slicedData = limit > 0 ? data.slice(0, limit) : data;
 	return (
 		<>
 			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
 			{showAd && !cpcAd && (
-				<Adsense client="ca-pub-2068760522034474" slot="6792782716" />
+				<Adsense
+					client="ca-pub-2068760522034474"
+					slot="6792782716"
+					currentUrlPath={currentUrlPath}
+				/>
 			)}
 			{slicedData.map((article, index) => {
 				const {
@@ -36,7 +49,11 @@ const SideBarContent = ({ data, type, showAd = false, limit = 0, cpcAd }) => {
 				return (
 					<Fragment key={index}>
 						{index === 2 && showAd && (
-							<Adsense client="ca-pub-2068760522034474" slot="1753150973" />
+							<Adsense
+								client="ca-pub-2068760522034474"
+								slot="1753150973"
+								currentUrlPath={currentUrlPath}
+							/>
 							// <AdWrapper adCode={AMAZON_KINDLE_CODE_SQUARE} />
 						)}
 						<SideBarComponent
@@ -50,13 +67,19 @@ const SideBarContent = ({ data, type, showAd = false, limit = 0, cpcAd }) => {
 							category={category}
 							refPath={refPath}
 							contentLink={contentLink}
+							queryLinkCheck={queryLinkCheck}
+							query={query}
 						/>
 					</Fragment>
 				);
 			})}
 			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
 			{showAd && !cpcAd && (
-				<Adsense client="ca-pub-2068760522034474" slot="7552272565" />
+				<Adsense
+					client="ca-pub-2068760522034474"
+					slot="7552272565"
+					currentUrlPath={currentUrlPath}
+				/>
 			)}
 		</>
 	);
@@ -67,4 +90,5 @@ SideBarContent.propTypes = {
 	data: PropTypes.array,
 	loading: PropTypes.Boolean,
 	type: PropTypes.string,
+	queryLinkCheck: PropTypes.Boolean,
 };

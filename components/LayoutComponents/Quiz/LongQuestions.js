@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Embed from "../../Embed/Embed";
 import { UPDATE_QUIZ } from "../../../graphql/indivQuiz";
@@ -9,30 +9,36 @@ import styles from "./styles/questionStyles.module.sass";
 import SingleLoader from "../../Loading/SingleLoader";
 import Adsense from "../../ads/code/adsense/adsense";
 import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
+
 const Questions = ({
 	total,
 	questionData,
 	position,
-	linkImage,
-	nextHref,
 	id,
 	currentScore,
 	setCurrentScore,
 	setQuestionsAnswered,
 	questionsAnswered,
 	questions,
-	nextQuestionData,
 	randomiseAnswers,
+	currentUrlPath,
 }) => {
 	const [loading, setLoading] = useState(false);
+	const [questionState, setQuestionState] = useState({});
+
+	useEffect(() => {
+		let ind = {};
+		for (var i = 0; i < total; i++) {
+			ind = { ...ind, [i]: {} };
+		}
+
+		setQuestionState(ind);
+	}, [id]);
 
 	if (loading) return <SingleLoader />;
-	return questionData.map(longQuestion => {
-		const [showAnswer, setShowAnswer] = useState(false);
-		const [buttonDisabled, setButtonDisabled] = useState(false);
-		const [correct, setCorrect] = useState(false);
+	if (!questionState[total - 1]) return <SingleLoader />;
 
-		const [selected, setSelected] = useState(false);
+	return questionData.map((longQuestion, index) => {
 		const {
 			answerImage,
 			answerImageAlt,
@@ -63,13 +69,39 @@ const Questions = ({
 			...inCorrectAnswerDetails,
 		};
 
-		const answerClick = (answer, answerDetail, correct) => {
+		const answerClick = (questionNumber, answer, answerDetail, correct) => {
 			const answerType = correct
 				? "correctAnswerDetails"
 				: "inCorrectAnswerDetails";
-			setShowAnswer(true);
-			setButtonDisabled(true);
+
 			setQuestionsAnswered(questionsAnswered + 1);
+			setQuestionState({
+				...questionState,
+				[questionNumber]: {
+					...questionState[questionNumber],
+					showAnswer: true,
+					buttonDisabled: true,
+					questionAnswered: true,
+					selected: true,
+				},
+			});
+
+			if (answer.correct) {
+				setCurrentScore(currentScore + 1);
+				setQuestionState({
+					...questionState,
+					[questionNumber]: {
+						...questionState[questionNumber],
+						correct: true,
+						currentScore: questionState[questionNumber].currentScore + 1,
+						showAnswer: true,
+						buttonDisabled: true,
+						questionAnswered: true,
+						selected: true,
+					},
+				});
+			}
+
 			//Add Votes down in Question Object
 			const questionsObject = {
 				...questions.questions,
@@ -107,11 +139,6 @@ const Questions = ({
 			} catch (err) {
 				console.log("Error with request", err);
 			}
-
-			if (answer.correct) {
-				setCorrect(true);
-				setCurrentScore(currentScore + 1);
-			}
 		};
 
 		return (
@@ -122,6 +149,7 @@ const Questions = ({
 						slot="4560498904"
 						responsive={false}
 						adStyle={adsenseStyles["maxHeight"]}
+						currentUrlPath={currentUrlPath}
 					/>
 				</div>
 				<div className={styles.sectionHeader}>
@@ -129,7 +157,8 @@ const Questions = ({
 					{question}
 				</div>
 				<div>
-					{(!showAnswer || (showAnswer && !showAnswerImage)) && (
+					{(!questionState[index].showAnswer ||
+						(questionState[index].showAnswer && !showAnswerImage)) && (
 						<div className={styles.easing}>
 							<Embed
 								embed={longQuestion["questionImage-embed"]}
@@ -148,7 +177,7 @@ const Questions = ({
 					)}
 				</div>
 				<div>
-					{showAnswer && showAnswerImage && (
+					{questionState[index].showAnswer && showAnswerImage && (
 						<div className={styles.easing}>
 							<Embed
 								embed={longQuestion["answerImage-embed"]}
@@ -167,7 +196,11 @@ const Questions = ({
 					)}
 
 					<div className={styles.multiWrapper}>
-						<Adsense client="ca-pub-2068760522034474" slot="3992688547" />
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="3992688547"
+							currentUrlPath={currentUrlPath}
+						/>
 					</div>
 				</div>
 				<div className={styles.sectionHeaderScore}>
@@ -177,19 +210,17 @@ const Questions = ({
 					<QuizButton
 						answerInfo={answerInfo}
 						handleClick={answerClick}
-						buttonDisabled={buttonDisabled}
-						showAnswer={showAnswer}
-						setShowAnswer={setShowAnswer}
+						buttonDisabled={questionState[index].buttonDisabled}
+						showAnswer={questionState[index].showAnswer}
 						randomiseAnswers={randomiseAnswers}
-						setSelected={setSelected}
-						selected={selected}
-						correct={correct}
-						setCorrect={setCorrect}
+						selected={questionState[index].selected}
+						correct={questionState[index].correct}
+						questionNumber={index}
 					/>
 				</div>
 				<LongAnswer
-					showAnswer={showAnswer}
-					correct={correct}
+					showAnswer={questionState[index].showAnswer}
+					correct={questionState[index].correct}
 					answer={longAnswer}
 					correctAnswerComment={correctAnswerComment}
 					incorrectAnswerComment={incorrectAnswerComment}

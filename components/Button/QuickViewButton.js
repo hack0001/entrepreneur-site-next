@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
-import Link from "next/link";
 import styles from "./styles/quickViewButtonStyles.module.sass";
 import CloudImage from "../Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
 import Image from "next/image";
-
+import CustomLink from "@components/Link/customLink";
 const QuickViewButton = ({
 	label,
 	optionalTitle,
@@ -16,11 +15,19 @@ const QuickViewButton = ({
 	imageAlt,
 	imageCrop,
 	imageCropInfo,
+	queryLinkCheck,
+	query,
+	currentScore,
 }) => {
 	return (
 		<div className={styles.linkSection}>
 			<button className={styles.linkButton} onClick={handler}>
-				<Link href={refPath} as={href}>
+				<CustomLink
+					pathname={refPath}
+					alias={href}
+					queryLink={currentScore ? true : queryLinkCheck}
+					query={currentScore ? { ...query, score: currentScore } : query}
+				>
 					<a className={styles.quickViewLink}>
 						<div className={styles.imgWrapper}>
 							<div className={styles.quickViewImage}>
@@ -57,7 +64,7 @@ const QuickViewButton = ({
 							</div>
 						</div>
 					</a>
-				</Link>
+				</CustomLink>
 			</button>
 		</div>
 	);

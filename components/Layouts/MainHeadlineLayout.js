@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import LazyLoad from "react-lazyload";
+import Head from "next/head";
+import dynamic from "next/dynamic";
 import Layout from "./Layout";
-import PropTypes from "prop-types";
 import {
 	MainHeadline,
 	ScrollingArticles,
@@ -8,15 +10,15 @@ import {
 	SideBarSmallContent,
 	SectionBar,
 } from "../LayoutComponents";
-import LazyLoad from "react-lazyload";
-import Head from "next/head";
+import prodRequest from "@components/apiRequest/prodRequest";
 import organisationData from "../StructuredData/organisation";
 import webPageData from "../StructuredData/webPage";
-import styles from "./styles/headlineLayout.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
-import prodRequest from "../../components/apiRequest/prodRequest";
 import { LATEST } from "../../graphql/headline";
-import dynamic from "next/dynamic";
+import styles from "./styles/headlineLayout.module.sass";
+import Context from "@utils/Context";
+import { objectCheck } from "@utils/queryHandler";
+
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
 });
@@ -35,6 +37,8 @@ const MainHeadlineLayout = ({
 	latestNextToken,
 	latestSortIndex,
 }) => {
+	const { query, currentUrlPath } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 	const [token, setToken] = useState(latestNextToken ? latestNextToken : null);
 	const [sortIndex, setSortIndex] = useState(
 		latestSortIndex ? latestSortIndex : null,
@@ -92,7 +96,11 @@ const MainHeadlineLayout = ({
 				/>
 			</Head>
 			<div className={styles.homeContainer}>
-				<MainHeadline data={headline.items} />
+				<MainHeadline
+					data={headline.items}
+					queryLinkCheck={queryLinkCheck}
+					query={query}
+				/>
 				<section className={styles.bodyContainer}>
 					<div className={styles.latestContainer}>
 						<div className={styles.scrollingWrapper}>
@@ -103,7 +111,11 @@ const MainHeadlineLayout = ({
 									titleSize="1.25rem"
 								/>
 							</div>
-							<ScrollingArticles data={latestContent} />
+							<ScrollingArticles
+								data={latestContent}
+								queryLinkCheck={queryLinkCheck}
+								query={query}
+							/>
 						</div>
 						{token && (
 							<LazyLoad once={true}>
@@ -119,7 +131,13 @@ const MainHeadlineLayout = ({
 						<div className={styles.sectionPadding}>
 							<SectionBar title="Quiz" titleColor="#111" titleSize="1.25rem" />
 						</div>
-						<SideBarContent data={quiz.items} type="quiz" />
+						<SideBarContent
+							data={quiz.items}
+							queryLinkCheck={queryLinkCheck}
+							query={query}
+							type="quiz"
+							currentUrlPath={currentUrlPath}
+						/>
 						<LazyLoad once={true}>
 							<FacebookPage />
 						</LazyLoad>
@@ -134,13 +152,21 @@ const MainHeadlineLayout = ({
 							data={quiz.data.listProductionQuizs.items}
 							loading={quiz.loading}
 							type="quiz"
+							currentUrlPath={currentUrlPath}
 						/>
 						<SideBarSmallContent
 							data={headlines.data.listProductionArticles.items}
 							loading={quiz.loading}
 							type="article"
+							currentUrlPath={currentUrlPath}
 						/> */}
-						<SideBarSmallContent data={slide.items} type="slideshow" />
+						<SideBarSmallContent
+							data={slide.items}
+							queryLinkCheck={queryLinkCheck}
+							query={query}
+							type="slideshow"
+							currentUrlPath={currentUrlPath}
+						/>
 					</aside>
 				</section>
 			</div>

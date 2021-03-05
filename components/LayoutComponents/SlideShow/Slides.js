@@ -25,6 +25,9 @@ const Slides = ({
 	brief,
 	latest,
 	countdown,
+	queryLinkCheck,
+	query,
+	currentUrlPath,
 }) => {
 	return data.map((slideData, index) => {
 		const {
@@ -68,6 +71,7 @@ const Slides = ({
 						slot="8433059648"
 						responsive={false}
 						adStyle={adsenseStyles["maxHeight"]}
+						currentUrlPath={currentUrlPath}
 					/>
 				</div>
 				<div>
@@ -92,7 +96,11 @@ const Slides = ({
 				</div>
 				{index % 3 !== 0 && (
 					<div className={slideStyles.midAdWrapper}>
-						<Adsense client="ca-pub-2068760522034474" slot="7104500257" />
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="7104500257"
+							currentUrlPath={currentUrlPath}
+						/>
 					</div>
 				)}
 
@@ -119,7 +127,13 @@ const Slides = ({
 								titleColor="#111"
 								titleSize="1rem"
 							/>
-							<NextLink data={midDataOverview} type="article" id={midDataId} />
+							<NextLink
+								data={midDataOverview}
+								type="article"
+								id={midDataId}
+								queryLinkCheck={queryLinkCheck}
+								query={query}
+							/>
 							<SectionBar title={``} titleColor="#111" titleSize="1rem" />
 						</LazyLoad>
 					</>

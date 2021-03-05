@@ -16,7 +16,7 @@ import LazyLoad from "react-lazyload";
 import ScrollingContent from "../ScrollingContent/ScrollingContent";
 import styles from "./styles/quizStyles.module.sass";
 import dynamic from "next/dynamic";
-import Context from "../../../utils/Context";
+import Context from "@utils/Context";
 import LongQuestions from "./LongQuestions";
 import Cookie from "js-cookie";
 import prodRequest from "../../apiRequest/prodRequest";
@@ -27,12 +27,14 @@ const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
 import { AMAZON_MUSIC_WIDE_BANNER } from "../../ads/code/amazonBusiness";
 import Adsense from "../../ads/code/adsense/adsense";
 import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
-import { filterUnique } from "../../../utils/handler";
+import { filterUnique } from "@utils/handler";
+import { objectCheck } from "@utils/queryHandler";
 
 const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 	const details = JSON.parse(content.overview);
 	const questions = JSON.parse(content.questions);
-	const { sessionQuizIds } = useContext(Context);
+	const { sessionQuizIds, query, currentUrlPath } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 	const { viewCount } = content;
 	const [cpcMarker, setCpcMarker] = useState(false);
 	const filterArray = sessionQuizIds.concat({ id });
@@ -51,7 +53,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 
 	useEffect(() => {
 		setCurrentScore(0);
-
+		setQuestionsAnswered(0);
 		const updatedCount = viewCount ? Number(viewCount) + 1 : 1;
 
 		try {
@@ -142,6 +144,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 									scoreComments={scoreCommentsDetails}
 									finalScore={currentScore}
 									numberQuestions={content.numQuestions}
+									currentUrlPath={currentUrlPath}
 								/>
 								{position === "opening" && (
 									<div className={styles.openingButton}>
@@ -154,6 +157,8 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 											href={`${nextHref}/1`}
 											refPath={`/[category]/[url]/quiz/[quizId]/questions/[questionId]`}
 											imageAlt={details[0].headlineImageAlt}
+											queryLinkCheck={queryLinkCheck}
+											query={query}
 										/>
 									</div>
 								)}
@@ -169,6 +174,8 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 											href={nextQuizHref}
 											refPath={`/[category]/[url]/quiz/[quizId]/questions/[questionId]`}
 											imageAlt={nextContent[0].headlineImageAlt}
+											queryLinkCheck={queryLinkCheck}
+											query={query}
 										/>
 									</div>
 								)}
@@ -180,6 +187,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 								slot="4560498904"
 								responsive={false}
 								adStyle={adsenseStyles["maxHeight"]}
+								currentUrlPath={currentUrlPath}
 							/>
 						</div>
 						<div>
@@ -201,6 +209,9 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 									questions={questions}
 									randomiseAnswers={randomiseAnswers}
 									cpcMarker={cpcMarker}
+									queryLinkCheck={queryLinkCheck}
+									query={query}
+									currentUrlPath={currentUrlPath}
 								/>
 							)}
 						</div>
@@ -239,6 +250,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						scoreComments={scoreCommentsDetails}
 						finalScore={currentScore}
 						numberQuestions={content.numQuestions}
+						currentUrlPath={currentUrlPath}
 					/>
 					<LongQuestions
 						total={content.numQuestions}
@@ -253,6 +265,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						questionsAnswered={questionsAnswered}
 						questions={questions}
 						randomiseAnswers={randomiseAnswers}
+						currentUrlPath={currentUrlPath}
 					/>
 					<div>
 						<AdWrapper adCode={AMAZON_MUSIC_WIDE_BANNER} />
@@ -283,6 +296,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 								finalScore={currentScore}
 								numberQuestions={content.numQuestions}
 								positionClosing={true}
+								currentUrlPath={currentUrlPath}
 							/>
 
 							<div>
@@ -302,12 +316,15 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 									imageCrop={nextContent[0].headlineImageCrop}
 									imageCropInfo={nextContent[0].headlineImageCropInfo}
 									wrapperClass={"contentWrapper"}
+									queryLinkCheck={queryLinkCheck}
+									query={query}
 								/>
 							)}
 						</>
 					)}
 				</>
 			)}
+
 			<LazyLoad once={true}>
 				<ScrollUpButton />
 			</LazyLoad>
@@ -329,9 +346,11 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 				headline={title}
 				headlineUrl={shareUrl}
 				refPath={`/[category]/[url]/quiz/[quizId]/questions/[questionId]`}
+				queryLinkCheck={queryLinkCheck}
+				query={query}
 			/>
 			<LazyLoad once={true}>
-				<QuickEmailSignUp />
+				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
 			</LazyLoad>
 			{position === "closing" && (
 				<>

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Layout from "../Layouts/Layout";
 import PropTypes from "prop-types";
 import {
@@ -6,13 +7,16 @@ import {
 	SectionBar,
 	QuickViewComponent,
 } from "../LayoutComponents";
+import dynamic from "next/dynamic";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/contentLayout.module.sass";
 import { AMAZON_MUSIC_CODE_RECT_LARGE } from "../ads/code/amazonBusiness";
-import dynamic from "next/dynamic";
+import Context from "@utils/Context";
+import { objectCheck } from "@utils/queryHandler";
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
 });
+
 const QuickViewLayout = ({
 	individual,
 	headline,
@@ -23,6 +27,8 @@ const QuickViewLayout = ({
 	position,
 	url,
 }) => {
+	const { query, currentUrlPath } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 	const headlineData = individual.linkedArticle
 		? [individual.linkedArticle, ...headline.items]
 		: headline.items;
@@ -35,6 +41,8 @@ const QuickViewLayout = ({
 						position={position}
 						url={url}
 						id={id}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
 					/>
 				</article>
 				<aside className={styles.sideArticleSection}>
@@ -46,6 +54,9 @@ const QuickViewLayout = ({
 						type="article"
 						showAd={true}
 						limit={6}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
+						currentUrlPath={currentUrlPath}
 					/>
 					<LazyLoad once={true}>
 						<FacebookPage />
@@ -59,6 +70,9 @@ const QuickViewLayout = ({
 						showAd={true}
 						adCode={AMAZON_MUSIC_CODE_RECT_LARGE}
 						limit={6}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
+						currentUrlPath={currentUrlPath}
 					/>
 				</aside>
 			</main>

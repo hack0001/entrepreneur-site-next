@@ -1,13 +1,14 @@
 import { useContext, useEffect } from "react";
-import QuizLayout from "../../../../../../components/Layouts/QuizLayout";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
-import { QUIZ } from "../../../../../../graphql/indivQuiz";
-import QuickViewLoading from "../../../../../../components/Loading/Layouts/QuizLoadingLayout";
-import prodRequest from "../../../../../../components/apiRequest/prodRequest";
-import { quizQuery } from "../../../../../../data/queryData/querys";
-import parseUrl from "../../../../../../components/helper/parseUrl";
-import Context from "../../../../../../utils/Context";
+import QuizLayout from "@components/Layouts/QuizLayout";
+import prodRequest from "@components/apiRequest/prodRequest";
+import QuickViewLoading from "@components/Loading/Layouts/QuizLoadingLayout";
+import parseUrl from "@components/helper/parseUrl";
+import { QUIZ } from "@graphql/indivQuiz";
+import { quizQuery } from "@data/queryData/querys";
+import Context from "@utils/Context";
+import { queryHandler, getParams, constructQuizUrl } from "@utils/queryHandler";
 
 const Questions = ({
 	individual,
@@ -31,33 +32,71 @@ const Questions = ({
 	if (!individual || !headline || !quiz || !slide) return <QuickViewLoading />;
 
 	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: { utm_medium: "DING DONG" },
+			currentUrlPath: urlPath,
+		});
 		const tempQuizCookie = Cookie.get("temp-quiz-session")
 			? JSON.parse(Cookie.get("temp-quiz-session"))
 			: false;
-
 		if (!tempQuizCookie) {
 			if (questionId === "opening") {
 				Cookie.set("temp-quiz-session", JSON.stringify(true));
 			} else if (questionId !== "opening") {
-				router.push(`/${category}/${url}/quiz/${quizId}/questions/opening`);
+				const pushUrl = constructQuizUrl(
+					`/${category}/${url}/quiz/${quizId}/questions/opening`,
+					queryParams,
+				);
+
+				router.push(pushUrl);
 			}
 		} else if (tempQuizCookie) {
 			if (questionId === "closing") {
 				Cookie.remove("temp-quiz-session");
 			} else if (questionId !== "opening") {
-				router.push(`/${category}/${url}/quiz/${quizId}/questions/opening`);
+				const pushTempUrl = constructQuizUrl(
+					`/${category}/${url}/quiz/${quizId}/questions/opening`,
+					queryParams,
+				);
+				router.push(pushTempUrl);
 			}
 		}
 	}, []);
 
 	useEffect(() => {
+		let sessionViews = [];
+
 		if (quizId) {
-			const sessionViews = sessionQuizIds
+			sessionViews = sessionQuizIds
 				.filter(x => quizId !== x.id)
 				.concat({ id: quizId });
-			handleState({ sessionQuizIds: sessionViews });
 		}
+
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			sessionQuizIds: sessionViews,
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
 	}, [quizId]);
+
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+	}, [questionId]);
 
 	return (
 		<QuizLayout

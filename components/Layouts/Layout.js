@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import styles from "./styles/layoutStyles.module.sass";
 import LazyLoad from "react-lazyload";
 import baseTheme from "../../theme/baseTheme.json";
+
 const Layout = props => {
 	const { background, children } = props;
 	const [menuOpen, setMenuOpen] = useState(false);

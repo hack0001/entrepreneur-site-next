@@ -1,10 +1,31 @@
-import Layout from "../components/Layouts/Layout";
+import { useContext, useEffect, useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
-import Vanilla from "../components/Layouts/vanillaLayout";
+import { useRouter } from "next/router";
+import Layout from "@components/Layouts/Layout";
+import Vanilla from "@components/Layouts/vanillaLayout";
+import CustomLink from "@components/Link/customLink";
+import Context from "@utils/Context";
+import { queryHandler, getParams } from "@utils/queryHandler";
 import styles from "../styles/termStyles.module.sass";
-
 const Terms = () => {
+	const router = useRouter();
+	const { handleState, query } = useContext(Context);
+	const [queryCheck, setQueryCheck] = useState(false);
+
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+		if (Object.keys(queryParams).length > 0) {
+			setQueryCheck(true);
+		}
+	}, []);
+
 	return (
 		<Layout>
 			<Head>
@@ -234,9 +255,13 @@ const Terms = () => {
 								Your submission of personal information through the site is
 								governed by our Privacy Policy. To view our Privacy Policy
 								click&nbsp;
-								<Link href="/contact">
+								<CustomLink
+									queryLink={queryCheck}
+									pathname="/contact"
+									query={query}
+								>
 									<a className={styles.link}>here.</a>
-								</Link>
+								</CustomLink>
 							</p>
 
 							<h2 className={styles.header}>
@@ -436,9 +461,13 @@ const Terms = () => {
 							</h2>
 							<p>
 								Questions about the Terms of Service should be sent to us&nbsp;
-								<Link href="/contact">
+								<CustomLink
+									queryLink={queryCheck}
+									pathname="/contact"
+									query={query}
+								>
 									<a className={styles.link}>here.</a>
-								</Link>
+								</CustomLink>
 							</p>
 						</div>
 					</article>

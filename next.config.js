@@ -46,9 +46,7 @@ module.exports = {
 			"https://amplify-images-bucket-dev-resized.s3.eu-west-1.amazonaws.com/public/resized-thumbnails/business_cover_photox1024.jpg",
 		SITE_IMAGE_WIDTH: "1024",
 		SITE_IMAGE_HEIGHT: "573",
-		SITE_DESC:
-			"Dedicated to providing motivation to aspiring entrepreneurs and those who wish to improve their lives and achieve success in the business world",
-
+		SITE_DESC: "Start building tomorrow, today",
 		TWITTER_SITE: "@WealthMack",
 		GOOGLE_VERIFICATION_ID: "",
 		SITE_ADDRESS: "https://www.wealthmack.com",

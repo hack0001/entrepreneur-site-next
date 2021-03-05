@@ -17,12 +17,13 @@ const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
 });
 import Adsense from "../../ads/code/adsense/adsense";
 import { AMAZON_BUSINESS_AD_RECT } from "../../ads/code/amazonBusiness";
-import Context from "../../../utils/Context";
-import { filterUnique } from "../../../utils/handler";
+import Context from "@utils/Context";
+import { filterUnique } from "@utils/handler";
 import QuickViewButton from "../../Button/QuickViewButton";
 import Cookie from "js-cookie";
 import prodRequest from "../../apiRequest/prodRequest";
 import { UPDATE_ARTICLE } from "../../../graphql/indivArticle";
+import { objectCheck } from "@utils/queryHandler";
 
 const ArticleBody = ({
 	content,
@@ -36,7 +37,9 @@ const ArticleBody = ({
 }) => {
 	const value = JSON.parse(content.content);
 
-	const { sessionSlideIds } = useContext(Context);
+	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
+
 	const filterArray = sessionSlideIds.concat({ id });
 	const { viewCount } = content;
 	const nextContent = filterUnique(nextSlideShow.items, filterArray);
@@ -86,13 +89,19 @@ const ArticleBody = ({
 						imageAlt={nextContent[0].headlineImageAlt}
 						imageCrop={nextContent[0].headlineImageCrop}
 						imageCropInfo={nextContent[0].headlineImageCropInfo}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
 					/>
 				</div>
 			)}
 			<LazyLoad once={true}>
 				<ScrollUpButton />
 			</LazyLoad>
-			<Adsense client="ca-pub-2068760522034474" slot="8414762247" />
+			<Adsense
+				client="ca-pub-2068760522034474"
+				slot="8414762247"
+				currentUrlPath={currentUrlPath}
+			/>
 			<br />
 			<LazyLoad once={true}>
 				<SectionBar title={`Share`} titleColor="#111" titleSize="1rem" />
@@ -111,9 +120,11 @@ const ArticleBody = ({
 				headline={headline}
 				headlineUrl={url}
 				refPath={`/[category]/[url]/article/[id]`}
+				queryLinkCheck={queryLinkCheck}
+				query={query}
 			/>
 			<LazyLoad once={true}>
-				<QuickEmailSignUp />
+				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
 			</LazyLoad>
 			<AdWrapper adCode={AMAZON_BUSINESS_AD_RECT} />
 			<SectionBar title="Leave a Comment" titleColor="#111" titleSize="1rem" />

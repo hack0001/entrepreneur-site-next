@@ -1,9 +1,9 @@
-import Link from "next/link";
 import PropTypes from "prop-types";
-import LazyLoad from "react-lazyload";
 import styles from "./styles/mainContentStyles.module.sass";
 import CloudImage from "../../Image/cloudImage";
 import { getImagePath } from "../../helper/imageUrlHelper";
+import CustomLink from "@components/Link/customLink";
+
 const MainScrollingContent = ({
 	category,
 	headline,
@@ -15,10 +15,17 @@ const MainScrollingContent = ({
 	index,
 	contentLink,
 	refPath,
+	queryLinkCheck,
+	query,
 }) => {
 	return (
 		<article className={styles.sideContent} key={index}>
-			<Link href={refPath} as={contentLink}>
+			<CustomLink
+				pathname={refPath}
+				alias={contentLink}
+				queryLink={queryLinkCheck}
+				query={query}
+			>
 				<a className={styles.sideHeadlineAnchor}>
 					<div className={styles.sideImageWrapper}>
 						<div className={styles.sideImageMain}>
@@ -39,16 +46,27 @@ const MainScrollingContent = ({
 						</div>
 					</div>
 				</a>
-			</Link>
+			</CustomLink>
 			<div className={styles.sideTitleInfo}>
 				<h1 className={styles.sideTitle}>
-					<Link href={refPath} as={contentLink}>
+					<CustomLink
+						pathname={refPath}
+						alias={contentLink}
+						queryLink={queryLinkCheck}
+						query={query}
+					>
 						<a className={styles.infoLink}>{headline}</a>
-					</Link>
+					</CustomLink>
 					<h2 className={styles.sideTitle}>
-						<Link href={refPath} as={contentLink}>
+						<CustomLink
+							pathname={refPath}
+							alias={contentLink}
+							queryLink={queryLinkCheck}
+							query={query}
+						>
+							{" "}
 							<a className={styles.categoryLink}>{category}</a>
-						</Link>
+						</CustomLink>
 					</h2>
 				</h1>
 			</div>

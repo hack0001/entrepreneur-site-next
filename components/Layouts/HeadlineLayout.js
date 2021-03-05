@@ -1,17 +1,20 @@
-import { useState } from "react";
-import Layout from "../Layouts/Layout";
+import { useState, useContext } from "react";
 import PropTypes from "prop-types";
+import Head from "next/head";
+import dynamic from "next/dynamic";
 import {
 	ScrollingArticles,
 	SideBarContent,
 	SideBarSmallContent,
 	SectionBar,
 } from "../LayoutComponents";
-import Head from "next/head";
+import Layout from "../Layouts/Layout";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/headlineLayout.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
-import dynamic from "next/dynamic";
+import Context from "@utils/Context";
+import { objectCheck } from "@utils/queryHandler";
+
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
 });
@@ -32,6 +35,8 @@ const HeadlineLayout = ({
 	queryFilter,
 	queryOpName,
 }) => {
+	const { query, currentUrlPath } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 	const [token, setToken] = useState(latestNextToken ? latestNextToken : null);
 	const [sortIndex, setSortIndex] = useState(
 		latestSortIndex ? latestSortIndex : null,
@@ -114,7 +119,11 @@ const HeadlineLayout = ({
 									/>
 								</LazyLoad>
 							</div>
-							<ScrollingArticles data={headline.items} />
+							<ScrollingArticles
+								data={headline.items}
+								queryLinkCheck={queryLinkCheck}
+								query={query}
+							/>
 							{token && (
 								<LazyLoad once={true}>
 									<RippleButton
@@ -129,14 +138,26 @@ const HeadlineLayout = ({
 						<div className={styles.sectionPadding}>
 							<SectionBar title="Quiz" titleColor="#111" titleSize="1rem" />
 						</div>
-						<SideBarContent data={quiz.items} type="quiz" />
+						<SideBarContent
+							data={quiz.items}
+							type="quiz"
+							queryLinkCheck={queryLinkCheck}
+							query={query}
+							currentUrlPath={currentUrlPath}
+						/>
 						<LazyLoad once={true}>
 							<FacebookPage />
 						</LazyLoad>
 						<div className={styles.sectionPadding}>
 							<SectionBar title="Popular" titleColor="#111" titleSize="1rem" />
 						</div>
-						<SideBarSmallContent data={slide.items} type="slideshow" />
+						<SideBarSmallContent
+							data={slide.items}
+							type="slideshow"
+							queryLinkCheck={queryLinkCheck}
+							query={query}
+							currentUrlPath={currentUrlPath}
+						/>
 					</aside>
 				</section>
 			</div>

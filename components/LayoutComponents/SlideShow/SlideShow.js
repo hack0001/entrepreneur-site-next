@@ -14,16 +14,17 @@ import FacebookComments from "../../SocialMedia/FacebookComments";
 import LazyLoad from "react-lazyload";
 import ScrollingContent from "../ScrollingContent/ScrollingContent";
 import styles from "./styles/slideShowStyles.module.sass";
-import Context from "../../../utils/Context";
+import Context from "@utils/Context";
 import QuickViewButton from "../../Button/QuickViewButton";
 import QuickSlides from "./QuickView/QuickSlides";
 import QuickBookEnds from "./QuickView/QuickBookEnds";
 import QuickHeadline from "./QuickView/QuickHeadline";
-import { filterUnique } from "../../../utils/handler";
+import { filterUnique } from "@utils/handler";
 import Cookie from "js-cookie";
 import Adsense from "../../ads/code/adsense/adsense";
 import prodRequest from "../../apiRequest/prodRequest";
 import { UPDATE_SLIDESHOW } from "../../../graphql/indivSlideShow";
+import { objectCheck } from "@utils/queryHandler";
 
 const SlideDetails = ({
 	content,
@@ -36,7 +37,8 @@ const SlideDetails = ({
 	const details = JSON.parse(content.overview);
 	const slides = JSON.parse(content.slides);
 	const { viewCount } = content;
-	const { sessionSlideIds } = useContext(Context);
+	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 	const [cpcMarker, setCpcMarker] = useState(false);
 	const filterArray = sessionSlideIds.concat({ id });
 	const nextContent = filterUnique(nextSlideShow.items, filterArray);
@@ -143,6 +145,7 @@ const SlideDetails = ({
 											: undefined
 									}
 									embed={slides[position][0][`${position}Image-embed`]}
+									currentUrlPath={currentUrlPath}
 								/>
 								{position === "opening" && (
 									<QuickViewButton
@@ -154,6 +157,8 @@ const SlideDetails = ({
 										imageAlt={details[0].headlineImageAlt}
 										imageCrop={details[0].headlineImageCrop}
 										imageCropInfo={details[0].headlineImageCropInfo}
+										queryLinkCheck={queryLinkCheck}
+										query={query}
 									/>
 								)}
 								{position === "closing" && nextContent[0] && (
@@ -167,6 +172,8 @@ const SlideDetails = ({
 										imageAlt={nextContent[0].headlineImageAlt}
 										imageCrop={nextContent[0].headlineImageCrop}
 										imageCropInfo={nextContent[0].headlineImageCropInfo}
+										queryLinkCheck={queryLinkCheck}
+										query={query}
 									/>
 								)}
 							</>
@@ -188,6 +195,9 @@ const SlideDetails = ({
 								linkImage={details[0][`headlineImage`]}
 								nextHref={`${nextHref}/${slideEndRef}`}
 								cpcMarker={cpcMarker}
+								queryLinkCheck={queryLinkCheck}
+								query={query}
+								currentUrlPath={currentUrlPath}
 							/>
 						)}
 						<Adsense
@@ -195,6 +205,7 @@ const SlideDetails = ({
 							slot="7104500257"
 							responsive={true}
 							adStyle={{ display: "block" }}
+							currentUrlPath={currentUrlPath}
 						/>
 					</div>
 				</>
@@ -222,7 +233,11 @@ const SlideDetails = ({
 					/>
 
 					<div>
-						<Adsense client="ca-pub-2068760522034474" slot="8433059648" />
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="8433059648"
+							currentUrlPath={currentUrlPath}
+						/>
 					</div>
 					<Slides
 						data={slideData}
@@ -233,6 +248,9 @@ const SlideDetails = ({
 						brief={blurb}
 						latest={latest}
 						countdown={countdown}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
+						currentUrlPath={currentUrlPath}
 					/>
 					<BookEnds
 						position={"closing"}
@@ -253,7 +271,11 @@ const SlideDetails = ({
 						embed={bookEndClosing["closingImage-embed"]}
 					/>
 					<div>
-						<Adsense client="ca-pub-2068760522034474" slot="3467673426" />
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="3467673426"
+							currentUrlPath={currentUrlPath}
+						/>
 					</div>
 					{nextContent[0] && (
 						<QuickViewButton
@@ -267,6 +289,8 @@ const SlideDetails = ({
 							imageAlt={nextContent[0].headlineImageAlt}
 							imageCrop={nextContent[0].headlineImageCrop}
 							imageCropInfo={nextContent[0].headlineImageCropInfo}
+							queryLinkCheck={queryLinkCheck}
+							query={query}
 						/>
 					)}
 				</>
@@ -291,9 +315,11 @@ const SlideDetails = ({
 				headline={title}
 				headlineUrl={url}
 				refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
+				queryLinkCheck={queryLinkCheck}
+				query={query}
 			/>
 			<LazyLoad once={true}>
-				<QuickEmailSignUp />
+				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
 			</LazyLoad>
 			<LazyLoad once={true}>
 				<SectionBar

@@ -13,6 +13,7 @@ const BookEnds = ({
 	title,
 	details,
 	embed,
+	currentUrlPath,
 }) => {
 	return (
 		<div className={styles.bookEndWrapper}>
@@ -22,6 +23,7 @@ const BookEnds = ({
 					slot="3049705177"
 					responsive={false}
 					adStyle={adsenseStyles["maxHeight"]}
+					currentUrlPath={currentUrlPath}
 				/>
 			</div>
 			<h1 className={styles.sectionHeader}>{title}</h1>
@@ -47,6 +49,7 @@ const BookEnds = ({
 					slot="1874540097"
 					responsive={false}
 					adStyle={adsenseStyles["maxHeight"]}
+					currentUrlPath={currentUrlPath}
 				/>
 			</div>
 		</div>

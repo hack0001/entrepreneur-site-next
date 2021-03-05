@@ -18,6 +18,9 @@ const QuickSlides = ({
 	showNumbers,
 	countdown,
 	cpcMarker,
+	queryLinkCheck,
+	query,
+	currentUrlPath,
 }) => {
 	const slideDetails = slideData[0];
 	const {
@@ -51,6 +54,7 @@ const QuickSlides = ({
 					slot="3049705177"
 					responsive={false}
 					adStyle={adsenseStyles["maxHeight"]}
+					currentUrlPath={currentUrlPath}
 				/>
 			</div>
 			<h1 className={styles.sectionHeader}>
@@ -89,6 +93,7 @@ const QuickSlides = ({
 					slot="1874540097"
 					responsive={false}
 					adStyle={adsenseStyles["maxHeight"]}
+					currentUrlPath={currentUrlPath}
 				/>
 			</div>
 			{cpcMarker && (
@@ -113,6 +118,8 @@ const QuickSlides = ({
 							? nextSlideData[0].slideImageCropInfo
 							: slideImageCropInfo
 					}
+					queryLinkCheck={queryLinkCheck}
+					query={query}
 				/>
 			)}
 		</div>

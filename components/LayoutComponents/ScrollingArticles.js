@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
-import Link from "next/link";
-import LazyLoad from "react-lazyload";
+import CustomLink from "@components/Link/customLink";
 import CloudImage from "../Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
 import styles from "./styles/scrollingArticleStyles.module.sass";
-const ScrollingArticles = ({ data }) => {
+const ScrollingArticles = ({ data, queryLinkCheck, query }) => {
 	return data.map((article, index) => {
 		const {
 			id,
@@ -21,9 +20,11 @@ const ScrollingArticles = ({ data }) => {
 
 		return (
 			<article className={styles.headerSection} key={index}>
-				<Link
-					href={`/[category]/[url]/article/[id]`}
-					as={`/${category}/${urlDescription}/article/${id}`}
+				<CustomLink
+					pathname={`/[category]/[url]/article/[id]`}
+					alias={`/${category}/${urlDescription}/article/${id}`}
+					queryLink={queryLinkCheck}
+					query={query}
 				>
 					<a className={styles.scrollImageAnchor}>
 						<div className={styles.scrollImageWrapper}>
@@ -58,7 +59,7 @@ const ScrollingArticles = ({ data }) => {
 							</div>
 						</div>
 					</a>
-				</Link>
+				</CustomLink>
 			</article>
 		);
 	});

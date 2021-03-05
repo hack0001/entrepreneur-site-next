@@ -9,12 +9,9 @@ const QuizButton = ({
 	buttonDisabled,
 	buttonColor,
 	showAnswer,
-	setShowAnswer,
 	randomiseAnswers,
-	setSelected,
 	selected,
-	correct,
-	setCorrect,
+	questionNumber,
 }) => {
 	const [answers, setAnswers] = useState(
 		Object.keys(answerInfo).sort((a, b) => a.answer - b.answer),
@@ -89,9 +86,7 @@ const QuizButton = ({
 					<button
 						className={classCorrect}
 						onClick={() => {
-							handleClick(answer, answerDetails, correct);
-							setSelected(true);
-							setShowAnswer(true);
+							handleClick(questionNumber, answer, answerDetails, correct);
 						}}
 						disabled={buttonDisabled}
 					>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import Embed from "../../Embed/Embed";
 import { UPDATE_QUIZ } from "../../../graphql/indivQuiz";
@@ -11,7 +11,7 @@ import SingleLoader from "../../Loading/SingleLoader";
 import dynamic from "next/dynamic";
 import Adsense from "../../ads/code/adsense/adsense";
 // import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
-
+import Context from "@utils/Context";
 const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
 	ssr: false,
 });
@@ -29,11 +29,15 @@ const Questions = ({
 	questions,
 	nextQuestionData,
 	randomiseAnswers,
+	queryLinkCheck,
+	query,
+	currentUrlPath,
 }) => {
 	const [showAnswer, setShowAnswer] = useState(false);
 	const [buttonDisabled, setButtonDisabled] = useState(false);
 	const [correct, setCorrect] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const { handleState } = useContext(Context);
 	const questionDetails = questionData[0];
 	const {
 		answerImage,
@@ -71,7 +75,7 @@ const Questions = ({
 		setLoading(false);
 	}, [answerImage]);
 
-	const answerClick = (answer, answerDetail, correct) => {
+	const answerClick = (index, answer, answerDetail, correct) => {
 		const answerType = correct
 			? "correctAnswerDetails"
 			: "inCorrectAnswerDetails";
@@ -119,6 +123,7 @@ const Questions = ({
 		if (answer.correct) {
 			setCorrect(true);
 			setCurrentScore(currentScore + 1);
+			handleState({ query: { ...query, score: currentScore + 1 } });
 		}
 	};
 
@@ -173,6 +178,7 @@ const Questions = ({
 						client="ca-pub-2068760522034474"
 						slot="3992688547"
 						responsive={true}
+						currentUrlPath={currentUrlPath}
 					/>
 				</div>
 			</div>
@@ -208,7 +214,7 @@ const Questions = ({
 							? nextQuestionData[0].questionImage
 							: questionImage
 					}
-					href={`${nextHref}?score=${currentScore}`}
+					href={`${nextHref}`}
 					refPath={`/[category]/[url]/quiz/[quizId]/questions/[questionId]`}
 					imagePath={
 						nextQuestionData[0]
@@ -236,6 +242,8 @@ const Questions = ({
 							? nextQuestionData[0].questionImageCropInfo
 							: questionImageCropInfo
 					}
+					queryLinkCheck={queryLinkCheck}
+					query={query}
 				/>
 			)}
 			<div>

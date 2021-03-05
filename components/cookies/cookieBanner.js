@@ -1,11 +1,16 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect, useContext } from "react";
 import Ripples from "../Button/Ripples";
 import Cookie from "js-cookie";
 import styles from "./styles/cookieBannerStyles.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
+import Context from "@utils/Context";
+import { objectCheck } from "@utils/queryHandler";
+import CustomLink from "@components/Link/customLink";
+
 const CookieBanner = () => {
 	const [cookie, setCookie] = useState(true);
+	const { query } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 
 	useEffect(() => {
 		const cookieMarker = Cookie.get("cookie-accept")
@@ -36,11 +41,15 @@ const CookieBanner = () => {
 							on this website you acknowledge that Cookies may be used to serve
 							you personalized ads throughout your online experience. To learn
 							more or disable this service please consult our{" "}
-							<Link href="/cookies">
+							<CustomLink
+								pathname={"/cookies"}
+								queryLink={queryLinkCheck}
+								query={query}
+							>
 								<a className={styles.link} target="_blank">
-									Cookie Policy.
+									Cookie Policy shabba awanbba.
 								</a>
-							</Link>
+							</CustomLink>
 						</p>
 						<div className={styles.cookieWrapper}>
 							<Ripples color={baseTheme.rippleColor}>

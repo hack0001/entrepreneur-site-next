@@ -15,7 +15,7 @@ import styles from "./styles/articleHeadStyles.module.sass";
 import Adsense from "../../ads/code/adsense/adsense";
 import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
 
-const ArticleHead = ({ overview, id, nextSlideShow }) => {
+const ArticleHead = ({ overview, id, nextSlideShow, currentUrlPath }) => {
 	const details = JSON.parse(overview.overview);
 	const {
 		articleHeadline,
@@ -70,6 +70,7 @@ const ArticleHead = ({ overview, id, nextSlideShow }) => {
 				slot={"9802692073"}
 				responsive={false}
 				adStyle={adsenseStyles["maxHeight"]}
+				currentUrlPath={currentUrlPath}
 			/>
 			<ImageLoader
 				src={headlineImage}

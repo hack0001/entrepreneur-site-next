@@ -1,8 +1,31 @@
-import Layout from "../components/Layouts/Layout";
+import { useContext, useEffect, useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
+import { useRouter } from "next/router";
+import Layout from "@components/Layouts/Layout";
+import CustomLink from "@components/Link/customLink";
+import Context from "@utils/Context";
+import { queryHandler, getParams } from "@utils/queryHandler";
 import styles from "../styles/404Styles.module.sass";
+
 const DefaultError = () => {
+	const router = useRouter();
+	const { handleState, query } = useContext(Context);
+	const [queryCheck, setQueryCheck] = useState(false);
+
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+		if (Object.keys(queryParams).length > 0) {
+			setQueryCheck(true);
+		}
+	}, []);
+
 	return (
 		<Layout>
 			<Head>
@@ -15,9 +38,9 @@ const DefaultError = () => {
 						<p>The page you requested does not exist or has moved.</p>
 						<p>
 							Click&nbsp;
-							<Link href="/">
+							<CustomLink queryLink={queryCheck} pathname="/" query={query}>
 								<a className={styles.link}>here</a>
-							</Link>
+							</CustomLink>
 							&nbsp;to get back to the Home page.
 						</p>
 					</div>

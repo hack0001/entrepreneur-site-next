@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
-import Link from "next/link";
 import styles from "../styles/ads/nextLinkStyles.module.sass";
 import sideHelper from "../../../../helper/sideBarHelper";
 import CloudImage from "../../../../Image/cloudImage";
 import { getImagePath } from "../../../../helper/imageUrlHelper";
 import Image from "next/image";
+import CustomLink from "@components/Link/customLink";
 
-const NextLink = ({ data, type, id }) => {
+const NextLink = ({ data, type, id, queryLinkCheck, query }) => {
 	const {
 		headlineImage,
 		headlineImageAlt,
@@ -22,7 +22,12 @@ const NextLink = ({ data, type, id }) => {
 		<div className={styles.linkSection}>
 			<div className={styles.scrollText}>{headline}</div>
 			<div className={styles.linkButton}>
-				<Link href={refPath} as={contentLink}>
+				<CustomLink
+					pathname={refPath}
+					alias={contentLink}
+					queryLink={queryLinkCheck}
+					query={query}
+				>
 					<a className={styles.quickViewLink}>
 						<div className={styles.imgWrapper}>
 							<div className={styles.quickViewImage}>
@@ -53,7 +58,7 @@ const NextLink = ({ data, type, id }) => {
 							/>
 						</div>
 					</a>
-				</Link>
+				</CustomLink>
 			</div>
 		</div>
 	);

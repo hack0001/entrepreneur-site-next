@@ -1,8 +1,28 @@
-import Layout from "../components/Layouts/Layout";
+import { useContext, useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import Layout from "../components/Layouts/Layout";
 import Vanilla from "../components/Layouts/vanillaLayout";
+import Context from "../utils/Context";
+import { queryHandler, getParams } from "../utils/queryHandler";
 import styles from "../styles/cookieStyles.module.sass";
+
 const Cookies = () => {
+	const router = useRouter();
+	const { handleState } = useContext(Context);
+
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+	}, []);
+
 	return (
 		<Layout>
 			<Head>

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import Layout from "../Layouts/Layout";
 import PropTypes from "prop-types";
 import {
@@ -10,6 +11,8 @@ import LazyLoad from "react-lazyload";
 import styles from "./styles/contentLayout.module.sass";
 import { ETORO_COPY_TRADER } from "../ads/code/eToro";
 import dynamic from "next/dynamic";
+import Context from "@utils/Context";
+import { objectCheck } from "@utils/queryHandler";
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
 });
@@ -24,6 +27,8 @@ const Quiz = ({
 	url,
 	score,
 }) => {
+	const { query, currentUrlPath } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 	const headlineData = individual.linkedArticle
 		? [individual.linkedArticle, ...headline.items]
 		: headline.items;
@@ -38,13 +43,22 @@ const Quiz = ({
 						url={url}
 						id={id}
 						score={score}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
 					/>
 				</article>
 				<aside className={styles.sideArticleSection}>
 					<div className={styles.sectionPadding}>
 						<SectionBar title="Quiz" titleColor="#111" titleSize="1rem" />
 					</div>
-					<SideBarContent data={headlineData} type="article" showAd={true} />
+					<SideBarContent
+						data={headlineData}
+						type="article"
+						showAd={true}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
+						currentUrlPath={currentUrlPath}
+					/>
 					<LazyLoad once={true}>
 						<FacebookPage />
 					</LazyLoad>
@@ -56,6 +70,9 @@ const Quiz = ({
 						type="slideshow"
 						showAd={true}
 						adCode={ETORO_COPY_TRADER}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
+						currentUrlPath={currentUrlPath}
 					/>
 				</aside>
 			</main>

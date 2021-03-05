@@ -15,7 +15,7 @@ import styles from "./styles/quickViewStyles.module.sass";
 import { UPDATE_SLIDESHOW } from "../../../../graphql/indivSlideShow";
 import prodRequest from "../../../apiRequest/prodRequest";
 
-const QuickView = ({ content, position, url, id }) => {
+const QuickView = ({ content, position, url, id, queryLinkCheck, query }) => {
 	const details = JSON.parse(content.overview);
 	const slides = JSON.parse(content.slides);
 	const {
@@ -94,9 +94,11 @@ const QuickView = ({ content, position, url, id }) => {
 				headline={title}
 				headlineUrl={shareUrl}
 				refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
+				queryLinkCheck={queryLinkCheck}
+				query={query}
 			/>
 			<LazyLoad once={true}>
-				<QuickEmailSignUp />
+				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
 			</LazyLoad>
 			{position === "closing" && (
 				<>

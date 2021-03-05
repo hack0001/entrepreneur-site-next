@@ -1,7 +1,7 @@
-import Link from "next/link";
 import styles from "./styles/sideBarComponentStyles.module.sass";
 import CloudImage from "../../Image/cloudImage";
 import { getImagePath } from "../../helper/imageUrlHelper";
+import CustomLink from "@components/Link/customLink";
 
 const SideBarContent = ({
 	key,
@@ -14,14 +14,17 @@ const SideBarContent = ({
 	category,
 	refPath,
 	contentLink,
+	queryLinkCheck,
+	query,
 }) => {
 	return (
-		<article
-			// onMouseEnter={() => prefetchItem(contentLink)}
-			className={styles.sideContent}
-			key={key}
-		>
-			<Link href={refPath} as={contentLink}>
+		<article className={styles.sideContent} key={key}>
+			<CustomLink
+				pathname={refPath}
+				alias={contentLink}
+				queryLink={queryLinkCheck}
+				query={query}
+			>
 				<a className={styles.sideHeadlineAnchor}>
 					<CloudImage
 						imagePath={
@@ -38,16 +41,26 @@ const SideBarContent = ({
 						fixedWidth={250}
 					/>
 				</a>
-			</Link>
+			</CustomLink>
 			<div className={styles.sideTitleInfo}>
 				<h3 className={styles.sideTitle}>
-					<Link href={refPath} as={contentLink}>
+					<CustomLink
+						pathname={refPath}
+						alias={contentLink}
+						queryLink={queryLinkCheck}
+						query={query}
+					>
 						<a className={styles.infoLink}>{headline}</a>
-					</Link>
+					</CustomLink>
 					<div className={styles.categoryLinkWrapper}>
-						<Link href={refPath} as={contentLink}>
+						<CustomLink
+							pathname={refPath}
+							alias={contentLink}
+							queryLink={queryLinkCheck}
+							query={query}
+						>
 							<a className={styles.categoryLink}>{category}</a>
-						</Link>
+						</CustomLink>
 					</div>
 				</h3>
 			</div>

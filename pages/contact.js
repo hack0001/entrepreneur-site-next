@@ -1,13 +1,13 @@
 import Layout from "../components/Layouts/Layout";
 import Head from "next/head";
 import PropTypes from "prop-types";
-import { withRouter } from "next/router";
+import { useRouter, withRouter } from "next/router";
 import {
 	contactForm,
 	INITIAL_STATE,
 	ERROR_STATE,
 } from "../data/contactFormData";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import validate from "../components/FormValidation/Validation";
 import Reaptcha from "reaptcha";
 import Vanilla from "../components/Layouts/vanillaLayout";
@@ -16,12 +16,28 @@ import styles from "../styles/contactStyles.module.sass";
 import prodRequest from "../components/apiRequest/prodRequest";
 import { createContactForm } from "../graphql/emailSignUp";
 import baseTheme from "../theme/baseTheme.json";
-const Contact = ({ router }) => {
+import Context from "../utils/Context";
+import { queryHandler, getParams } from "../utils/queryHandler";
+
+const Contact = () => {
 	const [formData, setFormData] = useState(INITIAL_STATE);
 	const [recaptcha, setRecaptcha] = useState(false);
 	const [errors, setErrors] = useState(ERROR_STATE);
 	const [recaptchaError, setRecaptchaError] = useState("");
 	const [receivedMsg, setReceivedMsg] = useState("");
+	const router = useRouter();
+	const { handleState } = useContext(Context);
+
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+	}, []);
 
 	const handleSubmit = async e => {
 		e.preventDefault();

@@ -1,9 +1,15 @@
-import { footerLinks, socialLinks } from "../../data/data";
-import Link from "next/link";
-import styles from "./styles/footerStyles.module.sass";
+import { useContext } from "react";
 import Image from "next/image";
-import LazyLoad from "react-lazyload";
-const Footer = ({ menuOpen, onClick }) => {
+import CustomLink from "@components/Link/customLink";
+import Context from "@utils/Context";
+import { footerLinks, socialLinks } from "@data/data";
+import { objectCheck } from "@utils/queryHandler";
+import styles from "./styles/footerStyles.module.sass";
+
+const Footer = () => {
+	const { query } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
+
 	return (
 		<footer className={styles.footer}>
 			<div className={styles.footerNav}>
@@ -12,9 +18,13 @@ const Footer = ({ menuOpen, onClick }) => {
 						{footerLinks.map((item, index) => {
 							return (
 								<li key={index} className={styles.listWrap}>
-									<Link href={item.href}>
+									<CustomLink
+										queryLink={queryLinkCheck}
+										pathname={item.href}
+										query={query}
+									>
 										<a className={styles.footerItem}>{item.label}</a>
-									</Link>
+									</CustomLink>
 								</li>
 							);
 						})}
@@ -56,7 +66,7 @@ const Footer = ({ menuOpen, onClick }) => {
 					/>
 				</div>
 			</div>
-			<div className={styles.footerCopy}>Copyright © 2019 wealthmack.com</div>
+			<div className={styles.footerCopy}>Copyright © 2021 wealthmack.com</div>
 		</footer>
 	);
 };

@@ -9,6 +9,7 @@ const Adsense = ({
 	format,
 	responsive,
 	adStyle,
+	currentUrlPath,
 }) => {
 	useEffect(() => {
 		try {
@@ -16,7 +17,7 @@ const Adsense = ({
 		} catch (err) {
 			console.log("Adsense Err", err);
 		}
-	}, []);
+	}, [currentUrlPath]);
 
 	return (
 		<div
@@ -28,25 +29,26 @@ const Adsense = ({
 			<div className={styles.adWrap}>
 				<div className={styles.adHeader}>
 					<div className={styles.advert}>ADVERTISEMENT</div>
-
-					{responsive && (
-						<ins
-							className="adsbygoogle adbanner-customize"
-							style={adStyle}
-							data-ad-client={client}
-							data-ad-slot={slot}
-							data-ad-format={format}
-							data-full-width-responsive={responsive}
-						/>
-					)}
-					{!responsive && (
-						<ins
-							className="adsbygoogle adbanner-customize"
-							style={adStyle}
-							data-ad-client={client}
-							data-ad-slot={slot}
-						/>
-					)}
+					<div key={currentUrlPath}>
+						{responsive && (
+							<ins
+								className="adsbygoogle adbanner-customize"
+								style={adStyle}
+								data-ad-client={client}
+								data-ad-slot={slot}
+								data-ad-format={format}
+								data-full-width-responsive={responsive}
+							/>
+						)}
+						{!responsive && (
+							<ins
+								className="adsbygoogle adbanner-customize"
+								style={adStyle}
+								data-ad-client={client}
+								data-ad-slot={slot}
+							/>
+						)}
+					</div>
 				</div>
 				<hr className={styles.breaker} />
 			</div>
@@ -62,5 +64,6 @@ Adsense.defaultProps = {
 	adStyle: {
 		display: "block",
 	},
+	currentUrlPath: "/",
 };
 export default Adsense;

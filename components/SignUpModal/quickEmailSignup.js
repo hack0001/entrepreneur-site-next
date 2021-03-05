@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Link from "next/link";
 import Ripples from "../Button/Ripples";
 import EmailIcon from "./emailIcon";
 import { EMAIL_SIGN_UP } from "../../graphql/emailSignUp";
@@ -14,8 +13,10 @@ import Cookie from "js-cookie";
 import manualRequest from "../apiRequest/prodRequest";
 import styles from "./styles/quickEmailSignupStyles.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
+import CustomLink from "@components/Link/customLink";
+
 //Set Cookie Expiration if not signed up (in minutes)
-const SignUpModal = () => {
+const SignUpModal = ({ queryLinkCheck, query }) => {
 	const [formData, setFormData] = useState(QUICK_INITIAL_STATE);
 	const [errors, setErrors] = useState(QUICK_ERROR_STATE);
 	const [success, setSuccess] = useState(false);
@@ -120,11 +121,15 @@ const SignUpModal = () => {
 					<>
 						<h2 className={styles.headerSecondary}>
 							Uh Oh! Something went wrong - Please try again or Contact support{" "}
-							<Link href="/contact">
+							<CustomLink
+								pathname={"/contact"}
+								queryLink={queryLinkCheck}
+								query={query}
+							>
 								<a className={styles.link} target="_blank">
 									here.
 								</a>
-							</Link>
+							</CustomLink>
 						</h2>
 					</>
 				)}
@@ -198,11 +203,15 @@ const SignUpModal = () => {
 						By clicking Submit, you are subscribing to receive newsletters from
 						Derivative Media Ltd. Your data will be processed in accordance with
 						our{" "}
-						<Link href="/cookies">
+						<CustomLink
+							pathname={"/cookies"}
+							queryLink={queryLinkCheck}
+							query={query}
+						>
 							<a className={styles.link} target="_blank">
 								Privacy and Cookie Policy.
 							</a>
-						</Link>
+						</CustomLink>
 					</p>
 				</div>
 			)}

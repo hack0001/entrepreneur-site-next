@@ -1,12 +1,18 @@
+import { useContext } from "react";
 import PropTypes from "prop-types";
-import Link from "next/link";
 import styles from "./styles/homeButtonStyles.module.sass";
 import Image from "next/image";
+import CustomLink from "@components/Link/customLink";
+import Context from "@utils/Context";
+import { objectCheck } from "@utils/queryHandler";
+
 const SlideLinkButton = ({ label, href }) => {
+	const { query } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 	return (
 		<div className={styles.linkSection}>
 			<div className={styles.linkButton}>
-				<Link href={href}>
+				<CustomLink pathname={href} queryLink={queryLinkCheck} query={query}>
 					<a className={styles.quickViewLink}>
 						<div className={styles.label}>
 							<div className={styles.linkLabel}>{label}</div>
@@ -21,7 +27,7 @@ const SlideLinkButton = ({ label, href }) => {
 							/>
 						</div>
 					</a>
-				</Link>
+				</CustomLink>
 			</div>
 		</div>
 	);

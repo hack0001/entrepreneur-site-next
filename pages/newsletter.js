@@ -1,3 +1,4 @@
+import { useState, useContext, useEffect } from "react";
 import Layout from "../components/Layouts/Layout";
 import Head from "next/head";
 import {
@@ -5,21 +6,40 @@ import {
 	INITIAL_STATE,
 	ERROR_STATE,
 } from "../data/emailSignupData";
-import { useState } from "react";
 import validate from "../components/FormValidation/Validation";
 import Vanilla from "../components/Layouts/vanillaLayout";
 import RippleButton from "../components/Button/Button";
 import { EMAIL_SIGN_UP } from "../graphql/emailSignUp";
 import Cookie from "js-cookie";
-import Link from "next/link";
 import manualRequest from "../components/apiRequest/prodRequest";
 import styles from "../styles/newsletterStyles.module.sass";
 import baseTheme from "../theme/baseTheme.json";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import Context from "../utils/Context";
+import { queryHandler, getParams } from "../utils/queryHandler";
+
 const Newsletter = ({ url }) => {
 	const [formData, setFormData] = useState(INITIAL_STATE);
 	const [successMsg, setSuccessMsg] = useState(false);
 	const [errors, setErrors] = useState(ERROR_STATE);
+	const router = useRouter();
+	const { handleState, query } = useContext(Context);
+	const [queryCheck, setQueryCheck] = useState(false);
+
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+		if (Object.keys(queryParams).length > 0) {
+			setQueryCheck(true);
+		}
+	}, []);
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -145,11 +165,15 @@ const Newsletter = ({ url }) => {
 								<p>
 									Uh Oh! Something went wrong - Please try again or Contact
 									support
-									<Link href="/contact">
+									<CustomLink
+										queryLink={queryCheck}
+										pathname="/contact"
+										query={query}
+									>
 										<a className={styles.link} target="_blank">
 											here.
-										</a>
-									</Link>
+										</a>{" "}
+									</CustomLink>
 								</p>
 							</>
 						)}

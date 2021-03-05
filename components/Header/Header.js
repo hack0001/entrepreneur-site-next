@@ -1,15 +1,21 @@
-import Link from "next/link";
-import MenuButton from "./Menu/MenuButton";
-import { links, socialLinks } from "../../data/data";
-import { PropTypes } from "prop-types";
-import styles from "./styles/headerStyles.module.sass";
+import { useContext } from "react";
 import Image from "next/image";
+import { PropTypes } from "prop-types";
+import MenuButton from "./Menu/MenuButton";
+import CustomLink from "@components/Link/customLink";
+import { links, socialLinks } from "@data/data";
+import Context from "@utils/Context";
+import { objectCheck } from "@utils/queryHandler";
+import styles from "./styles/headerStyles.module.sass";
+
 const Header = ({ menuOpen, onClick }) => {
+	const { query } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 	return (
 		<header className="Header">
 			<nav className={styles.navigation}>
 				<div className={styles.logo}>
-					<Link href={"/"}>
+					<CustomLink queryLink={queryLinkCheck} pathname="/" query={query}>
 						<a>
 							<Image
 								src="/static/business_motivation.svg"
@@ -19,16 +25,21 @@ const Header = ({ menuOpen, onClick }) => {
 								height="50px"
 							/>
 						</a>
-					</Link>
+					</CustomLink>
 				</div>
 				<div className={styles.headLinks}>
 					<div className={styles.linkWrapper}>
 						{links.map(({ href, label }, index) => (
-							<Link href={href} key={index}>
+							<CustomLink
+								queryLink={queryLinkCheck}
+								pathname={href}
+								index={index}
+								query={query}
+							>
 								<a className={styles.navMenuItem}>
-									<span className={styles.navMenuLink}>{label} </span>
+									<span className={styles.navMenuLink}>{label}</span>
 								</a>
-							</Link>
+							</CustomLink>
 						))}
 					</div>
 				</div>

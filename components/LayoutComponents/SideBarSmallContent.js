@@ -13,6 +13,9 @@ const SideBarSmallContent = ({
 	adCode,
 	limit = 0,
 	cpcAd,
+	queryLinkCheck,
+	query,
+	currentUrlPath,
 }) => {
 	const slicedData = limit > 0 ? data.slice(0, limit) : data;
 	return (
@@ -45,6 +48,8 @@ const SideBarSmallContent = ({
 						url={urlDescription}
 						refPath={refPath}
 						contentLink={contentLink}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
 					/>
 				);
 			})}
@@ -53,6 +58,7 @@ const SideBarSmallContent = ({
 					sticky={true}
 					client="ca-pub-2068760522034474"
 					slot="5182944308"
+					currentUrlPath={currentUrlPath}
 				/>
 			)}
 			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} sticky={true} />}
@@ -63,4 +69,5 @@ export default SideBarSmallContent;
 SideBarSmallContent.propTypes = {
 	data: PropTypes.array,
 	loading: PropTypes.Boolean,
+	queryLinkCheck: PropTypes.Boolean,
 };

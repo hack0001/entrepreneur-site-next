@@ -1,9 +1,8 @@
-import Link from "next/link";
 import PropTypes from "prop-types";
 import styles from "./styles/subContentStyles.module.sass";
 import CloudImage from "../../Image/cloudImage";
 import { getImagePath } from "../../helper/imageUrlHelper";
-
+import CustomLink from "@components/Link/customLink";
 const SubScrollingContent = ({
 	category,
 	headline,
@@ -16,10 +15,18 @@ const SubScrollingContent = ({
 	contentLink,
 	refPath,
 	kicker,
+	queryLinkCheck,
+	query,
 }) => {
 	return (
 		<article className={styles.sideContent} key={index}>
-			<Link href={refPath} as={contentLink}>
+			<CustomLink
+				pathname={refPath}
+				alias={contentLink}
+				queryLink={queryLinkCheck}
+				query={query}
+				index={index}
+			>
 				<a className={styles.sideHeadlineAnchor}>
 					<div className={styles.sideImageWrapper}>
 						<div className={styles.sideImageMain}>
@@ -40,9 +47,14 @@ const SubScrollingContent = ({
 						</div>
 					</div>
 				</a>
-			</Link>
+			</CustomLink>
 			<div className={styles.sideTitleInfo}>
-				<Link href={refPath} as={contentLink}>
+				<CustomLink
+					pathname={refPath}
+					alias={contentLink}
+					queryLink={queryLinkCheck}
+					query={query}
+				>
 					<div className={styles.sideTitle}>
 						<a className={styles.infoLink}>{headline}</a>
 						<div className={styles.kickerWrap}>
@@ -52,7 +64,7 @@ const SubScrollingContent = ({
 							<a className={styles.categoryLink}>{category}</a>
 						</div>
 					</div>
-				</Link>
+				</CustomLink>
 			</div>
 		</article>
 	);

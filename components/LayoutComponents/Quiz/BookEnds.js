@@ -4,7 +4,6 @@ import styles from "./styles/bookEndStyles.module.sass";
 import baseTheme from "../../../theme/baseTheme.json";
 import Adsense from "../../ads/code/adsense/adsense";
 import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
-
 import Reader from "../Editor/reader";
 
 const QuizBookEnds = ({
@@ -22,6 +21,7 @@ const QuizBookEnds = ({
 	scoreComments,
 	finalScore,
 	numberQuestions,
+	currentUrlPath,
 }) => {
 	const positionOpening = position === "opening";
 	const positionClosing = position === "closing";
@@ -39,6 +39,7 @@ const QuizBookEnds = ({
 					slot="5713798476"
 					responsive={false}
 					adStyle={adsenseStyles["maxHeight"]}
+					currentUrlPath={currentUrlPath}
 				/>
 			</div>
 			{positionClosing && (
@@ -78,7 +79,11 @@ const QuizBookEnds = ({
 			</>
 			{positionClosing && (
 				<div>
-					<Adsense client="ca-pub-2068760522034474" slot="3992688547" />
+					<Adsense
+						client="ca-pub-2068760522034474"
+						slot="3992688547"
+						currentUrlPath={currentUrlPath}
+					/>
 				</div>
 			)}
 			<style jsx>

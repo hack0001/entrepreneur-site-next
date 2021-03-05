@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ScrollingArticlesLoading from "../../Loading/ScrollingArticlesLoading";
 import PropTypes from "prop-types";
 import SubScrollingContent from "./SubContent";
@@ -7,13 +7,18 @@ import SectionBar from "../SectionBar";
 import sideHelper from "../../helper/sideBarHelper";
 import querySelect from "./utils/querySelect";
 import prodRequest from "../../apiRequest/prodRequest";
-import { filterUnique } from "../../../utils/handler";
+import { filterUnique } from "@utils/handler";
+import Context from "@utils/Context";
 import styles from "./styles/scrollingContentStyles.module.sass";
+import { objectCheck } from "@utils/queryHandler";
 const limit = 5;
 const ScrollingContent = ({ id, title, type }) => {
 	const [QUERY, queryString, operationName] = querySelect(type);
+
 	const [content, setContent] = useState([]);
 	const [nextToken, setNextToken] = useState("");
+	const { query } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 	let throttle = null;
 
 	useEffect(() => {
@@ -119,6 +124,8 @@ const ScrollingContent = ({ id, title, type }) => {
 				// 			key={index}
 				// 			contentLink={contentLink}
 				// 			refPath={refPath}
+				// 			queryLinkCheck={queryLinkCheck}
+				// 			query={query}
 				// 		/>
 				// 	);
 				// }
@@ -136,6 +143,8 @@ const ScrollingContent = ({ id, title, type }) => {
 						contentLink={contentLink}
 						refPath={refPath}
 						kicker={kicker}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
 					/>
 				);
 			})}

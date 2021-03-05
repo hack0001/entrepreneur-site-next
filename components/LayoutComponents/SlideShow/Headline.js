@@ -14,7 +14,7 @@ import styles from "./styles/headlineStyles.module.sass";
 import Adsense from "../../ads/code/adsense/adsense";
 import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
 
-const BookEnds = ({ data, id, position, cpcMarker }) => {
+const BookEnds = ({ data, id, position, cpcMarker, currentUrlPath }) => {
 	const {
 		headlineImage,
 		headlineImageAlt,
@@ -63,6 +63,7 @@ const BookEnds = ({ data, id, position, cpcMarker }) => {
 					slot="4672943880"
 					responsive={false}
 					adStyle={adsenseStyles["maxHeight"]}
+					currentUrlPath={currentUrlPath}
 				/>
 			</div>
 			<ul className={styles.listWrapper}>
@@ -90,6 +91,7 @@ const BookEnds = ({ data, id, position, cpcMarker }) => {
 						slot="3049705177"
 						responsive={false}
 						adStyle={adsenseStyles["maxHeight"]}
+						currentUrlPath={currentUrlPath}
 					/>
 				</div>
 			)}

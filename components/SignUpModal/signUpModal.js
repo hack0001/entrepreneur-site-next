@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import { useState, useEffect, useContext } from "react";
 import Ripples from "../Button/Ripples";
 import CrossIcon from "../Icons/crossIcon";
 import { EMAIL_SIGN_UP } from "../../graphql/emailSignUp";
@@ -14,10 +13,13 @@ import Cookie from "js-cookie";
 import manualRequest from "../apiRequest/prodRequest";
 import styles from "./styles/signUpModalStyles.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
+import Context from "@utils/Context";
+import { objectCheck } from "@utils/queryHandler";
 //Set Cookie Expiration if not signed up (in minutes)
 const cookieTime = 60;
 const fromTop = 550;
 import Image from "next/image";
+import CustomLink from "@components/Link/customLink";
 
 const SignUpModal = () => {
 	const [formData, setFormData] = useState(INITIAL_STATE);
@@ -30,6 +32,8 @@ const SignUpModal = () => {
 	const [count, setCount] = useState(0);
 	const [scrollMarker, setScrollMarker] = useState(0);
 	const [scrollUp, setScrollUp] = useState(fromTop);
+	const { query } = useContext(Context);
+	const queryLinkCheck = objectCheck(query);
 
 	useEffect(() => {
 		const top = window.pageYOffset || document.documentElement.scrollTop;
@@ -199,11 +203,15 @@ const SignUpModal = () => {
 											>
 												Uh Oh! Something went wrong - Please try again or
 												Contact support{" "}
-												<Link href="/contact">
+												<CustomLink
+													pathname={"/contact"}
+													queryLink={queryLinkCheck}
+													query={query}
+												>
 													<a className={styles.link} target="_blank">
 														here.
 													</a>
-												</Link>
+												</CustomLink>
 											</h2>
 										</>
 									)}
@@ -268,11 +276,15 @@ const SignUpModal = () => {
 										By clicking Submit, you are subscribing to receive
 										newsletters from Derivative Media Ltd. Your data will be
 										processed in accordance with our{" "}
-										<Link href="/cookies">
+										<CustomLink
+											pathname={"/cookies"}
+											queryLink={queryLinkCheck}
+											query={query}
+										>
 											<a className={styles.link} target="_blank">
 												Privacy and Cookie Policy.
 											</a>
-										</Link>
+										</CustomLink>
 									</p>
 								</div>
 							</div>

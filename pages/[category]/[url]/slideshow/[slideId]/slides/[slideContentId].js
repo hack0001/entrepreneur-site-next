@@ -1,13 +1,15 @@
 import { useContext, useEffect } from "react";
-import SlideLayout from "../../../../../../components/Layouts/SlideShowLayout";
-import { SLIDESHOW } from "../../../../../../graphql/indivSlideShow";
-import SlideLoading from "../../../../../../components/Loading/Layouts/SlideShowLoading";
-import prodRequest from "../../../../../../components/apiRequest/prodRequest";
-import { slideShowQuery } from "../../../../../../data/queryData/querys";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
-import parseUrl from "../../../../../../components/helper/parseUrl";
-import Context from "../../../../../../utils/Context";
+import SlideLayout from "@components/Layouts/SlideShowLayout";
+import SlideLoading from "@components/Loading/Layouts/SlideShowLoading";
+import prodRequest from "@components/apiRequest/prodRequest";
+import parseUrl from "@components/helper/parseUrl";
+import { SLIDESHOW } from "@graphql/indivSlideShow";
+import { slideShowQuery } from "@data/queryData/querys";
+import Context from "@utils/Context";
+import { queryHandler, getParams } from "@utils/queryHandler";
+
 const Slide = ({
 	individual,
 	headline,
@@ -19,7 +21,6 @@ const Slide = ({
 	query,
 }) => {
 	const router = useRouter();
-
 	const { handleState, sessionSlideIds } = useContext(Context);
 	if (parseUrl(router.asPath)) {
 		Cookie.set("CPC", JSON.stringify(true), {
@@ -27,16 +28,38 @@ const Slide = ({
 		});
 	}
 
+	if (!individual || !headline || !quiz || !slide) return <SlideLoading />;
+
 	useEffect(() => {
+		let sessionViews = [];
 		if (slideId) {
-			const sessionViews = sessionSlideIds
+			sessionViews = sessionSlideIds
 				.filter(x => slideId !== x.id)
 				.concat({ id: slideId });
-			handleState({ sessionSlideIds: sessionViews });
 		}
+
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+
+		handleState({
+			sessionSlideIds: sessionViews,
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
 	}, [slideId]);
 
-	if (!individual || !headline || !quiz || !slide) return <SlideLoading />;
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+	}, [slideContentId]);
 
 	const numSlides =
 		individual && individual.data && individual.data.getProductionSlideshow

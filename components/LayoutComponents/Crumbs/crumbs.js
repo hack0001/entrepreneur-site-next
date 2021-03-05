@@ -1,8 +1,17 @@
 import PropTypes from "prop-types";
-import Link from "next/link";
 import Head from "next/head";
 import styles from "./styles/crumbStyles.module.sass";
-const Crumbs = ({ home, category, headline, headlineUrl, refPath }) => {
+import CustomLink from "@components/Link/customLink";
+
+const Crumbs = ({
+	home,
+	category,
+	headline,
+	headlineUrl,
+	refPath,
+	queryLinkCheck,
+	query,
+}) => {
 	return (
 		<>
 			<Head>
@@ -44,18 +53,26 @@ const Crumbs = ({ home, category, headline, headlineUrl, refPath }) => {
 			<nav className={styles.pathWrapper}>
 				<div className={styles.path}>Path:</div>
 				<div className={styles.pathList}>
-					<Link href={"/"}>
+					<CustomLink pathname={"/"} queryLink={queryLinkCheck} query={query}>
 						<a className={styles.crumbLink}>Home</a>
-					</Link>
+					</CustomLink>
 					<span className={styles.seperator}>/</span>
-					<Link href={`/${category}`}>
+					<CustomLink
+						pathname={`/${category}`}
+						queryLink={queryLinkCheck}
+						query={query}
+					>
 						<a className={styles.crumbLink}>{category}</a>
-					</Link>
+					</CustomLink>
 					<span className={styles.seperator}>/</span>
-
-					<Link href={refPath} as={`${headlineUrl}`}>
+					<CustomLink
+						pathname={refPath}
+						alias={`${headlineUrl}`}
+						queryLink={queryLinkCheck}
+						query={query}
+					>
 						<a className={styles.crumbLink}>{headline}</a>
-					</Link>
+					</CustomLink>
 				</div>
 			</nav>
 		</>

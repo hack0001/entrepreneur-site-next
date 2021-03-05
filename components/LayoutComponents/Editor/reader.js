@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import dynamic from "next/dynamic";
 import Quote from "../Editor/renderElement/quote/quote";
 import EmbedImage from "../Editor/renderElement/embedImage/embedImage";
@@ -8,6 +8,7 @@ import SiteAd from "../Editor/renderElement/ads/siteAd";
 import LinkAd from "../Editor/renderElement/ads/linkAd";
 import styles from "./renderElement/styles/renderElementStyles.module.sass";
 import Adsense from "../../ads/code/adsense/adsense";
+import Context from "@utils/Context";
 
 const Embed = dynamic(() => import("../Editor/renderElement/embed/embed"), {
 	ssr: false,
@@ -115,7 +116,14 @@ const Reader = ({ value }) => {
 						</LazyLoad>
 					);
 				case "paid-ad":
-					return <Adsense client="ca-pub-2068760522034474" slot="8517191254" />;
+					const { currentUrlPath } = useContext(Context);
+					return (
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="8517191254"
+							currentUrlPath={currentUrlPath}
+						/>
+					);
 				case "site-ad":
 					return (
 						<LazyLoad once={true}>

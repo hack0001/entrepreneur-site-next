@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
-import Link from "next/link";
 import CloudImage from "../Image/cloudImage";
 import styles from "./styles/linkButtonStyles.module.sass";
 import { getImagePath } from "../helper/imageUrlHelper";
 import Image from "next/image";
+import CustomLink from "@components/Link/customLink";
+
 const SlideLinkButton = ({
 	label,
 	href,
@@ -13,6 +14,8 @@ const SlideLinkButton = ({
 	imageAlt,
 	imageCrop,
 	imageCropInfo,
+	queryLinkCheck,
+	query,
 }) => {
 	return (
 		<div className={styles.linkSection}>
@@ -23,7 +26,12 @@ const SlideLinkButton = ({
 				Click the button below to start the Slideshow.
 			</div>
 			<div className={styles.linkButton}>
-				<Link href={refPath} as={href}>
+				<CustomLink
+					pathname={refPath}
+					alias={href}
+					queryLink={queryLinkCheck}
+					query={query}
+				>
 					<a className={styles.quickViewLink}>
 						<div className={styles.imgWrapper}>
 							<div className={styles.quickViewImage}>
@@ -50,7 +58,7 @@ const SlideLinkButton = ({
 							/>
 						</div>
 					</a>
-				</Link>
+				</CustomLink>
 			</div>
 		</div>
 	);

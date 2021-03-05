@@ -1,10 +1,28 @@
+import { useContext, useEffect } from "react";
 import HeadlineLayout from "../components/Layouts/HeadlineLayout";
 import MainHeadlineLoading from "../components/Loading/Layouts/MainHeadlineLoadingLayout";
 import prodRequest from "../components/apiRequest/prodRequest";
 import { quoteHeadlineQuery } from "../data/queryData/querys";
+import { useRouter } from "next/router";
+import Context from "../utils/Context";
+import { queryHandler, getParams } from "../utils/queryHandler";
 
 const Quotes = ({ headline, quiz, slide }) => {
+	const router = useRouter();
+	const { handleState } = useContext(Context);
+
 	if (!headline || !quiz || !slide) return <MainHeadlineLoading />;
+
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+	}, []);
 
 	return (
 		<HeadlineLayout

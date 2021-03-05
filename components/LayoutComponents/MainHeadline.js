@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
-import Link from "next/link";
 import SectionBar from "./SectionBar";
+import CustomLink from "@components/Link/customLink";
 import styles from "./styles/mainHeadlineStyles.module.sass";
 import CloudImage from "../Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
-const MainHeadline = ({ data }) => {
+
+const MainHeadline = ({ data, queryLinkCheck, query }) => {
 	const headlineData = data[0];
 	const subHeadlineData = data.filter((x, index) => index !== 0);
 	const {
@@ -26,9 +27,11 @@ const MainHeadline = ({ data }) => {
 			<div className={styles.headlineContainer}>
 				<article className={styles.headlineImageContainer}>
 					<div className={styles.headlineWrapper}>
-						<Link
-							href={`/[category]/[url]/article/[id]`}
-							as={`/${category}/${urlDescription}/article/${id}`}
+						<CustomLink
+							pathname={`/[category]/[url]/article/[id]`}
+							alias={`/${category}/${urlDescription}/article/${id}`}
+							queryLink={queryLinkCheck}
+							query={query}
 						>
 							<a className={styles.headlineImageMainWrapper}>
 								<CloudImage
@@ -44,17 +47,19 @@ const MainHeadline = ({ data }) => {
 									wrapperClass={"mainWrapper"}
 								/>
 							</a>
-						</Link>
-						<Link
-							href={`/[category]/[url]/article/[id]`}
-							as={`/${category}/${urlDescription}/article/${id}`}
+						</CustomLink>
+						<CustomLink
+							pathname={`/[category]/[url]/article/[id]`}
+							alias={`/${category}/${urlDescription}/article/${id}`}
+							queryLink={queryLinkCheck}
+							query={query}
 						>
 							<a className={styles.info}>
 								<h1 className={styles.infoTitle}>
 									<span className={styles.infoLink}>{headline}</span>
 								</h1>
 							</a>
-						</Link>
+						</CustomLink>
 					</div>
 				</article>
 				<div className={styles.subHeadlineContainer}>
@@ -80,9 +85,11 @@ const MainHeadline = ({ data }) => {
 								key={index}
 							>
 								<div className={styles.subArticleWrapper}>
-									<Link
-										href={`/[category]/[url]/article/[id]`}
-										as={`/${category}/${urlDescription}/article/${id}`}
+									<CustomLink
+										pathname={`/[category]/[url]/article/[id]`}
+										alias={`/${category}/${urlDescription}/article/${id}`}
+										queryLink={queryLinkCheck}
+										query={query}
 									>
 										<a className={styles.subHeadlineAnchor}>
 											<div className={styles.subHeadlineImageWrap}>
@@ -108,7 +115,7 @@ const MainHeadline = ({ data }) => {
 												</div>
 											</div>
 										</a>
-									</Link>
+									</CustomLink>
 								</div>
 							</article>
 						);

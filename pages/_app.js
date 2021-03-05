@@ -13,6 +13,8 @@ class OverviewApp extends App {
 		sessionSlideIds: [],
 		sessionQuizIds: [],
 		sessionArticleIds: [],
+		query: {},
+		currentUrlPath: "/",
 	};
 
 	componentDidMount() {
@@ -35,6 +37,8 @@ class OverviewApp extends App {
 					sessionSlideIds: this.state.sessionSlideIds,
 					sessionQuizIds: this.state.sessionQuizIds,
 					sessionArticleIds: this.state.sessionArticleIds,
+					query: this.state.query,
+					currentUrlPath: this.state.currentUrlPath,
 				}}
 			>
 				<SignUp />

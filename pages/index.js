@@ -1,11 +1,29 @@
+import { useContext, useEffect } from "react";
 import MainHeadlineLayout from "../components/Layouts/MainHeadlineLayout";
 import MainHeadlineLoading from "../components/Loading/Layouts/MainHeadlineLoadingLayout";
 import prodRequest from "../components/apiRequest/prodRequest";
 import { filterUnique } from "../utils/handler";
 import { mainHeadlineQuery } from "../data/queryData/querys";
+import { useRouter } from "next/router";
+import Context from "../utils/Context";
+import { queryHandler, getParams } from "../utils/queryHandler";
 
 const Home = ({ headline, latest, quiz, slide }) => {
+	const router = useRouter();
+	const { handleState } = useContext(Context);
+
 	if (!headline || !latest || !quiz || !slide) return <MainHeadlineLoading />;
+
+	useEffect(() => {
+		const { urlPath, queryParams } = getParams(
+			router.asPath ? router.asPath : "",
+		);
+		const queryUpdate = queryHandler(queryParams);
+		handleState({
+			query: queryUpdate,
+			currentUrlPath: urlPath,
+		});
+	}, []);
 
 	const newLatestArticles = filterUnique(
 		latest.data.listProductionArticles.items,
