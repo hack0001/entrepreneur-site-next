@@ -68,7 +68,7 @@ const ArticleHead = ({ overview, id, nextSlideShow, currentUrlPath }) => {
 			<Adsense
 				client={"ca-pub-2068760522034474"}
 				slot={"9802692073"}
-				responsive={false}
+				responsive={true}
 				adStyle={adsenseStyles["maxHeight"]}
 				currentUrlPath={currentUrlPath}
 			/>

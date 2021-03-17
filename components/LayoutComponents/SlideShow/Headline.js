@@ -61,7 +61,7 @@ const BookEnds = ({ data, id, position, cpcMarker, currentUrlPath }) => {
 				<Adsense
 					client="ca-pub-2068760522034474"
 					slot="4672943880"
-					responsive={false}
+					responsive={true}
 					adStyle={adsenseStyles["maxHeight"]}
 					currentUrlPath={currentUrlPath}
 				/>
@@ -89,7 +89,7 @@ const BookEnds = ({ data, id, position, cpcMarker, currentUrlPath }) => {
 					<Adsense
 						client="ca-pub-2068760522034474"
 						slot="3049705177"
-						responsive={false}
+						responsive={true}
 						adStyle={adsenseStyles["maxHeight"]}
 						currentUrlPath={currentUrlPath}
 					/>

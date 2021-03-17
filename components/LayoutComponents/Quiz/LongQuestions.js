@@ -147,7 +147,7 @@ const Questions = ({
 					<Adsense
 						client="ca-pub-2068760522034474"
 						slot="4560498904"
-						responsive={false}
+						responsive={true}
 						adStyle={adsenseStyles["maxHeight"]}
 						currentUrlPath={currentUrlPath}
 					/>

@@ -52,7 +52,7 @@ const QuickSlides = ({
 				<Adsense
 					client="ca-pub-2068760522034474"
 					slot="3049705177"
-					responsive={false}
+					responsive={true}
 					adStyle={adsenseStyles["maxHeight"]}
 					currentUrlPath={currentUrlPath}
 				/>
@@ -91,7 +91,7 @@ const QuickSlides = ({
 				<Adsense
 					client="ca-pub-2068760522034474"
 					slot="1874540097"
-					responsive={false}
+					responsive={true}
 					adStyle={adsenseStyles["maxHeight"]}
 					currentUrlPath={currentUrlPath}
 				/>

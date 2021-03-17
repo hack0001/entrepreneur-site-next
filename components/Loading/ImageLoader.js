@@ -5,7 +5,6 @@ import { useAmp } from "next/amp";
 import loaderStyles from "./styles/imageLoaderStyles.module.sass";
 import CloudImage from "../Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
-import Image from "next/image";
 const ImageLoader = ({
 	src,
 	alt,
@@ -56,7 +55,7 @@ const ImageLoader = ({
 					)}
 
 					{!imageCheck && (
-						<Image
+						<img
 							key={src}
 							src={src}
 							alt={alt}

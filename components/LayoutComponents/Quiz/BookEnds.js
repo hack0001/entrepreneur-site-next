@@ -37,7 +37,7 @@ const QuizBookEnds = ({
 				<Adsense
 					client="ca-pub-2068760522034474"
 					slot="5713798476"
-					responsive={false}
+					responsive={true}
 					adStyle={adsenseStyles["maxHeight"]}
 					currentUrlPath={currentUrlPath}
 				/>
