@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import styles from "./styles/mainContentStyles.module.sass";
-import CloudImage from "../../Image/cloudImage";
+import CloudImage from "@Image/cloudImage";
 import { getImagePath } from "../../helper/imageUrlHelper";
 import CustomLink from "@components/Link/customLink";
 

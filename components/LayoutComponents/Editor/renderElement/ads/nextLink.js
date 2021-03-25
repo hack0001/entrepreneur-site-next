@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import styles from "../styles/ads/nextLinkStyles.module.sass";
 import sideHelper from "../../../../helper/sideBarHelper";
-import CloudImage from "../../../../Image/cloudImage";
+import CloudImage from "@Image/cloudImage";
 import { getImagePath } from "../../../../helper/imageUrlHelper";
-import Image from "next/image";
+import StaticImage from "@Image/staticImage";
 import CustomLink from "@components/Link/customLink";
 
 const NextLink = ({ data, type, id, queryLinkCheck, query }) => {
@@ -41,6 +41,7 @@ const NextLink = ({ data, type, id, queryLinkCheck, query }) => {
 									imageCrop={headlineImageCrop}
 									imageCropInfo={headlineImageCropInfo}
 									wrapperClass={"buttonWrapper"}
+									unsized={true}
 								/>
 							</div>
 						</div>
@@ -49,8 +50,8 @@ const NextLink = ({ data, type, id, queryLinkCheck, query }) => {
 							<div className={styles.linkLabelBrief}>{kicker}</div>
 						</div>
 						<div className={styles.arrowWrapper}>
-							<Image
-								className={styles.arrow}
+							<StaticImage
+								styleClass={styles.arrow}
 								src={"/static/right-arrow.svg"}
 								alt="right-arrow"
 								height="58px"

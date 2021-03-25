@@ -22,6 +22,7 @@ const QuizBookEnds = ({
 	finalScore,
 	numberQuestions,
 	currentUrlPath,
+	priority,
 }) => {
 	const positionOpening = position === "opening";
 	const positionClosing = position === "closing";
@@ -62,6 +63,7 @@ const QuizBookEnds = ({
 					imageCropInfo={imageCropInfo}
 					styles={{ width: "100%", height: "100%" }}
 					noMaxHeight={true}
+					priority={priority}
 					wrapperClass={"contentWrapper"}
 				/>
 			</div>

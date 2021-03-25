@@ -15,18 +15,12 @@ import FacebookComments from "../../SocialMedia/FacebookComments";
 import LazyLoad from "react-lazyload";
 import ScrollingContent from "../ScrollingContent/ScrollingContent";
 import styles from "./styles/quizStyles.module.sass";
-import dynamic from "next/dynamic";
 import Context from "@utils/Context";
 import LongQuestions from "./LongQuestions";
 import Cookie from "js-cookie";
 import prodRequest from "../../apiRequest/prodRequest";
 import { UPDATE_QUIZ } from "../../../graphql/indivQuiz";
-const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
-	ssr: false,
-});
-import { AMAZON_MUSIC_WIDE_BANNER } from "../../ads/code/amazonBusiness";
 import Adsense from "../../ads/code/adsense/adsense";
-import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
 import { filterUnique } from "@utils/handler";
 import { objectCheck } from "@utils/queryHandler";
 
@@ -104,6 +98,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 		positionNumber + 1 === content.numQuestions + 1
 			? "closing"
 			: positionNumber + 1;
+
 	return (
 		<div className={styles.sectionPadding}>
 			<SectionBar title={`${category}`} titleColor="#111" titleSize="1rem" />
@@ -145,6 +140,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 									finalScore={currentScore}
 									numberQuestions={content.numQuestions}
 									currentUrlPath={currentUrlPath}
+									priority={true}
 								/>
 								{position === "opening" && (
 									<div className={styles.openingButton}>
@@ -186,7 +182,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 								client="ca-pub-2068760522034474"
 								slot="4560498904"
 								responsive={true}
-								adStyle={adsenseStyles["maxHeight"]}
 								currentUrlPath={currentUrlPath}
 							/>
 						</div>
@@ -212,6 +207,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 									queryLinkCheck={queryLinkCheck}
 									query={query}
 									currentUrlPath={currentUrlPath}
+									priority={cpcMarker ? true : false}
 								/>
 							)}
 						</div>
@@ -251,6 +247,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						finalScore={currentScore}
 						numberQuestions={content.numQuestions}
 						currentUrlPath={currentUrlPath}
+						priority={true}
 					/>
 					<LongQuestions
 						total={content.numQuestions}
@@ -267,9 +264,15 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						randomiseAnswers={randomiseAnswers}
 						currentUrlPath={currentUrlPath}
 					/>
-					<div>
-						<AdWrapper adCode={AMAZON_MUSIC_WIDE_BANNER} />
+					<div className={styles.adsenseWrapper}>
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="7848686731"
+							responsive={true}
+							currentUrlPath={currentUrlPath}
+						/>
 					</div>
+
 					{questionsAnswered === content.numQuestions && (
 						<>
 							<BookEnds
@@ -297,10 +300,16 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 								numberQuestions={content.numQuestions}
 								positionClosing={true}
 								currentUrlPath={currentUrlPath}
+								priority={false}
 							/>
 
-							<div>
-								<AdWrapper adCode={AMAZON_MUSIC_WIDE_BANNER} />
+							<div className={styles.adsenseWrapper}>
+								<Adsense
+									client="ca-pub-2068760522034474"
+									slot="7848686731"
+									responsive={true}
+									currentUrlPath={currentUrlPath}
+								/>
 							</div>
 
 							{nextContent[0] && (

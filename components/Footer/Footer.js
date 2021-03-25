@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Image from "next/image";
+import StaticImage from "@Image/staticImage";
 import CustomLink from "@components/Link/customLink";
 import Context from "@utils/Context";
 import { footerLinks, socialLinks } from "@data/data";
@@ -40,7 +40,7 @@ const Footer = () => {
 										className={styles.footerItemSocial}
 									>
 										<div className={styles.socialImage}>
-											<Image
+											<StaticImage
 												src={icon}
 												alt={altName}
 												height="35px"
@@ -57,9 +57,9 @@ const Footer = () => {
 					<span className={styles.footerBrandStyle}>WealthMack</span>
 				</strong>
 				<div className={styles.footerIcon}>
-					<Image
+					<StaticImage
 						src="/static/business_motivation.svg"
-						className={styles.footerBrandImage}
+						styleClass={styles.footerBrandImage}
 						alt="wealthmack_logo"
 						width="166px"
 						height="95px"

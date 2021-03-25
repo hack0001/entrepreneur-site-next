@@ -69,7 +69,6 @@ const ArticleHead = ({ overview, id, nextSlideShow, currentUrlPath }) => {
 				client={"ca-pub-2068760522034474"}
 				slot={"9802692073"}
 				responsive={true}
-				adStyle={adsenseStyles["maxHeight"]}
 				currentUrlPath={currentUrlPath}
 			/>
 			<ImageLoader
@@ -82,6 +81,7 @@ const ArticleHead = ({ overview, id, nextSlideShow, currentUrlPath }) => {
 				unsized={true}
 				styles={{ width: "100%", height: "100%" }}
 				noMaxHeight={true}
+				priority={true}
 				wrapperClass={"contentWrapper"}
 			/>
 			{bulletHeadlines > 0 && (

@@ -8,20 +8,14 @@ import LongAnswer from "./LongAnswer";
 import prodRequest from "../../apiRequest/prodRequest";
 import styles from "./styles/questionStyles.module.sass";
 import SingleLoader from "../../Loading/SingleLoader";
-import dynamic from "next/dynamic";
 import Adsense from "../../ads/code/adsense/adsense";
-// import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
 import Context from "@utils/Context";
-const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
-	ssr: false,
-});
-import { AMAZON_MUSIC_WIDE_BANNER } from "../../ads/code/amazonBusiness";
 
 const Questions = ({
-	total,
+	// total,
 	questionData,
-	position,
-	linkImage,
+	// position,
+	// linkImage,
 	nextHref,
 	id,
 	currentScore,
@@ -32,6 +26,7 @@ const Questions = ({
 	queryLinkCheck,
 	query,
 	currentUrlPath,
+	priority,
 }) => {
 	const [showAnswer, setShowAnswer] = useState(false);
 	const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -150,6 +145,7 @@ const Questions = ({
 							styles={{ width: "100%", height: "100%" }}
 							noMaxHeight={true}
 							wrapperClass={"contentWrapper"}
+							priority={priority}
 						/>
 					</div>
 				)}
@@ -173,7 +169,7 @@ const Questions = ({
 					</div>
 				)}
 
-				<div className={styles.multiWrapper}>
+				<div className={styles.adsenseWrapper}>
 					<Adsense
 						client="ca-pub-2068760522034474"
 						slot="3992688547"
@@ -246,8 +242,13 @@ const Questions = ({
 					query={query}
 				/>
 			)}
-			<div>
-				<AdWrapper adCode={AMAZON_MUSIC_WIDE_BANNER} />
+			<div className={styles.adsenseWrapper}>
+				<Adsense
+					client="ca-pub-2068760522034474"
+					slot="9944544648"
+					responsive={true}
+					currentUrlPath={currentUrlPath}
+				/>
 			</div>
 		</div>
 	);

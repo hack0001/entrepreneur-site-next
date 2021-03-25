@@ -19,6 +19,7 @@ const EmbedUrl = ({
 	styles,
 	noMaxHeight,
 	wrapperClass,
+	priority,
 }) => {
 	return (
 		<>
@@ -34,6 +35,7 @@ const EmbedUrl = ({
 					imageCropInfo={imageCropInfo}
 					unsized={true}
 					wrapperClass={wrapperClass}
+					priority={priority}
 				/>
 			)}
 			{embed && (
@@ -60,4 +62,7 @@ const EmbedUrl = ({
 	);
 };
 
+EmbedUrl.defaultProps = {
+	priority: false,
+};
 export default EmbedUrl;

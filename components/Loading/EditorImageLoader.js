@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export const config = { amp: "hybrid" };
 import { useAmp } from "next/amp";
 import loadStyles from "./styles/editorImageLoaderStyles.module.sass";
-import CloudImage from "../Image/cloudImage";
+import CloudImage from "@Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
 import Image from "next/image";
 const ImageLoader = ({
@@ -41,14 +41,16 @@ const ImageLoader = ({
 						/>
 					)}
 					{!imageCheck && (
-						<Image
-							key={src}
-							src={src}
-							alt={alt}
-							style={styles}
-							onLoad={onLoad}
-							unsized={true}
-						/>
+						<div className={loadStyles.imageWrapper}>
+							<Image
+								key={src}
+								src={src}
+								alt={alt}
+								style={styles}
+								onLoad={onLoad}
+								layout="fill"
+							/>
+						</div>
 					)}
 				</div>
 			)}

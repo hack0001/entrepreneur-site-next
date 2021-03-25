@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "../../styles/adStyles.module.sass";
 
 const Adsense = ({
@@ -32,8 +32,8 @@ const Adsense = ({
 					<div key={currentUrlPath}>
 						{responsive && (
 							<ins
+								style={{ display: "block" }}
 								className="adsbygoogle adbanner-customize"
-								style={adStyle}
 								data-ad-client={client}
 								data-ad-slot={slot}
 								data-ad-format={format}

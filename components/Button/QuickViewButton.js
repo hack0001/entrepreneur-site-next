@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import styles from "./styles/quickViewButtonStyles.module.sass";
-import CloudImage from "../Image/cloudImage";
+import CloudImage from "@Image/cloudImage";
+import StaticImage from "@Image/staticImage";
 import { getImagePath } from "../helper/imageUrlHelper";
-import Image from "next/image";
 import CustomLink from "@components/Link/customLink";
+
 const QuickViewButton = ({
 	label,
 	optionalTitle,
@@ -51,11 +52,10 @@ const QuickViewButton = ({
 								</div>
 							)}
 						</div>
-
 						<div className={styles.arrowWrapper}>
 							<div className={styles.insideWrapper}>
-								<Image
-									className={styles.arrow}
+								<StaticImage
+									styleClass={styles.arrow}
 									src={"/static/newFatArrowRightWhitex128.png"}
 									alt="right-arrow"
 									height="58px"

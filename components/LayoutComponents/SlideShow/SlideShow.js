@@ -230,6 +230,7 @@ const SlideDetails = ({
 								: undefined
 						}
 						embed={bookEndOpening["openingImage-embed"]}
+						priority={true}
 					/>
 
 					<div>
@@ -269,6 +270,7 @@ const SlideDetails = ({
 								: undefined
 						}
 						embed={bookEndClosing["closingImage-embed"]}
+						priority={false}
 					/>
 					<div>
 						<Adsense

@@ -15,6 +15,7 @@ const BookEnds = ({
 	details,
 	position,
 	embed,
+	priority,
 }) => {
 	return (
 		<div className={styles.bookendWrapper}>
@@ -42,6 +43,7 @@ const BookEnds = ({
 						styles={{ width: "100%", height: "100%" }}
 						noMaxHeight={true}
 						wrapperClass={"contentWrapper"}
+						priority={priority}
 					/>
 				)}
 			</div>

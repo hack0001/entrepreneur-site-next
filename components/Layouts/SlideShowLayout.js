@@ -9,7 +9,6 @@ import {
 } from "../LayoutComponents";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/contentLayout.module.sass";
-import { AMAZON_MUSIC_CODE_RECT_LARGE } from "../ads/code/amazonBusiness";
 import dynamic from "next/dynamic";
 import Context from "@utils/Context";
 import { objectCheck } from "@utils/queryHandler";
@@ -72,7 +71,6 @@ const Slide = ({
 						data={quiz.items}
 						type="quiz"
 						showAd={true}
-						adCode={AMAZON_MUSIC_CODE_RECT_LARGE}
 						limit={6}
 						queryLinkCheck={queryLinkCheck}
 						query={query}

@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import styles from "./styles/longAnswerStyles.module.sass";
 import Reader from "../Editor/reader";
-import Image from "next/image";
+import StaticImage from "@Image/staticImage";
+
 const LongAnswer = ({
 	showAnswer,
 	correct,
@@ -17,7 +18,8 @@ const LongAnswer = ({
 						<div className={styles.correct}>
 							<div className={styles.correctGroup}>
 								<div className={styles.correctImage}>
-									<Image
+									<StaticImage
+										styleClass={styles.correctImageWrap}
 										src={"/static/tickx128.png"}
 										alt="correct-tick-icon"
 										width="55px"
@@ -32,8 +34,8 @@ const LongAnswer = ({
 							<div className={styles.correctGroup}>
 								<div className={styles.correctGroup}>
 									<div className={styles.incorrectImage}>
-										<Image
-											className={styles.incorrectImage}
+										<StaticImage
+											styleClass={styles.incorrectImage}
 											src={"/static/deletex128.png"}
 											alt="incorrect-cross-icon"
 											width="55px"

@@ -89,21 +89,37 @@ const HorizontalShareButtons = ({
 			{data.map((button, index) => {
 				const { ShareButton } = button;
 				return (
-					<ShareButton
-						className={styles.indivButton}
-						style={{
-							width: button.width,
-							backgroundColor: button.secondaryColor,
-						}}
-						url={createUtm(utmOptions[button.name])}
-						key={index}
-						{...options[button.name]}
-					>
-						<div className={styles.buttonContent}>
-							<SocialSvgFactory button={button} />
-							<span className={styles.buttonText}>{button.text}</span>
-						</div>
-					</ShareButton>
+					<div className={`button-wrapper`}>
+						<ShareButton
+							className={styles.indivButton}
+							style={{
+								backgroundColor: button.secondaryColor,
+							}}
+							url={createUtm(utmOptions[button.name])}
+							key={index}
+							{...options[button.name]}
+						>
+							<div className={styles.buttonContent}>
+								<SocialSvgFactory button={button} />
+								<span className={styles.buttonText}>{button.text}</span>
+							</div>
+						</ShareButton>
+						<style jsx>
+							{`
+								.button-wrapper {
+									width: ${button.width};
+									padding-right: 0.1rem;
+								}
+
+								@media only screen and (max-width: 760px) {
+									.button-wrapper {
+										width: ${100 / 4 - 1}%;
+										margin: 0 auto;
+									}
+								}
+							`}
+						</style>
+					</div>
 				);
 			})}
 		</div>

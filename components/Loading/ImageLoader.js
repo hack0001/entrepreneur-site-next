@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export const config = { amp: "hybrid" };
 import { useAmp } from "next/amp";
 import loaderStyles from "./styles/imageLoaderStyles.module.sass";
-import CloudImage from "../Image/cloudImage";
+import CloudImage from "@Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
 const ImageLoader = ({
 	src,
@@ -17,6 +17,7 @@ const ImageLoader = ({
 	imageCropInfo,
 	noMaxHeight,
 	wrapperClass,
+	priority,
 }) => {
 	const [classStyle, setClassStyle] = useState(
 		animation ? "imgLoadingAnimation" : "imgLoading",
@@ -51,6 +52,7 @@ const ImageLoader = ({
 							onLoad={onLoad}
 							unsized={true}
 							wrapperClass={wrapperClass}
+							priority={priority}
 						/>
 					)}
 

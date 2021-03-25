@@ -4,6 +4,7 @@
     margin: 1rem 0rem
     display: flex
     flex-direction: row
+    width: 100%
 
 .buttonContent
     display: flex
@@ -22,13 +23,33 @@
     outline: none
     transition: all 0.15s ease
     align-items: center
-    margin: 0.1rem
+    // margin: 0.1rem
     border-radius: 4px
     padding: 0rem 1rem
-    width: 20%
+    // max-width: 40%
+    width: 100%
+
     &:hover
         filter: brightness(120%)
 
 @media only screen and (max-width: 760px) 
+    .buttonContainer
+        width: 97%
+        margin: 0 auto
+        padding: 0.5rem 0rem
+
+    .buttonContent
+        display: flex
+        flex-direction: column
+
+    .buttonText
+        display: none
+
+@media only screen and (max-width: 480px) 
+    .buttonContainer
+        width: 100%
+        margin: 0 auto
+        // padding: 0.5rem 1rem
+
     .buttonText
         display: none

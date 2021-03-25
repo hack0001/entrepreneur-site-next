@@ -10,7 +10,6 @@ const SideBarSmallContent = ({
 	data,
 	type,
 	showAd = false,
-	adCode,
 	limit = 0,
 	cpcAd,
 	queryLinkCheck,

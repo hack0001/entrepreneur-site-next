@@ -12,6 +12,7 @@ const CloudImageComponent = ({
 	wrapperClass,
 	fixedHeight,
 	fixedWidth,
+	priority,
 }) => {
 	const cloudfrontUrl = newImageUrl(imagePath);
 	let cropParams = null;
@@ -44,16 +45,19 @@ const CloudImageComponent = ({
 		return (
 			<>
 				{unsized && (
-					<Image
-						key={`${cloudfrontUrl}?${parameterUrl}`}
-						className={
-							styles[`${wrapperClass ? wrapperClass : "cloudWrapper"}`]
-						}
-						alt={imageAlt}
-						src={`${cloudfrontUrl}?${parameterUrl}`}
-						onLoad={onLoad}
-						unsized={unsized}
-					/>
+					<div className={styles.imageWrapper}>
+						<Image
+							key={`${cloudfrontUrl}?${parameterUrl}`}
+							className={
+								styles[`${wrapperClass ? wrapperClass : "cloudWrapper"}`]
+							}
+							alt={imageAlt}
+							src={`${cloudfrontUrl}?${parameterUrl}`}
+							onLoad={onLoad}
+							layout="fill"
+							priority={priority}
+						/>
+					</div>
 				)}
 				{!unsized && (
 					<Image
@@ -72,6 +76,7 @@ const CloudImageComponent = ({
 						width={
 							cleanCropParams.cropWidth ? cleanCropParams.cropWidth : fixedWidth
 						}
+						priority={priority}
 					/>
 				)}
 			</>
@@ -80,14 +85,17 @@ const CloudImageComponent = ({
 
 	return (
 		unsized && (
-			<Image
-				key={cloudfrontUrl}
-				className={styles[`${wrapperClass ? wrapperClass : "cloudWrapper"}`]}
-				alt={imageAlt}
-				src={cloudfrontUrl}
-				onLoad={onLoad}
-				unsized={unsized}
-			/>
+			<div className={styles.imageWrapper}>
+				<Image
+					key={cloudfrontUrl}
+					className={styles[`${wrapperClass ? wrapperClass : "cloudWrapper"}`]}
+					alt={imageAlt}
+					src={cloudfrontUrl}
+					onLoad={onLoad}
+					layout="fill"
+					priority={priority}
+				/>
+			</div>
 		)
 	);
 };

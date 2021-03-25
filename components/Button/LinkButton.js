@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import CloudImage from "../Image/cloudImage";
+import CloudImage from "@Image/cloudImage";
 import styles from "./styles/linkButtonStyles.module.sass";
 import { getImagePath } from "../helper/imageUrlHelper";
-import Image from "next/image";
+import StaticImage from "@Image/staticImage";
 import CustomLink from "@components/Link/customLink";
 
 const SlideLinkButton = ({
@@ -49,8 +49,8 @@ const SlideLinkButton = ({
 							<div className={styles.linkLabel}>{label}</div>
 						</div>
 						<div className={styles.arrowWrapper}>
-							<Image
-								className={styles.arrow}
+							<StaticImage
+								styleClass={styles.arrow}
 								alt="right-arrow"
 								src={"/static/newFatArrowRightBlackx128.png"}
 								height="128px"

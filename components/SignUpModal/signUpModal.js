@@ -18,7 +18,7 @@ import { objectCheck } from "@utils/queryHandler";
 //Set Cookie Expiration if not signed up (in minutes)
 const cookieTime = 60;
 const fromTop = 550;
-import Image from "next/image";
+import StaticImage from "@Image/staticImage";
 import CustomLink from "@components/Link/customLink";
 
 const SignUpModal = () => {
@@ -176,9 +176,9 @@ const SignUpModal = () => {
 								</div>
 								<div className={styles.headerContainer}>
 									<div className={styles.logoWrapper}>
-										<Image
+										<StaticImage
 											src="/static/business_motivation.svg"
-											className={styles.modalLogo}
+											styleClass={styles.modalLogo}
 											alt="wealthmack_logo"
 											width="133px"
 											height="75px"

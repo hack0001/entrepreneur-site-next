@@ -10,7 +10,6 @@ import {
 import dynamic from "next/dynamic";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/contentLayout.module.sass";
-import { AMAZON_MUSIC_CODE_RECT_LARGE } from "../ads/code/amazonBusiness";
 import Context from "@utils/Context";
 import { objectCheck } from "@utils/queryHandler";
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
@@ -68,7 +67,6 @@ const QuickViewLayout = ({
 						data={quiz.items}
 						type="quiz"
 						showAd={true}
-						adCode={AMAZON_MUSIC_CODE_RECT_LARGE}
 						limit={6}
 						queryLinkCheck={queryLinkCheck}
 						query={query}

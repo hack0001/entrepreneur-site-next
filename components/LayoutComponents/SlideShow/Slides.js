@@ -6,13 +6,7 @@ import ShareButtonHoriz from "../../SocialMedia/ShareButtonsHoriz";
 import LazyLoad from "react-lazyload";
 import NextLink from "../Editor/renderElement/ads/nextLink";
 import slideStyles from "./styles/slideStyles.module.sass";
-import dynamic from "next/dynamic";
 import Reader from "../Editor/reader";
-const MultiAdWrapper = dynamic(() => import("../../ads/twoAdsWrapper"), {
-	ssr: false,
-});
-import { AMAZON_KINDLE_CODE_SQUARE } from "../../ads/code/amazonBusiness";
-import { FIVERR_SQUARE } from "../../ads/code/fiverr";
 import Adsense from "../../ads/code/adsense/adsense";
 import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
 
@@ -139,13 +133,13 @@ const Slides = ({
 					</>
 				)}
 				{index % 3 === 0 && (
-					<div className={slideStyles.multiAdWrap}>
-						<div>
-							<MultiAdWrapper
-								adCodeOne={FIVERR_SQUARE}
-								adCodeTwo={AMAZON_KINDLE_CODE_SQUARE}
-							/>
-						</div>
+					// Responsive Horizontal Adsense Component
+					<div className={slideStyles.midAdWrapper}>
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="6603887822"
+							currentUrlPath={currentUrlPath}
+						/>
 					</div>
 				)}
 			</div>

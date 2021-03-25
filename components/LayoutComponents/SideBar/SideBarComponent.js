@@ -1,5 +1,5 @@
 import styles from "./styles/sideBarComponentStyles.module.sass";
-import CloudImage from "../../Image/cloudImage";
+import CloudImage from "@Image/cloudImage";
 import { getImagePath } from "../../helper/imageUrlHelper";
 import CustomLink from "@components/Link/customLink";
 

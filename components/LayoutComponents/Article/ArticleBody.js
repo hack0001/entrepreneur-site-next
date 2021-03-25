@@ -10,13 +10,8 @@ import QuickEmailSignUp from "../../SignUpModal/quickEmailSignup";
 import ScrollUpButton from "../ScrollUpButton/ScrollUpButton";
 import SectionBar from "../SectionBar";
 import ScrollingContent from "../ScrollingContent/ScrollingContent";
-import dynamic from "next/dynamic";
 import styles from "./styles/articleBodyStyles.module.sass";
-const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
-	ssr: false,
-});
 import Adsense from "../../ads/code/adsense/adsense";
-import { AMAZON_BUSINESS_AD_RECT } from "../../ads/code/amazonBusiness";
 import Context from "@utils/Context";
 import { filterUnique } from "@utils/handler";
 import QuickViewButton from "../../Button/QuickViewButton";
@@ -97,6 +92,7 @@ const ArticleBody = ({
 			<LazyLoad once={true}>
 				<ScrollUpButton />
 			</LazyLoad>
+
 			<Adsense
 				client="ca-pub-2068760522034474"
 				slot="8414762247"
@@ -126,7 +122,11 @@ const ArticleBody = ({
 			<LazyLoad once={true}>
 				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
 			</LazyLoad>
-			<AdWrapper adCode={AMAZON_BUSINESS_AD_RECT} />
+			<Adsense
+				client="ca-pub-2068760522034474"
+				slot="4801396157"
+				currentUrlPath={currentUrlPath}
+			/>
 			<SectionBar title="Leave a Comment" titleColor="#111" titleSize="1rem" />
 			<FacebookComments url={url} numPostsVisible={5} orderBy="reverse_time" />
 			<LazyLoad>

@@ -5,7 +5,6 @@ import QuickViewButton from "../../../Button/QuickViewButton";
 import styles from "./styles/quickSlideStyles.module.sass";
 import SingleLoader from "../../../Loading/SingleLoader";
 import Adsense from "../../../ads/code/adsense/adsense";
-import adsenseStyles from "../../../ads/code/adsense/adsenseStyles";
 import Reader from "../../Editor/reader";
 
 const QuickSlides = ({
@@ -53,7 +52,6 @@ const QuickSlides = ({
 					client="ca-pub-2068760522034474"
 					slot="3049705177"
 					responsive={true}
-					adStyle={adsenseStyles["maxHeight"]}
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>
@@ -80,6 +78,7 @@ const QuickSlides = ({
 					styles={{ width: "100%", height: "100%" }}
 					noMaxHeight={true}
 					wrapperClass={"contentWrapper"}
+					priority={true}
 				/>
 			</div>
 			<div className={styles.bottomSectionParagraph}>
@@ -92,7 +91,6 @@ const QuickSlides = ({
 					client="ca-pub-2068760522034474"
 					slot="1874540097"
 					responsive={true}
-					adStyle={adsenseStyles["maxHeight"]}
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>

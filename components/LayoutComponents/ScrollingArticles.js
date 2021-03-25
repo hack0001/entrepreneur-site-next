@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import CustomLink from "@components/Link/customLink";
-import CloudImage from "../Image/cloudImage";
+import CloudImage from "@Image/cloudImage";
 import { getImagePath } from "../helper/imageUrlHelper";
 import styles from "./styles/scrollingArticleStyles.module.sass";
 const ScrollingArticles = ({ data, queryLinkCheck, query }) => {

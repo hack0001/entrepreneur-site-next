@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Image from "next/image";
+import StaticImage from "@Image/staticImage";
 import { PropTypes } from "prop-types";
 import MenuButton from "./Menu/MenuButton";
 import CustomLink from "@components/Link/customLink";
@@ -17,12 +17,13 @@ const Header = ({ menuOpen, onClick }) => {
 				<div className={styles.logo}>
 					<CustomLink queryLink={queryLinkCheck} pathname="/" query={query}>
 						<a>
-							<Image
+							<StaticImage
 								src="/static/business_motivation.svg"
 								width="87px"
-								className={styles.headerIcon}
-								alt="wealthmack_logo"
 								height="50px"
+								styleClass={styles.headerIcon}
+								alt="wealthmack_logo"
+								priority={true}
 							/>
 						</a>
 					</CustomLink>
@@ -48,12 +49,13 @@ const Header = ({ menuOpen, onClick }) => {
 						{socialLinks.map(({ href, icon, altName }, index) => (
 							<div className={styles.socialNavMenuItem} key={index}>
 								<a href={href} target="_blank" rel="noopener noreferrer">
-									<Image
+									<StaticImage
 										src={icon}
 										width="22px"
-										className={styles.socialStyles}
+										styleClass={styles.socialStyles}
 										alt={altName}
 										height="22px"
+										priority={true}
 									/>
 								</a>
 							</div>

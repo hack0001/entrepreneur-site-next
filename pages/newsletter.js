@@ -14,7 +14,7 @@ import Cookie from "js-cookie";
 import manualRequest from "../components/apiRequest/prodRequest";
 import styles from "../styles/newsletterStyles.module.sass";
 import baseTheme from "../theme/baseTheme.json";
-import Image from "next/image";
+import StaticImage from "@components/Image/staticImage";
 import { useRouter } from "next/router";
 import Context from "../utils/Context";
 import { queryHandler, getParams } from "../utils/queryHandler";
@@ -99,11 +99,12 @@ const Newsletter = ({ url }) => {
 						<h1 className={styles.mainTitle}>Newsletter</h1>
 					</article>
 
-					<Image
+					<StaticImage
 						src={"/static/business_cover_photox1024.jpg"}
 						width="1040px"
 						height="585px"
 						priority={true}
+						styleClass={styles.cover}
 						alt={process.env.SITE_NAME}
 					/>
 					<form className={styles.contactForm} onSubmit={handleSubmit}>

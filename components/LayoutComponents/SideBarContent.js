@@ -6,10 +6,6 @@ import SideBarComponent from "./SideBar/SideBarComponent";
 const AdWrapper = dynamic(() => import("../ads/adWrapper"), {
 	ssr: false,
 });
-import {
-	AMAZON_AD_CODE,
-	AMAZON_KINDLE_CODE_SQUARE,
-} from "../ads/code/amazonBusiness";
 import Adsense from "../ads/code/adsense/adsense";
 
 const SideBarContent = ({
@@ -54,7 +50,6 @@ const SideBarContent = ({
 								slot="1753150973"
 								currentUrlPath={currentUrlPath}
 							/>
-							// <AdWrapper adCode={AMAZON_KINDLE_CODE_SQUARE} />
 						)}
 						<SideBarComponent
 							type={type}

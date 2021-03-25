@@ -1,16 +1,6 @@
-import {
-	facebook,
-	twitter,
-	linkedin,
-	email,
-	pinterest,
-	whatsapp,
-	Youtube,
-	Instagram,
-	copyLink,
-} from "./utils/icons";
-const closingWidth = "16%";
-export const openingSocialButtons = [facebook, twitter, linkedin, email];
+import { facebook, twitter, linkedin, email, pinterest } from "./utils/icons";
+const closingWidth = 100 / 4;
+export const openingSocialButtons = [facebook, pinterest, email, twitter];
 export const sideSocialButtons = [
 	facebook,
 	twitter,
@@ -20,12 +10,12 @@ export const sideSocialButtons = [
 ];
 
 export const closingSocialButtons = [
-	{ ...facebook, width: closingWidth },
-	{ ...twitter, width: closingWidth },
-	{ ...linkedin, width: closingWidth },
-	{ ...email, width: closingWidth },
-	{ ...pinterest, width: closingWidth },
-	{ ...whatsapp, width: closingWidth },
+	{ ...facebook, width: `${closingWidth * 2}%` },
+	{ ...pinterest, width: `${closingWidth}%` },
+	// { ...linkedin, width: closingWidth },
+	{ ...email, width: `${closingWidth}%` },
+	{ ...twitter, width: `${closingWidth}%` },
+	// { ...whatsapp, width: closingWidth },
 ];
 
 export const midSocialButtons = [

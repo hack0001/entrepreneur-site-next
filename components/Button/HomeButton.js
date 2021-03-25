@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import PropTypes from "prop-types";
 import styles from "./styles/homeButtonStyles.module.sass";
-import Image from "next/image";
+import StaticImage from "@Image/staticImage";
 import CustomLink from "@components/Link/customLink";
 import Context from "@utils/Context";
 import { objectCheck } from "@utils/queryHandler";
@@ -18,8 +18,8 @@ const SlideLinkButton = ({ label, href }) => {
 							<div className={styles.linkLabel}>{label}</div>
 						</div>
 						<div className={styles.arrowWrapper}>
-							<Image
-								className={styles.arrow}
+							<StaticImage
+								styleClass={styles.arrow}
 								src={"/static/newFatArrowRightWhitex128.png"}
 								alt="right-arrow"
 								height="58px"
