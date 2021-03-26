@@ -65,6 +65,7 @@ const ArticleHead = ({ overview, id, nextSlideShow, currentUrlPath }) => {
 					authorName={authorName}
 				/>
 			</div>
+			{/* <!-- HorizBarContentTop --> */}
 			<Adsense
 				client={"ca-pub-2068760522034474"}
 				slot={"9802692073"}

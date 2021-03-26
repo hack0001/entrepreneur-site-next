@@ -48,6 +48,7 @@ const QuickSlides = ({
 	return (
 		<div className={styles.bookendWrapper}>
 			<div>
+				{/* <!-- QuickViewHeadlineBottom --> */}
 				<Adsense
 					client="ca-pub-2068760522034474"
 					slot="3049705177"

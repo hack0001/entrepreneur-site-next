@@ -60,11 +60,11 @@ const Slides = ({
 				<h3 className={slideStyles.sectionBrief}>{slideComment}</h3>
 				<div className={slideStyles.sectionParagraph}>
 					<Reader value={slideData.slideDetails[0].children} />
+					{/* <!-- SlideHorizTop --> */}
 					<Adsense
 						client="ca-pub-2068760522034474"
 						slot="8433059648"
 						responsive={true}
-						adStyle={adsenseStyles["maxHeight"]}
 						currentUrlPath={currentUrlPath}
 					/>
 				</div>
