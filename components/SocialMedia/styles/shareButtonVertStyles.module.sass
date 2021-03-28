@@ -15,8 +15,9 @@
 
 .buttonVerticalContainer
     position: fixed
-    left: 0.5%
+    left: 0
     top: 30%
+    width: 6%
     z-index: 50
 
 .indivButton
@@ -41,7 +42,23 @@
     padding-bottom: 0.3rem
     font-size: 0.7rem
 
-@media only screen and (max-width: 1000px) 
+@media only screen and (min-width: 1275px) and (max-width: 1320px)
+    .buttonVerticalContainer
+        width: 5%
+    .buttonText
+        font-size: 0.9rem
 
+@media only screen and (min-width: 1256px) and (max-width: 1275px)
+    .buttonVerticalContainer
+        width: 4%
+    .buttonText
+        display: none
+@media only screen and (min-width: 1000px) and (max-width: 1255px)
+    .buttonVerticalContainer
+        width: 3%
+    .buttonText
+        display: none
+
+@media only screen and (max-width: 1218px) 
     .buttonVerticalContainer
         display: none

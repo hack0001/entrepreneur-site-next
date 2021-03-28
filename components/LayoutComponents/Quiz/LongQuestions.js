@@ -8,7 +8,6 @@ import prodRequest from "../../apiRequest/prodRequest";
 import styles from "./styles/questionStyles.module.sass";
 import SingleLoader from "../../Loading/SingleLoader";
 import Adsense from "../../ads/code/adsense/adsense";
-import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
 
 const Questions = ({
 	total,
@@ -148,7 +147,7 @@ const Questions = ({
 						client="ca-pub-2068760522034474"
 						slot="4560498904"
 						responsive={true}
-						adStyle={adsenseStyles["maxHeight"]}
+						adStyle={"maxHeight"}
 						currentUrlPath={currentUrlPath}
 					/>
 				</div>

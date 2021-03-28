@@ -3,7 +3,6 @@ import Embed from "../../Embed/Embed";
 import styles from "./styles/bookEndStyles.module.sass";
 import baseTheme from "../../../theme/baseTheme.json";
 import Adsense from "../../ads/code/adsense/adsense";
-import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
 import Reader from "../Editor/reader";
 
 const QuizBookEnds = ({
@@ -39,7 +38,7 @@ const QuizBookEnds = ({
 					client="ca-pub-2068760522034474"
 					slot="5713798476"
 					responsive={true}
-					adStyle={adsenseStyles["maxHeight"]}
+					adStyle={"maxHeight"}
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>
@@ -72,7 +71,6 @@ const QuizBookEnds = ({
 					{scoreComments[`scoreComment${commentNumber}`]}
 				</h1>
 			)}
-
 			<>
 				<div className={styles.sectionParagraph}>
 					<Reader value={details[0].children} />

@@ -50,14 +50,16 @@ const Reader = ({ value }) => {
 				case "link":
 					const { url } = node;
 					return (
-						<a
-							className={styles.link}
-							href={url}
-							rel="noopener noreferrer"
-							target="_blank"
-						>
-							{node.children[0].text}
-						</a>
+						<strong>
+							<a
+								className={styles.link}
+								href={url}
+								rel="noopener noreferrer"
+								target="_blank"
+							>
+								{node.children[0].text}
+							</a>
+						</strong>
 					);
 				case "emoji":
 					const emoji = node.data;

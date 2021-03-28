@@ -53,6 +53,7 @@ const QuickSlides = ({
 					client="ca-pub-2068760522034474"
 					slot="3049705177"
 					responsive={true}
+					adStyle={"maxHeight"}
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>
@@ -92,6 +93,7 @@ const QuickSlides = ({
 					client="ca-pub-2068760522034474"
 					slot="1874540097"
 					responsive={true}
+					adStyle={"maxHeight"}
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>

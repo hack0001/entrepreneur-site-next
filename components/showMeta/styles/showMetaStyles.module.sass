@@ -1,12 +1,21 @@
+@import "../../../styles/_baseTheme"
+
+.metaWrapper
+    margin: 0.5rem 0 rem 1.2rem 0rem
+
 .sectionMeta
-    margin: 0px 0px 7px 0px
+    margin: 0px 0px 10px 0px
     padding: 0
-    font-size: 1.2rem
+    font-size: 1rem
     line-height: 1.2rem
+    font-family: $secondaryFont
     color: grey
     text-transform: capitalize
 
 @media only screen and (max-width: 480px) 
+    .metaWrapper
+        margin: 0rem
+
     .sectionMeta
-        font-size: 0.8rem
+        font-size: 0.7rem
         line-height: 1rem

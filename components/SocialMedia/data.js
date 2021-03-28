@@ -20,6 +20,6 @@ export const closingSocialButtons = [
 
 export const midSocialButtons = [
 	{ ...facebook, width: "33%" },
-	{ ...linkedin, width: "33%" },
+	{ ...pinterest, width: "33%" },
 	{ ...email, width: "33%" },
 ];

@@ -42,6 +42,8 @@ const SlideDetails = ({
 	const [cpcMarker, setCpcMarker] = useState(false);
 	const filterArray = sessionSlideIds.concat({ id });
 	const nextContent = filterUnique(nextSlideShow.items, filterArray);
+	const affiliateDisclaimer = content.affiliateDisclaimer;
+	const lastUpdated = content.updatedAt;
 	const {
 		blurb,
 		category,
@@ -121,6 +123,7 @@ const SlideDetails = ({
 							position={position}
 							totalSlides={content.numSlides}
 							cpcMarker={cpcMarker}
+							lastUpdated={lastUpdated}
 						/>
 
 						{(position === "opening" || position === "closing") && (
@@ -204,7 +207,6 @@ const SlideDetails = ({
 							client="ca-pub-2068760522034474"
 							slot="7104500257"
 							responsive={true}
-							adStyle={{ display: "block" }}
 							currentUrlPath={currentUrlPath}
 						/>
 					</div>
@@ -212,7 +214,15 @@ const SlideDetails = ({
 			)}
 			{!cpcMarker && position === "opening" && (
 				<>
-					<Headline data={details} id={id} position={position} />
+					<Headline
+						data={details}
+						id={id}
+						position={position}
+						query={query}
+						queryLinkCheck={queryLinkCheck}
+						affiliateDisclaimer={affiliateDisclaimer}
+						lastUpdated={lastUpdated}
+					/>
 					<BookEnds
 						position={"opening"}
 						showHeadlineImage={showOpeningSlide}

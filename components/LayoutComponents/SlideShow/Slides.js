@@ -8,7 +8,6 @@ import NextLink from "../Editor/renderElement/ads/nextLink";
 import slideStyles from "./styles/slideStyles.module.sass";
 import Reader from "../Editor/reader";
 import Adsense from "../../ads/code/adsense/adsense";
-import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
 
 const Slides = ({
 	data,
@@ -65,6 +64,7 @@ const Slides = ({
 						client="ca-pub-2068760522034474"
 						slot="8433059648"
 						responsive={true}
+						adStyle={"maxHeight"}
 						currentUrlPath={currentUrlPath}
 					/>
 				</div>

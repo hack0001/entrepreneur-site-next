@@ -6,7 +6,7 @@ import ShowMeta from "../../showMeta/showMeta";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/quizHeadlineStyles.module.sass";
 
-const QuizHeadline = ({ data, id, position, totalQuestions }) => {
+const QuizHeadline = ({ data, id, position, totalQuestions, lastUpdated }) => {
 	const {
 		blurb,
 		category,
@@ -73,6 +73,7 @@ const QuizHeadline = ({ data, id, position, totalQuestions }) => {
 				displayDate={displayDate}
 				showAuthor={showAuthor}
 				authorName={authorName}
+				lastUpdated={lastUpdated}
 			/>
 			<LazyLoad once={true}>
 				<ShareButtonVert

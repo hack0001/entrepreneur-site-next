@@ -9,7 +9,10 @@ import QuickViewButton from "../../Button/QuickViewButton";
 import ScrollUpButton from "../ScrollUpButton/ScrollUpButton";
 import Crumbs from "../Crumbs/crumbs";
 import ShareButtonHoriz from "../../SocialMedia/ShareButtonsHoriz";
-import { closingSocialButtons } from "../../SocialMedia/data";
+import {
+	closingSocialButtons,
+	openingSocialButtons,
+} from "../../SocialMedia/data";
 import QuickEmailSignUp from "../../SignUpModal/quickEmailSignup";
 import FacebookComments from "../../SocialMedia/FacebookComments";
 import LazyLoad from "react-lazyload";
@@ -23,7 +26,7 @@ import { UPDATE_QUIZ } from "../../../graphql/indivQuiz";
 import Adsense from "../../ads/code/adsense/adsense";
 import { filterUnique } from "@utils/handler";
 import { objectCheck } from "@utils/queryHandler";
-
+import Disclaimer from "../../ads/disclaimer";
 const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 	const details = JSON.parse(content.overview);
 	const questions = JSON.parse(content.questions);
@@ -32,7 +35,9 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 	const { viewCount } = content;
 	const [cpcMarker, setCpcMarker] = useState(false);
 	const filterArray = sessionQuizIds.concat({ id });
+	const affiliateDisclaimer = content.affiliateDisclaimer;
 	const nextContent = filterUnique(nextQuiz.items, filterArray);
+	const lastUpdated = content.updatedAt;
 	const {
 		category,
 		title,
@@ -112,6 +117,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 							totalQuestions={content.numQuestions}
 							cpcMarker={cpcMarker}
 						/>
+
 						{(position === "opening" || position === "closing") && (
 							<>
 								<BookEnds
@@ -182,6 +188,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 								client="ca-pub-2068760522034474"
 								slot="4560498904"
 								responsive={true}
+								adStyle={"maxHeight"}
 								currentUrlPath={currentUrlPath}
 							/>
 						</div>
@@ -222,6 +229,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						position={position}
 						totalQuestions={content.numQuestions}
 						cpcMarker={cpcMarker}
+						lastUpdated={lastUpdated}
 					/>
 					<BookEnds
 						position={"opening"}
@@ -249,6 +257,23 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						currentUrlPath={currentUrlPath}
 						priority={true}
 					/>
+
+					<LazyLoad once={true}>
+						<hr className={styles.break} />
+						<ShareButtonHoriz
+							data={openingSocialButtons}
+							url={shareUrl}
+							image={headlineImage}
+							headline={title}
+							brief={blurb}
+							position={"top_share_horiz"}
+						/>
+					</LazyLoad>
+					{affiliateDisclaimer && (
+						<Disclaimer query={query} queryLinkCheck={queryLinkCheck} />
+					)}
+					<hr className={styles.break} />
+
 					<LongQuestions
 						total={content.numQuestions}
 						questionData={questions.questions}
@@ -272,7 +297,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 							currentUrlPath={currentUrlPath}
 						/>
 					</div>
-
 					{questionsAnswered === content.numQuestions && (
 						<>
 							<BookEnds

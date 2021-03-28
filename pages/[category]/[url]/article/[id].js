@@ -13,7 +13,6 @@ import { queryHandler, getParams } from "@utils/queryHandler";
 const Article = ({ individual, quiz, slide, id, category, url }) => {
 	const router = useRouter();
 	const { handleState, sessionArticleIds } = useContext(Context);
-
 	if (parseUrl(router.asPath)) {
 		Cookie.set("CPC", JSON.stringify(true), {
 			expires: 0.25,

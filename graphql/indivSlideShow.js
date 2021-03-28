@@ -23,6 +23,7 @@ export const SLIDESHOW = /* GraphQL */ `
 			sideHeadline
 			bottomHeadline
 			shareCount
+			affiliateDisclaimer
 			linkedArticle {
 				id
 				headline

@@ -19,7 +19,6 @@ import Cookie from "js-cookie";
 import prodRequest from "../../apiRequest/prodRequest";
 import { UPDATE_ARTICLE } from "../../../graphql/indivArticle";
 import { objectCheck } from "@utils/queryHandler";
-
 const ArticleBody = ({
 	content,
 	category,

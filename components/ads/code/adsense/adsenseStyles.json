@@ -1,8 +1,11 @@
 {
+	"default": {
+		"display": "block"
+	},
 	"maxHeight": {
 		"display": "block",
-		"min-width": "400px",
-		"max-width": "970px",
+		"minWidth": "400px",
+		"maxWidth": "970px",
 		"width": "100%",
 		"height": "90px"
 	}

@@ -12,9 +12,18 @@ import ShowMeta from "../../showMeta/showMeta";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/headlineStyles.module.sass";
 import Adsense from "../../ads/code/adsense/adsense";
-import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
-
-const BookEnds = ({ data, id, position, cpcMarker, currentUrlPath }) => {
+import Disclaimer from "../../ads/disclaimer";
+const BookEnds = ({
+	data,
+	id,
+	position,
+	cpcMarker,
+	currentUrlPath,
+	query,
+	queryLinkCheck,
+	affiliateDisclaimer,
+	lastUpdated,
+}) => {
 	const {
 		headlineImage,
 		headlineImageAlt,
@@ -56,13 +65,14 @@ const BookEnds = ({ data, id, position, cpcMarker, currentUrlPath }) => {
 				displayDate={displayDate}
 				showAuthor={showAuthor}
 				authorName={authorName}
+				lastUpdated={lastUpdated}
 			/>
 			<div>
 				<Adsense
 					client="ca-pub-2068760522034474"
 					slot="4672943880"
 					responsive={true}
-					adStyle={adsenseStyles["maxHeight"]}
+					adStyle={"maxHeight"}
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>
@@ -90,7 +100,7 @@ const BookEnds = ({ data, id, position, cpcMarker, currentUrlPath }) => {
 						client="ca-pub-2068760522034474"
 						slot="3049705177"
 						responsive={true}
-						adStyle={adsenseStyles["maxHeight"]}
+						adStyle={"maxHeight"}
 						currentUrlPath={currentUrlPath}
 					/>
 				</div>
@@ -115,6 +125,9 @@ const BookEnds = ({ data, id, position, cpcMarker, currentUrlPath }) => {
 					position={"top_share_horiz"}
 				/>
 			</LazyLoad>
+			{affiliateDisclaimer && (
+				<Disclaimer query={query} queryLinkCheck={queryLinkCheck} />
+			)}
 			<hr className={styles.break} />
 		</div>
 	);

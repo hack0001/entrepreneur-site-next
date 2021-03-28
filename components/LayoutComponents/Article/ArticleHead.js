@@ -13,9 +13,16 @@ import ShowMeta from "../../showMeta/showMeta";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/articleHeadStyles.module.sass";
 import Adsense from "../../ads/code/adsense/adsense";
-import adsenseStyles from "../../ads/code/adsense/adsenseStyles";
+import Disclaimer from "../../ads/disclaimer";
 
-const ArticleHead = ({ overview, id, nextSlideShow, currentUrlPath }) => {
+const ArticleHead = ({
+	overview,
+	id,
+	nextSlideShow,
+	currentUrlPath,
+	query,
+	queryLinkCheck,
+}) => {
 	const details = JSON.parse(overview.overview);
 	const {
 		articleHeadline,
@@ -63,6 +70,7 @@ const ArticleHead = ({ overview, id, nextSlideShow, currentUrlPath }) => {
 					displayDate={displayDate}
 					showAuthor={showAuthor}
 					authorName={authorName}
+					lastUpdated={overview.updatedAt}
 				/>
 			</div>
 			{/* <!-- HorizBarContentTop --> */}
@@ -71,6 +79,7 @@ const ArticleHead = ({ overview, id, nextSlideShow, currentUrlPath }) => {
 				slot={"9802692073"}
 				responsive={true}
 				currentUrlPath={currentUrlPath}
+				adStyle={"maxHeight"}
 			/>
 			<ImageLoader
 				src={headlineImage}
@@ -114,6 +123,9 @@ const ArticleHead = ({ overview, id, nextSlideShow, currentUrlPath }) => {
 					position={"top_share_horiz"}
 				/>
 			</LazyLoad>
+			{overview.affiliateDisclaimer && (
+				<Disclaimer query={query} queryLinkCheck={queryLinkCheck} />
+			)}
 			<hr className={styles.break} />
 			<ArticleBody
 				content={overview}

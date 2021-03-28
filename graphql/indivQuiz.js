@@ -20,6 +20,7 @@ export const QUIZ = /* GraphQL */ `
 			sideHeadline
 			bottomHeadline
 			shareCount
+			affiliateDisclaimer
 			linkedArticle {
 				id
 				headline
