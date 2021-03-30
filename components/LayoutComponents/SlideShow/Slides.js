@@ -35,8 +35,9 @@ const Slides = ({
 			slideImageAttributionLink,
 			slidePosition,
 			bottomSlideDetails,
+			slideAffiliateLink,
+			affiliateLinkCode,
 		} = slideData;
-
 		const arrayNumber = Number.isInteger(index / 2) ? index / 2 : null;
 		const adData =
 			arrayNumber && arrayNumber < latest.items.length
@@ -60,13 +61,15 @@ const Slides = ({
 				<div className={slideStyles.sectionParagraph}>
 					<Reader value={slideData.slideDetails[0].children} />
 					{/* <!-- SlideHorizTop --> */}
-					<Adsense
-						client="ca-pub-2068760522034474"
-						slot="8433059648"
-						responsive={true}
-						adStyle={"maxHeight"}
-						currentUrlPath={currentUrlPath}
-					/>
+					{!slideAffiliateLink && (
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="8433059648"
+							responsive={true}
+							adStyle={"maxHeight"}
+							currentUrlPath={currentUrlPath}
+						/>
+					)}
 				</div>
 				<div>
 					<Embed
@@ -83,6 +86,12 @@ const Slides = ({
 						wrapperClass={"contentWrapper"}
 					/>
 				</div>
+
+				{slideAffiliateLink && affiliateLinkCode && (
+					<div className={slideStyles.affiliate}>
+						<div dangerouslySetInnerHTML={{ __html: affiliateLinkCode }} />
+					</div>
+				)}
 				<div className={slideStyles.bottomSectionParagraph}>
 					{bottomSlideDetails && (
 						<Reader value={bottomSlideDetails[0].children} />

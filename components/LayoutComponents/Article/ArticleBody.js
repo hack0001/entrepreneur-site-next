@@ -30,7 +30,6 @@ const ArticleBody = ({
 	nextSlideShow,
 }) => {
 	const value = JSON.parse(content.content);
-
 	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
 

@@ -47,6 +47,16 @@ const Reader = ({ value }) => {
 		const children = node.children.map(n => renderHtml(n));
 		if (node.type) {
 			switch (node.type) {
+				case "affiliate-code":
+					const { affiliateCode } = node.data;
+					return (
+						<LazyLoad once={true}>
+							<div
+								className={styles.affiliate}
+								dangerouslySetInnerHTML={{ __html: affiliateCode }}
+							></div>
+						</LazyLoad>
+					);
 				case "link":
 					const { url } = node;
 					return (
