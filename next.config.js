@@ -6,6 +6,9 @@ const webpack = require("webpack");
 // module.exports = withBundleAnalyzer({});
 module.exports = {
 	target: "serverless",
+	future: {
+		webpack5: true,
+	},
 	webpack(config) {
 		config.plugins.push(new webpack.EnvironmentPlugin(localEnv));
 		return config;

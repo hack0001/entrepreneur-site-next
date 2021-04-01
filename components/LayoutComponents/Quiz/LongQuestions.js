@@ -229,8 +229,6 @@ const Questions = ({
 	});
 };
 Questions.propTypes = {
-	total: PropTypes.Int,
 	position: PropTypes.string,
-	questions: PropTypes.Object,
 };
 export default Questions;

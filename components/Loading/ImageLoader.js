@@ -111,7 +111,7 @@ ImageLoader.propTypes = {
 	imageAltAttribution: PropTypes.string,
 	imageAltAttributionLink: PropTypes.string,
 	imageCrop: PropTypes.string,
-	imageCropInfo: PropTypes.string,
+	imageCropInfo: PropTypes.object,
 	noMaxHeight: PropTypes.boolean,
 };
 

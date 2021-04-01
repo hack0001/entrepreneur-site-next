@@ -110,8 +110,8 @@ QuizBookEnds.propTypes = {
 	title: PropTypes.string,
 	details: PropTypes.Object,
 	embed: PropTypes.string,
-	scoreComments: PropTypes.string,
-	numberQuestions: PropTypes.Bool,
+	scoreComments: PropTypes.object,
+	numberQuestions: PropTypes.Int,
 };
 
 QuizBookEnds.defaultProps = {

@@ -1,5 +1,6 @@
 import { PureComponent } from "react";
 import PropTypes from "prop-types";
+import React from "react";
 
 const isPromise = obj =>
 	!!obj &&

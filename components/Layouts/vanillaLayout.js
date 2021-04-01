@@ -11,7 +11,7 @@ const Vanilla = props => {
 };
 
 Vanilla.propTypes = {
-	children: PropTypes.Object,
+	children: PropTypes.Func,
 };
 
 export default Vanilla;
