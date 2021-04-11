@@ -16,9 +16,14 @@ import Context from "@utils/Context";
 import { filterUnique } from "@utils/handler";
 import QuickViewButton from "../../Button/QuickViewButton";
 import Cookie from "js-cookie";
+import dynamic from "next/dynamic";
 import prodRequest from "../../apiRequest/prodRequest";
 import { UPDATE_ARTICLE } from "../../../graphql/indivArticle";
 import { objectCheck } from "@utils/queryHandler";
+import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
+const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
+	ssr: false,
+});
 const ArticleBody = ({
 	content,
 	category,
@@ -28,13 +33,19 @@ const ArticleBody = ({
 	brief,
 	id,
 	nextSlideShow,
+	cpcAd,
 }) => {
 	const value = JSON.parse(content.content);
 	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
 
 	const filterArray = sessionSlideIds.concat({ id });
-	const { viewCount } = content;
+	const {
+		viewCount,
+		pinterestLink,
+		pinterestEmbedCode,
+		pinterestPinLink,
+	} = content;
 	const nextContent = filterUnique(nextSlideShow.items, filterArray);
 	const nextSlideShowHref = nextContent[0]
 		? `/${nextContent[0].category}/${nextContent[0].urlDescription}/slideshow/${nextContent[0].id}/slides/opening`
@@ -68,7 +79,15 @@ const ArticleBody = ({
 
 	return (
 		<div className={styles.sectionPadding}>
-			<Reader value={value} />
+			<Reader value={value} cpcAd={cpcAd} />
+			<LazyLoad once={true}>
+				<PinterestEmbed
+					pinterestEmbedCode={pinterestEmbedCode}
+					pinterestPinLink={pinterestPinLink}
+				/>
+			</LazyLoad>
+			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
+
 			{nextContent[0] && (
 				<div className={styles.nextButtonWrapper}>
 					<QuickViewButton
@@ -106,6 +125,7 @@ const ArticleBody = ({
 					headline={headline}
 					brief={brief}
 					position={"bottom_share_horiz"}
+					pinterestLink={pinterestLink}
 				/>
 			</LazyLoad>
 			<Crumbs

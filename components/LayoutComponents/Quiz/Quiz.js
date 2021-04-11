@@ -14,7 +14,7 @@ import {
 	openingSocialButtons,
 } from "../../SocialMedia/data";
 import QuickEmailSignUp from "../../SignUpModal/quickEmailSignup";
-import FacebookComments from "../../SocialMedia/FacebookComments";
+import FacebookComments from "@components/SocialMedia/FacebookComments";
 import LazyLoad from "react-lazyload";
 import ScrollingContent from "../ScrollingContent/ScrollingContent";
 import styles from "./styles/quizStyles.module.sass";
@@ -27,6 +27,8 @@ import Adsense from "../../ads/code/adsense/adsense";
 import { filterUnique } from "@utils/handler";
 import { objectCheck } from "@utils/queryHandler";
 import Disclaimer from "../../ads/disclaimer";
+import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
+
 const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 	const details = JSON.parse(content.overview);
 	const questions = JSON.parse(content.questions);
@@ -35,7 +37,12 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 	const { viewCount } = content;
 	const [cpcMarker, setCpcMarker] = useState(false);
 	const filterArray = sessionQuizIds.concat({ id });
-	const affiliateDisclaimer = content.affiliateDisclaimer;
+	const {
+		affiliateDisclaimer,
+		pinterestLink,
+		pinterestEmbedCode,
+		pinterestPinLink,
+	} = content;
 	const nextContent = filterUnique(nextQuiz.items, filterArray);
 	const lastUpdated = content.updatedAt;
 	const {
@@ -116,6 +123,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 							position={position}
 							totalQuestions={content.numQuestions}
 							cpcMarker={cpcMarker}
+							pinterestLink={pinterestLink}
 						/>
 
 						{(position === "opening" || position === "closing") && (
@@ -150,6 +158,15 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 								/>
 								{position === "opening" && (
 									<div className={styles.openingButton}>
+										<div className={styles.adsenseWrapper}>
+											<Adsense
+												client="ca-pub-2068760522034474"
+												slot="4560498904"
+												responsive={true}
+												currentUrlPath={currentUrlPath}
+												adStyle={"default"}
+											/>
+										</div>
 										<QuickViewButton
 											label="Start"
 											imgSrc={details[0].headlineImage}
@@ -183,15 +200,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 								)}
 							</>
 						)}
-						<div className={styles.adsenseWrapper}>
-							<Adsense
-								client="ca-pub-2068760522034474"
-								slot="4560498904"
-								responsive={true}
-								adStyle={"maxHeight"}
-								currentUrlPath={currentUrlPath}
-							/>
-						</div>
 						<div>
 							{position !== "opening" && position !== "closing" && (
 								<Questions
@@ -230,6 +238,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						totalQuestions={content.numQuestions}
 						cpcMarker={cpcMarker}
 						lastUpdated={lastUpdated}
+						pinterestLink={pinterestLink}
 					/>
 					<BookEnds
 						position={"opening"}
@@ -257,7 +266,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						currentUrlPath={currentUrlPath}
 						priority={true}
 					/>
-
 					<LazyLoad once={true}>
 						<hr className={styles.break} />
 						<ShareButtonHoriz
@@ -267,13 +275,13 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 							headline={title}
 							brief={blurb}
 							position={"top_share_horiz"}
+							pinterestLink={pinterestLink}
 						/>
 					</LazyLoad>
 					{affiliateDisclaimer && (
 						<Disclaimer query={query} queryLinkCheck={queryLinkCheck} />
 					)}
 					<hr className={styles.break} />
-
 					<LongQuestions
 						total={content.numQuestions}
 						questionData={questions.questions}
@@ -289,14 +297,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						randomiseAnswers={randomiseAnswers}
 						currentUrlPath={currentUrlPath}
 					/>
-					<div className={styles.adsenseWrapper}>
-						<Adsense
-							client="ca-pub-2068760522034474"
-							slot="7848686731"
-							responsive={true}
-							currentUrlPath={currentUrlPath}
-						/>
-					</div>
+
 					{questionsAnswered === content.numQuestions && (
 						<>
 							<BookEnds
@@ -327,14 +328,14 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 								priority={false}
 							/>
 
-							<div className={styles.adsenseWrapper}>
+							{/* <div className={styles.adsenseWrapper}>
 								<Adsense
 									client="ca-pub-2068760522034474"
 									slot="7848686731"
 									responsive={true}
 									currentUrlPath={currentUrlPath}
 								/>
-							</div>
+							</div> */}
 
 							{nextContent[0] && (
 								<QuickViewButton
@@ -359,6 +360,12 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 			)}
 
 			<LazyLoad once={true}>
+				<PinterestEmbed
+					pinterestEmbedCode={pinterestEmbedCode}
+					pinterestPinLink={pinterestPinLink}
+				/>
+			</LazyLoad>
+			<LazyLoad once={true}>
 				<ScrollUpButton />
 			</LazyLoad>
 			<LazyLoad once={true}>
@@ -369,6 +376,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 					image={headlineImage}
 					headline={title}
 					brief={blurb}
+					pinterestLink={pinterestLink}
 					position={"bottom_share_horiz"}
 				/>
 			</LazyLoad>

@@ -6,7 +6,7 @@ import ShowMeta from "../../../showMeta/showMeta";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/quickHeadlineStyles.module.sass";
 
-const QuickHeadline = ({ data, id, position, totalSlides }) => {
+const QuickHeadline = ({ data, id, position, totalSlides, pinterestLink }) => {
 	const {
 		blurb,
 		category,
@@ -81,6 +81,7 @@ const QuickHeadline = ({ data, id, position, totalSlides }) => {
 					image={headlineImage}
 					headline={title}
 					brief={blurb}
+					pinterestLink={pinterestLink}
 				/>
 			</LazyLoad>
 		</div>

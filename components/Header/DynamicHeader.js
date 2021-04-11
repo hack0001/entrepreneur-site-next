@@ -1,6 +1,7 @@
 import Head from "next/head";
 import PropTypes from "prop-types";
 import headerImageSocial from "./headerImageSocial";
+
 const DynamicHeader = ({
 	title,
 	description,

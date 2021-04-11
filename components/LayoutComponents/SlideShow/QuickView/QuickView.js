@@ -15,7 +15,15 @@ import styles from "./styles/quickViewStyles.module.sass";
 import { UPDATE_SLIDESHOW } from "../../../../graphql/indivSlideShow";
 import prodRequest from "../../../apiRequest/prodRequest";
 
-const QuickView = ({ content, position, url, id, queryLinkCheck, query }) => {
+const QuickView = ({
+	content,
+	position,
+	url,
+	id,
+	queryLinkCheck,
+	query,
+	pinterestLink,
+}) => {
 	const details = JSON.parse(content.overview);
 	const slides = JSON.parse(content.slides);
 	const {
@@ -80,6 +88,7 @@ const QuickView = ({ content, position, url, id, queryLinkCheck, query }) => {
 				<hr className={styles.break} />
 				<ShareButtonHoriz
 					data={closingSocialButtons}
+					pinterestLink={pinterestLink}
 					url={shareUrl}
 					image={headlineImage}
 					headline={title}

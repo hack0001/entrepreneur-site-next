@@ -53,7 +53,9 @@ const QuickSlides = ({
 					client="ca-pub-2068760522034474"
 					slot="3049705177"
 					responsive={true}
-					adStyle={"maxHeight"}
+					adStyle={"adHeadline"}
+					adWrapperStyle={"adTopHeadline"}
+					adWrap={"adHeadWrap"}
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>
@@ -64,7 +66,7 @@ const QuickSlides = ({
 				{slide}
 			</h1>
 			<h3 className={styles.sectionBrief}>{slideComment}</h3>
-			<div className={styles.sectionParagraph}>
+			<div className={styles.deskSectionParagraph}>
 				<Reader value={slideDetails.slideDetails[0].children} />
 			</div>
 			<div>
@@ -83,6 +85,45 @@ const QuickSlides = ({
 					priority={true}
 				/>
 			</div>
+			<div className={styles.mobSectionParagraph}>
+				<Reader value={slideDetails.slideDetails[0].children} />
+				<div className={styles.adWrap}>
+					<Adsense
+						client="ca-pub-2068760522034474"
+						slot="1874540097"
+						responsive={true}
+						adStyle={"maxHeight"}
+						currentUrlPath={currentUrlPath}
+					/>
+				</div>
+				{cpcMarker && (
+					<QuickViewButton
+						label="Next"
+						imgSrc={nextSlideData[0] ? nextSlideData[0].slideImage : linkImage}
+						href={nextHref}
+						imagePath={nextSlideData[0] ? nextSlideData[0].slideImagePath : ""}
+						refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
+						imageAlt={
+							nextSlideData[0]
+								? nextSlideData[0].slideImageAlt
+								: "Next Slide Image"
+						}
+						imageCrop={
+							nextSlideData[0]
+								? nextSlideData[0].slideImageCrop
+								: slideImageCrop
+						}
+						imageCropInfo={
+							nextSlideData[0]
+								? nextSlideData[0].slideImageCropInfo
+								: slideImageCropInfo
+						}
+						queryLinkCheck={queryLinkCheck}
+						query={query}
+					/>
+				)}
+			</div>
+
 			<div className={styles.bottomSectionParagraph}>
 				{bottomSlideDetails && (
 					<Reader value={bottomSlideDetails[0].children} />
@@ -100,11 +141,9 @@ const QuickSlides = ({
 			{cpcMarker && (
 				<QuickViewButton
 					label="Next"
-					imgSrc={nextSlideData[0] ? nextSlideData[0].slideImage : slideImage}
+					imgSrc={nextSlideData[0] ? nextSlideData[0].slideImage : linkImage}
 					href={nextHref}
-					imagePath={
-						nextSlideData[0] ? nextSlideData[0].slideImagePath : slideImagePath
-					}
+					imagePath={nextSlideData[0] ? nextSlideData[0].slideImagePath : ""}
 					refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
 					imageAlt={
 						nextSlideData[0]

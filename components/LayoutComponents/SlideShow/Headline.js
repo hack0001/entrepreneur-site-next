@@ -22,6 +22,7 @@ const BookEnds = ({
 	query,
 	queryLinkCheck,
 	affiliateDisclaimer,
+	pinterestLink,
 	lastUpdated,
 }) => {
 	const {
@@ -72,14 +73,13 @@ const BookEnds = ({
 					client="ca-pub-2068760522034474"
 					slot="4672943880"
 					responsive={true}
-					adStyle={"maxHeight"}
+					adStyle={"adHeadline"}
+					adWrapperStyle={"adTopHeadline"}
+					adWrap={"adHeadWrap"}
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>
-			<ul className={styles.listWrapper}>
-				<li className={styles.sectionBrief}>{slideTitle}</li>
-				<li className={styles.sectionBrief}>{blurb}</li>
-			</ul>
+
 			<div>
 				<ImageLoader
 					src={headlineImage}
@@ -93,6 +93,10 @@ const BookEnds = ({
 					wrapperClass={"contentWrapper"}
 				/>
 			</div>
+			<ul className={styles.listWrapper}>
+				{slideTitle && <li className={styles.sectionBrief}>{slideTitle}</li>}
+				{blurb && <li className={styles.sectionBrief}>{blurb}</li>}
+			</ul>
 			<hr className={styles.break} />
 			{cpcMarker && (
 				<div>
@@ -111,6 +115,7 @@ const BookEnds = ({
 					data={sideSocialButtons}
 					url={canonical}
 					image={headlineImage}
+					pinterestLink={pinterestLink}
 					headline={title}
 					brief={blurb}
 				/>
@@ -121,6 +126,7 @@ const BookEnds = ({
 					url={canonical}
 					image={headlineImage}
 					headline={title}
+					pinterestLink={pinterestLink}
 					brief={blurb}
 					position={"top_share_horiz"}
 				/>

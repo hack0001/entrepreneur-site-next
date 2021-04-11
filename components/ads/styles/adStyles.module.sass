@@ -15,7 +15,7 @@
     &:after
         margin-left: 10px
 
-.adHeader
+.adHeader,.adTopHeadline
     text-align: center
     font-size: 11px
     font-weight: 400
@@ -23,14 +23,24 @@
     text-transform: uppercase
     margin-bottom: 7px
     width: 100%
-
-.adWrap
-    padding: 0px
     margin-bottom: 1rem
+
+.adWrap,.adHeadWrap
+    padding: 0px
+    margin-botttom: 1rem
 
 .breaker
     width: 100%
     border-top: 1px solid #d9d9d9
+
+.default
+    display: block
+
+.maxHeight,.adHeadline
+    display: block
+    max-width: 970px
+    width: 100%
+    height: 90px
 
 .multiAdWrap
     display: flex
@@ -43,8 +53,16 @@
     margin: 0 auto
 
 @media only screen and (max-width: 670px) 
-    .adWrap
-        margin-bottom: 1rem
+
+    .adHeadline
+        display: none
+
+    .adTopHeadline
+        display: none
+
+    .adHeadWrap
+        display: none
+
     .breaker
         width: 95%
 

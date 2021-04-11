@@ -33,6 +33,7 @@ const Article = ({ id, individual, quiz, slide, url }) => {
 						queryLinkCheck={queryLinkCheck}
 						query={query}
 						currentUrlPath={currentUrlPath}
+						cpcAd={cpcAd}
 					/>
 				</article>
 				<aside className={styles.sideArticleSection}>

@@ -5,16 +5,17 @@ import EmbedImage from "../Editor/renderElement/embedImage/embedImage";
 import SingleLoader from "../../Loading/SingleLoader";
 import LazyLoad from "react-lazyload";
 import SiteAd from "../Editor/renderElement/ads/siteAd";
-import LinkAd from "../Editor/renderElement/ads/linkAd";
 import styles from "./renderElement/styles/renderElementStyles.module.sass";
 import Adsense from "../../ads/code/adsense/adsense";
 import Context from "@utils/Context";
-
+const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
+	ssr: false,
+});
 const Embed = dynamic(() => import("../Editor/renderElement/embed/embed"), {
 	ssr: false,
 	loading: () => <SingleLoader />,
 });
-const Reader = ({ value }) => {
+const Reader = ({ value, cpcAd }) => {
 	if (typeof value.text === "string") {
 		// excapeHtml is to get rid of html tags e.g. < for $lt
 		return value.text;
@@ -59,13 +60,18 @@ const Reader = ({ value }) => {
 					);
 				case "link":
 					const { url } = node;
+					const urlLink = url.linkUrl ? url.linkUrl : url;
+					const security = url.nofollowLink
+						? "nofollow noopener noreferrer"
+						: "noopener noreferrer";
+					const openTab = url.openNewTab === false ? "_self" : "_blank";
 					return (
 						<strong>
 							<a
 								className={styles.link}
-								href={url}
-								rel="noopener noreferrer"
-								target="_blank"
+								href={urlLink}
+								rel={security}
+								target={openTab}
 							>
 								{node.children[0].text}
 							</a>
@@ -90,7 +96,7 @@ const Reader = ({ value }) => {
 				case "underline":
 					return <u>{children}</u>;
 				case "paragraph":
-					return <div className={styles.para}>{children}</div>;
+					return <p className={styles.para}>{children}</p>;
 				case "heading-one":
 					return <h1 className={styles.headOne}>{children}</h1>;
 				case "heading-two":
@@ -118,7 +124,7 @@ const Reader = ({ value }) => {
 				case "quote":
 					return <Quote node={node} />;
 				case "horizontal-line":
-					return <span className={style.horizLine}>{children}</span>;
+					return <span className={styles.horizLine}>{children}</span>;
 				case "embed-image":
 					return <EmbedImage node={node} />;
 				case "embed":
@@ -145,7 +151,9 @@ const Reader = ({ value }) => {
 				case "link-ad":
 					return (
 						<LazyLoad once={true}>
-							<LinkAd node={node} />
+							<div className={styles.linkAd}>
+								{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
+							</div>
 						</LazyLoad>
 					);
 				case "table":
@@ -159,7 +167,7 @@ const Reader = ({ value }) => {
 				case "table-cell":
 					return <td style={{ border: "1px solid black" }}>{children}</td>;
 				default:
-					return <div className={styles.para}>{children}</div>;
+					return <p className={styles.para}>{children}</p>;
 			}
 		}
 	};
@@ -167,6 +175,6 @@ const Reader = ({ value }) => {
 	const children = value.map(n => {
 		return renderHtml(n);
 	});
-	return children;
+	return <div className={styles.articleWrapper}>{children}</div>;
 };
 export default Reader;

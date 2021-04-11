@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import SocialSvgFactory from "./utils/svgFactory";
 import createUtm from "../utm/createUtm";
 import styles from "./styles/shareButtonVertStyles.module.sass";
+import { getImagePath, newImageUrl } from "../helper/imageUrlHelper";
 
 const VerticalShareButtons = ({
 	data,
@@ -13,7 +14,10 @@ const VerticalShareButtons = ({
 	handle,
 	hashtag,
 	facebookQuote,
+	pinterestLink,
 }) => {
+	const newImage = getImagePath(image);
+	const newImageString = newImageUrl(newImage);
 	const options = {
 		facebook: {
 			quote: facebookQuote,
@@ -30,7 +34,7 @@ const VerticalShareButtons = ({
 			separator: ":- ",
 		},
 		Pinterest: {
-			media: image,
+			media: pinterestLink ? pinterestLink : newImageString,
 			description: brief,
 		},
 		Whatsapp: {
@@ -44,6 +48,7 @@ const VerticalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: "vertical_side",
+			useUtm: false,
 		},
 		twitter: {
 			originalUrl: url,
@@ -51,6 +56,7 @@ const VerticalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: "vertical_side",
+			useUtm: false,
 		},
 		LinkedIn: {
 			originalUrl: url,
@@ -58,6 +64,7 @@ const VerticalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: "vertical_side",
+			useUtm: false,
 		},
 		Email: {
 			originalUrl: url,
@@ -65,6 +72,7 @@ const VerticalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: "vertical_side",
+			useUtm: true,
 		},
 		Pinterest: {
 			originalUrl: url,
@@ -72,6 +80,7 @@ const VerticalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: "vertical_side",
+			useUtm: false,
 		},
 		Whatsapp: {
 			originalUrl: url,
@@ -79,8 +88,10 @@ const VerticalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: "vertical_side",
+			useUtm: false,
 		},
 	};
+
 	return (
 		<div className={styles.buttonVerticalContainer}>
 			<div className={styles.buttonContainer}>

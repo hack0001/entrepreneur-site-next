@@ -21,6 +21,9 @@ export const QUIZ = /* GraphQL */ `
 			bottomHeadline
 			shareCount
 			affiliateDisclaimer
+			pinterestPinLink
+			pinterestLink
+			pinterestEmbedCode
 			linkedArticle {
 				id
 				headline

@@ -21,11 +21,14 @@ const BookEnds = ({
 					client="ca-pub-2068760522034474"
 					slot="3049705177"
 					responsive={true}
+					adStyle={"adHeadline"}
+					adWrapperStyle={"adTopHeadline"}
+					adWrap={"adHeadWrap"}
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>
 			<h1 className={styles.sectionHeader}>{title}</h1>
-			<div className={styles.sectionParagraph}>
+			<div className={styles.deskSectionParagraph}>
 				<Reader value={details[0].children} />
 			</div>
 			<div className={styles.imageWrap}>
@@ -41,6 +44,9 @@ const BookEnds = ({
 					wrapperClass={"contentWrapper"}
 					priority={true}
 				/>
+			</div>
+			<div className={styles.mobSectionParagraph}>
+				<Reader value={details[0].children} />
 			</div>
 			<div className={styles.adWrap}>
 				<Adsense

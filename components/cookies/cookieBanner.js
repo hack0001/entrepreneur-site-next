@@ -47,7 +47,7 @@ const CookieBanner = () => {
 								query={query}
 							>
 								<a className={styles.link} target="_blank">
-									Cookie Policy shabba awanbba.
+									Cookie Policy.
 								</a>
 							</CustomLink>
 						</p>

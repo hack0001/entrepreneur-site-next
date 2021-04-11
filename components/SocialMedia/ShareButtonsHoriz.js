@@ -13,10 +13,13 @@ const HorizontalShareButtons = ({
 	handle,
 	hashtag,
 	facebookQuote,
+	pinterestLink,
 	position,
+	numberButtons,
 }) => {
 	const newImage = getImagePath(image);
 	const newImageString = newImageUrl(newImage);
+	const buttonNumberParam = numberButtons ? numberButtons : 4;
 	const options = {
 		facebook: {
 			quote: facebookQuote,
@@ -33,7 +36,7 @@ const HorizontalShareButtons = ({
 			separator: ":- ",
 		},
 		Pinterest: {
-			media: newImageString,
+			media: pinterestLink ? pinterestLink : newImageString,
 			description: brief,
 		},
 		Whatsapp: {
@@ -47,6 +50,7 @@ const HorizontalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: position,
+			useUtm: false,
 		},
 		twitter: {
 			originalUrl: url,
@@ -54,6 +58,7 @@ const HorizontalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: position,
+			useUtm: false,
 		},
 		LinkedIn: {
 			originalUrl: url,
@@ -61,6 +66,7 @@ const HorizontalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: position,
+			useUtm: false,
 		},
 		Email: {
 			originalUrl: url,
@@ -68,6 +74,7 @@ const HorizontalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: position,
+			useUtm: true,
 		},
 		Pinterest: {
 			originalUrl: url,
@@ -75,6 +82,7 @@ const HorizontalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: position,
+			useUtm: false,
 		},
 		Whatsapp: {
 			originalUrl: url,
@@ -82,8 +90,10 @@ const HorizontalShareButtons = ({
 			campaignMedium: "shared_link",
 			campaignName: "organic",
 			campaignContent: position,
+			useUtm: false,
 		},
 	};
+
 	return (
 		<div className={styles.buttonContainer}>
 			{data.map((button, index) => {
@@ -113,7 +123,7 @@ const HorizontalShareButtons = ({
 
 								@media only screen and (max-width: 760px) {
 									.button-wrapper {
-										width: ${100 / 4 - 1}%;
+										width: ${100 / buttonNumberParam - 1}%;
 										margin: 0 auto;
 									}
 								}

@@ -15,6 +15,9 @@ export const ARTICLE = /* GraphQL */ `
 			original
 			scheduleTime
 			affiliateDisclaimer
+			pinterestPinLink
+			pinterestLink
+			pinterestEmbedCode
 			linkedCpc {
 				id
 				displayAd

@@ -25,6 +25,7 @@ import Adsense from "../../ads/code/adsense/adsense";
 import prodRequest from "../../apiRequest/prodRequest";
 import { UPDATE_SLIDESHOW } from "../../../graphql/indivSlideShow";
 import { objectCheck } from "@utils/queryHandler";
+import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
 
 const SlideDetails = ({
 	content,
@@ -42,8 +43,14 @@ const SlideDetails = ({
 	const [cpcMarker, setCpcMarker] = useState(false);
 	const filterArray = sessionSlideIds.concat({ id });
 	const nextContent = filterUnique(nextSlideShow.items, filterArray);
-	const affiliateDisclaimer = content.affiliateDisclaimer;
+	const {
+		affiliateDisclaimer,
+		pinterestLink,
+		pinterestEmbedCode,
+		pinterestPinLink,
+	} = content;
 	const lastUpdated = content.updatedAt;
+
 	const {
 		blurb,
 		category,
@@ -124,8 +131,8 @@ const SlideDetails = ({
 							totalSlides={content.numSlides}
 							cpcMarker={cpcMarker}
 							lastUpdated={lastUpdated}
+							pinterestLink={pinterestLink}
 						/>
-
 						{(position === "opening" || position === "closing") && (
 							<>
 								<QuickBookEnds
@@ -153,13 +160,13 @@ const SlideDetails = ({
 								{position === "opening" && (
 									<QuickViewButton
 										label="Start"
-										imgSrc={details[0].headlineImage}
-										imagePath={details[0].imagePath}
+										imgSrc={slides["slides"][0].slideImage}
+										imagePath={slides["slides"][0].slideImagePath}
 										href={`${nextHref}/1`}
 										refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
-										imageAlt={details[0].headlineImageAlt}
-										imageCrop={details[0].headlineImageCrop}
-										imageCropInfo={details[0].headlineImageCropInfo}
+										imageAlt={slides["slides"][0].slideImageAlt}
+										imageCrop={slides["slides"][0].slideImageCrop}
+										imageCropInfo={slides["slides"][0].slideImageCropInfo}
 										queryLinkCheck={queryLinkCheck}
 										query={query}
 									/>
@@ -222,6 +229,7 @@ const SlideDetails = ({
 						queryLinkCheck={queryLinkCheck}
 						affiliateDisclaimer={affiliateDisclaimer}
 						lastUpdated={lastUpdated}
+						pinterestLink={pinterestLink}
 					/>
 					<BookEnds
 						position={"opening"}
@@ -242,7 +250,6 @@ const SlideDetails = ({
 						embed={bookEndOpening["openingImage-embed"]}
 						priority={true}
 					/>
-
 					<div>
 						<Adsense
 							client="ca-pub-2068760522034474"
@@ -262,6 +269,7 @@ const SlideDetails = ({
 						queryLinkCheck={queryLinkCheck}
 						query={query}
 						currentUrlPath={currentUrlPath}
+						pinterestLink={pinterestLink}
 					/>
 					<BookEnds
 						position={"closing"}
@@ -308,6 +316,13 @@ const SlideDetails = ({
 				</>
 			)}
 			<LazyLoad once={true}>
+				<PinterestEmbed
+					pinterestEmbedCode={pinterestEmbedCode}
+					pinterestPinLink={pinterestPinLink}
+				/>
+			</LazyLoad>
+
+			<LazyLoad once={true}>
 				<ScrollUpButton />
 			</LazyLoad>
 			<LazyLoad once={true}>
@@ -318,6 +333,7 @@ const SlideDetails = ({
 					image={headlineImage}
 					headline={title}
 					brief={blurb}
+					pinterestLink={pinterestLink}
 					position={"bottom_share_horiz"}
 				/>
 			</LazyLoad>

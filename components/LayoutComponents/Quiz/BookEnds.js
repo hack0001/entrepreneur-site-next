@@ -33,15 +33,19 @@ const QuizBookEnds = ({
 	);
 	return (
 		<div className={styles.bookEndWrapper}>
-			<div className={styles.adsenseWrapper}>
-				<Adsense
-					client="ca-pub-2068760522034474"
-					slot="5713798476"
-					responsive={true}
-					adStyle={"maxHeight"}
-					currentUrlPath={currentUrlPath}
-				/>
-			</div>
+			{positionOpening && (
+				<div className={styles.adsenseWrapper}>
+					<Adsense
+						client="ca-pub-2068760522034474"
+						slot="5713798476"
+						responsive={true}
+						currentUrlPath={currentUrlPath}
+						adStyle={"adHeadline"}
+						adWrapperStyle={"adTopHeadline"}
+						adWrap={"adHeadWrap"}
+					/>
+				</div>
+			)}
 			{positionClosing && (
 				<h1 className={`${styles.sectionHeader} section-header`}>
 					<div>
@@ -75,10 +79,10 @@ const QuizBookEnds = ({
 				<div className={styles.sectionParagraph}>
 					<Reader value={details[0].children} />
 				</div>
-				{positionClosing && <div className={styles.endHeader}>{title}</div>}
+				{positionClosing && <div className={styles.endHeader}>{title} </div>}
 			</>
 			{positionClosing && (
-				<div>
+				<div className={styles.adsenseWrapper}>
 					<Adsense
 						client="ca-pub-2068760522034474"
 						slot="3992688547"

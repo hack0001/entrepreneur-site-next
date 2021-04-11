@@ -14,38 +14,40 @@ const LongAnswer = ({
 		<div className={styles.bookendWrapper}>
 			{showAnswer && (
 				<div className={styles.editorAnswer}>
-					{correct && (
-						<div className={styles.correct}>
-							<div className={styles.correctGroup}>
-								<div className={styles.correctImage}>
-									<StaticImage
-										styleClass={styles.correctImageWrap}
-										src={"/static/tickx128.png"}
-										alt="correct-tick-icon"
-										width="55px"
-										height="55px"
-									/>
-								</div>
-							</div>
-						</div>
-					)}
-					{!correct && (
-						<div className={styles.correct}>
-							<div className={styles.correctGroup}>
+					<div>
+						{correct && (
+							<div className={styles.correct}>
 								<div className={styles.correctGroup}>
-									<div className={styles.incorrectImage}>
+									<div className={styles.correctImage}>
 										<StaticImage
-											styleClass={styles.incorrectImage}
-											src={"/static/deletex128.png"}
-											alt="incorrect-cross-icon"
+											styleClass={styles.correctImageWrap}
+											src={"/static/tickx128.png"}
+											alt="correct-tick-icon"
 											width="55px"
 											height="55px"
 										/>
 									</div>
 								</div>
 							</div>
-						</div>
-					)}
+						)}
+						{!correct && (
+							<div className={styles.correct}>
+								<div className={styles.correctGroup}>
+									<div className={styles.correctGroup}>
+										<div className={styles.incorrectImage}>
+											<StaticImage
+												styleClass={styles.incorrectImage}
+												src={"/static/deletex128.png"}
+												alt="incorrect-cross-icon"
+												width="55px"
+												height="55px"
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
+						)}
+					</div>
 					<div className={styles.editorBlock}>
 						<div className={styles.answerComment}>
 							<div className={styles.answerCommentHeader}>

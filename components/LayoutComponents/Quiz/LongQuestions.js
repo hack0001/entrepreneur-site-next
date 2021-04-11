@@ -142,15 +142,6 @@ const Questions = ({
 
 		return (
 			<div className={styles.bookendWrapper}>
-				<div className={styles.adsenseWrapper}>
-					<Adsense
-						client="ca-pub-2068760522034474"
-						slot="4560498904"
-						responsive={true}
-						adStyle={"maxHeight"}
-						currentUrlPath={currentUrlPath}
-					/>
-				</div>
 				<div className={styles.sectionHeader}>
 					<span className={styles.questionPosition}>{questionPosition}</span>
 					{question}
@@ -193,14 +184,6 @@ const Questions = ({
 							/>
 						</div>
 					)}
-
-					<div className={styles.multiWrapper}>
-						<Adsense
-							client="ca-pub-2068760522034474"
-							slot="3992688547"
-							currentUrlPath={currentUrlPath}
-						/>
-					</div>
 				</div>
 				<div className={styles.sectionHeaderScore}>
 					Current Score: {currentScore}
@@ -217,13 +200,23 @@ const Questions = ({
 						questionNumber={index}
 					/>
 				</div>
-				<LongAnswer
-					showAnswer={questionState[index].showAnswer}
-					correct={questionState[index].correct}
-					answer={longAnswer}
-					correctAnswerComment={correctAnswerComment}
-					incorrectAnswerComment={incorrectAnswerComment}
-				/>
+				<div>
+					<LongAnswer
+						showAnswer={questionState[index].showAnswer}
+						correct={questionState[index].correct}
+						answer={longAnswer}
+						correctAnswerComment={correctAnswerComment}
+						incorrectAnswerComment={incorrectAnswerComment}
+					/>
+				</div>
+				<div className={styles.adsenseWrapper}>
+					<Adsense
+						client="ca-pub-2068760522034474"
+						slot="3992688547"
+						currentUrlPath={currentUrlPath}
+						adStyle={"default"}
+					/>
+				</div>
 			</div>
 		);
 	});

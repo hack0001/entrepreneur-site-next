@@ -25,7 +25,7 @@
     font-family: $font
     color: $secondary
 
-.sectionParagraph
+.deskSectionParagraph,.mobSectionParagraph
     margin: 2rem auto
     width: 92.5%
     padding: 0
@@ -36,7 +36,18 @@
     line-height: $paragraphLineHeight
     letter-spacing: $paragraphLetterSpace
 
+.mobSectionParagraph
+    display: none
+
 @media only screen and (max-width: 650px) 
+    .deskSectionParagraph
+        display: none
+
+    .mobSectionParagraph
+        margin: 2rem 0rem 0.5rem 0rem
+        width: 98%
+        display: block
+
     .sectionHeader
         font-size: 1.9rem
         line-height: 2.1rem

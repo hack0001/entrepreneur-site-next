@@ -21,6 +21,7 @@ const Slides = ({
 	queryLinkCheck,
 	query,
 	currentUrlPath,
+	pinterestLink,
 }) => {
 	return data.map((slideData, index) => {
 		const {
@@ -117,6 +118,7 @@ const Slides = ({
 								image={image}
 								headline={headline}
 								brief={brief}
+								pinterestLink={pinterestLink}
 								position={"middle_slideshow_share_horiz"}
 							/>
 						</LazyLoad>

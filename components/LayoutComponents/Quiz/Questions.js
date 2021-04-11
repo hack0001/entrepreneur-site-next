@@ -15,7 +15,7 @@ const Questions = ({
 	// total,
 	questionData,
 	// position,
-	// linkImage,
+	linkImage,
 	nextHref,
 	id,
 	currentScore,
@@ -126,6 +126,17 @@ const Questions = ({
 
 	return (
 		<div className={styles.bookendWrapper}>
+			<div className={styles.adsenseWrapper}>
+				<Adsense
+					client="ca-pub-2068760522034474"
+					slot="3992688547"
+					responsive={true}
+					currentUrlPath={currentUrlPath}
+					adStyle={"adHeadline"}
+					adWrapperStyle={"adTopHeadline"}
+					adWrap={"adHeadWrap"}
+				/>
+			</div>
 			<div className={styles.sectionHeader}>
 				<span className={styles.questionPosition}>{questionPosition}</span>
 				{question}
@@ -168,15 +179,6 @@ const Questions = ({
 						/>
 					</div>
 				)}
-
-				<div className={styles.adsenseWrapper}>
-					<Adsense
-						client="ca-pub-2068760522034474"
-						slot="3992688547"
-						responsive={true}
-						currentUrlPath={currentUrlPath}
-					/>
-				</div>
 			</div>
 			<div className={styles.sectionHeaderScore}>
 				Current Score: {currentScore}
@@ -202,46 +204,6 @@ const Questions = ({
 				correctAnswerComment={correctAnswerComment}
 				incorrectAnswerComment={incorrectAnswerComment}
 			/>
-			{showAnswer && (
-				<QuickViewButton
-					label="Next"
-					imgSrc={
-						nextQuestionData[0]
-							? nextQuestionData[0].questionImage
-							: questionImage
-					}
-					href={`${nextHref}`}
-					refPath={`/[category]/[url]/quiz/[quizId]/questions/[questionId]`}
-					imagePath={
-						nextQuestionData[0]
-							? nextQuestionData[0].questionImagePath
-							: questionImagePath
-					}
-					imageAlt={
-						nextQuestionData[0]
-							? nextQuestionData[0].questionImageAlt
-							: questionImageAlt
-					}
-					handler={() => {
-						setShowAnswer(false);
-						setButtonDisabled(false);
-						setSelected(false);
-						setCorrect(false);
-					}}
-					imageCrop={
-						nextQuestionData[0]
-							? nextQuestionData[0].questionImageCrop
-							: questionImageCrop
-					}
-					imageCropInfo={
-						nextQuestionData[0]
-							? nextQuestionData[0].questionImageCropInfo
-							: questionImageCropInfo
-					}
-					queryLinkCheck={queryLinkCheck}
-					query={query}
-				/>
-			)}
 			<div className={styles.adsenseWrapper}>
 				<Adsense
 					client="ca-pub-2068760522034474"
@@ -249,6 +211,52 @@ const Questions = ({
 					responsive={true}
 					currentUrlPath={currentUrlPath}
 				/>
+				{showAnswer && (
+					<>
+						<QuickViewButton
+							label="Next"
+							imgSrc={
+								nextQuestionData[0]
+									? nextQuestionData[0].questionImage
+									: linkImage
+							}
+							href={`${nextHref}`}
+							refPath={`/[category]/[url]/quiz/[quizId]/questions/[questionId]`}
+							imagePath={
+								nextQuestionData[0] ? nextQuestionData[0].questionImagePath : ""
+							}
+							imageAlt={
+								nextQuestionData[0]
+									? nextQuestionData[0].questionImageAlt
+									: questionImageAlt
+							}
+							handler={() => {
+								setShowAnswer(false);
+								setButtonDisabled(false);
+								setSelected(false);
+								setCorrect(false);
+							}}
+							imageCrop={
+								nextQuestionData[0]
+									? nextQuestionData[0].questionImageCrop
+									: questionImageCrop
+							}
+							imageCropInfo={
+								nextQuestionData[0]
+									? nextQuestionData[0].questionImageCropInfo
+									: questionImageCropInfo
+							}
+							queryLinkCheck={queryLinkCheck}
+							query={query}
+						/>
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="9944544648"
+							responsive={true}
+							currentUrlPath={currentUrlPath}
+						/>
+					</>
+				)}
 			</div>
 		</div>
 	);

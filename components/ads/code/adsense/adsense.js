@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import styles from "../../styles/adStyles.module.sass";
-import adsenseStyles from "./adsenseStyles";
 
 const Adsense = ({
 	sticky,
@@ -10,6 +9,8 @@ const Adsense = ({
 	responsive,
 	adStyle,
 	currentUrlPath,
+	adWrapperStyle,
+	adWrap,
 }) => {
 	useEffect(() => {
 		try {
@@ -26,13 +27,12 @@ const Adsense = ({
 				top: sticky ? 70 : null,
 			}}
 		>
-			<div className={styles.adWrap}>
-				<div className={styles.adHeader}>
+			<div className={styles[adWrap]}>
+				<div className={styles[adWrapperStyle]}>
 					<div className={styles.advert}>ADVERTISEMENT</div>
 					<div key={currentUrlPath}>
 						<ins
-							style={adsenseStyles[adStyle]}
-							className="adsbygoogle adbanner-customize"
+							className={`adsbygoogle ${styles[adStyle]}`}
 							data-ad-client={client}
 							data-ad-slot={slot}
 							data-ad-format={format}
@@ -52,6 +52,8 @@ Adsense.defaultProps = {
 	responsive: true,
 	sticky: false,
 	adStyle: "default",
+	adWrapperStyle: "adHeader",
+	adWrap: "adWrap",
 	currentUrlPath: "/",
 };
 export default Adsense;

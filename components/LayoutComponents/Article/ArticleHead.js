@@ -22,8 +22,10 @@ const ArticleHead = ({
 	currentUrlPath,
 	query,
 	queryLinkCheck,
+	cpcAd,
 }) => {
 	const details = JSON.parse(overview.overview);
+	const { pinterestLink } = overview;
 	const {
 		articleHeadline,
 		category,
@@ -79,7 +81,9 @@ const ArticleHead = ({
 				slot={"9802692073"}
 				responsive={true}
 				currentUrlPath={currentUrlPath}
-				adStyle={"maxHeight"}
+				adStyle={"adHeadline"}
+				adWrapperStyle={"adTopHeadline"}
+				adWrap={"adHeadWrap"}
 			/>
 			<ImageLoader
 				src={headlineImage}
@@ -113,6 +117,7 @@ const ArticleHead = ({
 					image={headlineImage}
 					headline={headline}
 					brief={brief}
+					pinterestLink={pinterestLink}
 				/>
 				<ShareButtonHoriz
 					data={openingSocialButtons}
@@ -121,6 +126,7 @@ const ArticleHead = ({
 					headline={headline}
 					brief={brief}
 					position={"top_share_horiz"}
+					pinterestLink={pinterestLink}
 				/>
 			</LazyLoad>
 			{overview.affiliateDisclaimer && (
@@ -135,6 +141,7 @@ const ArticleHead = ({
 				nextSlideShow={nextSlideShow}
 				brief={brief}
 				id={id}
+				cpcAd={cpcAd}
 			/>
 		</div>
 	);

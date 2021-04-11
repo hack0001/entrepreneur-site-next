@@ -6,7 +6,14 @@ import ShowMeta from "../../showMeta/showMeta";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/quizHeadlineStyles.module.sass";
 
-const QuizHeadline = ({ data, id, position, totalQuestions, lastUpdated }) => {
+const QuizHeadline = ({
+	data,
+	id,
+	position,
+	totalQuestions,
+	lastUpdated,
+	pinterestLink,
+}) => {
 	const {
 		blurb,
 		category,
@@ -82,6 +89,7 @@ const QuizHeadline = ({ data, id, position, totalQuestions, lastUpdated }) => {
 					image={headlineImage}
 					headline={title}
 					brief={blurb}
+					pinterestLink={pinterestLink}
 				/>
 			</LazyLoad>
 		</div>

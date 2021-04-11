@@ -1,5 +1,3 @@
-// const { parsed: localEnv } = require("dotenv").config();
-// const webpack = require("webpack");
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({
 // 	enabled: process.env.ANALYZE === "true",
 // });
@@ -9,10 +7,6 @@ module.exports = {
 	future: {
 		webpack5: true,
 	},
-	// webpack(config) {
-	// 	config.plugins.push(new webpack.EnvironmentPlugin(localEnv));
-	// 	return config;
-	// },
 	images: {
 		domains: [
 			"assets.wealthmack.com",
