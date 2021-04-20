@@ -24,6 +24,7 @@ const BookEnds = ({
 	affiliateDisclaimer,
 	pinterestLink,
 	lastUpdated,
+	authorName,
 }) => {
 	const {
 		headlineImage,
@@ -41,9 +42,9 @@ const BookEnds = ({
 		showDate,
 		displayDate,
 		showAuthor,
-		authorName,
 		slideTags,
 	} = data[0];
+
 	const canonical = `${process.env.SITE_ADDRESS}/${category}/${slideUrl}/slideshow/${id}/slides/${position}`;
 	return (
 		<div className={styles.bookendWrapper}>

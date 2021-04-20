@@ -53,12 +53,14 @@ const SideBarSmallContent = ({
 				);
 			})}
 			{showAd && !cpcAd && (
-				<Adsense
-					sticky={true}
-					client="ca-pub-2068760522034474"
-					slot="5182944308"
-					currentUrlPath={currentUrlPath}
-				/>
+				<div>
+					<Adsense
+						sticky={true}
+						client="ca-pub-2068760522034474"
+						slot="5182944308"
+						currentUrlPath={currentUrlPath}
+					/>
+				</div>
 			)}
 			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} sticky={true} />}
 		</>

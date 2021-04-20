@@ -25,7 +25,8 @@ const ArticleHead = ({
 	cpcAd,
 }) => {
 	const details = JSON.parse(overview.overview);
-	const { pinterestLink } = overview;
+	const { pinterestLink, user } = overview;
+	const authorName = user.alias ? user.alias : "";
 	const {
 		articleHeadline,
 		category,
@@ -42,7 +43,6 @@ const ArticleHead = ({
 		showDate,
 		displayDate,
 		showAuthor,
-		authorName,
 		tags,
 	} = details[0];
 	const canonical = `${process.env.SITE_ADDRESS}/${category}/${urlDescription}/article/${id}`;
@@ -76,15 +76,17 @@ const ArticleHead = ({
 				/>
 			</div>
 			{/* <!-- HorizBarContentTop --> */}
-			<Adsense
-				client={"ca-pub-2068760522034474"}
-				slot={"9802692073"}
-				responsive={true}
-				currentUrlPath={currentUrlPath}
-				adStyle={"adHeadline"}
-				adWrapperStyle={"adTopHeadline"}
-				adWrap={"adHeadWrap"}
-			/>
+			<div>
+				<Adsense
+					client={"ca-pub-2068760522034474"}
+					slot={"9802692073"}
+					responsive={true}
+					currentUrlPath={currentUrlPath}
+					adStyle={"adHeadline"}
+					adWrapperStyle={"adTopHeadline"}
+					adWrap={"adHeadWrap"}
+				/>
+			</div>
 			<ImageLoader
 				src={headlineImage}
 				alt={headlineImageAlt}

@@ -6,6 +6,7 @@ import styles from "./styles/quickSlideStyles.module.sass";
 import SingleLoader from "../../../Loading/SingleLoader";
 import Adsense from "../../../ads/code/adsense/adsense";
 import Reader from "../../Editor/reader";
+import AdWrapper from "../../../ads/adWrapper";
 
 const QuickSlides = ({
 	total,
@@ -34,6 +35,8 @@ const QuickSlides = ({
 		slideImageAttributionLink,
 		slidePosition,
 		bottomSlideDetails,
+		slideAffiliateLink,
+		affiliateLinkCode,
 	} = slideDetails;
 
 	const showNumber = countdown ? total - slidePosition + 1 : slidePosition;
@@ -85,58 +88,79 @@ const QuickSlides = ({
 					priority={true}
 				/>
 			</div>
-			<div className={styles.mobSectionParagraph}>
-				<Reader value={slideDetails.slideDetails[0].children} />
-				<div className={styles.adWrap}>
-					<Adsense
-						client="ca-pub-2068760522034474"
-						slot="1874540097"
-						responsive={true}
-						adStyle={"maxHeight"}
-						currentUrlPath={currentUrlPath}
-					/>
+			<div className={styles.mobileSection}>
+				<div className={styles.mobSectionParagraph}>
+					<Reader value={slideDetails.slideDetails[0].children} />
+					<div>
+						{slideAffiliateLink && affiliateLinkCode && (
+							<AdWrapper adCode={affiliateLinkCode} />
+						)}
+					</div>
 				</div>
-				{cpcMarker && (
-					<QuickViewButton
-						label="Next"
-						imgSrc={nextSlideData[0] ? nextSlideData[0].slideImage : linkImage}
-						href={nextHref}
-						imagePath={nextSlideData[0] ? nextSlideData[0].slideImagePath : ""}
-						refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
-						imageAlt={
-							nextSlideData[0]
-								? nextSlideData[0].slideImageAlt
-								: "Next Slide Image"
-						}
-						imageCrop={
-							nextSlideData[0]
-								? nextSlideData[0].slideImageCrop
-								: slideImageCrop
-						}
-						imageCropInfo={
-							nextSlideData[0]
-								? nextSlideData[0].slideImageCropInfo
-								: slideImageCropInfo
-						}
-						queryLinkCheck={queryLinkCheck}
-						query={query}
-					/>
-				)}
+				<div className={styles.adWrapper}>
+					{!slideAffiliateLink && !affiliateLinkCode && (
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="1874540097"
+							responsive={true}
+							adStyle={"default"}
+							currentUrlPath={currentUrlPath}
+						/>
+					)}
+				</div>
+				<div>
+					{cpcMarker && (
+						<QuickViewButton
+							label="Next"
+							imgSrc={
+								nextSlideData[0] ? nextSlideData[0].slideImage : linkImage
+							}
+							href={nextHref}
+							imagePath={
+								nextSlideData[0] ? nextSlideData[0].slideImagePath : ""
+							}
+							refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
+							imageAlt={
+								nextSlideData[0]
+									? nextSlideData[0].slideImageAlt
+									: "Next Slide Image"
+							}
+							imageCrop={
+								nextSlideData[0]
+									? nextSlideData[0].slideImageCrop
+									: slideImageCrop
+							}
+							imageCropInfo={
+								nextSlideData[0]
+									? nextSlideData[0].slideImageCropInfo
+									: slideImageCropInfo
+							}
+							queryLinkCheck={queryLinkCheck}
+							query={query}
+						/>
+					)}
+				</div>
 			</div>
-
 			<div className={styles.bottomSectionParagraph}>
 				{bottomSlideDetails && (
 					<Reader value={bottomSlideDetails[0].children} />
 				)}
+				<div>
+					{slideAffiliateLink && affiliateLinkCode && (
+						<AdWrapper adCode={affiliateLinkCode} />
+					)}
+				</div>
 			</div>
-			<div className={styles.adWrap}>
-				<Adsense
-					client="ca-pub-2068760522034474"
-					slot="1874540097"
-					responsive={true}
-					adStyle={"maxHeight"}
-					currentUrlPath={currentUrlPath}
-				/>
+			<div className={styles.adWrapper}>
+				{!slideAffiliateLink && !affiliateLinkCode && (
+					<Adsense
+						client="ca-pub-2068760522034474"
+						slot="1874540097"
+						responsive={true}
+						adStyle={"default"}
+						currentUrlPath={currentUrlPath}
+					/>
+				)}
 			</div>
 			{cpcMarker && (
 				<QuickViewButton

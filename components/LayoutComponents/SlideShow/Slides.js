@@ -8,7 +8,7 @@ import NextLink from "../Editor/renderElement/ads/nextLink";
 import slideStyles from "./styles/slideStyles.module.sass";
 import Reader from "../Editor/reader";
 import Adsense from "../../ads/code/adsense/adsense";
-
+import AdWrapper from "../../ads/adWrapper";
 const Slides = ({
 	data,
 	showNumbers,
@@ -61,15 +61,19 @@ const Slides = ({
 				<h3 className={slideStyles.sectionBrief}>{slideComment}</h3>
 				<div className={slideStyles.sectionParagraph}>
 					<Reader value={slideData.slideDetails[0].children} />
+				</div>
+				<div>
 					{/* <!-- SlideHorizTop --> */}
 					{!slideAffiliateLink && (
-						<Adsense
-							client="ca-pub-2068760522034474"
-							slot="8433059648"
-							responsive={true}
-							adStyle={"maxHeight"}
-							currentUrlPath={currentUrlPath}
-						/>
+						<div>
+							<Adsense
+								client="ca-pub-2068760522034474"
+								slot="8433059648"
+								responsive={true}
+								adStyle={"default"}
+								currentUrlPath={currentUrlPath}
+							/>
+						</div>
 					)}
 				</div>
 				<div>
@@ -87,26 +91,27 @@ const Slides = ({
 						wrapperClass={"contentWrapper"}
 					/>
 				</div>
-
-				{slideAffiliateLink && affiliateLinkCode && (
-					<div className={slideStyles.affiliate}>
-						<div dangerouslySetInnerHTML={{ __html: affiliateLinkCode }} />
-					</div>
-				)}
 				<div className={slideStyles.bottomSectionParagraph}>
 					{bottomSlideDetails && (
 						<Reader value={bottomSlideDetails[0].children} />
 					)}
-				</div>
-				{index % 3 !== 0 && (
-					<div className={slideStyles.midAdWrapper}>
-						<Adsense
-							client="ca-pub-2068760522034474"
-							slot="7104500257"
-							currentUrlPath={currentUrlPath}
-						/>
+					<div>
+						{slideAffiliateLink && affiliateLinkCode && (
+							<AdWrapper adCode={affiliateLinkCode} />
+						)}
 					</div>
-				)}
+				</div>
+				<div>
+					{!slideAffiliateLink && !affiliateLinkCode && index % 3 !== 0 && (
+						<div className={slideStyles.midAdWrapper}>
+							<Adsense
+								client="ca-pub-2068760522034474"
+								slot="7104500257"
+								currentUrlPath={currentUrlPath}
+							/>
+						</div>
+					)}
+				</div>
 
 				{index % 4 === 0 && (
 					<>

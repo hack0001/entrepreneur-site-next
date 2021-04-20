@@ -27,6 +27,9 @@ export const SLIDESHOW = /* GraphQL */ `
 			pinterestPinLink
 			pinterestLink
 			pinterestEmbedCode
+			user {
+				alias
+			}
 			linkedArticle {
 				id
 				headline

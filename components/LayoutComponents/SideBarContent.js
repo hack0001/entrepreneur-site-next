@@ -23,11 +23,13 @@ const SideBarContent = ({
 		<>
 			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
 			{showAd && !cpcAd && (
-				<Adsense
-					client="ca-pub-2068760522034474"
-					slot="6792782716"
-					currentUrlPath={currentUrlPath}
-				/>
+				<div>
+					<Adsense
+						client="ca-pub-2068760522034474"
+						slot="6792782716"
+						currentUrlPath={currentUrlPath}
+					/>
+				</div>
 			)}
 			{slicedData.map((article, index) => {
 				const {
@@ -45,11 +47,13 @@ const SideBarContent = ({
 				return (
 					<Fragment key={index}>
 						{index === 2 && showAd && (
-							<Adsense
-								client="ca-pub-2068760522034474"
-								slot="1753150973"
-								currentUrlPath={currentUrlPath}
-							/>
+							<div>
+								<Adsense
+									client="ca-pub-2068760522034474"
+									slot="1753150973"
+									currentUrlPath={currentUrlPath}
+								/>
+							</div>
 						)}
 						<SideBarComponent
 							type={type}
@@ -70,11 +74,13 @@ const SideBarContent = ({
 			})}
 			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
 			{showAd && !cpcAd && (
-				<Adsense
-					client="ca-pub-2068760522034474"
-					slot="7552272565"
-					currentUrlPath={currentUrlPath}
-				/>
+				<div>
+					<Adsense
+						client="ca-pub-2068760522034474"
+						slot="7552272565"
+						currentUrlPath={currentUrlPath}
+					/>
+				</div>
 			)}
 		</>
 	);

@@ -13,6 +13,7 @@ const QuizHeadline = ({
 	totalQuestions,
 	lastUpdated,
 	pinterestLink,
+	authorName,
 }) => {
 	const {
 		blurb,
@@ -27,7 +28,6 @@ const QuizHeadline = ({
 		showDate,
 		displayDate,
 		showAuthor,
-		authorName,
 		quizTags,
 	} = data[0];
 	const canonical = `${process.env.SITE_ADDRESS}/${category}/${quizUrl}/quiz/${id}/questions/${position}`;

@@ -34,7 +34,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 	const questions = JSON.parse(content.questions);
 	const { sessionQuizIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
-	const { viewCount } = content;
 	const [cpcMarker, setCpcMarker] = useState(false);
 	const filterArray = sessionQuizIds.concat({ id });
 	const {
@@ -42,9 +41,13 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 		pinterestLink,
 		pinterestEmbedCode,
 		pinterestPinLink,
+		viewCount,
+		user,
 	} = content;
 	const nextContent = filterUnique(nextQuiz.items, filterArray);
 	const lastUpdated = content.updatedAt;
+	const authorName = user.alias ? user.alias : "";
+
 	const {
 		category,
 		title,
@@ -124,6 +127,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 							totalQuestions={content.numQuestions}
 							cpcMarker={cpcMarker}
 							pinterestLink={pinterestLink}
+							authorName={authorName}
 						/>
 
 						{(position === "opening" || position === "closing") && (
@@ -239,6 +243,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						cpcMarker={cpcMarker}
 						lastUpdated={lastUpdated}
 						pinterestLink={pinterestLink}
+						authorName={authorName}
 					/>
 					<BookEnds
 						position={"opening"}
@@ -327,15 +332,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 								currentUrlPath={currentUrlPath}
 								priority={false}
 							/>
-
-							{/* <div className={styles.adsenseWrapper}>
-								<Adsense
-									client="ca-pub-2068760522034474"
-									slot="7848686731"
-									responsive={true}
-									currentUrlPath={currentUrlPath}
-								/>
-							</div> */}
 
 							{nextContent[0] && (
 								<QuickViewButton

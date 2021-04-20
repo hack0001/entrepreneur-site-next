@@ -20,7 +20,9 @@ const ShowMeta = ({
 				</div>
 			)}
 			{showAuthor && authorName && (
-				<div className={styles.sectionMeta}>By: {authorName}</div>
+				<div className={styles.sectionMeta}>
+					Author: {authorName} @ Wealthmack Team
+				</div>
 			)}
 			{showDate && lastUpdated && (
 				<div className={styles.sectionMeta}>

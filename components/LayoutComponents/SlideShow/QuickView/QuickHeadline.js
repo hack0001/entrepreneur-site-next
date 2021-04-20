@@ -6,7 +6,14 @@ import ShowMeta from "../../../showMeta/showMeta";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/quickHeadlineStyles.module.sass";
 
-const QuickHeadline = ({ data, id, position, totalSlides, pinterestLink }) => {
+const QuickHeadline = ({
+	data,
+	id,
+	position,
+	totalSlides,
+	pinterestLink,
+	authorName,
+}) => {
 	const {
 		blurb,
 		category,
@@ -20,7 +27,6 @@ const QuickHeadline = ({ data, id, position, totalSlides, pinterestLink }) => {
 		showDate,
 		displayDate,
 		showAuthor,
-		authorName,
 		slideTags,
 	} = data[0];
 	const canonical = `${process.env.SITE_ADDRESS}/${category}/${slideUrl}/slideshow/${id}/slides/${position}`;

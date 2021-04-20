@@ -18,6 +18,9 @@ export const ARTICLE = /* GraphQL */ `
 			pinterestPinLink
 			pinterestLink
 			pinterestEmbedCode
+			user {
+				alias
+			}
 			linkedCpc {
 				id
 				displayAd

@@ -37,19 +37,23 @@ const SlideDetails = ({
 }) => {
 	const details = JSON.parse(content.overview);
 	const slides = JSON.parse(content.slides);
-	const { viewCount } = content;
+
 	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
 	const [cpcMarker, setCpcMarker] = useState(false);
 	const filterArray = sessionSlideIds.concat({ id });
 	const nextContent = filterUnique(nextSlideShow.items, filterArray);
+
 	const {
 		affiliateDisclaimer,
 		pinterestLink,
 		pinterestEmbedCode,
 		pinterestPinLink,
+		viewCount,
+		user,
 	} = content;
 	const lastUpdated = content.updatedAt;
+	const authorName = user.alias ? user.alias : "";
 
 	const {
 		blurb,
@@ -132,6 +136,7 @@ const SlideDetails = ({
 							cpcMarker={cpcMarker}
 							lastUpdated={lastUpdated}
 							pinterestLink={pinterestLink}
+							authorName={authorName}
 						/>
 						{(position === "opening" || position === "closing") && (
 							<>
@@ -210,12 +215,14 @@ const SlideDetails = ({
 								currentUrlPath={currentUrlPath}
 							/>
 						)}
-						<Adsense
-							client="ca-pub-2068760522034474"
-							slot="7104500257"
-							responsive={true}
-							currentUrlPath={currentUrlPath}
-						/>
+						<div>
+							<Adsense
+								client="ca-pub-2068760522034474"
+								slot="7104500257"
+								responsive={true}
+								currentUrlPath={currentUrlPath}
+							/>
+						</div>
 					</div>
 				</>
 			)}
@@ -230,6 +237,7 @@ const SlideDetails = ({
 						affiliateDisclaimer={affiliateDisclaimer}
 						lastUpdated={lastUpdated}
 						pinterestLink={pinterestLink}
+						authorName={authorName}
 					/>
 					<BookEnds
 						position={"opening"}

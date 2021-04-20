@@ -136,11 +136,13 @@ const Reader = ({ value, cpcAd }) => {
 				case "paid-ad":
 					const { currentUrlPath } = useContext(Context);
 					return (
-						<Adsense
-							client="ca-pub-2068760522034474"
-							slot="8517191254"
-							currentUrlPath={currentUrlPath}
-						/>
+						<div>
+							<Adsense
+								client="ca-pub-2068760522034474"
+								slot="8517191254"
+								currentUrlPath={currentUrlPath}
+							/>
+						</div>
 					);
 				case "site-ad":
 					return (

@@ -24,6 +24,9 @@ export const QUIZ = /* GraphQL */ `
 			pinterestPinLink
 			pinterestLink
 			pinterestEmbedCode
+			user {
+				alias
+			}
 			linkedArticle {
 				id
 				headline

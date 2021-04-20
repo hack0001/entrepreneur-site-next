@@ -87,7 +87,6 @@ const ArticleBody = ({
 				/>
 			</LazyLoad>
 			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
-
 			{nextContent[0] && (
 				<div className={styles.nextButtonWrapper}>
 					<QuickViewButton
@@ -109,12 +108,13 @@ const ArticleBody = ({
 			<LazyLoad once={true}>
 				<ScrollUpButton />
 			</LazyLoad>
-
-			<Adsense
-				client="ca-pub-2068760522034474"
-				slot="8414762247"
-				currentUrlPath={currentUrlPath}
-			/>
+			<div>
+				<Adsense
+					client="ca-pub-2068760522034474"
+					slot="8414762247"
+					currentUrlPath={currentUrlPath}
+				/>
+			</div>
 			<br />
 			<LazyLoad once={true}>
 				<SectionBar title={`Share`} titleColor="#111" titleSize="1rem" />
@@ -140,11 +140,13 @@ const ArticleBody = ({
 			<LazyLoad once={true}>
 				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
 			</LazyLoad>
-			<Adsense
-				client="ca-pub-2068760522034474"
-				slot="4801396157"
-				currentUrlPath={currentUrlPath}
-			/>
+			<div>
+				<Adsense
+					client="ca-pub-2068760522034474"
+					slot="4801396157"
+					currentUrlPath={currentUrlPath}
+				/>
+			</div>
 			<SectionBar title="Leave a Comment" titleColor="#111" titleSize="1rem" />
 			<FacebookComments url={url} numPostsVisible={5} orderBy="reverse_time" />
 			<LazyLoad>

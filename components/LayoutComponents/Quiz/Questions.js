@@ -205,12 +205,14 @@ const Questions = ({
 				incorrectAnswerComment={incorrectAnswerComment}
 			/>
 			<div className={styles.adsenseWrapper}>
-				<Adsense
-					client="ca-pub-2068760522034474"
-					slot="9944544648"
-					responsive={true}
-					currentUrlPath={currentUrlPath}
-				/>
+				<div>
+					<Adsense
+						client="ca-pub-2068760522034474"
+						slot="9944544648"
+						responsive={true}
+						currentUrlPath={currentUrlPath}
+					/>
+				</div>
 				{showAnswer && (
 					<>
 						<QuickViewButton
@@ -249,12 +251,14 @@ const Questions = ({
 							queryLinkCheck={queryLinkCheck}
 							query={query}
 						/>
-						<Adsense
-							client="ca-pub-2068760522034474"
-							slot="9944544648"
-							responsive={true}
-							currentUrlPath={currentUrlPath}
-						/>
+						<div>
+							<Adsense
+								client="ca-pub-2068760522034474"
+								slot="9944544648"
+								responsive={true}
+								currentUrlPath={currentUrlPath}
+							/>
+						</div>
 					</>
 				)}
 			</div>
