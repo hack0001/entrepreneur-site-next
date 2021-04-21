@@ -61,6 +61,7 @@ const ArticleHead = ({
 				imageCrop={headlineImageCrop}
 				imageCropInfo={headlineImageCropInfo}
 				tags={tags}
+				author={authorName}
 			/>
 			<SectionBar title={category} titleColor="#111" titleSize="1rem" />
 			<h1 className={styles.sectionHeading}>

@@ -18,6 +18,7 @@ const DynamicHeader = ({
 	createdAt,
 	updatedAt,
 	tags,
+	author,
 }) => {
 	let socialImage;
 	if (imagePath) {
@@ -79,6 +80,10 @@ const DynamicHeader = ({
 			<meta name="og:url" content={url} />
 			<meta name="og:image:width" content={imageWidth} />
 			<meta name="og:image:height" content={imageHeight} />
+			<meta name="article:published_time" content={createdAt} />
+			{author && (
+				<meta name="article:author" content={`${author} @ WealthMack Team`} />
+			)}
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{
@@ -102,6 +107,7 @@ DynamicHeader.propTypes = {
 	createdAt: PropTypes.string,
 	updatedAt: PropTypes.string,
 	tags: PropTypes.array,
+	author: PropTypes.string,
 };
 DynamicHeader.defaultProps = {
 	imageWidth: 1024,
@@ -112,5 +118,6 @@ DynamicHeader.defaultProps = {
 	next: "",
 	prev: "",
 	tags: [],
+	author: "",
 };
 export default DynamicHeader;

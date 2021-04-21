@@ -73,6 +73,7 @@ const QuizHeadline = ({
 				createdAt={displayDate}
 				updatedAt={displayDate}
 				tags={quizTags}
+				author={authorName}
 			/>
 			<h1 className={styles.sectionHeading}>{title}</h1>
 			<ShowMeta

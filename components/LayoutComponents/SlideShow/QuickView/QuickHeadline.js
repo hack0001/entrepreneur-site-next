@@ -72,6 +72,7 @@ const QuickHeadline = ({
 				createdAt={displayDate}
 				updatedAt={displayDate}
 				tags={slideTags}
+				author={authorName}
 			/>
 			<h1 className={styles.sectionHeading}>{title}</h1>
 			<ShowMeta
