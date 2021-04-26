@@ -25,6 +25,8 @@ const parseUrlQuery = url => {
 				case "facebook":
 				case "fb":
 				case "Facebook":
+				case "Pinterest":
+				case "pinterest":
 					return true;
 				default:
 					return false;
