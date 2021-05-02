@@ -52,10 +52,7 @@ const Reader = ({ value, cpcAd }) => {
 					const { affiliateCode } = node.data;
 					return (
 						<LazyLoad once={true}>
-							<div
-								className={styles.affiliate}
-								dangerouslySetInnerHTML={{ __html: affiliateCode }}
-							></div>
+							<AdWrapper adCode={affiliateCode} />
 						</LazyLoad>
 					);
 				case "link":

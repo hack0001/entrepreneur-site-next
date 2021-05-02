@@ -101,17 +101,19 @@ const ArticleHead = ({
 				priority={true}
 				wrapperClass={"contentWrapper"}
 			/>
-			{bulletHeadlines > 0 && (
-				<ul className={styles.sectionList}>
-					{Object.keys(bulletHeadlinesDetails).map((bullet, index) => {
-						return (
-							<li className={styles.sectionList} key={index}>
-								{bulletHeadlinesDetails[bullet]}
-							</li>
-						);
-					})}
-				</ul>
-			)}
+			<div className={styles.bulletWrapper}>
+				{bulletHeadlines > 0 && (
+					<ul>
+						{Object.keys(bulletHeadlinesDetails).map((bullet, index) => {
+							return (
+								<li className={styles.sectionList} key={index}>
+									{bulletHeadlinesDetails[bullet]}
+								</li>
+							);
+						})}
+					</ul>
+				)}
+			</div>
 			<LazyLoad once={true}>
 				<hr className={styles.break} />
 				<ShareButtonVert

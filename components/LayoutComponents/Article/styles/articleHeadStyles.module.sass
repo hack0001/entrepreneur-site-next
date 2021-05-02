@@ -4,6 +4,9 @@
     width: 100%
     margin: 0 auto
 
+.bulletWrapper
+    margin: 2rem 0rem
+
 .metaWrapper
     margin: 1rem 0rem
 
@@ -44,13 +47,13 @@
     background-color: #e2e2e2e2
 
 .sectionList
-    margin: 0rem 1rem 1rem 1rem
-    padding: 0
-    font-size: 1.45rem
-    font-weight: 300
-    color: $secondary
-    text-transform: capitalize
     font-family: $secondaryFont
+    color: $contentFontColor
+    font-size: $paragraphFontSize
+    line-height: $paragraphLineHeight
+    letter-spacing: $paragraphLetterSpace
+    margin: 5rem 0rem
+    padding: 0.35rem 0rem
 
 .sectionMeta
     margin: 0px 0px 7px 0px
@@ -63,6 +66,7 @@
 
 .sectionList
     margin: 0
+    display: list-item
 
 @media only screen and (max-width: 670px) 
     .sectionPadding

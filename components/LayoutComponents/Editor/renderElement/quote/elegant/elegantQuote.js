@@ -3,7 +3,7 @@ import styles from "../../styles/quote/elegant/elegantQuoteStyles.module.sass";
 
 const ElegantQuote = ({ quote }) => {
 	return (
-		<div>
+		<div className={styles.elegantWrapper}>
 			<blockquote className={styles.elegantBlockquote}>
 				<div className={styles.quoteLine}></div>
 				<p className={styles.elegantText}>{quote.quote}</p>
