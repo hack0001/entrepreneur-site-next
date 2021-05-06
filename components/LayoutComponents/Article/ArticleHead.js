@@ -36,7 +36,6 @@ const ArticleHead = ({
 		headlineImagePath,
 		headlineImageCrop,
 		headlineImageCropInfo,
-		brief,
 		bulletHeadlines,
 		bulletHeadlinesDetails,
 		urlDescription,
@@ -44,14 +43,14 @@ const ArticleHead = ({
 		displayDate,
 		showAuthor,
 		tags,
+		kicker,
 	} = details[0];
 	const canonical = `${process.env.SITE_ADDRESS}/${category}/${urlDescription}/article/${id}`;
-
 	return (
 		<div className={styles.sectionPadding}>
 			<DynamicHeader
 				title={headline}
-				description={brief}
+				description={kicker}
 				url={canonical}
 				canonical={canonical}
 				image={headlineImage}
@@ -121,7 +120,7 @@ const ArticleHead = ({
 					url={canonical}
 					image={headlineImage}
 					headline={headline}
-					brief={brief}
+					brief={kicker}
 					pinterestLink={pinterestLink}
 				/>
 				<ShareButtonHoriz
@@ -129,7 +128,7 @@ const ArticleHead = ({
 					url={canonical}
 					image={headlineImage}
 					headline={headline}
-					brief={brief}
+					brief={kicker}
 					position={"top_share_horiz"}
 					pinterestLink={pinterestLink}
 				/>
@@ -144,7 +143,7 @@ const ArticleHead = ({
 				image={headlineImage}
 				headline={headline}
 				nextSlideShow={nextSlideShow}
-				brief={brief}
+				brief={kicker}
 				id={id}
 				cpcAd={cpcAd}
 			/>

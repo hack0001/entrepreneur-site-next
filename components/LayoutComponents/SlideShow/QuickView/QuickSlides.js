@@ -62,12 +62,12 @@ const QuickSlides = ({
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>
-			<h1 className={styles.sectionHeader}>
+			<h2 className={styles.sectionHeader}>
 				{showNumbers && (
 					<span className={styles.slidePosition}>{showNumber}</span>
 				)}
 				{slide}
-			</h1>
+			</h2>
 			<h3 className={styles.sectionBrief}>{slideComment}</h3>
 			<div className={styles.deskSectionParagraph}>
 				<Reader value={slideDetails.slideDetails[0].children} />

@@ -184,9 +184,9 @@ const SignUpModal = () => {
 											height="75px"
 										/>
 									</div>
-									<h1 className={`${styles.header} ${styles.headerPrimary}`}>
+									<h3 className={`${styles.header} ${styles.headerPrimary}`}>
 										Keep Me Updated
-									</h1>
+									</h3>
 
 									{!errors.badRequest && (
 										<h2

@@ -18,7 +18,6 @@ const Slides = ({
 	brief,
 	latest,
 	countdown,
-	queryLinkCheck,
 	query,
 	currentUrlPath,
 	pinterestLink,
@@ -52,12 +51,12 @@ const Slides = ({
 
 		return (
 			<div className={slideStyles.bookendWrapper} key={index}>
-				<h1 className={slideStyles.sectionHeader}>
+				<h2 className={slideStyles.sectionHeader}>
 					{showNumbers && (
 						<span className={slideStyles.slidePosition}>{showNumber}</span>
 					)}
 					{slide}
-				</h1>
+				</h2>
 				<h3 className={slideStyles.sectionBrief}>{slideComment}</h3>
 				<div className={slideStyles.sectionParagraph}>
 					<Reader value={slideData.slideDetails[0].children} />
@@ -141,8 +140,8 @@ const Slides = ({
 								data={midDataOverview}
 								type="article"
 								id={midDataId}
-								queryLinkCheck={queryLinkCheck}
-								query={query}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: "slideshow-midsection" }}
 							/>
 							<SectionBar title={``} titleColor="#111" titleSize="1rem" />
 						</LazyLoad>

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import SideBarSmallComponent from "./SideBar/SideBarSmallComponent";
+import SideBarComponent from "./SideBar/SideBarComponent";
 import sideHelper from "../helper/sideBarHelper";
 import dynamic from "next/dynamic";
 import Adsense from "../ads/code/adsense/adsense";
@@ -15,6 +16,7 @@ const SideBarSmallContent = ({
 	queryLinkCheck,
 	query,
 	currentUrlPath,
+	linkedArticle,
 }) => {
 	const slicedData = limit > 0 ? data.slice(0, limit) : data;
 	return (
@@ -52,7 +54,7 @@ const SideBarSmallContent = ({
 					/>
 				);
 			})}
-			{showAd && !cpcAd && (
+			{showAd && !cpcAd && !linkedArticle && (
 				<Adsense
 					sticky={true}
 					client="ca-pub-2068760522034474"
@@ -61,6 +63,24 @@ const SideBarSmallContent = ({
 				/>
 			)}
 			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} sticky={true} />}
+			{linkedArticle && (
+				<div style={{ position: "sticky", top: 70 }}>
+					<SideBarComponent
+						type={"article"}
+						headlineImage={linkedArticle.headlineImage}
+						headlineImageAlt={linkedArticle.headlineImageAlt}
+						headlineImagePath={linkedArticle.headlineImagePath}
+						headlineImageCrop={linkedArticle.headlineImageCrop}
+						headlineImageCropInfo={linkedArticle.headlineImageCropInfo}
+						headline={linkedArticle.headline}
+						category={linkedArticle.category}
+						refPath={`/[category]/[url]/article/[id]`}
+						contentLink={`/${linkedArticle.category}/${linkedArticle.urlDescription}/article/${linkedArticle.id}`}
+						queryLinkCheck={true}
+						query={{ ...query, utm_medium: "sidebarsmallsticky" }}
+					/>
+				</div>
+			)}
 		</>
 	);
 };

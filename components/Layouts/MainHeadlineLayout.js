@@ -17,7 +17,6 @@ import baseTheme from "../../theme/baseTheme.json";
 import { LATEST } from "../../graphql/headline";
 import styles from "./styles/headlineLayout.module.sass";
 import Context from "@utils/Context";
-import { objectCheck } from "@utils/queryHandler";
 
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
@@ -38,7 +37,6 @@ const MainHeadlineLayout = ({
 	latestSortIndex,
 }) => {
 	const { query, currentUrlPath } = useContext(Context);
-	const queryLinkCheck = objectCheck(query);
 	const [token, setToken] = useState(latestNextToken ? latestNextToken : null);
 	const [sortIndex, setSortIndex] = useState(
 		latestSortIndex ? latestSortIndex : null,
@@ -98,8 +96,8 @@ const MainHeadlineLayout = ({
 			<div className={styles.homeContainer}>
 				<MainHeadline
 					data={headline.items}
-					queryLinkCheck={queryLinkCheck}
-					query={query}
+					queryLinkCheck={true}
+					query={{ ...query, utm_medium: "main" }}
 				/>
 				<section className={styles.bodyContainer}>
 					<div className={styles.latestContainer}>
@@ -113,8 +111,8 @@ const MainHeadlineLayout = ({
 							</div>
 							<ScrollingArticles
 								data={latestContent}
-								queryLinkCheck={queryLinkCheck}
-								query={query}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: "main-scrolling" }}
 							/>
 						</div>
 						{token && (
@@ -133,8 +131,8 @@ const MainHeadlineLayout = ({
 						</div>
 						<SideBarContent
 							data={quiz.items}
-							queryLinkCheck={queryLinkCheck}
-							query={query}
+							queryLinkCheck={true}
+							query={{ ...query, utm_medium: "sidebar-main" }}
 							type="quiz"
 							currentUrlPath={currentUrlPath}
 						/>
@@ -162,8 +160,8 @@ const MainHeadlineLayout = ({
 						/> */}
 						<SideBarSmallContent
 							data={slide.items}
-							queryLinkCheck={queryLinkCheck}
-							query={query}
+							queryLinkCheck={true}
+							query={{ ...query, utm_medium: "sidebarsmall-main" }}
 							type="slideshow"
 							currentUrlPath={currentUrlPath}
 						/>

@@ -44,7 +44,7 @@ const QuickViewButton = ({
 						</div>
 						<div className={styles.labelWrapper}>
 							<div className={styles.label}>
-								<div className={styles.linkLabel}>{label} </div>
+								<div className={styles.linkLabel}>{label}</div>
 							</div>
 							{optionalTitle && (
 								<div className={styles.label}>

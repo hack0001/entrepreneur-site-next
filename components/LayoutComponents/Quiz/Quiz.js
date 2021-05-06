@@ -197,8 +197,8 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 											href={nextQuizHref}
 											refPath={`/[category]/[url]/quiz/[quizId]/questions/[questionId]`}
 											imageAlt={nextContent[0].headlineImageAlt}
-											queryLinkCheck={queryLinkCheck}
-											query={query}
+											queryLinkCheck={true}
+											query={{ ...query, utm_medium: "quiz_bottom_next" }}
 										/>
 									</div>
 								)}
@@ -346,8 +346,8 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 									imageCrop={nextContent[0].headlineImageCrop}
 									imageCropInfo={nextContent[0].headlineImageCropInfo}
 									wrapperClass={"contentWrapper"}
-									queryLinkCheck={queryLinkCheck}
-									query={query}
+									queryLinkCheck={true}
+									query={{ ...query, utm_medium: "quiz_bottom_next" }}
 								/>
 							)}
 						</>

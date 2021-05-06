@@ -47,13 +47,13 @@ const QuizBookEnds = ({
 				</div>
 			)}
 			{positionClosing && (
-				<h1 className={`${styles.sectionHeader} section-header`}>
+				<h2 className={`${styles.sectionHeader} section-header`}>
 					<div>
 						Final Score: {finalScore} out of {numberQuestions}
 					</div>
-				</h1>
+				</h2>
 			)}
-			{positionOpening && <h1 className={styles.sectionHeaderOpen}>{title}</h1>}
+			{positionOpening && <h2 className={styles.sectionHeaderOpen}>{title}</h2>}
 			<div className={styles.imageWrap}>
 				<Embed
 					embed={embed}
@@ -71,9 +71,9 @@ const QuizBookEnds = ({
 				/>
 			</div>
 			{positionClosing && (
-				<h1 className={`${styles.sectionHeader} section-header`}>
+				<h2 className={`${styles.sectionHeader} section-header`}>
 					{scoreComments[`scoreComment${commentNumber}`]}
-				</h1>
+				</h2>
 			)}
 			<>
 				<div className={styles.sectionParagraph}>

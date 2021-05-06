@@ -56,8 +56,8 @@ const Slide = ({
 							type="article"
 							showAd={true}
 							limit={6}
-							queryLinkCheck={queryLinkCheck}
-							query={query}
+							queryLinkCheck={true}
+							query={{ ...query, utm_medium: "sidebar-slideshow" }}
 							currentUrlPath={currentUrlPath}
 						/>
 					</div>
@@ -72,8 +72,8 @@ const Slide = ({
 						type="quiz"
 						showAd={true}
 						limit={6}
-						queryLinkCheck={queryLinkCheck}
-						query={query}
+						queryLinkCheck={true}
+						query={{ ...query, utm_medium: "sidebarsmall-slideshow" }}
 						currentUrlPath={currentUrlPath}
 					/>
 				</aside>

@@ -25,6 +25,18 @@ export const ARTICLE = /* GraphQL */ `
 				id
 				displayAd
 			}
+			linkedArticle {
+				id
+				headline
+				headlineImage
+				headlineImageAlt
+				headlineImageCrop
+				headlineImageCropInfo
+				headlineImagePath
+				kicker
+				urlDescription
+				category
+			}
 			createdAt
 			updatedAt
 		}

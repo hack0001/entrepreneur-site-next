@@ -45,6 +45,7 @@ const ArticleBody = ({
 		pinterestLink,
 		pinterestEmbedCode,
 		pinterestPinLink,
+		linkedArticle,
 	} = content;
 	const nextContent = filterUnique(nextSlideShow.items, filterArray);
 	const nextSlideShowHref = nextContent[0]
@@ -79,7 +80,12 @@ const ArticleBody = ({
 
 	return (
 		<div className={styles.sectionPadding}>
-			<Reader value={value} cpcAd={cpcAd} />
+			<Reader
+				value={value}
+				cpcAd={cpcAd}
+				linkedArticle={linkedArticle}
+				query={query}
+			/>
 			<LazyLoad once={true}>
 				<PinterestEmbed
 					pinterestEmbedCode={pinterestEmbedCode}
@@ -87,7 +93,24 @@ const ArticleBody = ({
 				/>
 			</LazyLoad>
 			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
-			{nextContent[0] && (
+			{linkedArticle && (
+				<div className={styles.nextButtonWrapper}>
+					<QuickViewButton
+						label={"Next"}
+						optionalTitle={linkedArticle.headline}
+						imgSrc={linkedArticle.headlineImage}
+						imagePath={linkedArticle.imagePath}
+						href={`/${linkedArticle.category}/${linkedArticle.urlDescription}/article/${linkedArticle.id}`}
+						refPath={`/[category]/[url]/article/[id]`}
+						imageAlt={linkedArticle.headlineImageAlt}
+						imageCrop={linkedArticle.headlineImageCrop}
+						imageCropInfo={linkedArticle.headlineImageCropInfo}
+						queryLinkCheck={true}
+						query={{ ...query, utm_medium: "article_bottom_linked" }}
+					/>
+				</div>
+			)}
+			{nextContent[0] && !linkedArticle && (
 				<div className={styles.nextButtonWrapper}>
 					<QuickViewButton
 						label={"Next"}
@@ -100,8 +123,8 @@ const ArticleBody = ({
 						imageAlt={nextContent[0].headlineImageAlt}
 						imageCrop={nextContent[0].headlineImageCrop}
 						imageCropInfo={nextContent[0].headlineImageCropInfo}
-						queryLinkCheck={queryLinkCheck}
-						query={query}
+						queryLinkCheck={true}
+						query={{ ...query, utm_medium: "article_bottom_next" }}
 					/>
 				</div>
 			)}

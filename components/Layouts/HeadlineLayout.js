@@ -13,7 +13,6 @@ import LazyLoad from "react-lazyload";
 import styles from "./styles/headlineLayout.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
 import Context from "@utils/Context";
-import { objectCheck } from "@utils/queryHandler";
 
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
@@ -36,7 +35,6 @@ const HeadlineLayout = ({
 	queryOpName,
 }) => {
 	const { query, currentUrlPath } = useContext(Context);
-	const queryLinkCheck = objectCheck(query);
 	const [token, setToken] = useState(latestNextToken ? latestNextToken : null);
 	const [sortIndex, setSortIndex] = useState(
 		latestSortIndex ? latestSortIndex : null,
@@ -121,14 +119,15 @@ const HeadlineLayout = ({
 							</div>
 							<ScrollingArticles
 								data={headline.items}
-								queryLinkCheck={queryLinkCheck}
-								query={query}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: `${pageTitle}-scrolling` }}
 							/>
 							{token && (
 								<LazyLoad once={true}>
 									<RippleButton
 										label={loadingMorePosts ? "Loading..." : "More"}
 										color={baseTheme.secondary}
+										handler={loadMore}
 									/>
 								</LazyLoad>
 							)}
@@ -141,8 +140,8 @@ const HeadlineLayout = ({
 						<SideBarContent
 							data={quiz.items}
 							type="quiz"
-							queryLinkCheck={queryLinkCheck}
-							query={query}
+							queryLinkCheck={true}
+							query={{ ...query, utm_medium: `sidebar-${pageTitle}` }}
 							currentUrlPath={currentUrlPath}
 						/>
 						<LazyLoad once={true}>
@@ -154,8 +153,8 @@ const HeadlineLayout = ({
 						<SideBarSmallContent
 							data={slide.items}
 							type="slideshow"
-							queryLinkCheck={queryLinkCheck}
-							query={query}
+							queryLinkCheck={true}
+							query={{ ...query, utm_medium: `sidebarsmall-${pageTitle}` }}
 							currentUrlPath={currentUrlPath}
 						/>
 					</aside>

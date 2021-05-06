@@ -187,8 +187,8 @@ const SlideDetails = ({
 										imageAlt={nextContent[0].headlineImageAlt}
 										imageCrop={nextContent[0].headlineImageCrop}
 										imageCropInfo={nextContent[0].headlineImageCropInfo}
-										queryLinkCheck={queryLinkCheck}
-										query={query}
+										queryLinkCheck={true}
+										query={{ ...query, utm_medium: "quickview_bottom_next" }}
 									/>
 								)}
 							</>
@@ -317,8 +317,8 @@ const SlideDetails = ({
 							imageAlt={nextContent[0].headlineImageAlt}
 							imageCrop={nextContent[0].headlineImageCrop}
 							imageCropInfo={nextContent[0].headlineImageCropInfo}
-							queryLinkCheck={queryLinkCheck}
-							query={query}
+							queryLinkCheck={true}
+							query={{ ...query, utm_medium: "slideshow_bottom_next" }}
 						/>
 					)}
 				</>

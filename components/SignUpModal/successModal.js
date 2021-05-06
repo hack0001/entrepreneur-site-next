@@ -42,9 +42,9 @@ const SuccessModal = ({ successModal, setSuccessModal }) => {
 									/>
 								</div>
 								<div className={styles.headerContainer}>
-									<h1 className={`${styles.header} ${styles.headerPrimary}`}>
+									<h2 className={`${styles.header} ${styles.headerPrimary}`}>
 										Congratulations!
-									</h1>
+									</h2>
 									<h2 className={`${styles.header} ${styles.headerSecondary}`}>
 										You have been successfully added to our Newsletter.
 									</h2>

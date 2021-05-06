@@ -8,6 +8,9 @@ import SiteAd from "../Editor/renderElement/ads/siteAd";
 import styles from "./renderElement/styles/renderElementStyles.module.sass";
 import Adsense from "../../ads/code/adsense/adsense";
 import Context from "@utils/Context";
+import NextButton from "@components/Button/QuickViewButton";
+import SectionBar from "../SectionBar";
+
 const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
 	ssr: false,
 });
@@ -15,7 +18,7 @@ const Embed = dynamic(() => import("../Editor/renderElement/embed/embed"), {
 	ssr: false,
 	loading: () => <SingleLoader />,
 });
-const Reader = ({ value, cpcAd }) => {
+const Reader = ({ value, cpcAd, linkedArticle, query }) => {
 	if (typeof value.text === "string") {
 		// excapeHtml is to get rid of html tags e.g. < for $lt
 		return value.text;
@@ -152,6 +155,44 @@ const Reader = ({ value, cpcAd }) => {
 						<LazyLoad once={true}>
 							<div className={styles.linkAd}>
 								{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
+								{linkedArticle && (
+									<div className={styles.linkSection}>
+										<SectionBar
+											title={`Up Next`}
+											titleColor="#111"
+											titleSize="1rem"
+											custom={true}
+										/>
+										<div className={styles.scrollText}>
+											Continue Scrolling to Keep Reading
+										</div>
+										<div className={styles.scrollText}>
+											Click the button below for the Next Article.
+										</div>
+										<div className={styles.scrollTextHeadline}>
+											{linkedArticle.headline}
+										</div>
+										<NextButton
+											label={"Next"}
+											optionalTitle={linkedArticle.headline}
+											href={`/${linkedArticle.category}/${linkedArticle.urlDescription}/article/${linkedArticle.id}`}
+											refPath={`/[category]/[url]/article/[id]`}
+											imgSrc={linkedArticle.headlineImage}
+											imagePath={linkedArticle.headlineImagePath}
+											imageAlt={linkedArticle.headlineImageAlt}
+											imageCrop={linkedArticle.headlineImageCrop}
+											imageCropInfo={linkedArticle.headlineImageCropInfo}
+											queryLinkCheck={true}
+											query={{ ...query, utm_medium: "article_midsection" }}
+										/>
+										<SectionBar
+											title={``}
+											titleColor="#111"
+											titleSize="1rem"
+											custom={true}
+										/>
+									</div>
+								)}
 							</div>
 						</LazyLoad>
 					);

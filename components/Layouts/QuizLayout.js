@@ -55,8 +55,8 @@ const Quiz = ({
 						data={headlineData}
 						type="article"
 						showAd={true}
-						queryLinkCheck={queryLinkCheck}
-						query={query}
+						queryLinkCheck={true}
+						query={{ ...query, utm_medium: "sidebar-quiz" }}
 						currentUrlPath={currentUrlPath}
 					/>
 					<LazyLoad once={true}>
@@ -70,8 +70,8 @@ const Quiz = ({
 						type="slideshow"
 						showAd={true}
 						adCode={ETORO_COPY_TRADER}
-						queryLinkCheck={queryLinkCheck}
-						query={query}
+						queryLinkCheck={true}
+						query={{ ...query, utm_medium: "sidebarsmall-quiz" }}
 						currentUrlPath={currentUrlPath}
 					/>
 				</aside>

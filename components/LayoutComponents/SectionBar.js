@@ -1,12 +1,20 @@
 import PropTypes from "prop-types";
 import styles from "./styles/sectionBarStyles.module.sass";
-const SectionBar = ({ title, titleColor, titleSize }) => {
+const SectionBar = ({ title, titleColor, titleSize, custom }) => {
 	return (
 		<div>
-			<div className={styles.featuredContent}>
-				<h1 className={`${styles.sectionTitle} section-title`}>
+			<div
+				className={
+					custom ? styles.customFeaturedContent : styles.featuredContent
+				}
+			>
+				<div
+					className={`${
+						custom ? styles.customSectionTitle : styles.sectionTitle
+					} section-title`}
+				>
 					<span>{title}</span>
-				</h1>
+				</div>
 			</div>
 
 			<style jsx>
@@ -22,6 +30,9 @@ const SectionBar = ({ title, titleColor, titleSize }) => {
 };
 export default SectionBar;
 
+SectionBar.defaultProps = {
+	custom: false,
+};
 SectionBar.propTypes = {
 	title: PropTypes.String,
 	titleColor: PropTypes.String,

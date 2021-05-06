@@ -2,10 +2,17 @@
 
 .featuredContent
     width: 100%
-    margin: 0 auto
+    margin: 1rem auto
     max-width: $contentMaxWidth
+    // font-family: $font
 
-.sectionTitle
+.customFeaturedContent
+    width: 100%
+    margin: 1rem auto
+    max-width: $contentMaxWidth
+    font-family: $font
+
+.sectionTitle,.customSectionTitle
     text-transform: uppercase
     font-style: italic
     letter-spacing: 1px
@@ -27,14 +34,14 @@
         display: inline-block
 
 @media only screen and (max-width: 1000px) 
-    .sectionTitle
+    .sectionTitle,.customSectionTitle
         margin: 1rem 0rem
 
-    .featuredContent
+    .featuredContent,.customFeaturedContent
         width: 97%
 
 @media only screen and (max-width: 620px) 
-    .sectionTitle
+    .sectionTitle,.customSectionTitle
         margin: 1rem 0rem 0.5rem 0rem
         font-size: 1.25rem
         letter-spacing: 1px
@@ -45,9 +52,12 @@
         &:after
             height: 2px
 
-    .featuredContent
+    .featuredContent,.customFeaturedContent
         width: 97%
 
-@media only screen and (max-width: 450px) 
+@media only screen and (max-width: 450px)
+    .featuredContent
+        margin: 0
+
     .sectionTitle
         display: none

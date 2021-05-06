@@ -22,7 +22,7 @@ const BookEnds = ({
 			<div>
 				{position === "opening" && (
 					<>
-						<h1 className={styles.sectionHeader}>{title}</h1>
+						<h2 className={styles.sectionHeader}>{title}</h2>
 						<div className={styles.sectionParagraph}>
 							<Reader value={details[0].children} />
 						</div>
@@ -51,7 +51,7 @@ const BookEnds = ({
 			<div>
 				{position === "closing" && (
 					<>
-						<h1 className={styles.sectionHeader}> {title}</h1>
+						<h2 className={styles.sectionHeader}> {title}</h2>
 						<div className={styles.sectionParagraph}>
 							<Reader value={details[0].children} />
 						</div>

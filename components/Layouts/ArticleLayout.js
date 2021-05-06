@@ -22,6 +22,9 @@ const Article = ({ id, individual, quiz, slide, url }) => {
 	const cpcAd = individual.linkedCpc ? individual.linkedCpc : null;
 	const { query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
+	const headlineData = individual.linkedArticle
+		? [individual.linkedArticle, ...slide.items]
+		: slide.items;
 	return (
 		<Layout>
 			<main className={styles.articleContainer}>
@@ -41,12 +44,12 @@ const Article = ({ id, individual, quiz, slide, url }) => {
 						<SectionBar title="Popular" titleColor="#111" titleSize="1rem" />
 					</div>
 					<SideBarContent
-						data={slide.items}
+						data={headlineData}
 						cpcAd={cpcAd}
 						type="slideshow"
 						showAd={true}
-						queryLinkCheck={queryLinkCheck}
-						query={query}
+						queryLinkCheck={true}
+						query={{ ...query, utm_medium: "sidebar-article" }}
 						currentUrlPath={currentUrlPath}
 					/>
 					<LazyLoad once={true}>
@@ -61,9 +64,12 @@ const Article = ({ id, individual, quiz, slide, url }) => {
 						cpcAd={cpcAd}
 						showAd={true}
 						adCode={ETORO_COPY_TRADER}
-						queryLinkCheck={queryLinkCheck}
-						query={query}
+						queryLinkCheck={true}
+						query={{ ...query, utm_medium: "sidebarsmall-article" }}
 						currentUrlPath={currentUrlPath}
+						linkedArticle={
+							individual.linkedArticle ? individual.linkedArticle : null
+						}
 					/>
 				</aside>
 			</main>

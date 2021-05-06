@@ -27,7 +27,7 @@ const BookEnds = ({
 					currentUrlPath={currentUrlPath}
 				/>
 			</div>
-			<h1 className={styles.sectionHeader}>{title}</h1>
+			<h2 className={styles.sectionHeader}>{title}</h2>
 			<div className={styles.deskSectionParagraph}>
 				<Reader value={details[0].children} />
 			</div>
