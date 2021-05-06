@@ -13,7 +13,6 @@ import styles from "./styles/contentLayout.module.sass";
 import { ETORO_COPY_TRADER } from "../ads/code/eToro";
 import Context from "@utils/Context";
 import { objectCheck } from "@utils/queryHandler";
-
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
 });
