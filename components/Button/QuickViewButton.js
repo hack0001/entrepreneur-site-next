@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import styles from "./styles/quickViewButtonStyles.module.sass";
-import CloudImage from "@Image/cloudImage";
 import StaticImage from "@Image/staticImage";
 import { getImagePath } from "../helper/imageUrlHelper";
 import CustomLink from "@components/Link/customLink";
-
+import Embed from "../Embed/Embed";
 const QuickViewButton = ({
 	label,
 	optionalTitle,
@@ -32,13 +31,16 @@ const QuickViewButton = ({
 					<a className={styles.quickViewLink}>
 						<div className={styles.imgWrapper}>
 							<div className={styles.quickViewImage}>
-								<CloudImage
+								<Embed
+									image={imgSrc}
 									imagePath={imagePath ? imagePath : getImagePath(imgSrc)}
 									imageAlt={imageAlt}
 									imageCrop={imageCrop}
 									imageCropInfo={imageCropInfo}
-									unsized={true}
+									styles={{ width: "100%", height: "100%" }}
+									noMaxHeight={true}
 									wrapperClass={"quickViewWrapper"}
+									priority={false}
 								/>
 							</div>
 						</div>

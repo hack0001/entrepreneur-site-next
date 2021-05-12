@@ -26,6 +26,7 @@ import prodRequest from "../../apiRequest/prodRequest";
 import { UPDATE_SLIDESHOW } from "../../../graphql/indivSlideShow";
 import { objectCheck } from "@utils/queryHandler";
 import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
+import percentileMarkers from "@utils/percentageMarkers";
 
 const SlideDetails = ({
 	content,
@@ -41,6 +42,8 @@ const SlideDetails = ({
 	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
 	const [cpcMarker, setCpcMarker] = useState(false);
+	const [percentage, setPercentage] = useState(percentileMarkers);
+
 	const filterArray = sessionSlideIds.concat({ id });
 	const nextContent = filterUnique(nextSlideShow.items, filterArray);
 
@@ -74,6 +77,7 @@ const SlideDetails = ({
 
 	useEffect(() => {
 		const updatedCount = viewCount ? Number(viewCount) + 1 : 1;
+		setPercentage(percentileMarkers);
 
 		try {
 			const mutationData = {
@@ -91,6 +95,32 @@ const SlideDetails = ({
 			console.log("Error with request", err);
 		}
 	}, [id]);
+
+	useEffect(() => {
+		const currentPercentage = Math.round(
+			(positionNumber / content.numSlides) * 100,
+		);
+
+		const updatePercentageCheck = percentage.map(marker => {
+			if (currentPercentage >= marker.percentile && !marker.percentileCheck) {
+				// Track the Percentage Viewed in Tag Manager
+				if (window) {
+					window.dataLayer.push({
+						event: "slideshow_percentage",
+						percentage: currentPercentage,
+						percentile: marker.percentile,
+					});
+				}
+
+				return {
+					percentile: marker.percentile,
+					percentileCheck: true,
+				};
+			}
+			return marker;
+		});
+		setPercentage(updatePercentageCheck);
+	}, [positionNumber]);
 
 	if (
 		!slides &&

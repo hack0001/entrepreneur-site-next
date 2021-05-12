@@ -28,6 +28,7 @@ import { filterUnique } from "@utils/handler";
 import { objectCheck } from "@utils/queryHandler";
 import Disclaimer from "../../ads/disclaimer";
 import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
+import percentileMarkers from "@utils/percentageMarkers";
 
 const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 	const details = JSON.parse(content.overview);
@@ -35,6 +36,8 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 	const { sessionQuizIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
 	const [cpcMarker, setCpcMarker] = useState(false);
+	const [percentage, setPercentage] = useState(percentileMarkers);
+
 	const filterArray = sessionQuizIds.concat({ id });
 	const {
 		affiliateDisclaimer,
@@ -63,6 +66,8 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 	useEffect(() => {
 		setCurrentScore(0);
 		setQuestionsAnswered(0);
+		setPercentage(percentileMarkers);
+
 		const updatedCount = viewCount ? Number(viewCount) + 1 : 1;
 
 		try {
@@ -86,6 +91,37 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 		const cpcMarker = Cookie.get("CPC") ? JSON.parse(Cookie.get("CPC")) : false;
 		setCpcMarker(cpcMarker);
 	}, []);
+
+	useEffect(() => {
+		const currentPercentage = Math.round(
+			(positionNumber / content.numQuestions) * 100,
+		);
+		const currentScorePercentage = Math.round(
+			(currentScore / positionNumber) * 100,
+		);
+
+		const updatePercentageCheck = percentage.map(marker => {
+			if (currentPercentage >= marker.percentile && !marker.percentileCheck) {
+				//Track the Percentage Viewed in Tag Manager
+				if (window) {
+					window.dataLayer.push({
+						event: "quiz_percentage",
+						percentage: currentPercentage,
+						percentile: marker.percentile,
+						currentScore: currentScore,
+						currentScorePercentage: currentScorePercentage,
+					});
+				}
+
+				return {
+					percentile: marker.percentile,
+					percentileCheck: true,
+				};
+			}
+			return marker;
+		});
+		setPercentage(updatePercentageCheck);
+	}, [positionNumber]);
 
 	if (
 		positionNumber > content.numQuestions &&

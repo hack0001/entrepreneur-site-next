@@ -15,6 +15,7 @@ const CloudImageComponent = ({
 	priority,
 }) => {
 	const cloudfrontUrl = newImageUrl(imagePath);
+
 	let cropParams = null;
 	if (imageCrop && imageCropInfo) {
 		const parsedInfo =
