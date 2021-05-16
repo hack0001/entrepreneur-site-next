@@ -22,7 +22,7 @@ const Article = ({ id, individual, quiz, slide, url }) => {
 	const { query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
 	const headlineData = individual.linkedArticle
-		? [individual.linkedArticle, ...slide.items]
+		? [{ ...individual.linkedArticle, type: "article" }, ...slide.items]
 		: slide.items;
 	return (
 		<Layout>

@@ -30,7 +30,7 @@ const Quiz = ({
 	const { query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
 	const headlineData = individual.linkedArticle
-		? [individual.linkedArticle, ...headline.items]
+		? [{ ...individual.linkedArticle, type: "article" }, ...headline.items]
 		: headline.items;
 	return (
 		<Layout>

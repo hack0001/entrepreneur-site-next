@@ -42,7 +42,7 @@ const SideBarContent = ({
 					category,
 					refPath,
 					contentLink,
-				} = sideHelper(article, type);
+				} = sideHelper(article, article.type ? article.type : type);
 
 				return (
 					<Fragment key={index}>
