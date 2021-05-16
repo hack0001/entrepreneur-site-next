@@ -108,6 +108,7 @@ const QuickSlides = ({
 						/>
 					)}
 				</div>
+
 				<div>
 					{cpcMarker && (
 						<QuickViewButton
@@ -162,6 +163,7 @@ const QuickSlides = ({
 					/>
 				)}
 			</div>
+
 			{cpcMarker && (
 				<QuickViewButton
 					label="Next"

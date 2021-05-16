@@ -353,6 +353,86 @@ const SlideDetails = ({
 					)}
 				</>
 			)}
+			{cpcScrollMarker && !cpcMarker && (
+				<>
+					<Headline
+						data={details}
+						id={id}
+						position={position}
+						query={query}
+						queryLinkCheck={queryLinkCheck}
+						affiliateDisclaimer={affiliateDisclaimer}
+						lastUpdated={lastUpdated}
+						pinterestLink={pinterestLink}
+						authorName={authorName}
+					/>
+
+					{/* Take position for first page then start manipulating
+					the components own state thereafter for the position.
+					Use router.push(<next href>,undefined,{shallow:true}) to 
+					update the URL without reloading and fetching new data.
+					Once update the url update the state and add the new data
+					to map more 
+					Use Quickslide templates 
+					https://nextjs.org/docs/api-reference/next/router */}
+
+					<DynamicScrollContent currentPosition={position} />
+					<BookEnds
+						position={"opening"}
+						showHeadlineImage={showOpeningSlide}
+						image={bookEndOpening.openingImage}
+						imageAlt={bookEndOpening.openingImageAlt}
+						imageAltAttribution={bookEndOpening.openingImageAttribution}
+						imageAltAttributionLink={bookEndOpening.openingImageAttributionLink}
+						imagePath={bookEndOpening.imagePath}
+						imageCrop={bookEndOpening.imageCrop}
+						imageCropInfo={bookEndOpening.imageCropInfo}
+						title={bookEndOpening.opening}
+						details={
+							bookEndOpening.openingSlideDetails
+								? bookEndOpening.openingSlideDetails
+								: undefined
+						}
+						embed={bookEndOpening["openingImage-embed"]}
+						priority={true}
+					/>
+					<div>
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="8433059648"
+							currentUrlPath={currentUrlPath}
+						/>
+					</div>
+
+					{/* //use QuickSlides Template */}
+					<BookEnds
+						position={"closing"}
+						image={bookEndClosing.closingImage}
+						showHeadlineImage={true}
+						imageAlt={bookEndClosing.closingImageAlt}
+						imageAltAttribution={bookEndClosing.closingImageAttribution}
+						imageAltAttributionLink={bookEndClosing.closingImageAttributionLink}
+						imagePath={bookEndClosing.imagePath}
+						imageCrop={bookEndClosing.imageCrop}
+						imageCropInfo={bookEndClosing.imageCropInfo}
+						title={bookEndClosing.closing}
+						details={
+							bookEndClosing.closingSlideDetails
+								? bookEndClosing.closingSlideDetails
+								: undefined
+						}
+						embed={bookEndClosing["closingImage-embed"]}
+						priority={false}
+					/>
+					<div>
+						<Adsense
+							client="ca-pub-2068760522034474"
+							slot="3467673426"
+							currentUrlPath={currentUrlPath}
+						/>
+					</div>
+				</>
+			)}
 			<LazyLoad once={true}>
 				<PinterestEmbed
 					pinterestEmbedCode={pinterestEmbedCode}
