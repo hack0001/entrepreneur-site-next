@@ -130,6 +130,8 @@ const SignUpModal = () => {
 		if (window) {
 			window.dataLayer.push({
 				event: "track_email_signup",
+				email: formData.email,
+				signupType: "modal",
 			});
 		}
 
