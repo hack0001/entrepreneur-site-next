@@ -18,6 +18,8 @@ const QuickViewButton = ({
 	queryLinkCheck,
 	query,
 	currentScore,
+	imageEmbed,
+	cpcMarker,
 }) => {
 	return (
 		<div className={styles.linkSection}>
@@ -40,7 +42,10 @@ const QuickViewButton = ({
 									styles={{ width: "100%", height: "100%" }}
 									noMaxHeight={true}
 									wrapperClass={"quickViewWrapper"}
+									imageEmbed={imageEmbed}
 									priority={false}
+									currentPath={href}
+									cpcMarker={cpcMarker}
 								/>
 							</div>
 						</div>

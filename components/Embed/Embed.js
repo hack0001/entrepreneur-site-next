@@ -20,10 +20,13 @@ const EmbedUrl = ({
 	noMaxHeight,
 	wrapperClass,
 	priority,
+	imageEmbed,
+	currentPath,
+	cpcMarker,
 }) => {
 	return (
 		<>
-			{!embed && (
+			{!imageEmbed && !embed && (
 				<ImageLoader
 					src={image}
 					alt={imageAlt ? imageAlt : imageAltAttribution}
@@ -38,10 +41,12 @@ const EmbedUrl = ({
 					priority={priority}
 				/>
 			)}
-			{embed && (
+			{(imageEmbed || embed) && (
 				<Embedo
 					source={image}
 					height="550px"
+					path={currentPath}
+					cpcMarker={cpcMarker ? cpcMarker : false}
 					imageAltAttribution={imageAltAttribution}
 					imageAltAttributionLink={imageAltAttributionLink}
 				/>

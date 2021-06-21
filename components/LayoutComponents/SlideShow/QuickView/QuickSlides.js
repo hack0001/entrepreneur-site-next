@@ -38,7 +38,7 @@ const QuickSlides = ({
 		slideAffiliateLink,
 		affiliateLinkCode,
 	} = slideDetails;
-
+	const slideImageEmbed = slideDetails[`slideImage-embed`];
 	const showNumber = countdown ? total - slidePosition + 1 : slidePosition;
 	const [loading, setLoading] = useState(false);
 
@@ -135,8 +135,13 @@ const QuickSlides = ({
 									? nextSlideData[0].slideImageCropInfo
 									: slideImageCropInfo
 							}
+							imageEmbed={
+								nextSlideData[0] ? nextSlideData[0]["slideImage-embed"] : false
+							}
+							cpcMarker={cpcMarker}
 							queryLinkCheck={queryLinkCheck}
 							query={query}
+							imageEmbed={slideImageEmbed}
 						/>
 					)}
 				</div>
@@ -182,6 +187,10 @@ const QuickSlides = ({
 							? nextSlideData[0].slideImageCropInfo
 							: slideImageCropInfo
 					}
+					imageEmbed={
+						nextSlideData[0] ? nextSlideData[0]["slideImage-embed"] : false
+					}
+					cpcMarker={cpcMarker}
 					queryLinkCheck={queryLinkCheck}
 					query={query}
 				/>

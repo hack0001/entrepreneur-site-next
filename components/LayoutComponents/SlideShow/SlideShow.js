@@ -202,6 +202,8 @@ const SlideDetails = ({
 										imageAlt={slides["slides"][0].slideImageAlt}
 										imageCrop={slides["slides"][0].slideImageCrop}
 										imageCropInfo={slides["slides"][0].slideImageCropInfo}
+										imageEmbed={slides["slides"][0][`slideImage-embed`]}
+										cpcMarker={cpcMarker}
 										queryLinkCheck={queryLinkCheck}
 										query={query}
 									/>
@@ -217,6 +219,8 @@ const SlideDetails = ({
 										imageAlt={nextContent[0].headlineImageAlt}
 										imageCrop={nextContent[0].headlineImageCrop}
 										imageCropInfo={nextContent[0].headlineImageCropInfo}
+										imageEmbed={nextContent[0][`headlineImage-embed`]}
+										cpcMarker={cpcMarker}
 										queryLinkCheck={true}
 										query={{ ...query, utm_medium: "quickview_bottom_next" }}
 									/>
@@ -347,6 +351,8 @@ const SlideDetails = ({
 							imageAlt={nextContent[0].headlineImageAlt}
 							imageCrop={nextContent[0].headlineImageCrop}
 							imageCropInfo={nextContent[0].headlineImageCropInfo}
+							imageEmbed={nextContent[0]["headlineImage-embed"]}
+							cpcMarker={cpcMarker}
 							queryLinkCheck={true}
 							query={{ ...query, utm_medium: "slideshow_bottom_next" }}
 						/>
