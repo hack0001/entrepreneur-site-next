@@ -45,6 +45,7 @@ const ArticleHead = ({
 		tags,
 		kicker,
 	} = details[0];
+
 	const canonical = `${process.env.SITE_ADDRESS}/${category}/${urlDescription}/article/${id}`;
 	return (
 		<div className={styles.sectionPadding}>
@@ -146,6 +147,7 @@ const ArticleHead = ({
 				brief={kicker}
 				id={id}
 				cpcAd={cpcAd}
+				category={category}
 			/>
 		</div>
 	);
