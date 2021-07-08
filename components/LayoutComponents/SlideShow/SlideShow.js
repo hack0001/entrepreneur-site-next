@@ -109,6 +109,8 @@ const SlideDetails = ({
 						event: "slideshow_percentage",
 						percentage: currentPercentage,
 						percentile: marker.percentile,
+						percentageCheck: marker.percentileCheck,
+						category,
 					});
 				}
 

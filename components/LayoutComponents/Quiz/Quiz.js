@@ -108,6 +108,8 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						event: "quiz_percentage",
 						percentage: currentPercentage,
 						percentile: marker.percentile,
+						percentageCheck: marker.percentileCheck,
+						category,
 						currentScore: currentScore,
 						currentScorePercentage: currentScorePercentage,
 					});
