@@ -21,7 +21,9 @@ const SideBarContent = ({
 	const slicedData = limit > 0 ? data.slice(0, limit) : data;
 	return (
 		<>
-			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
+			{cpcAd && (
+				<AdWrapper adCode={cpcAd.displayAd} callToActionMarker={false} />
+			)}
 			{showAd && !cpcAd && (
 				<div>
 					<Adsense
@@ -72,7 +74,9 @@ const SideBarContent = ({
 					</Fragment>
 				);
 			})}
-			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
+			{cpcAd && (
+				<AdWrapper adCode={cpcAd.displayAd} callToActionMarker={false} />
+			)}
 			{showAd && !cpcAd && (
 				<div>
 					<Adsense

@@ -37,6 +37,8 @@ const Slides = ({
 			bottomSlideDetails,
 			slideAffiliateLink,
 			affiliateLinkCode,
+			slideCallToAction,
+			callToAction,
 		} = slideData;
 		const arrayNumber = Number.isInteger(index / 2) ? index / 2 : null;
 		const adData =
@@ -96,7 +98,11 @@ const Slides = ({
 					)}
 					<div>
 						{slideAffiliateLink && affiliateLinkCode && (
-							<AdWrapper adCode={affiliateLinkCode} />
+							<AdWrapper
+								adCode={affiliateLinkCode}
+								callToActionMarker={slideCallToAction}
+								callToAction={callToAction}
+							/>
 						)}
 					</div>
 				</div>

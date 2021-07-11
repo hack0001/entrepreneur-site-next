@@ -34,6 +34,8 @@ const ArticleBody = ({
 	id,
 	nextSlideShow,
 	cpcAd,
+	affiliateCallToAction,
+	callToActionMarker,
 }) => {
 	const value = JSON.parse(content.content);
 	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
@@ -92,7 +94,13 @@ const ArticleBody = ({
 					pinterestPinLink={pinterestPinLink}
 				/>
 			</LazyLoad>
-			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} />}
+			{cpcAd && (
+				<AdWrapper
+					adCode={cpcAd.displayAd}
+					callToAction={affiliateCallToAction}
+					callToActionMarker={callToActionMarker}
+				/>
+			)}
 			{linkedArticle && (
 				<div className={styles.nextButtonWrapper}>
 					<QuickViewButton

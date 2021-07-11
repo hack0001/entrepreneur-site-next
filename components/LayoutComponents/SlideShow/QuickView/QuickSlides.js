@@ -37,6 +37,8 @@ const QuickSlides = ({
 		bottomSlideDetails,
 		slideAffiliateLink,
 		affiliateLinkCode,
+		slideCallToAction,
+		callToAction,
 	} = slideDetails;
 	const slideImageEmbed = slideDetails[`slideImage-embed`];
 	const showNumber = countdown ? total - slidePosition + 1 : slidePosition;
@@ -93,7 +95,11 @@ const QuickSlides = ({
 					<Reader value={slideDetails.slideDetails[0].children} />
 					<div>
 						{slideAffiliateLink && affiliateLinkCode && (
-							<AdWrapper adCode={affiliateLinkCode} />
+							<AdWrapper
+								adCode={affiliateLinkCode}
+								callToActionMarker={slideCallToAction}
+								callToAction={callToAction}
+							/>
 						)}
 					</div>
 				</div>
@@ -152,7 +158,11 @@ const QuickSlides = ({
 				)}
 				<div>
 					{slideAffiliateLink && affiliateLinkCode && (
-						<AdWrapper adCode={affiliateLinkCode} />
+						<AdWrapper
+							adCode={affiliateLinkCode}
+							callToActionMarker={slideCallToAction}
+							callToAction={callToAction}
+						/>
 					)}
 				</div>
 			</div>

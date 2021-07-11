@@ -62,7 +62,13 @@ const SideBarSmallContent = ({
 					currentUrlPath={currentUrlPath}
 				/>
 			)}
-			{cpcAd && <AdWrapper adCode={cpcAd.displayAd} sticky={true} />}
+			{cpcAd && (
+				<AdWrapper
+					adCode={cpcAd.displayAd}
+					sticky={true}
+					callToActionMarker={false}
+				/>
+			)}
 			{linkedArticle && (
 				<div style={{ position: "sticky", top: 70 }}>
 					<SideBarComponent

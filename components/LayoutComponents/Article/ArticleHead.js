@@ -28,24 +28,25 @@ const ArticleHead = ({
 	const { pinterestLink, user } = overview;
 	const authorName = user.alias ? user.alias : "";
 	const {
+		affiliateCallToAction,
 		articleHeadline,
+		bulletHeadlines,
+		bulletHeadlinesDetails,
 		category,
+		displayDate,
 		headline,
 		headlineImage,
 		headlineImageAlt,
 		headlineImagePath,
 		headlineImageCrop,
 		headlineImageCropInfo,
-		bulletHeadlines,
-		bulletHeadlinesDetails,
-		urlDescription,
+		kicker,
 		showDate,
-		displayDate,
 		showAuthor,
 		tags,
-		kicker,
+		urlDescription,
 	} = details[0];
-
+	const callToActionMarker = affiliateCallToAction ? true : false;
 	const canonical = `${process.env.SITE_ADDRESS}/${category}/${urlDescription}/article/${id}`;
 	return (
 		<div className={styles.sectionPadding}>
@@ -148,6 +149,8 @@ const ArticleHead = ({
 				id={id}
 				cpcAd={cpcAd}
 				category={category}
+				affiliateCallToAction={affiliateCallToAction}
+				callToActionMarker={callToActionMarker}
 			/>
 		</div>
 	);

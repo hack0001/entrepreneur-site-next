@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import dynamic from "next/dynamic";
-import Quote from "../Editor/renderElement/quote/quote";
-import EmbedImage from "../Editor/renderElement/embedImage/embedImage";
+import Quote from "./renderElement/quote/quote";
+import EmbedImage from "./renderElement/embedImage/embedImage";
 import SingleLoader from "../../Loading/SingleLoader";
 import LazyLoad from "react-lazyload";
-import SiteAd from "../Editor/renderElement/ads/siteAd";
+import SiteAd from "./renderElement/ads/siteAd";
 import styles from "./renderElement/styles/renderElementStyles.module.sass";
 import Adsense from "../../ads/code/adsense/adsense";
 import Context from "@utils/Context";
@@ -14,7 +14,7 @@ import SectionBar from "../SectionBar";
 const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
 	ssr: false,
 });
-const Embed = dynamic(() => import("../Editor/renderElement/embed/embed"), {
+const Embed = dynamic(() => import("./renderElement/embed/embed"), {
 	ssr: false,
 	loading: () => <SingleLoader />,
 });
@@ -52,10 +52,15 @@ const Reader = ({ value, cpcAd, linkedArticle, query }) => {
 		if (node.type) {
 			switch (node.type) {
 				case "affiliate-code":
-					const { affiliateCode } = node.data;
+					const { affiliateCode, callToAction } = node.data;
+					const callToActionMarker = callToAction ? true : false;
 					return (
 						<LazyLoad once={true}>
-							<AdWrapper adCode={affiliateCode} />
+							<AdWrapper
+								adCode={affiliateCode}
+								callToAction={callToAction}
+								callToActionMarker={callToActionMarker}
+							/>
 						</LazyLoad>
 					);
 				case "link":

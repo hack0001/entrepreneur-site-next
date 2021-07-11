@@ -1,3 +1,5 @@
+@import "../../../styles/_baseTheme"
+
 .advert
     display: flex
     flex-direction: row
@@ -28,9 +30,30 @@
     padding: 0px
     margin-botttom: 1rem
 
+.arrowDown
+    width: 0
+    height: 0
+    border-left: 20px solid transparent
+    border-right: 20px solid transparent
+    border-top: 20px solid $primary
+    margin: 0 auto
+    margin-bottom: 1rem
+
 .breaker
     width: 100%
     border-top: 1px solid #d9d9d9
+
+.callToAction
+    font-family: $secondaryFont
+    border-top: 3px solid $primary
+    text-transform: capitalize
+    font-size: 2rem
+    padding: 1rem 0rem
+    line-height: 2.5rem
+    text-align: center
+    display: flex
+    flex-direction: column
+    margin-bottom: 0.5rem
 
 .default
     display: block
@@ -64,6 +87,11 @@
 
     .breaker
         width: 95%
+
+    .callToAction
+        border-top: 2px solid $primary
+        line-height: 2.5rem
+        margin-bottom: 0rem
 
     .multiAdWrap
         flex-direction: column
