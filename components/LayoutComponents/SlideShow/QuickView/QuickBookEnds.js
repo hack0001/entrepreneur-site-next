@@ -13,6 +13,7 @@ const BookEnds = ({
 	details,
 	embed,
 	currentUrlPath,
+	position,
 }) => {
 	return (
 		<div className={styles.bookEndWrapper}>
@@ -28,23 +29,41 @@ const BookEnds = ({
 				/>
 			</div>
 			<h2 className={styles.sectionHeader}>{title}</h2>
+			{position === "opening" && (
+				<div className={styles.imageWrap}>
+					<Embed
+						embed={embed}
+						image={image}
+						imageAlt={imageAlt}
+						imageAltAttribution={imageAltAttribution}
+						imageAltAttributionLink={imageAltAttributionLink}
+						imagePath={imagePath}
+						styles={{ width: "100%", height: "100%" }}
+						noMaxHeight={true}
+						wrapperClass={"contentWrapper"}
+						priority={true}
+					/>
+				</div>
+			)}
 			<div className={styles.deskSectionParagraph}>
 				<Reader value={details[0].children} />
 			</div>
-			<div className={styles.imageWrap}>
-				<Embed
-					embed={embed}
-					image={image}
-					imageAlt={imageAlt}
-					imageAltAttribution={imageAltAttribution}
-					imageAltAttributionLink={imageAltAttributionLink}
-					imagePath={imagePath}
-					styles={{ width: "100%", height: "100%" }}
-					noMaxHeight={true}
-					wrapperClass={"contentWrapper"}
-					priority={true}
-				/>
-			</div>
+			{position === "closing" && (
+				<div className={styles.imageWrap}>
+					<Embed
+						embed={embed}
+						image={image}
+						imageAlt={imageAlt}
+						imageAltAttribution={imageAltAttribution}
+						imageAltAttributionLink={imageAltAttributionLink}
+						imagePath={imagePath}
+						styles={{ width: "100%", height: "100%" }}
+						noMaxHeight={true}
+						wrapperClass={"contentWrapper"}
+						priority={true}
+					/>
+				</div>
+			)}
 			<div className={styles.mobSectionParagraph}>
 				<Reader value={details[0].children} />
 			</div>

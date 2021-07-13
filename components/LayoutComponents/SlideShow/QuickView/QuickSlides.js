@@ -90,6 +90,7 @@ const QuickSlides = ({
 					priority={true}
 				/>
 			</div>
+
 			<div className={styles.mobileSection}>
 				<div className={styles.mobSectionParagraph}>
 					<Reader value={slideDetails.slideDetails[0].children} />
@@ -147,7 +148,6 @@ const QuickSlides = ({
 							cpcMarker={cpcMarker}
 							queryLinkCheck={queryLinkCheck}
 							query={query}
-							imageEmbed={slideImageEmbed}
 						/>
 					)}
 				</div>
