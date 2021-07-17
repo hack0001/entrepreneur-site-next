@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Menu from "../Header/Menu/Menu";
@@ -6,7 +6,6 @@ import CookieBanner from "../cookies/cookieBanner";
 import DefaultHeader from "../Header/Head";
 import PropTypes from "prop-types";
 import styles from "./styles/layoutStyles.module.sass";
-import LazyLoad from "react-lazyload";
 import baseTheme from "../../theme/baseTheme.json";
 
 const Layout = props => {
@@ -27,9 +26,7 @@ const Layout = props => {
 			{menuOpen && <Menu onClick={e => clickMenu()} />}
 			<div className={styles.pageLayout}>{children}</div>
 			<CookieBanner />
-			<LazyLoad once={true}>
-				<Footer />
-			</LazyLoad>
+			<Footer />
 			<style jsx>{`
 				:global(body) {
 					margin: 0px;
