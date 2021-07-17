@@ -8,18 +8,9 @@ const Adsense = ({
 	format,
 	responsive,
 	adStyle,
-	currentUrlPath,
 	adWrapperStyle,
 	adWrap,
 }) => {
-	useEffect(() => {
-		try {
-			(window.adsbygoogle = window.adsbygoogle || []).push({});
-		} catch (err) {
-			console.log("Adsense Err", err);
-		}
-	}, [currentUrlPath]);
-
 	return (
 		<div
 			style={{
@@ -30,7 +21,7 @@ const Adsense = ({
 			<div className={styles[adWrap]}>
 				<div className={styles[adWrapperStyle]}>
 					<div className={styles.advert}>ADVERTISEMENT</div>
-					<div key={currentUrlPath}>
+					<div>
 						<ins
 							className={`adsbygoogle ${styles[adStyle]}`}
 							data-ad-client={client}
