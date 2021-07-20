@@ -58,9 +58,9 @@ const MainHead = () => {
 				content={process.env.GOOGLE_VERIFICATION_ID}
 			/>
 			<script
-				data-ad-client="ca-pub-2068760522034474"
 				async
-				src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+				src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068760522034474"
+				crossorigin="anonymous"
 			></script>
 			<link rel="shortcut icon" href="/static/favicon.ico" />
 			<link rel="icon" sizes="16x16 32x32 64x64" href="/static/favicon.ico" />
