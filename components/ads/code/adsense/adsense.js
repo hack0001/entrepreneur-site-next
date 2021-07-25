@@ -14,7 +14,9 @@ const Adsense = ({
 }) => {
 	useEffect(() => {
 		try {
-			(window.adsbygoogle = window.adsbygoogle || []).push({});
+			if (typeof window !== "undefined") {
+				(window.adsbygoogle = window.adsbygoogle || []).push({});
+			}
 		} catch (err) {
 			console.log("Adsense Err", err);
 		}
