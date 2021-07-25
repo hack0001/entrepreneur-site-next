@@ -145,6 +145,7 @@ const QuickSlides = ({
 							imageEmbed={
 								nextSlideData[0] ? nextSlideData[0]["slideImage-embed"] : false
 							}
+							optionalTitle={nextSlideData[0] ? nextSlideData[0].slide : slide}
 							cpcMarker={cpcMarker}
 							queryLinkCheck={queryLinkCheck}
 							query={query}
@@ -200,6 +201,7 @@ const QuickSlides = ({
 					imageEmbed={
 						nextSlideData[0] ? nextSlideData[0]["slideImage-embed"] : false
 					}
+					optionalTitle={nextSlideData[0] ? nextSlideData[0].slide : slide}
 					cpcMarker={cpcMarker}
 					queryLinkCheck={queryLinkCheck}
 					query={query}
