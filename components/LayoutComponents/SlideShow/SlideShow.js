@@ -38,7 +38,6 @@ const SlideDetails = ({
 }) => {
 	const details = JSON.parse(content.overview);
 	const slides = JSON.parse(content.slides);
-
 	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
 	const [cpcMarker, setCpcMarker] = useState(false);
@@ -67,6 +66,7 @@ const SlideDetails = ({
 		title,
 		slideUrl,
 		headlineImageAlt,
+		showNextTitle,
 	} = details[0];
 	const positionNumber = Number(position);
 
@@ -194,9 +194,13 @@ const SlideDetails = ({
 									embed={slides[position][0][`${position}Image-embed`]}
 									currentUrlPath={currentUrlPath}
 								/>
+
 								{position === "opening" && (
 									<QuickViewButton
 										label="Start"
+										optionalTitle={
+											showNextTitle ? slides["slides"][0].slide : ""
+										}
 										imgSrc={slides["slides"][0].slideImage}
 										imagePath={slides["slides"][0].slideImagePath}
 										href={`${nextHref}/1`}
@@ -249,6 +253,7 @@ const SlideDetails = ({
 								queryLinkCheck={queryLinkCheck}
 								query={query}
 								currentUrlPath={currentUrlPath}
+								showNextTitle={showNextTitle}
 							/>
 						)}
 						<div>
