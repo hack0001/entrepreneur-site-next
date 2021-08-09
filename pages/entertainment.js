@@ -3,14 +3,13 @@ import { useRouter } from "next/router";
 import HeadlineLayout from "../components/Layouts/HeadlineLayout";
 import MainHeadlineLoading from "../components/Loading/Layouts/MainHeadlineLoadingLayout";
 import prodRequest from "../components/apiRequest/prodRequest";
-import { businessHeadlineQuery } from "../data/queryData/querys";
+import { entertainmentHeadlineQuery } from "../data/queryData/querys";
 import Context from "@utils/Context";
 import { queryHandler, getParams } from "@utils/queryHandler";
 
-const Business = ({ headline, quiz, slide }) => {
+const Entertainment = ({ headline, quiz, slide }) => {
 	const router = useRouter();
 	const { handleState, query } = useContext(Context);
-
 	if (!headline || !quiz || !slide) return <MainHeadlineLoading />;
 
 	useEffect(() => {
@@ -29,16 +28,16 @@ const Business = ({ headline, quiz, slide }) => {
 			headline={headline.data.listProductionArticles}
 			quiz={quiz.data.listProductionQuizs}
 			slide={slide.data.listProductionSlideshows}
-			title="Business"
-			pageTitle="Business"
-			canonical="business"
+			title="Entertainment"
+			pageTitle="Entertainment"
+			canonical="entertainment"
 		/>
 	);
 };
 
 export async function getStaticProps() {
 	const [headline, quiz, slide] = await Promise.all(
-		businessHeadlineQuery.map(query =>
+		entertainmentHeadlineQuery.map(query =>
 			prodRequest({
 				query: query.query,
 				variables: query.variables,
@@ -56,4 +55,4 @@ export async function getStaticProps() {
 	};
 }
 
-export default Business;
+export default Entertainment;

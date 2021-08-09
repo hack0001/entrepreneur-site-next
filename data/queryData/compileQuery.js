@@ -1,5 +1,4 @@
 import { QUIZ, SLIDE, HEADLINES, LATEST } from "../../graphql/headline";
-import { ARTICLE } from "../../graphql/indivArticle";
 // Fetch data from external API
 
 export const HEADLINE_QUERY = {
@@ -68,6 +67,33 @@ export const QUOTE_QUERY = {
 	query: HEADLINES,
 	variables: {
 		filter: { category: "quotes" },
+		id: process.env.REACT_APP_SITE_ID,
+	},
+	operationName: "ListProductionArticles",
+};
+
+export const ENTERTAINMENT_QUERY = {
+	query: HEADLINES,
+	variables: {
+		filter: { category: "business" },
+		id: process.env.REACT_APP_SITE_ID,
+	},
+	operationName: "ListProductionArticles",
+};
+
+export const CASE_STUDY_QUERY = {
+	query: HEADLINES,
+	variables: {
+		filter: { category: "business" },
+		id: process.env.REACT_APP_SITE_ID,
+	},
+	operationName: "ListProductionArticles",
+};
+
+export const NET_WORTH_QUERY = {
+	query: HEADLINES,
+	variables: {
+		filter: { category: "net-worth" },
 		id: process.env.REACT_APP_SITE_ID,
 	},
 	operationName: "ListProductionArticles",

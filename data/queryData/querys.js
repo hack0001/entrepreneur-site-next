@@ -7,6 +7,9 @@ import {
 	BUSINESS_QUERY,
 	PEOPLE_QUERY,
 	QUOTE_QUERY,
+	ENTERTAINMENT_QUERY,
+	CASE_STUDY_QUERY,
+	NET_WORTH_QUERY,
 } from "./compileQuery";
 
 export const mainHeadlineQuery = [
@@ -24,6 +27,21 @@ export const motivationHeadlineQuery = [
 
 export const businessHeadlineQuery = [
 	BUSINESS_QUERY,
+	QUIZ_QUERY,
+	SLIDE_LONGFORM_QUERY,
+];
+export const entertainmentHeadlineQuery = [
+	ENTERTAINMENT_QUERY,
+	QUIZ_QUERY,
+	SLIDE_LONGFORM_QUERY,
+];
+export const caseStudyHeadlineQuery = [
+	CASE_STUDY_QUERY,
+	QUIZ_QUERY,
+	SLIDE_LONGFORM_QUERY,
+];
+export const networthHeadlineQuery = [
+	NET_WORTH_QUERY,
 	QUIZ_QUERY,
 	SLIDE_LONGFORM_QUERY,
 ];
