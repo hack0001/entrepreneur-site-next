@@ -26,7 +26,7 @@ const ArticleHead = ({
 }) => {
 	const details = JSON.parse(overview.overview);
 	const { pinterestLink, user } = overview;
-	const authorName = user.alias ? user.alias : "";
+	const authorName = user ? user.alias : "";
 	const {
 		affiliateCallToAction,
 		articleHeadline,
