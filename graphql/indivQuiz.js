@@ -60,3 +60,21 @@ export const UPDATE_QUIZ = /* GraphQL */ `
 		}
 	}
 `;
+
+export const UPDATE_QUIZ_VOTES = /* GraphQL */ `
+	mutation UpdateProductionQuizVotes($input: UpdateProductionQuizVotesInput!) {
+		updateProductionQuizVotes(input: $input) {
+			id
+			authorId
+			authorName
+			viewCount
+			development
+			production
+			questions
+			original
+			numQuestions
+			createdAt
+			updatedAt
+		}
+	}
+`;

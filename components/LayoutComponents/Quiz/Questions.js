@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import Embed from "../../Embed/Embed";
-import { UPDATE_QUIZ } from "../../../graphql/indivQuiz";
+import { UPDATE_QUIZ_VOTES } from "../../../graphql/indivQuiz";
 import QuizButton from "../../Button/QuizButton";
 import QuickViewButton from "../../Button/QuickViewButton";
 import LongAnswer from "./LongAnswer";
@@ -77,38 +77,18 @@ const Questions = ({
 		setShowAnswer(true);
 		setButtonDisabled(true);
 
-		//Add Votes down in Question Object
-		const questionsObject = {
-			...questions.questions,
-			[questionPosition - 1]: {
-				...questionDetails,
-				[answerType]: {
-					...questionDetails[answerType],
-					[answerDetail]: {
-						...answer,
-						votes: answer.votes ? Number(answer.votes) + 1 : 1,
-					},
-				},
-			},
-		};
-
-		const updateVotes = {
-			id: id,
-			questions: [
-				JSON.stringify({
-					...questions,
-					questions: Object.keys(questionsObject).map(
-						obj => questionsObject[obj],
-					),
-				}),
-			],
-		};
-
 		try {
 			const mutationData = {
-				query: UPDATE_QUIZ,
-				operationName: "UpdateProductionQuiz",
-				variables: { input: updateVotes },
+				query: UPDATE_QUIZ_VOTES,
+				operationName: "UpdateProductionQuizVotes",
+				variables: {
+					input: {
+						quizId: id,
+						questionPosition: questionPosition - 1,
+						answerType,
+						answerDetail,
+					},
+				},
 			};
 			prodRequest(mutationData);
 		} catch (err) {

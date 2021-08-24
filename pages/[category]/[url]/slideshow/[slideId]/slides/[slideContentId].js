@@ -22,6 +22,7 @@ const Slide = ({
 }) => {
 	const router = useRouter();
 	const { handleState, sessionSlideIds } = useContext(Context);
+
 	if (parseUrl(router.asPath)) {
 		Cookie.set("CPC", JSON.stringify(true), {
 			expires: 0.25,

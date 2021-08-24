@@ -58,11 +58,13 @@ const Questions = ({
 			if (questionId === "closing") {
 				Cookie.remove("temp-quiz-session");
 			} else if (questionId !== "opening") {
-				const pushTempUrl = constructQuizUrl(
-					`/${category}/${url}/quiz/${quizId}/questions/opening`,
-					queryParams,
-				);
-				router.push(pushTempUrl);
+				if (process.env.NODE_ENV !== "development") {
+					const pushTempUrl = constructQuizUrl(
+						`/${category}/${url}/quiz/${quizId}/questions/opening`,
+						queryParams,
+					);
+					router.push(pushTempUrl);
+				}
 			}
 		}
 	}, []);
