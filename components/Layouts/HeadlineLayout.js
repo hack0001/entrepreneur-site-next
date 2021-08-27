@@ -13,6 +13,7 @@ import LazyLoad from "react-lazyload";
 import styles from "./styles/headlineLayout.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
 import Context from "@utils/Context";
+import prodRequest from "@components/apiRequest/prodRequest";
 
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
@@ -33,6 +34,7 @@ const HeadlineLayout = ({
 	nextQuery,
 	queryFilter,
 	queryOpName,
+	objectMarker,
 }) => {
 	const { query, currentUrlPath } = useContext(Context);
 	const [token, setToken] = useState(latestNextToken ? latestNextToken : null);
@@ -40,7 +42,9 @@ const HeadlineLayout = ({
 		latestSortIndex ? latestSortIndex : null,
 	);
 	const [loadingMorePosts, setLoadingMorePosts] = useState(false);
-	const [latestContent, setLatestContent] = useState(headline ? headline : []);
+	const [latestContent, setLatestContent] = useState(
+		headline ? headline.items : [],
+	);
 
 	const loadMore = async () => {
 		setLoadingMorePosts(true);
@@ -60,11 +64,11 @@ const HeadlineLayout = ({
 		});
 
 		const addLatestContent = latestContent.concat(
-			loadMoreArticles[queryOpName].items,
+			loadMoreArticles[objectMarker].items,
 		);
 		setLatestContent(addLatestContent);
-		setToken(loadMoreArticles[queryOpName].nextToken);
-		setSortIndex(loadMoreArticles[queryOpName].sortIndex);
+		setToken(loadMoreArticles[objectMarker].nextToken);
+		setSortIndex(loadMoreArticles[objectMarker].sortIndex);
 		setLoadingMorePosts(false);
 	};
 
@@ -118,7 +122,7 @@ const HeadlineLayout = ({
 								</LazyLoad>
 							</div>
 							<ScrollingArticles
-								data={headline.items}
+								data={latestContent}
 								queryLinkCheck={true}
 								query={{ ...query, utm_medium: `${pageTitle}-scrolling` }}
 							/>

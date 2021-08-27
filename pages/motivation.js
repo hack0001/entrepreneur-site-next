@@ -38,6 +38,7 @@ const Motivation = ({ headline, quiz, slide }) => {
 			nextQuery={HEADLINES}
 			queryFilter={{ category: "motivation" }}
 			queryOpName="ListProductionArticles"
+			objectMarker="listProductionArticles"
 		/>
 	);
 };

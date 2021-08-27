@@ -38,6 +38,7 @@ const People = ({ headline, quiz, slide }) => {
 			nextQuery={HEADLINES}
 			queryFilter={{ category: "people" }}
 			queryOpName="ListProductionArticles"
+			objectMarker="listProductionArticles"
 		/>
 	);
 };
