@@ -86,7 +86,13 @@ const QuizButton = ({
 					<button
 						className={classCorrect}
 						onClick={() => {
-							handleClick(questionNumber, answer, answerDetails, correct);
+							handleClick(
+								questionNumber,
+								answer,
+								answerDetails,
+								correct,
+								totalVotes,
+							);
 						}}
 						disabled={buttonDisabled}
 					>

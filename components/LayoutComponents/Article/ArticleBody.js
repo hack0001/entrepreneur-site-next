@@ -17,8 +17,6 @@ import { filterUnique } from "@utils/handler";
 import QuickViewButton from "../../Button/QuickViewButton";
 import Cookie from "js-cookie";
 import dynamic from "next/dynamic";
-import prodRequest from "../../apiRequest/prodRequest";
-import { UPDATE_ARTICLE } from "../../../graphql/indivArticle";
 import { objectCheck } from "@utils/queryHandler";
 import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
 const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
@@ -53,26 +51,6 @@ const ArticleBody = ({
 	const nextSlideShowHref = nextContent[0]
 		? `/${nextContent[0].category}/${nextContent[0].urlDescription}/slideshow/${nextContent[0].id}/slides/opening`
 		: "";
-
-	useEffect(() => {
-		const updatedCount = viewCount ? Number(viewCount) + 1 : 1;
-
-		try {
-			const mutationData = {
-				query: UPDATE_ARTICLE,
-				operationName: "updateProductionArticle",
-				variables: {
-					input: {
-						id,
-						viewCount: JSON.stringify(updatedCount),
-					},
-				},
-			};
-			prodRequest(mutationData);
-		} catch (err) {
-			console.log("Error with request", err);
-		}
-	}, [id]);
 
 	const cookieSetup = () => {
 		Cookie.set("CPC", JSON.stringify(true), {

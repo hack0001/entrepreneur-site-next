@@ -22,8 +22,6 @@ import QuickHeadline from "./QuickView/QuickHeadline";
 import { filterUnique } from "@utils/handler";
 import Cookie from "js-cookie";
 import Adsense from "../../ads/code/adsense/adsense";
-import prodRequest from "../../apiRequest/prodRequest";
-import { UPDATE_SLIDESHOW } from "../../../graphql/indivSlideShow";
 import { objectCheck } from "@utils/queryHandler";
 import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
 import percentileMarkers from "@utils/percentageMarkers";
@@ -76,24 +74,7 @@ const SlideDetails = ({
 	}, []);
 
 	useEffect(() => {
-		const updatedCount = viewCount ? Number(viewCount) + 1 : 1;
 		setPercentage(percentileMarkers);
-
-		try {
-			const mutationData = {
-				query: UPDATE_SLIDESHOW,
-				operationName: "updateProductionSlideshow",
-				variables: {
-					input: {
-						id,
-						viewCount: JSON.stringify(updatedCount),
-					},
-				},
-			};
-			prodRequest(mutationData);
-		} catch (err) {
-			console.log("Error with request", err);
-		}
 	}, [id]);
 
 	useEffect(() => {

@@ -21,8 +21,6 @@ import styles from "./styles/quizStyles.module.sass";
 import Context from "@utils/Context";
 import LongQuestions from "./LongQuestions";
 import Cookie from "js-cookie";
-import prodRequest from "../../apiRequest/prodRequest";
-import { UPDATE_QUIZ } from "../../../graphql/indivQuiz";
 import Adsense from "../../ads/code/adsense/adsense";
 import { filterUnique } from "@utils/handler";
 import { objectCheck } from "@utils/queryHandler";
@@ -67,24 +65,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 		setCurrentScore(0);
 		setQuestionsAnswered(0);
 		setPercentage(percentileMarkers);
-
-		const updatedCount = viewCount ? Number(viewCount) + 1 : 1;
-
-		try {
-			const mutationData = {
-				query: UPDATE_QUIZ,
-				operationName: "UpdateProductionQuiz",
-				variables: {
-					input: {
-						id,
-						viewCount: JSON.stringify(updatedCount),
-					},
-				},
-			};
-			prodRequest(mutationData);
-		} catch (err) {
-			console.log("Error with request", err);
-		}
 	}, [id]);
 
 	useEffect(() => {

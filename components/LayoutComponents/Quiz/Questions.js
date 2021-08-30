@@ -70,29 +70,31 @@ const Questions = ({
 		setLoading(false);
 	}, [answerImage]);
 
-	const answerClick = (index, answer, answerDetail, correct) => {
+	const answerClick = (index, answer, answerDetail, correct, totalVotes) => {
 		const answerType = correct
 			? "correctAnswerDetails"
 			: "inCorrectAnswerDetails";
 		setShowAnswer(true);
 		setButtonDisabled(true);
 
-		try {
-			const mutationData = {
-				query: UPDATE_QUIZ_VOTES,
-				operationName: "UpdateProductionQuizVotes",
-				variables: {
-					input: {
-						quizId: id,
-						questionPosition: questionPosition - 1,
-						answerType,
-						answerDetail,
+		if (totalVotes < 50) {
+			try {
+				const mutationData = {
+					query: UPDATE_QUIZ_VOTES,
+					operationName: "UpdateProductionQuizVotes",
+					variables: {
+						input: {
+							quizId: id,
+							questionPosition: questionPosition - 1,
+							answerType,
+							answerDetail,
+						},
 					},
-				},
-			};
-			prodRequest(mutationData);
-		} catch (err) {
-			console.log("Error with request", err);
+				};
+				prodRequest(mutationData);
+			} catch (err) {
+				console.log("Error with request", err);
+			}
 		}
 
 		if (answer.correct) {

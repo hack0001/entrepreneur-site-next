@@ -63,12 +63,19 @@ const Questions = ({
 			incorrectAnswerComment,
 			showAnswerImage,
 		} = longQuestion;
+
 		const answerInfo = {
 			...correctAnswerDetails,
 			...inCorrectAnswerDetails,
 		};
 
-		const answerClick = (questionNumber, answer, answerDetail, correct) => {
+		const answerClick = (
+			questionNumber,
+			answer,
+			answerDetail,
+			correct,
+			totalVotes,
+		) => {
 			const answerType = correct
 				? "correctAnswerDetails"
 				: "inCorrectAnswerDetails";
@@ -101,22 +108,24 @@ const Questions = ({
 				});
 			}
 
-			try {
-				const mutationData = {
-					query: UPDATE_QUIZ_VOTES,
-					operationName: "UpdateProductionQuizVotes",
-					variables: {
-						input: {
-							quizId: id,
-							questionPosition: questionPosition - 1,
-							answerType,
-							answerDetail,
+			if (totalVotes < 50) {
+				try {
+					const mutationData = {
+						query: UPDATE_QUIZ_VOTES,
+						operationName: "UpdateProductionQuizVotes",
+						variables: {
+							input: {
+								quizId: id,
+								questionPosition: questionPosition - 1,
+								answerType,
+								answerDetail,
+							},
 						},
-					},
-				};
-				prodRequest(mutationData);
-			} catch (err) {
-				console.log("Error with request", err);
+					};
+					prodRequest(mutationData);
+				} catch (err) {
+					console.log("Error with request", err);
+				}
 			}
 		};
 
