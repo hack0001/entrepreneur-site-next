@@ -6,6 +6,10 @@
 		{
 			"src": "/",
 			"headers": { "cache-control": "s-maxage=30, stale-while-revalidate" }
+		},
+		{
+			"src": "/[category]/[url]/quiz/[quizId]/questions/[questionId]",
+			"headers": { "cache-control": "s-maxage=120, stale-while-revalidate" }
 		}
 	],
 	"env": {
