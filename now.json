@@ -2,12 +2,6 @@
 	"version": 2,
 	"name": "entrepreneur-site-next",
 	"builds": [{ "src": "next.config.js", "use": "@now/next" }],
-	"routes": [
-		{
-			"src": "/",
-			"headers": { "cache-control": "s-maxage=30, stale-while-revalidate" }
-		}
-	],
 	"env": {
 		"NODE_ENV": "production",
 		"NEXT_APP_RECAPTCHA_SITEKEY": "@recaptcha-sitekey",
