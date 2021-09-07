@@ -100,7 +100,12 @@ const QuickView = ({
 				</>
 			)}
 			<LazyLoad>
-				<ScrollingContent id={id} title="Latest" type={"slideshow"} />
+				<ScrollingContent
+					id={id}
+					title="Latest"
+					type={"slideshow"}
+					limitSize={3}
+				/>
 			</LazyLoad>
 			<hr className={styles.break} />
 		</div>

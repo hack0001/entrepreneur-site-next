@@ -422,7 +422,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 				</>
 			)}
 			<LazyLoad once={true}>
-				<ScrollingContent id={id} title="Latest" type={"quiz"} />
+				<ScrollingContent id={id} title="Latest" type={"quiz"} limitSize={3} />
 			</LazyLoad>
 			<hr className={styles.break} />
 		</div>

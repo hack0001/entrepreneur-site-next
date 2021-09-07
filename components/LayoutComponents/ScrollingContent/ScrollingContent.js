@@ -12,7 +12,7 @@ import Context from "@utils/Context";
 import styles from "./styles/scrollingContentStyles.module.sass";
 const limit = 5;
 
-const ScrollingContent = ({ id, title, type }) => {
+const ScrollingContent = ({ id, title, type, limitSize = 100 }) => {
 	const [QUERY, queryString, operationName] = querySelect(type);
 
 	const [content, setContent] = useState([]);
@@ -32,15 +32,17 @@ const ScrollingContent = ({ id, title, type }) => {
 	}, [nextToken]);
 
 	const getQueryData = async queryData => {
-		try {
-			const { data } = await prodRequest(queryData);
-			const uniqueContent = filterUnique(data[queryString].items, content);
-			const scrollingContent = content.concat(uniqueContent);
-			setContent(scrollingContent);
-			setNextToken(data[queryString].nextToken);
-		} catch (err) {
-			console.log("Error with requests", err);
-			setNextToken(false);
+		if (limitSize > content.length) {
+			try {
+				const { data } = await prodRequest(queryData);
+				const uniqueContent = filterUnique(data[queryString].items, content);
+				const scrollingContent = content.concat(uniqueContent);
+				setContent(scrollingContent);
+				setNextToken(data[queryString].nextToken);
+			} catch (err) {
+				console.log("Error with requests", err);
+				setNextToken(false);
+			}
 		}
 	};
 
