@@ -39,6 +39,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 	const filterArray = sessionQuizIds.concat({ id });
 	const {
 		affiliateDisclaimer,
+		progressBar,
 		pinterestLink,
 		pinterestEmbedCode,
 		pinterestPinLink,
@@ -245,6 +246,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 									query={query}
 									currentUrlPath={currentUrlPath}
 									priority={cpcMarker ? true : false}
+									progressBar={progressBar}
 								/>
 							)}
 						</div>

@@ -46,6 +46,7 @@ const SlideDetails = ({
 
 	const {
 		affiliateDisclaimer,
+		progressBar,
 		pinterestLink,
 		pinterestEmbedCode,
 		pinterestPinLink,
@@ -235,6 +236,7 @@ const SlideDetails = ({
 								query={query}
 								currentUrlPath={currentUrlPath}
 								showNextTitle={showNextTitle}
+								progressBar={progressBar}
 							/>
 						)}
 						<div>

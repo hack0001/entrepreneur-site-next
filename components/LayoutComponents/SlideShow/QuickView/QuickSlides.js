@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Embed from "../../../Embed/Embed";
 import QuickViewButton from "../../../Button/QuickViewButton";
 import styles from "./styles/quickSlideStyles.module.sass";
+import ProgressBar from "@components/progressBar/progressBar";
 import SingleLoader from "../../../Loading/SingleLoader";
 import Adsense from "../../../ads/code/adsense/adsense";
 import Reader from "../../Editor/reader";
@@ -22,6 +23,7 @@ const QuickSlides = ({
 	query,
 	currentUrlPath,
 	showNextTitle,
+	progressBar,
 }) => {
 	const slideDetails = slideData[0];
 	const {
@@ -91,7 +93,13 @@ const QuickSlides = ({
 					priority={true}
 				/>
 			</div>
-
+			<div>
+				{progressBar && (
+					<div className={styles.progressWrapper}>
+						<ProgressBar total={total} position={position} />
+					</div>
+				)}
+			</div>
 			<div className={styles.mobileSection}>
 				<div className={styles.mobSectionParagraph}>
 					<Reader value={slideDetails.slideDetails[0].children} />
@@ -156,6 +164,7 @@ const QuickSlides = ({
 					)}
 				</div>
 			</div>
+
 			<div className={styles.bottomSectionParagraph}>
 				{bottomSlideDetails && (
 					<Reader value={bottomSlideDetails[0].children} />
@@ -170,6 +179,7 @@ const QuickSlides = ({
 					)}
 				</div>
 			</div>
+
 			<div className={styles.adWrapper}>
 				{!slideAffiliateLink && !affiliateLinkCode && (
 					<Adsense

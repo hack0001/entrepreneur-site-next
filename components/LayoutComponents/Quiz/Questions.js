@@ -5,6 +5,7 @@ import { UPDATE_QUIZ_VOTES } from "../../../graphql/indivQuiz";
 import QuizButton from "../../Button/QuizButton";
 import QuickViewButton from "../../Button/QuickViewButton";
 import LongAnswer from "./LongAnswer";
+import ProgressBar from "@components/progressBar/progressBar";
 import prodRequest from "../../apiRequest/prodRequest";
 import styles from "./styles/questionStyles.module.sass";
 import SingleLoader from "../../Loading/SingleLoader";
@@ -12,21 +13,22 @@ import Adsense from "../../ads/code/adsense/adsense";
 import Context from "@utils/Context";
 
 const Questions = ({
-	// total,
+	total,
 	questionData,
-	// position,
+	position,
 	linkImage,
 	nextHref,
 	id,
 	currentScore,
 	setCurrentScore,
-	questions,
+	// questions,
 	nextQuestionData,
 	randomiseAnswers,
 	queryLinkCheck,
 	query,
 	currentUrlPath,
 	priority,
+	progressBar,
 }) => {
 	const [showAnswer, setShowAnswer] = useState(false);
 	const [buttonDisabled, setButtonDisabled] = useState(false);
@@ -63,7 +65,6 @@ const Questions = ({
 		...correctAnswerDetails,
 		...inCorrectAnswerDetails,
 	};
-
 	const [selected, setSelected] = useState(false);
 
 	useEffect(() => {
@@ -165,6 +166,7 @@ const Questions = ({
 			<div className={styles.sectionHeaderScore}>
 				Current Score: {currentScore}
 			</div>
+
 			<div className={styles.answerWrap}>
 				<QuizButton
 					answerInfo={answerInfo}
@@ -179,6 +181,12 @@ const Questions = ({
 					setCorrect={setCorrect}
 				/>
 			</div>
+			{progressBar && (
+				<div className={styles.progressWrapper}>
+					<ProgressBar total={total} position={position} />
+				</div>
+			)}
+
 			<LongAnswer
 				showAnswer={showAnswer}
 				correct={correct}
