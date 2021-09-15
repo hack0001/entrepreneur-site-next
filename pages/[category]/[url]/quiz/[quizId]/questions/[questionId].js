@@ -2,10 +2,9 @@ import { useContext, useEffect } from "react";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 import QuizLayout from "@components/Layouts/QuizLayout";
-import prodRequest from "@components/apiRequest/prodRequest";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 import QuickViewLoading from "@components/Loading/Layouts/QuizLoadingLayout";
 import parseUrl from "@components/helper/parseUrl";
-import { QUIZ } from "@graphql/indivQuiz";
 import { quizQuery } from "@data/queryData/querys";
 import Context from "@utils/Context";
 import { queryHandler, getParams, constructQuizUrl } from "@utils/queryHandler";
@@ -35,7 +34,6 @@ const Questions = ({
 		const { urlPath, queryParams } = getParams(
 			router.asPath ? router.asPath : "",
 		);
-		const queryUpdate = queryHandler(queryParams);
 		handleState({
 			query: { utm_medium: "DING DONG" },
 			currentUrlPath: urlPath,
@@ -119,19 +117,10 @@ export async function getStaticProps(context) {
 	const { category, questionId, url, quizId, score } = context.params;
 	const scoreCheck = score ? score : null;
 	// Fetch data from external API
-	const QUIZ_QUERY = {
-		query: QUIZ,
-		variables: { id: quizId },
-		operationName: "GetProductionQuiz",
-	};
+	const QUIZ_QUERY = `/content/indiv_quiz/${quizId}`;
+
 	const [individual, headline, quiz, slide] = await Promise.all(
-		[QUIZ_QUERY, ...quizQuery].map(query =>
-			prodRequest({
-				query: query.query,
-				variables: query.variables,
-				operationName: query.operationName,
-			}),
-		),
+		[QUIZ_QUERY, ...quizQuery].map(endpoint => prodGetRequest(endpoint)),
 	);
 
 	return {

@@ -3,9 +3,8 @@ import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 import SlideLayout from "@components/Layouts/SlideShowLayout";
 import SlideLoading from "@components/Loading/Layouts/SlideShowLoading";
-import prodRequest from "@components/apiRequest/prodRequest";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 import parseUrl from "@components/helper/parseUrl";
-import { SLIDESHOW } from "@graphql/indivSlideShow";
 import { slideShowQuery } from "@data/queryData/querys";
 import Context from "@utils/Context";
 import { queryHandler, getParams } from "@utils/queryHandler";
@@ -86,19 +85,11 @@ const Slide = ({
 export async function getStaticProps(context) {
 	const { url, slideId, slideContentId } = context.params;
 	// Fetch data from external API
-	const SLIDESHOW_QUERY = {
-		query: SLIDESHOW,
-		variables: { id: slideId },
-		operationName: "GetProductionSlideshow",
-	};
+	const SLIDESHOW_QUERY = `/content/indiv_slideshow/${slideId}`;
 
 	const [individual, headline, quiz, slide] = await Promise.all(
-		[SLIDESHOW_QUERY, ...slideShowQuery].map(query =>
-			prodRequest({
-				query: query.query,
-				variables: query.variables,
-				operationName: query.operationName,
-			}),
+		[SLIDESHOW_QUERY, ...slideShowQuery].map(endpoint =>
+			prodGetRequest(endpoint),
 		),
 	);
 

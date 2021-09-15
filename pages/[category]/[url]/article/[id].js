@@ -2,11 +2,10 @@ import { useContext, useEffect } from "react";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
 import ArticleLayout from "@components/Layouts/ArticleLayout";
-import prodRequest from "@components/apiRequest/prodRequest";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 import ArticleLoading from "@components/Loading/Layouts/ArticleLoadingLayout";
 import parseUrl from "@components/helper/parseUrl";
 import { articleQuery } from "@data/queryData/querys";
-import { ARTICLE } from "@graphql/indivArticle";
 import Context from "@utils/Context";
 import { queryHandler, getParams } from "@utils/queryHandler";
 
@@ -62,23 +61,11 @@ const Article = ({ individual, quiz, slide, id, category, url }) => {
 export async function getStaticProps(context) {
 	// Fetch data from external API
 	const { id, category, url } = context.params;
-	const ARTICLE_QUERY = {
-		query: ARTICLE,
-		variables: {
-			id,
-		},
-		operationName: "GetProductionArticle",
-	};
-	const [individual, quiz, slide] = await Promise.all(
-		[ARTICLE_QUERY, ...articleQuery].map(query =>
-			prodRequest({
-				query: query.query,
-				variables: query.variables,
-				operationName: query.operationName,
-			}),
-		),
-	);
+	const ARTICLE_QUERY = `/content/indiv_article/${id}`;
 
+	const [individual, quiz, slide] = await Promise.all(
+		[ARTICLE_QUERY, ...articleQuery].map(endpoint => prodGetRequest(endpoint)),
+	);
 	return {
 		props: { individual, quiz, slide, id, category, url },
 		// Next.js will attempt to re-generate the page:

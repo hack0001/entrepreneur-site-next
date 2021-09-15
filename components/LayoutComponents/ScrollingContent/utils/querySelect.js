@@ -1,25 +1,11 @@
-import {
-	LATEST_HEADLINES,
-	LATEST_QUIZ,
-	LATEST_SLIDE,
-} from "../../../../graphql/headline";
-
 const querySelect = type => {
 	switch (type) {
 		case "article":
-			return [
-				LATEST_HEADLINES,
-				"listProductionArticles",
-				"ListProductionArticles",
-			];
+			return [`/list/latest`, "listProductionArticles"];
 		case "quiz":
-			return [LATEST_QUIZ, "listProductionQuizs", "ListProductionQuizs"];
+			return [`/list/quiz`, "listProductionQuizs"];
 		case "slideshow":
-			return [
-				LATEST_SLIDE,
-				"listProductionSlideshows",
-				"ListProductionSlideshows",
-			];
+			return [`/list/slideshow`, "listProductionSlideshows"];
 		default:
 			return null;
 	}

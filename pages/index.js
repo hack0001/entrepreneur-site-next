@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import MainHeadlineLayout from "../components/Layouts/MainHeadlineLayout";
 import MainHeadlineLoading from "../components/Loading/Layouts/MainHeadlineLoadingLayout";
-import prodRequest from "../components/apiRequest/prodRequest";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 import { filterUnique } from "../utils/handler";
 import { mainHeadlineQuery } from "../data/queryData/querys";
 import { useRouter } from "next/router";
@@ -47,13 +47,7 @@ const Home = ({ headline, latest, quiz, slide }) => {
 
 export async function getStaticProps(sh) {
 	const [headline, latest, quiz, slide] = await Promise.all(
-		mainHeadlineQuery.map(query =>
-			prodRequest({
-				query: query.query,
-				variables: query.variables,
-				operationName: query.operationName,
-			}),
-		),
+		mainHeadlineQuery.map(endpoint => prodGetRequest(endpoint)),
 	);
 	return {
 		props: { headline, latest, quiz, slide },
@@ -63,39 +57,5 @@ export async function getStaticProps(sh) {
 		revalidate: 10800, // In seconds
 	};
 }
-
-// This function gets called at build time
-// export async function getStaticPaths() {
-// 	// Call an external API endpoint to get posts
-// 	// const res = await fetch('https://.../posts')
-// 	// const posts = await res.json()
-
-// 	// // Get the paths we want to pre-render based on posts
-// 	// const paths = posts.map((post) => ({
-// 	//   params: { id: post.id },
-// 	// }))
-
-// 	// We'll pre-render only these paths at build time.
-// 	// { fallback: false } means other routes should 404.
-// 	return { paths: [], fallback: true };
-// }
-
-// This gets called on every request
-// export async function getServerSideProps(context) {
-// 	context.res.setHeader("Cache-Control", "s-maxage=10, stale-while-revalidate");
-
-// 	const [headline, latest, quiz, slide] = await Promise.all(
-// 		mainHeadlineQuery.map(query =>
-// 			prodRequest({
-// 				query: query.query,
-// 				variables: query.variables,
-// 				operationName: query.operationName,
-// 			}),
-// 		),
-// 	);
-
-// 	// Pass data to the page via props
-// 	return { props: { headline, latest, quiz, slide } };
-// }
 
 export default Home;

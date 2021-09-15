@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import HeadlineLayout from "../components/Layouts/HeadlineLayout";
 import MainHeadlineLoading from "../components/Loading/Layouts/MainHeadlineLoadingLayout";
-import prodRequest from "../components/apiRequest/prodRequest";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 import { quizHeadlineQuery } from "../data/queryData/querys";
 import { useRouter } from "next/router";
 import Context from "../utils/Context";
@@ -38,13 +38,7 @@ const Quiz = ({ headline, quiz, slide }) => {
 
 export async function getStaticProps() {
 	const [headline, quiz, slide] = await Promise.all(
-		quizHeadlineQuery.map(query =>
-			prodRequest({
-				query: query.query,
-				variables: query.variables,
-				operationName: query.operationName,
-			}),
-		),
+		quizHeadlineQuery.map(endpoint => prodGetRequest(endpoint)),
 	);
 
 	return {

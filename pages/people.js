@@ -3,8 +3,7 @@ import { useRouter } from "next/router";
 import HeadlineLayout from "../components/Layouts/HeadlineLayout";
 import MainHeadlineLoading from "../components/Loading/Layouts/MainHeadlineLoadingLayout";
 import { peopleHeadlineQuery } from "../data/queryData/querys";
-import prodRequest from "../components/apiRequest/prodRequest";
-import { HEADLINES } from "../graphql/headline";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 import Context from "../utils/Context";
 import { queryHandler, getParams } from "../utils/queryHandler";
 
@@ -35,9 +34,7 @@ const People = ({ headline, quiz, slide }) => {
 			canonical="people"
 			latestNextToken={headline.data.listProductionArticles.nextToken}
 			latestSortIndex={headline.data.listProductionArticles.sortIndex}
-			nextQuery={HEADLINES}
-			queryFilter={{ category: "people" }}
-			queryOpName="ListProductionArticles"
+			nextEndpoint={`/list/people`}
 			objectMarker="listProductionArticles"
 		/>
 	);
@@ -45,13 +42,7 @@ const People = ({ headline, quiz, slide }) => {
 
 export async function getStaticProps() {
 	const [headline, quiz, slide] = await Promise.all(
-		peopleHeadlineQuery.map(query =>
-			prodRequest({
-				query: query.query,
-				variables: query.variables,
-				operationName: query.operationName,
-			}),
-		),
+		peopleHeadlineQuery.map(endpoint => prodGetRequest(endpoint)),
 	);
 
 	return {

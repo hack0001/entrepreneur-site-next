@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import router from "next/router";
-import { NEXT_ARTICLE } from "../../../../../graphql/indivArticle";
 import NextLink from "./nextLink";
-import prodRequest from "../../../../apiRequest/prodRequest";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 import styles from "../styles/ads/linkAdStyles.module.sass";
+
 const NextArticleAd = ({ children }) => {
 	const [nextInfo, setNextInfo] = useState({
 		showNext: false,
@@ -23,17 +23,7 @@ const NextArticleAd = ({ children }) => {
 
 	const getData = async postId => {
 		try {
-			const queryData = {
-				query: NEXT_ARTICLE,
-				// variables: { filter: { id: { ne: postId } }, limit: 1 },
-				variables: {
-					id: process.env.REACT_APP_SITE_ID,
-					filter: { production: { eq: true } },
-					limit: 2,
-				},
-			};
-
-			const { data } = await prodRequest(queryData);
+			const { data } = await prodGetRequest(`/list/next_indiv_article`);
 			const selectedArticle = data.listProductionArticles.items.filter(
 				x => x.id !== postId,
 			);

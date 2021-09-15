@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import HeadlineLayout from "../components/Layouts/HeadlineLayout";
 import MainHeadlineLoading from "../components/Loading/Layouts/MainHeadlineLoadingLayout";
-import prodRequest from "../components/apiRequest/prodRequest";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 import { networthHeadlineQuery } from "../data/queryData/querys";
 import Context from "@utils/Context";
 import { queryHandler, getParams } from "@utils/queryHandler";
@@ -37,15 +37,8 @@ const NetWorth = ({ headline, quiz, slide }) => {
 
 export async function getStaticProps() {
 	const [headline, quiz, slide] = await Promise.all(
-		networthHeadlineQuery.map(query =>
-			prodRequest({
-				query: query.query,
-				variables: query.variables,
-				operationName: query.operationName,
-			}),
-		),
+		networthHeadlineQuery.map(endpoint => prodGetRequest(endpoint)),
 	);
-
 	return {
 		props: { headline, quiz, slide },
 		// Next.js will attempt to re-generate the page:

@@ -2,18 +2,16 @@ import { useEffect, useState, useContext } from "react";
 import ScrollingArticlesLoading from "../../Loading/ScrollingArticlesLoading";
 import PropTypes from "prop-types";
 import SubScrollingContent from "./SubContent";
-// import MainScrollingContent from "./MainContent";
 import SectionBar from "../SectionBar";
 import sideHelper from "../../helper/sideBarHelper";
 import querySelect from "./utils/querySelect";
-import prodRequest from "../../apiRequest/prodRequest";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 import { filterUnique } from "@utils/handler";
 import Context from "@utils/Context";
 import styles from "./styles/scrollingContentStyles.module.sass";
-const limit = 5;
 
 const ScrollingContent = ({ id, title, type, limitSize = 100 }) => {
-	const [QUERY, queryString, operationName] = querySelect(type);
+	const [endpoint, queryString] = querySelect(type);
 
 	const [content, setContent] = useState([]);
 	const [nextToken, setNextToken] = useState("");
@@ -31,10 +29,10 @@ const ScrollingContent = ({ id, title, type, limitSize = 100 }) => {
 		};
 	}, [nextToken]);
 
-	const getQueryData = async queryData => {
+	const getQueryData = async endpoint => {
 		if (limitSize > content.length) {
 			try {
-				const { data } = await prodRequest(queryData);
+				const { data } = await prodGetRequest(endpoint);
 				const uniqueContent = filterUnique(data[queryString].items, content);
 				const scrollingContent = content.concat(uniqueContent);
 				setContent(scrollingContent);
@@ -47,13 +45,7 @@ const ScrollingContent = ({ id, title, type, limitSize = 100 }) => {
 	};
 
 	const getContent = () => {
-		const queryData = {
-			query: QUERY,
-			operationName: operationName,
-			variables: { id: process.env.REACT_APP_SITE_ID, limit: limit },
-		};
-
-		getQueryData(queryData);
+		getQueryData(endpoint);
 	};
 
 	const handleInfiniteScroll = () => {
@@ -70,16 +62,7 @@ const ScrollingContent = ({ id, title, type, limitSize = 100 }) => {
 
 				if (percentage > 85) {
 					if (nextToken) {
-						const queryData = {
-							query: QUERY,
-							operationName: operationName,
-							variables: {
-								id: process.env.REACT_APP_SITE_ID,
-								limit: limit,
-								nextToken: nextToken,
-							},
-						};
-						getQueryData(queryData);
+						getQueryData(`${endpoint}/${nextToken}`);
 					}
 				}
 

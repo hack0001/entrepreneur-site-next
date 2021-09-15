@@ -13,7 +13,7 @@ import LazyLoad from "react-lazyload";
 import styles from "./styles/headlineLayout.module.sass";
 import baseTheme from "../../theme/baseTheme.json";
 import Context from "@utils/Context";
-import prodRequest from "@components/apiRequest/prodRequest";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
@@ -31,9 +31,7 @@ const HeadlineLayout = ({
 	canonical,
 	latestNextToken,
 	latestSortIndex,
-	nextQuery,
-	queryFilter,
-	queryOpName,
+	nextEndpoint,
 	objectMarker,
 }) => {
 	const { query, currentUrlPath } = useContext(Context);
@@ -52,16 +50,10 @@ const HeadlineLayout = ({
 			setLoadingMorePosts(false);
 			return;
 		}
-		const { data: loadMoreArticles } = await prodRequest({
-			query: nextQuery,
-			variables: {
-				filter: queryFilter,
-				limit: 4,
-				nextToken: token,
-				sortIndex: sortIndex,
-			},
-			operationName: queryOpName,
-		});
+
+		const { data: loadMoreArticles } = await prodGetRequest(
+			`${nextEndpoint}/${token}/${sortIndex}`,
+		);
 
 		const addLatestContent = latestContent.concat(
 			loadMoreArticles[objectMarker].items,

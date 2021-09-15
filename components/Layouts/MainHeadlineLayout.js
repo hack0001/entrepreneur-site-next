@@ -10,11 +10,10 @@ import {
 	SideBarSmallContent,
 	SectionBar,
 } from "../LayoutComponents";
-import prodRequest from "@components/apiRequest/prodRequest";
+import prodGetRequest from "@components/apiRequest/prodGetRequest";
 import organisationData from "../StructuredData/organisation";
 import webPageData from "../StructuredData/webPage";
 import baseTheme from "../../theme/baseTheme.json";
-import { LATEST } from "../../graphql/headline";
 import styles from "./styles/headlineLayout.module.sass";
 import Context from "@utils/Context";
 
@@ -41,6 +40,7 @@ const MainHeadlineLayout = ({
 	const [sortIndex, setSortIndex] = useState(
 		latestSortIndex ? latestSortIndex : null,
 	);
+
 	const [loadingMorePosts, setLoadingMorePosts] = useState(false);
 	const [latestContent, setLatestContent] = useState(latest ? latest : []);
 
@@ -50,20 +50,14 @@ const MainHeadlineLayout = ({
 			setLoadingMorePosts(false);
 			return;
 		}
-		const { data: loadMoreArticles } = await prodRequest({
-			query: LATEST,
-			variables: {
-				filter: { mainHeadline: true },
-				limit: 4,
-				nextToken: token,
-				sortIndex: sortIndex,
-			},
-			operationName: "ListProductionArticles",
-		});
+		const { data: loadMoreArticles } = await prodGetRequest(
+			`/list/latest/${token}/${sortIndex}`,
+		);
 
 		const addLatestContent = latestContent.concat(
 			loadMoreArticles.listProductionArticles.items,
 		);
+
 		setLatestContent(addLatestContent);
 		setToken(loadMoreArticles.listProductionArticles.nextToken);
 		setSortIndex(loadMoreArticles.listProductionArticles.sortIndex);
