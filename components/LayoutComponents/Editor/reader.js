@@ -18,7 +18,7 @@ const Embed = dynamic(() => import("./renderElement/embed/embed"), {
 	ssr: false,
 	loading: () => <SingleLoader />,
 });
-const Reader = ({ value, cpcAd, linkedArticle, query }) => {
+const Reader = ({ value, cpcAd, linkedArticle, query, quickView = false }) => {
 	if (typeof value.text === "string") {
 		// excapeHtml is to get rid of html tags e.g. < for $lt
 		return value.text;
@@ -101,7 +101,11 @@ const Reader = ({ value, cpcAd, linkedArticle, query }) => {
 				case "underline":
 					return <u>{children}</u>;
 				case "paragraph":
-					return <p className={styles.para}>{children}</p>;
+					return (
+						<p className={quickView ? styles.quickPara : styles.para}>
+							{children}
+						</p>
+					);
 				case "heading-one":
 					return <h1 className={styles.headOne}>{children}</h1>;
 				case "heading-two":
@@ -212,7 +216,11 @@ const Reader = ({ value, cpcAd, linkedArticle, query }) => {
 				case "table-cell":
 					return <td style={{ border: "1px solid black" }}>{children}</td>;
 				default:
-					return <p className={styles.para}>{children}</p>;
+					return (
+						<p className={quickView ? style.quickPara : styles.para}>
+							{children}
+						</p>
+					);
 			}
 		}
 	};

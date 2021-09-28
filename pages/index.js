@@ -45,7 +45,7 @@ const Home = ({ headline, latest, quiz, slide }) => {
 	);
 };
 
-export async function getStaticProps(sh) {
+export async function getStaticProps() {
 	const [headline, latest, quiz, slide] = await Promise.all(
 		mainHeadlineQuery.map(endpoint => prodGetRequest(endpoint)),
 	);

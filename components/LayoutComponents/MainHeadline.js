@@ -19,6 +19,7 @@ const MainHeadline = ({ data, queryLinkCheck, query }) => {
 		category,
 		urlDescription,
 	} = headlineData;
+
 	return (
 		<section className={styles.headerSection}>
 			<div className={styles.sectionHead}>

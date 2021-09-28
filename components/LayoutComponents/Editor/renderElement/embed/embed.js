@@ -48,10 +48,10 @@ const EmbedUrl = ({ node }) => {
 	}
 
 	return (
-		<div>
+		<div className={styles.embedoWrapper}>
 			<div
 				href={embedUrl.url}
-				className={"embedo"}
+				className={styles.embedo}
 				target="_blank"
 				rel="noopener noreferrer"
 				ref={embedoContainer}

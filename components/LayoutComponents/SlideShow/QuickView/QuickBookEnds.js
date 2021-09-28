@@ -46,7 +46,7 @@ const BookEnds = ({
 				</div>
 			)}
 			<div className={styles.deskSectionParagraph}>
-				<Reader value={details[0].children} />
+				<Reader value={details[0].children} quickView={true} />
 			</div>
 			{position === "closing" && (
 				<div className={styles.imageWrap}>
@@ -65,8 +65,9 @@ const BookEnds = ({
 				</div>
 			)}
 			<div className={styles.mobSectionParagraph}>
-				<Reader value={details[0].children} />
+				<Reader value={details[0].children} quickView={true} />
 			</div>
+
 			<div className={styles.adWrap}>
 				<Adsense
 					client="ca-pub-2068760522034474"

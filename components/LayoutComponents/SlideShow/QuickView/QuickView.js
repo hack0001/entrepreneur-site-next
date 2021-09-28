@@ -73,6 +73,7 @@ const QuickView = ({
 				/>
 			</LazyLoad>
 			<hr className={styles.break} />
+
 			<Crumbs
 				home={process.env.SITE_ADDRESS}
 				category={category}

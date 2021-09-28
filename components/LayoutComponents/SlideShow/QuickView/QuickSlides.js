@@ -75,7 +75,10 @@ const QuickSlides = ({
 			</h2>
 			<h3 className={styles.sectionBrief}>{slideComment}</h3>
 			<div className={styles.deskSectionParagraph}>
-				<Reader value={slideDetails.slideDetails[0].children} />
+				<Reader
+					value={slideDetails.slideDetails[0].children}
+					quickView={true}
+				/>
 			</div>
 			<div>
 				<Embed
@@ -102,7 +105,10 @@ const QuickSlides = ({
 			</div>
 			<div className={styles.mobileSection}>
 				<div className={styles.mobSectionParagraph}>
-					<Reader value={slideDetails.slideDetails[0].children} />
+					<Reader
+						value={slideDetails.slideDetails[0].children}
+						quickView={true}
+					/>
 					<div>
 						{slideAffiliateLink && affiliateLinkCode && (
 							<AdWrapper
@@ -167,7 +173,7 @@ const QuickSlides = ({
 
 			<div className={styles.bottomSectionParagraph}>
 				{bottomSlideDetails && (
-					<Reader value={bottomSlideDetails[0].children} />
+					<Reader value={bottomSlideDetails[0].children} quickView={true} />
 				)}
 				<div>
 					{slideAffiliateLink && affiliateLinkCode && (
