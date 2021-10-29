@@ -28,7 +28,9 @@ const Reader = ({ value, cpcAd, linkedArticle, query, quickView = false }) => {
 		if (typeof node.text === "string") {
 			let marks = node.text;
 			if (marks === "") {
-				marks = <p className={styles.emptyPara}></p>;
+				marks = (
+					<p className={quickView ? styles.quickPara : styles.emptyPara}></p>
+				);
 			}
 			if (node.bold) {
 				marks = <strong>{marks}</strong>;

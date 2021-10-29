@@ -28,12 +28,20 @@ import Disclaimer from "../../ads/disclaimer";
 import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
 import percentileMarkers from "@utils/percentageMarkers";
 
-const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
+const QuizDetails = ({
+	content,
+	position,
+	url,
+	id,
+	score,
+	nextQuiz,
+	cpcMarker,
+	setCpcMarker,
+}) => {
 	const details = JSON.parse(content.overview);
 	const questions = JSON.parse(content.questions);
 	const { sessionQuizIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
-	const [cpcMarker, setCpcMarker] = useState(false);
 	const [percentage, setPercentage] = useState(percentileMarkers);
 
 	const filterArray = sessionQuizIds.concat({ id });
@@ -67,11 +75,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 		setQuestionsAnswered(0);
 		setPercentage(percentileMarkers);
 	}, [id]);
-
-	useEffect(() => {
-		const cpcMarker = Cookie.get("CPC") ? JSON.parse(Cookie.get("CPC")) : false;
-		setCpcMarker(cpcMarker);
-	}, []);
 
 	useEffect(() => {
 		const currentPercentage = Math.round(
@@ -178,6 +181,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 									numberQuestions={content.numQuestions}
 									currentUrlPath={currentUrlPath}
 									priority={true}
+									cpcMarker={true}
 								/>
 								{position === "opening" && (
 									<div className={styles.openingButton}>
@@ -241,7 +245,6 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 									setCurrentScore={setCurrentScore}
 									questions={questions}
 									randomiseAnswers={randomiseAnswers}
-									cpcMarker={cpcMarker}
 									queryLinkCheck={queryLinkCheck}
 									query={query}
 									currentUrlPath={currentUrlPath}
@@ -290,6 +293,7 @@ const QuizDetails = ({ content, position, url, id, score, nextQuiz }) => {
 						numberQuestions={content.numQuestions}
 						currentUrlPath={currentUrlPath}
 						priority={true}
+						cpcMarker={false}
 					/>
 					<LazyLoad once={true}>
 						<hr className={styles.break} />

@@ -22,6 +22,7 @@ const QuizBookEnds = ({
 	numberQuestions,
 	currentUrlPath,
 	priority,
+	cpcMarker,
 }) => {
 	const positionOpening = position === "opening";
 	const positionClosing = position === "closing";
@@ -77,7 +78,7 @@ const QuizBookEnds = ({
 			)}
 			<>
 				<div className={styles.sectionParagraph}>
-					<Reader value={details[0].children} />
+					<Reader value={details[0].children} quickView={cpcMarker} />
 				</div>
 				{positionClosing && <div className={styles.endHeader}>{title} </div>}
 			</>

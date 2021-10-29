@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Layout from "../Layouts/Layout";
 import PropTypes from "prop-types";
 import {
@@ -13,6 +13,8 @@ import { ETORO_COPY_TRADER } from "../ads/code/eToro";
 import dynamic from "next/dynamic";
 import Context from "@utils/Context";
 import { objectCheck } from "@utils/queryHandler";
+import Cookie from "js-cookie";
+
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
 });
@@ -32,6 +34,13 @@ const Quiz = ({
 	const headlineData = individual.linkedArticle
 		? [{ ...individual.linkedArticle, type: "article" }, ...headline.items]
 		: headline.items;
+	const [cpcMarker, setCpcMarker] = useState(false);
+
+	useEffect(() => {
+		const cpcMarker = Cookie.get("CPC") ? JSON.parse(Cookie.get("CPC")) : false;
+		setCpcMarker(cpcMarker);
+	}, []);
+
 	return (
 		<Layout>
 			<main className={styles.articleContainer}>
@@ -45,6 +54,8 @@ const Quiz = ({
 						score={score}
 						queryLinkCheck={queryLinkCheck}
 						query={query}
+						cpcMarker={cpcMarker}
+						setCpcMarker={setCpcMarker}
 					/>
 				</article>
 				<aside className={styles.sideArticleSection}>
@@ -58,6 +69,7 @@ const Quiz = ({
 						queryLinkCheck={true}
 						query={{ ...query, utm_medium: "sidebar-quiz" }}
 						currentUrlPath={currentUrlPath}
+						showArticles={!cpcMarker}
 					/>
 					<LazyLoad once={true}>
 						<FacebookPage />

@@ -9,6 +9,7 @@ const LongAnswer = ({
 	answer,
 	correctAnswerComment,
 	incorrectAnswerComment,
+	quickView,
 }) => {
 	return (
 		<div className={styles.bookendWrapper}>
@@ -56,7 +57,7 @@ const LongAnswer = ({
 						</div>
 						{answer && (
 							<div>
-								<Reader value={answer[0].children} />
+								<Reader value={answer[0].children} quickView={quickView} />
 							</div>
 						)}
 					</div>
@@ -80,5 +81,6 @@ LongAnswer.defaultProps = {
 			children: [{ text: "" }],
 		},
 	],
+	quickView: false,
 };
 export default LongAnswer;

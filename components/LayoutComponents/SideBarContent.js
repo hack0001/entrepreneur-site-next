@@ -7,6 +7,7 @@ const AdWrapper = dynamic(() => import("../ads/adWrapper"), {
 	ssr: false,
 });
 import Adsense from "../ads/code/adsense/adsense";
+import AffLink from "../ads/affiliate/socialMediaAff";
 
 const SideBarContent = ({
 	data,
@@ -17,6 +18,7 @@ const SideBarContent = ({
 	queryLinkCheck,
 	query,
 	currentUrlPath,
+	showArticles = true,
 }) => {
 	const slicedData = limit > 0 ? data.slice(0, limit) : data;
 	return (
@@ -33,47 +35,50 @@ const SideBarContent = ({
 					/>
 				</div>
 			)}
-			{slicedData.map((article, index) => {
-				const {
-					headlineImage,
-					headlineImageAlt,
-					headlineImagePath,
-					headlineImageCrop,
-					headlineImageCropInfo,
-					headline,
-					category,
-					refPath,
-					contentLink,
-				} = sideHelper(article, article.type ? article.type : type);
+			{!showArticles && <AffLink />}
+			{showArticles &&
+				slicedData.map((article, index) => {
+					const {
+						headlineImage,
+						headlineImageAlt,
+						headlineImagePath,
+						headlineImageCrop,
+						headlineImageCropInfo,
+						headline,
+						category,
+						refPath,
+						contentLink,
+					} = sideHelper(article, article.type ? article.type : type);
 
-				return (
-					<Fragment key={index}>
-						{index === 2 && showAd && (
-							<div>
-								<Adsense
-									client="ca-pub-2068760522034474"
-									slot="1753150973"
-									currentUrlPath={currentUrlPath}
-								/>
-							</div>
-						)}
-						<SideBarComponent
-							type={type}
-							headlineImage={headlineImage}
-							headlineImageAlt={headlineImageAlt}
-							headlineImagePath={headlineImagePath}
-							headlineImageCrop={headlineImageCrop}
-							headlineImageCropInfo={headlineImageCropInfo}
-							headline={headline}
-							category={category}
-							refPath={refPath}
-							contentLink={contentLink}
-							queryLinkCheck={queryLinkCheck}
-							query={query}
-						/>
-					</Fragment>
-				);
-			})}
+					return (
+						<Fragment key={index}>
+							{index === 2 && showAd && (
+								<div>
+									<Adsense
+										client="ca-pub-2068760522034474"
+										slot="1753150973"
+										currentUrlPath={currentUrlPath}
+									/>
+								</div>
+							)}
+							<SideBarComponent
+								type={type}
+								headlineImage={headlineImage}
+								headlineImageAlt={headlineImageAlt}
+								headlineImagePath={headlineImagePath}
+								headlineImageCrop={headlineImageCrop}
+								headlineImageCropInfo={headlineImageCropInfo}
+								headline={headline}
+								category={category}
+								refPath={refPath}
+								contentLink={contentLink}
+								queryLinkCheck={queryLinkCheck}
+								query={query}
+							/>
+						</Fragment>
+					);
+				})}
+
 			{cpcAd && (
 				<AdWrapper adCode={cpcAd.displayAd} callToActionMarker={false} />
 			)}

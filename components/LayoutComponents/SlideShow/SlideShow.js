@@ -20,11 +20,11 @@ import QuickSlides from "./QuickView/QuickSlides";
 import QuickBookEnds from "./QuickView/QuickBookEnds";
 import QuickHeadline from "./QuickView/QuickHeadline";
 import { filterUnique } from "@utils/handler";
-import Cookie from "js-cookie";
 import Adsense from "../../ads/code/adsense/adsense";
 import { objectCheck } from "@utils/queryHandler";
 import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
 import percentileMarkers from "@utils/percentageMarkers";
+import Cookie from "js-cookie";
 
 const SlideDetails = ({
 	content,
@@ -33,12 +33,13 @@ const SlideDetails = ({
 	url,
 	id,
 	nextSlideShow,
+	cpcMarker,
+	setCpcMarker,
 }) => {
 	const details = JSON.parse(content.overview);
 	const slides = JSON.parse(content.slides);
 	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
-	const [cpcMarker, setCpcMarker] = useState(false);
 	const [percentage, setPercentage] = useState(percentileMarkers);
 
 	const filterArray = sessionSlideIds.concat({ id });
@@ -68,11 +69,6 @@ const SlideDetails = ({
 		showNextTitle,
 	} = details[0];
 	const positionNumber = Number(position);
-
-	useEffect(() => {
-		const cpcMarker = Cookie.get("CPC") ? JSON.parse(Cookie.get("CPC")) : false;
-		setCpcMarker(cpcMarker);
-	}, []);
 
 	useEffect(() => {
 		setPercentage(percentileMarkers);
@@ -270,9 +266,9 @@ const SlideDetails = ({
 						imageAlt={bookEndOpening.openingImageAlt}
 						imageAltAttribution={bookEndOpening.openingImageAttribution}
 						imageAltAttributionLink={bookEndOpening.openingImageAttributionLink}
-						imagePath={bookEndOpening.imagePath}
-						imageCrop={bookEndOpening.imageCrop}
-						imageCropInfo={bookEndOpening.imageCropInfo}
+						imagePath={bookEndOpening.openingImagePath}
+						imageCrop={bookEndOpening.openingImageCrop}
+						imageCropInfo={bookEndOpening.openingImageCropInfo}
 						title={bookEndOpening.opening}
 						details={
 							bookEndOpening.openingSlideDetails
@@ -310,9 +306,9 @@ const SlideDetails = ({
 						imageAlt={bookEndClosing.closingImageAlt}
 						imageAltAttribution={bookEndClosing.closingImageAttribution}
 						imageAltAttributionLink={bookEndClosing.closingImageAttributionLink}
-						imagePath={bookEndClosing.imagePath}
-						imageCrop={bookEndClosing.imageCrop}
-						imageCropInfo={bookEndClosing.imageCropInfo}
+						imagePath={bookEndClosing.closingImagePath}
+						imageCrop={bookEndClosing.closingImageCrop}
+						imageCropInfo={bookEndClosing.closingImageCropInfo}
 						title={bookEndClosing.closing}
 						details={
 							bookEndClosing.closingSlideDetails

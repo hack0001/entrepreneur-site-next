@@ -39,6 +39,7 @@ const ImageLoader = ({
 				: `${loaderStyles.imgLoaded} img-loaded`,
 		);
 	};
+
 	return (
 		<>
 			{!isAmp && (

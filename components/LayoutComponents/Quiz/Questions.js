@@ -167,6 +167,17 @@ const Questions = ({
 				Current Score: {currentScore}
 			</div>
 
+			{/* <!-- MobileQuizAd - MidRange --> */}
+			<div className={styles.mobileAdsenseWrapper}>
+				<div>
+					<Adsense
+						client="ca-pub-2068760522034474"
+						slot="5962809597"
+						responsive={true}
+						currentUrlPath={currentUrlPath}
+					/>
+				</div>
+			</div>
 			<div className={styles.answerWrap}>
 				<QuizButton
 					answerInfo={answerInfo}
@@ -193,6 +204,7 @@ const Questions = ({
 				answer={longAnswer}
 				correctAnswerComment={correctAnswerComment}
 				incorrectAnswerComment={incorrectAnswerComment}
+				quickView={true}
 			/>
 			<div className={styles.adsenseWrapper}>
 				<div>

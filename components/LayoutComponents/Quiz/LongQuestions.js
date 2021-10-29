@@ -196,6 +196,7 @@ const Questions = ({
 						answer={longAnswer}
 						correctAnswerComment={correctAnswerComment}
 						incorrectAnswerComment={incorrectAnswerComment}
+						quickView={false}
 					/>
 				</div>
 				<div className={styles.adsenseWrapper}>
