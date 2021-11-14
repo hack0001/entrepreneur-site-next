@@ -7,7 +7,9 @@ const AdWrapper = dynamic(() => import("../ads/adWrapper"), {
 	ssr: false,
 });
 import Adsense from "../ads/code/adsense/adsense";
-import AffLink from "../ads/affiliate/socialMediaAff";
+import styles from "./styles/sectionBarStyles.module.sass";
+
+// import AffLink from "../ads/affiliate/socialMediaAff";
 
 const SideBarContent = ({
 	data,
@@ -35,7 +37,7 @@ const SideBarContent = ({
 					/>
 				</div>
 			)}
-			{!showArticles && <AffLink />}
+			{/* {!showArticles && <AffLink />} */}
 			{showArticles &&
 				slicedData.map((article, index) => {
 					const {
@@ -78,15 +80,14 @@ const SideBarContent = ({
 						</Fragment>
 					);
 				})}
-
 			{cpcAd && (
 				<AdWrapper adCode={cpcAd.displayAd} callToActionMarker={false} />
 			)}
 			{showAd && !cpcAd && (
-				<div>
+				<div className={styles.wrapperDiv}>
 					<Adsense
 						client="ca-pub-2068760522034474"
-						slot="7552272565"
+						slot="5116619443"
 						currentUrlPath={currentUrlPath}
 					/>
 				</div>

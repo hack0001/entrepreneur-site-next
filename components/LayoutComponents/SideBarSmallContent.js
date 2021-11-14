@@ -4,6 +4,8 @@ import SideBarComponent from "./SideBar/SideBarComponent";
 import sideHelper from "../helper/sideBarHelper";
 import dynamic from "next/dynamic";
 import Adsense from "../ads/code/adsense/adsense";
+import styles from "./styles/sectionBarStyles.module.sass";
+
 const AdWrapper = dynamic(() => import("../ads/adWrapper"), {
 	ssr: false,
 });
@@ -36,22 +38,33 @@ const SideBarSmallContent = ({
 				} = sideHelper(content, type);
 
 				return (
-					<SideBarSmallComponent
-						key={index}
-						type={type}
-						headlineImage={headlineImage}
-						headlineImageAlt={headlineImageAlt}
-						headlineImagePath={headlineImagePath}
-						headlineImageCrop={headlineImageCrop}
-						headlineImageCropInfo={headlineImageCropInfo}
-						headline={headline}
-						category={category}
-						url={urlDescription}
-						refPath={refPath}
-						contentLink={contentLink}
-						queryLinkCheck={queryLinkCheck}
-						query={query}
-					/>
+					<div key={index}>
+						{index === 2 && showAd && (
+							<div className={styles.smallWrapperDiv}>
+								<Adsense
+									client="ca-pub-2068760522034474"
+									slot="7552272565"
+									currentUrlPath={currentUrlPath}
+								/>
+							</div>
+						)}
+						<SideBarSmallComponent
+							key={index}
+							type={type}
+							headlineImage={headlineImage}
+							headlineImageAlt={headlineImageAlt}
+							headlineImagePath={headlineImagePath}
+							headlineImageCrop={headlineImageCrop}
+							headlineImageCropInfo={headlineImageCropInfo}
+							headline={headline}
+							category={category}
+							url={urlDescription}
+							refPath={refPath}
+							contentLink={contentLink}
+							queryLinkCheck={queryLinkCheck}
+							query={query}
+						/>
+					</div>
 				);
 			})}
 			{showAd && !cpcAd && !linkedArticle && (
