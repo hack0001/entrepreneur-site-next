@@ -97,7 +97,7 @@ const HorizontalShareButtons = ({
 	return (
 		<div className={styles.buttonContainer}>
 			{data.map((button, index) => {
-				const { ShareButton } = button;
+				const { ShareButton, ShareCount } = button;
 				return (
 					<div className={`button-wrapper`}>
 						<ShareButton
@@ -112,6 +112,11 @@ const HorizontalShareButtons = ({
 							<div className={styles.buttonContent}>
 								<SocialSvgFactory button={button} />
 								<span className={styles.buttonText}>{button.text}</span>
+								{ShareCount && (
+									<span className={styles.buttonShareCount}>
+										<ShareCount className={styles.shareCount} url={url} />
+									</span>
+								)}
 							</div>
 						</ShareButton>
 						<style jsx>

@@ -12,11 +12,14 @@
     align-items: center
     margin: 0 auto
 
-.buttonText
+.buttonText,.buttonShareCount
     text-transform: uppercase
     color: #fff
     font-size: 1.1rem
     font-family: $font
+
+.buttonShareCount
+    margin-left: 1rem
 
 .indivButton
     border: none
@@ -42,14 +45,13 @@
         display: flex
         flex-direction: column
 
-    .buttonText
+    .buttonText,.buttonShareCount
         display: none
 
 @media only screen and (max-width: 480px) 
     .buttonContainer
         width: 100%
         margin: 0 auto
-        // padding: 0.5rem 1rem
 
     .buttonText
         display: none
