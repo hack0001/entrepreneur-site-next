@@ -2,7 +2,7 @@ import shareCountFactory from "../utils/shareCountFactory";
 
 const getFacebookShareCount = async (shareUrl, callback) => {
 	//Using a Permanent Facebook Token
-	const endpoint = `https://graph.facebook.com/?id=${shareUrl}&fields=engagement&access_token=EAAHCkg0g64MBAGmGaghMP427BaIXwgOdt2CTnTex4ToppzpUpgJZCAZCz8XXirOlGXL3Y1NfLU72NQkoEZCZB04xZBTOzLl5iB3R3QxGCCfytzLu7AAZATtb2ZA0CDjRBU8aCHflbqcvGZCPyqOniUUwQBkcZAqQA44zWT5ko48sh9kE4OOQjK2PIoBE0ZBRSLamk05ZAjaTPWCMwZDZD`;
+	const endpoint = `https://graph.facebook.com/?id=${shareUrl}&fields=engagement&access_token=EAAHCkg0g64MBAHEvOM00X1InZCTN2C205k1hvGvDT4uCXODiz9UHWsX06v7LrbBZA0BMwQuZCjzVCXTE5wRhBNyIar1OCHkRDW6LVlktOYOi1u68hYUXZBPEAvagPhm5MufpVhjwhAzFZAVdrZBG2xmuDRctz5EhtcWZCJGGZBCOMZBphZA4zeEYPo53Ni3rpuuebkQm4VriTCfQZDZD`;
 
 	try {
 		const data = await fetch(endpoint, {
