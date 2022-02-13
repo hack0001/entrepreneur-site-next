@@ -20,7 +20,7 @@ const Adsense = ({
 		} catch (err) {
 			console.log("Adsense Err", err);
 		}
-	}, [currentUrlPath]);
+	}, []);
 
 	return (
 		<div

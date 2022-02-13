@@ -7,9 +7,19 @@ export default class MyDocument extends Document {
 				<Head>
 					<script
 						async
-						src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2068760522034474"
+						src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
 						crossorigin="anonymous"
 					></script>
+					<script
+						dangerouslySetInnerHTML={{
+							__html: `
+							(adsbygoogle = window.adsbygoogle || []).push({
+								google_ad_client: "2068760522034474",
+								enable_page_level_ads: true
+								});
+								`,
+						}}
+					/>
 				</Head>
 				<body>
 					<Main />
