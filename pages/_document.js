@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
 					<script
 						dangerouslySetInnerHTML={{
 							__html: `
-							(adsbygoogle = window.adsbygoogle || []).push({
+							(window.adsbygoogle = window.adsbygoogle || []).push({
 								google_ad_client: "2068760522034474",
 								enable_page_level_ads: true
 								});
