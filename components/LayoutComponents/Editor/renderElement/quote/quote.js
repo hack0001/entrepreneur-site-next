@@ -17,7 +17,6 @@ const Quote = ({ node }) => {
 
 	useEffect(() => {
 		handleEmbed();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleEmbed = () => {

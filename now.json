@@ -16,7 +16,8 @@
 		"RSS_URL": "@rss_url",
 		"SITE_NAME": "@site_name",
 		"REACT_APP_GOOGLE_TAG_ID": "@google_tag_id",
-		"CLOUDFRONT_IMAGE_DOMAIN": "@cloudfront-domain"
+		"CLOUDFRONT_IMAGE_DOMAIN": "@cloudfront-domain",
+		"GOOGLE_CODE_ID": "@adsense_code_id"
 	},
 	"build": {
 		"env": {
@@ -33,7 +34,8 @@
 			"RSS_URL": "@rss_url",
 			"SITE_NAME": "@site_name",
 			"REACT_APP_GOOGLE_TAG_ID": "@google_tag_id",
-			"CLOUDFRONT_IMAGE_DOMAIN": "@cloudfront-domain"
+			"CLOUDFRONT_IMAGE_DOMAIN": "@cloudfront-domain",
+			"GOOGLE_CODE_ID": "@adsense_code_id"
 		}
 	}
 }

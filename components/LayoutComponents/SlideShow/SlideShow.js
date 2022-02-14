@@ -237,7 +237,7 @@ const SlideDetails = ({
 						)}
 						<div>
 							<Adsense
-								client="ca-pub-2068760522034474"
+								client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 								slot="7104500257"
 								responsive={true}
 								currentUrlPath={currentUrlPath}
@@ -280,7 +280,7 @@ const SlideDetails = ({
 					/>
 					<div>
 						<Adsense
-							client="ca-pub-2068760522034474"
+							client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 							slot="8433059648"
 							currentUrlPath={currentUrlPath}
 						/>
@@ -320,7 +320,7 @@ const SlideDetails = ({
 					/>
 					<div>
 						<Adsense
-							client="ca-pub-2068760522034474"
+							client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 							slot="3467673426"
 							currentUrlPath={currentUrlPath}
 						/>

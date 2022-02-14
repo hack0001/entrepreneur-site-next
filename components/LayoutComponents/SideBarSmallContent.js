@@ -42,7 +42,7 @@ const SideBarSmallContent = ({
 						{index === 2 && showAd && (
 							<div className={styles.smallWrapperDiv}>
 								<Adsense
-									client="ca-pub-2068760522034474"
+									client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 									slot="7552272565"
 									currentUrlPath={currentUrlPath}
 								/>
@@ -70,7 +70,7 @@ const SideBarSmallContent = ({
 			{showAd && !cpcAd && !linkedArticle && (
 				<Adsense
 					sticky={true}
-					client="ca-pub-2068760522034474"
+					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 					slot="5182944308"
 					currentUrlPath={currentUrlPath}
 				/>

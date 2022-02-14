@@ -31,16 +31,18 @@ const Header = ({ menuOpen, onClick }) => {
 				<div className={styles.headLinks}>
 					<div className={styles.linkWrapper}>
 						{links.map(({ href, label }, index) => (
-							<CustomLink
-								queryLink={queryLinkCheck}
-								pathname={href}
-								index={index}
-								query={query}
-							>
-								<a className={styles.navMenuItem}>
-									<span className={styles.navMenuLink}>{label}</span>
-								</a>
-							</CustomLink>
+							<div key={index}>
+								<CustomLink
+									queryLink={queryLinkCheck}
+									pathname={href}
+									index={index}
+									query={query}
+								>
+									<a className={styles.navMenuItem}>
+										<span className={styles.navMenuLink}>{label}</span>
+									</a>
+								</CustomLink>
+							</div>
 						))}
 					</div>
 				</div>

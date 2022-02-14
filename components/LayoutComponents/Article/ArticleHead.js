@@ -80,7 +80,7 @@ const ArticleHead = ({
 			{/* <!-- HorizBarContentTop --> */}
 			<div>
 				<Adsense
-					client={"ca-pub-2068760522034474"}
+					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 					slot={"9802692073"}
 					responsive={true}
 					currentUrlPath={currentUrlPath}

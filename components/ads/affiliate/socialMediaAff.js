@@ -19,7 +19,7 @@ const SocialMediaAffiliate = ({
 			<div className={styles[adWrap]}>
 				<div className={styles[adWrapperStyle]}>
 					<div className={styles.advert}>ADVERTISEMENT</div>
-					<a href={hopLink} target="_blank">
+					<a href={hopLink} target="_blank" rel="noreferrer">
 						<Image
 							src={`/sm_aff/${width}x${height}.png`}
 							width={width}

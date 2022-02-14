@@ -70,27 +70,27 @@ function windowOpen(
 }
 
 class ShareButton extends PureComponent {
-	static propTypes = {
-		additionalProps: PropTypes.object,
-		children: PropTypes.node,
-		className: PropTypes.string,
-		disabled: PropTypes.bool,
-		disabledStyle: PropTypes.object,
-		network: PropTypes.string.isRequired,
-		networkLink: PropTypes.func.isRequired,
-		onClick: PropTypes.func,
-		opts: PropTypes.object,
-		openWindow: PropTypes.bool,
-		url: PropTypes.string.isRequired,
-		role: PropTypes.string,
-		style: PropTypes.object,
-		windowWidth: PropTypes.number,
-		windowHeight: PropTypes.number,
-		windowPosition: PropTypes.oneOf(["windowCenter", "screenCenter"]),
-		beforeOnClick: PropTypes.func,
-		onShareWindowClose: PropTypes.func,
-		tabIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	};
+	// static propTypes : {
+	// 	additionalProps: PropTypes.object,
+	// 	children: PropTypes.node,
+	// 	className: PropTypes.string,
+	// 	disabled: PropTypes.bool,
+	// 	disabledStyle: PropTypes.object,
+	// 	network: PropTypes.string.isRequired,
+	// 	networkLink: PropTypes.func.isRequired,
+	// 	onClick: PropTypes.func,
+	// 	opts: PropTypes.object,
+	// 	openWindow: PropTypes.bool,
+	// 	url: PropTypes.string.isRequired,
+	// 	role: PropTypes.string,
+	// 	style: PropTypes.object,
+	// 	windowWidth: PropTypes.number,
+	// 	windowHeight: PropTypes.number,
+	// 	windowPosition: PropTypes.oneOf(["windowCenter", "screenCenter"]),
+	// 	beforeOnClick: PropTypes.func,
+	// 	onShareWindowClose: PropTypes.func,
+	// 	tabIndex: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	// };
 
 	static defaultProps = {
 		disabledStyle: {

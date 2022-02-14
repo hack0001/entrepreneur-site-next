@@ -8,6 +8,9 @@ export const getImagePath = longImageUrl => {
 	return longImageUrl.replace(/^.*\/\/[^\/]+/, "");
 };
 
+function removeEmpty(obj) {
+	return Object.fromEntries(Object.entries(obj).filter(([_, v]) => v != null));
+}
 //returns a new object rather than using delete which overwrites existing object
 export const clean = obj =>
 	Object.fromEntries(

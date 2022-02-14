@@ -49,7 +49,7 @@ const Adsense = ({
 };
 
 Adsense.defaultProps = {
-	client: "ca-pub-2068760522034474",
+	client: `ca-pub-${process.env.GOOGLE_CODE_ID}`,
 	format: "auto",
 	responsive: true,
 	sticky: false,

@@ -18,6 +18,7 @@ import StaticImage from "@components/Image/staticImage";
 import { useRouter } from "next/router";
 import Context from "../utils/Context";
 import { queryHandler, getParams } from "../utils/queryHandler";
+import CustomLink from "@components/Link/customLink";
 
 const Newsletter = ({ url }) => {
 	const [formData, setFormData] = useState(INITIAL_STATE);

@@ -5,20 +5,9 @@ export default class MyDocument extends Document {
 		return (
 			<Html lang="en">
 				<Head>
-					<script
-						async
-						src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-						crossorigin="anonymous"
-					></script>
-					<script
-						dangerouslySetInnerHTML={{
-							__html: `
-							(window.adsbygoogle = window.adsbygoogle || []).push({
-								google_ad_client: "2068760522034474",
-								enable_page_level_ads: true
-								});
-								`,
-						}}
+					<link
+						href={`https://fonts.googleapis.com/css2?family=Roboto:wght@200&display=swap`}
+						rel="stylesheet"
 					/>
 				</Head>
 				<body>

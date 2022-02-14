@@ -38,7 +38,6 @@ const ArticleBody = ({
 	const value = JSON.parse(content.content);
 	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
-
 	const filterArray = sessionSlideIds.concat({ id });
 	const {
 		viewCount,
@@ -119,7 +118,7 @@ const ArticleBody = ({
 			</LazyLoad>
 			<div>
 				<Adsense
-					client="ca-pub-2068760522034474"
+					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 					slot="8414762247"
 					currentUrlPath={currentUrlPath}
 				/>
@@ -151,7 +150,7 @@ const ArticleBody = ({
 			</LazyLoad>
 			<div>
 				<Adsense
-					client="ca-pub-2068760522034474"
+					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 					slot="4801396157"
 					currentUrlPath={currentUrlPath}
 				/>

@@ -99,7 +99,7 @@ const HorizontalShareButtons = ({
 			{data.map((button, index) => {
 				const { ShareButton, ShareCount } = button;
 				return (
-					<div className={`button-wrapper`}>
+					<div className={`button-wrapper`} key={index}>
 						<ShareButton
 							className={styles.indivButton}
 							style={{

@@ -72,7 +72,7 @@ const BookEnds = ({
 			/>
 			<div>
 				<Adsense
-					client="ca-pub-2068760522034474"
+					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 					slot="4672943880"
 					responsive={true}
 					adStyle={"adHeadline"}
@@ -103,7 +103,7 @@ const BookEnds = ({
 			{cpcMarker && (
 				<div>
 					<Adsense
-						client="ca-pub-2068760522034474"
+						client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 						slot="3049705177"
 						responsive={true}
 						adStyle={"maxHeight"}

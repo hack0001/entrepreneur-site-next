@@ -37,7 +37,7 @@ const QuizBookEnds = ({
 			{positionOpening && (
 				<div className={styles.adsenseWrapper}>
 					<Adsense
-						client="ca-pub-2068760522034474"
+						client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 						slot="5713798476"
 						responsive={true}
 						currentUrlPath={currentUrlPath}
@@ -85,7 +85,7 @@ const QuizBookEnds = ({
 			{positionClosing && (
 				<div className={styles.adsenseWrapper}>
 					<Adsense
-						client="ca-pub-2068760522034474"
+						client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 						slot="3992688547"
 						currentUrlPath={currentUrlPath}
 					/>

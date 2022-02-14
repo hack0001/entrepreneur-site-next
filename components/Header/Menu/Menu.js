@@ -12,18 +12,20 @@ const Menu = ({ onClick }) => {
 	const queryLinkCheck = objectCheck(query);
 	const menuItems = mobileLinks.map((val, index) => {
 		return (
-			<CustomLink
-				queryLink={queryLinkCheck}
-				pathname={val.href}
-				query={query}
-				index={index}
-			>
-				<a className={styles.mobileAnchor}>
-					<MenuItem delay={`${index * 0.1}s`} onClick={onClick}>
-						{val.label}
-					</MenuItem>
-				</a>
-			</CustomLink>
+			<div key={index}>
+				<CustomLink
+					queryLink={queryLinkCheck}
+					pathname={val.href}
+					query={query}
+					index={index}
+				>
+					<a className={styles.mobileAnchor}>
+						<MenuItem delay={`${index * 0.1}s`} onClick={onClick}>
+							{val.label}
+						</MenuItem>
+					</a>
+				</CustomLink>
+			</div>
 		);
 	});
 

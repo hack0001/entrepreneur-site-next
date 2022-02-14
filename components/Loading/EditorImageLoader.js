@@ -48,7 +48,7 @@ const ImageLoader = ({
 								alt={alt}
 								style={styles}
 								onLoad={onLoad}
-								layout="fill"
+								layout={"fill"}
 							/>
 						</div>
 					)}

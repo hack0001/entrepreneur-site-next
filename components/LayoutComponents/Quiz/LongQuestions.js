@@ -130,7 +130,7 @@ const Questions = ({
 		};
 
 		return (
-			<div className={styles.bookendWrapper}>
+			<div className={styles.bookendWrapper} key={index}>
 				<div className={styles.sectionHeader}>
 					<span className={styles.questionPosition}>{questionPosition}</span>
 					{question}
@@ -201,7 +201,7 @@ const Questions = ({
 				</div>
 				<div className={styles.adsenseWrapper}>
 					<Adsense
-						client="ca-pub-2068760522034474"
+						client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 						slot="3992688547"
 						currentUrlPath={currentUrlPath}
 						adStyle={"default"}

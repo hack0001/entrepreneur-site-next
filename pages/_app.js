@@ -2,6 +2,8 @@ import App from "next/app";
 import UserContext from "../utils/Context";
 import TagManager from "react-gtm-module";
 import dynamic from "next/dynamic";
+import Script from "next/script";
+
 const SignUp = dynamic(() => import("../components/SignUpModal/signUpModal"), {
 	ssr: false,
 });
@@ -41,6 +43,15 @@ class OverviewApp extends App {
 					currentUrlPath: this.state.currentUrlPath,
 				}}
 			>
+				<Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
+				<Script id="google-adsense-script">
+					{`
+						(window.adsbygoogle = window.adsbygoogle || []).push({
+						google_ad_client: ${process.env.GOOGLE_CODE_ID},
+						enable_page_level_ads: true
+						});
+	 				`}
+				</Script>
 				<SignUp />
 				<Component {...pageProps} />
 			</UserContext.Provider>

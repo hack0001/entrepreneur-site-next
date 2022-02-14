@@ -19,7 +19,7 @@ const BookEnds = ({
 		<div className={styles.bookEndWrapper}>
 			<div>
 				<Adsense
-					client="ca-pub-2068760522034474"
+					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 					slot="3049705177"
 					responsive={true}
 					adStyle={"adHeadline"}
@@ -70,7 +70,7 @@ const BookEnds = ({
 
 			<div className={styles.adWrap}>
 				<Adsense
-					client="ca-pub-2068760522034474"
+					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 					slot="1874540097"
 					adStyle={"default"}
 					responsive={true}

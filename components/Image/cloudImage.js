@@ -55,30 +55,36 @@ const CloudImageComponent = ({
 							alt={imageAlt}
 							src={`${cloudfrontUrl}?${parameterUrl}`}
 							onLoad={onLoad}
-							layout="fill"
+							width="100%"
+							height={"100%"}
+							layout={"responsive"}
 							priority={priority}
 						/>
 					</div>
 				)}
 				{!unsized && (
-					<Image
-						key={`${cloudfrontUrl}?${parameterUrl}`}
-						className={
-							styles[`${wrapperClass ? wrapperClass : "cloudWrapper"}`]
-						}
-						alt={imageAlt}
-						src={`${cloudfrontUrl}?${parameterUrl}`}
-						onLoad={onLoad}
-						height={
-							cleanCropParams.cropHeight
-								? cleanCropParams.cropHeight
-								: fixedHeight
-						}
-						width={
-							cleanCropParams.cropWidth ? cleanCropParams.cropWidth : fixedWidth
-						}
-						priority={priority}
-					/>
+					<div>
+						<Image
+							key={`${cloudfrontUrl}?${parameterUrl}`}
+							className={
+								styles[`${wrapperClass ? wrapperClass : "cloudWrapper"}`]
+							}
+							alt={imageAlt}
+							src={`${cloudfrontUrl}?${parameterUrl}`}
+							onLoad={onLoad}
+							height={
+								cleanCropParams.cropHeight
+									? cleanCropParams.cropHeight
+									: fixedHeight
+							}
+							width={
+								cleanCropParams.cropWidth
+									? cleanCropParams.cropWidth
+									: fixedWidth
+							}
+							priority={priority}
+						/>
+					</div>
 				)}
 			</>
 		);
@@ -93,7 +99,7 @@ const CloudImageComponent = ({
 					alt={imageAlt}
 					src={cloudfrontUrl}
 					onLoad={onLoad}
-					layout="fill"
+					layout={"fill"}
 					priority={priority}
 				/>
 			</div>

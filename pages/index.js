@@ -18,6 +18,7 @@ const Home = ({ headline, latest, quiz, slide }) => {
 		const { urlPath, queryParams } = getParams(
 			router.asPath ? router.asPath : "",
 		);
+
 		const queryUpdate = queryHandler(queryParams);
 		handleState({
 			query: queryUpdate,

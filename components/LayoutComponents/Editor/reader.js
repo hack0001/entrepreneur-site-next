@@ -149,7 +149,7 @@ const Reader = ({ value, cpcAd, linkedArticle, query, quickView = false }) => {
 					return (
 						<div>
 							<Adsense
-								client="ca-pub-2068760522034474"
+								client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
 								slot="8517191254"
 								currentUrlPath={currentUrlPath}
 							/>

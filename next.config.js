@@ -1,12 +1,4 @@
-// const withBundleAnalyzer = require("@next/bundle-analyzer")({
-// 	enabled: process.env.ANALYZE === "true",
-// });
-// module.exports = withBundleAnalyzer({});
 module.exports = {
-	target: "serverless",
-	future: {
-		webpack5: true,
-	},
 	images: {
 		domains: [
 			"assets.wealthmack.com",
@@ -50,6 +42,7 @@ module.exports = {
 		COOKIE_ACCEPT_EXPIRY: "365",
 		FACEBOOK_PAGE_URL: "https://www.facebook.com/WealthMack-103552984448329/",
 		CLOUDFRONT_IMAGE_DOMAIN: process.env.CLOUDFRONT_IMAGE_DOMAIN,
+		GOOGLE_CODE_ID: process.env.GOOGLE_CODE_ID,
 	},
 	async rewrites() {
 		return [

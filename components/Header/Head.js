@@ -6,10 +6,6 @@ const MainHead = () => {
 		<Head>
 			<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			<meta httpEquiv="Content-Type" content="text/html: charset=UTF-8" />
-			<link
-				href="https://fonts.googleapis.com/css2?family=Roboto:wght@200&display=swap"
-				rel="stylesheet"
-			/>
 
 			<meta charSet="UTF-8"></meta>
 			<link rel="manifest" href="/static/manifest.json" />
