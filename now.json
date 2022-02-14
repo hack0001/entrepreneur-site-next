@@ -1,7 +1,7 @@
 {
 	"version": 2,
 	"name": "entrepreneur-site-next",
-	"builds": [{ "src": "next.config.js", "use": "@now/next" }],
+	"builds": [{ "src": "next.config.js", "use": "@vercel/next" }],
 	"env": {
 		"NODE_ENV": "production",
 		"NEXT_APP_RECAPTCHA_SITEKEY": "@recaptcha-sitekey",
