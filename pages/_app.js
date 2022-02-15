@@ -45,16 +45,10 @@ class OverviewApp extends App {
 			>
 				<Script
 					id={this.state.currentUrlPath}
-					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+					async
+					crossOrigin="anonymous"
+					src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 				/>
-				<Script id="google-adsense-script">
-					{`
-						(window.adsbygoogle = window.adsbygoogle || []).push({
-						google_ad_client: ${process.env.GOOGLE_ADSENSE_ID},
-						enable_page_level_ads: true
-						});
-	 				`}
-				</Script>
 				<SignUp />
 				<Component {...pageProps} />
 			</UserContext.Provider>
