@@ -111,7 +111,7 @@ const Questions = ({
 		<div className={styles.bookendWrapper}>
 			<div className={styles.adsenseWrapper}>
 				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 					slot="3992688547"
 					responsive={true}
 					currentUrlPath={currentUrlPath}
@@ -171,7 +171,7 @@ const Questions = ({
 			<div className={styles.mobileAdsenseWrapper}>
 				<div>
 					<Adsense
-						client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="5962809597"
 						responsive={true}
 						currentUrlPath={currentUrlPath}
@@ -209,7 +209,7 @@ const Questions = ({
 			<div className={styles.adsenseWrapper}>
 				<div>
 					<Adsense
-						client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="9944544648"
 						responsive={true}
 						currentUrlPath={currentUrlPath}
@@ -255,7 +255,7 @@ const Questions = ({
 						/>
 						<div>
 							<Adsense
-								client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+								client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 								slot="9944544648"
 								responsive={true}
 								currentUrlPath={currentUrlPath}

@@ -68,7 +68,7 @@ const Slides = ({
 					{!slideAffiliateLink && (
 						<div>
 							<Adsense
-								client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+								client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 								slot="8433059648"
 								responsive={true}
 								adStyle={"default"}
@@ -110,7 +110,7 @@ const Slides = ({
 					{!slideAffiliateLink && !affiliateLinkCode && index % 3 !== 0 && (
 						<div className={slideStyles.midAdWrapper}>
 							<Adsense
-								client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+								client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 								slot="7104500257"
 								currentUrlPath={currentUrlPath}
 							/>
@@ -157,7 +157,7 @@ const Slides = ({
 					// Responsive Horizontal Adsense Component
 					<div className={slideStyles.midAdWrapper}>
 						<Adsense
-							client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+							client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 							slot="6603887822"
 							currentUrlPath={currentUrlPath}
 						/>

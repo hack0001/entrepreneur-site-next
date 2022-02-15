@@ -201,7 +201,7 @@ const Questions = ({
 				</div>
 				<div className={styles.adsenseWrapper}>
 					<Adsense
-						client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="3992688547"
 						currentUrlPath={currentUrlPath}
 						adStyle={"default"}

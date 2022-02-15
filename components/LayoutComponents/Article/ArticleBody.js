@@ -118,7 +118,7 @@ const ArticleBody = ({
 			</LazyLoad>
 			<div>
 				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 					slot="8414762247"
 					currentUrlPath={currentUrlPath}
 				/>
@@ -150,7 +150,7 @@ const ArticleBody = ({
 			</LazyLoad>
 			<div>
 				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 					slot="4801396157"
 					currentUrlPath={currentUrlPath}
 				/>

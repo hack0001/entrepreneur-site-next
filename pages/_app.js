@@ -43,11 +43,14 @@ class OverviewApp extends App {
 					currentUrlPath: this.state.currentUrlPath,
 				}}
 			>
-				<Script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
+				<Script
+					id={this.state.currentUrlPath}
+					src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+				/>
 				<Script id="google-adsense-script">
 					{`
 						(window.adsbygoogle = window.adsbygoogle || []).push({
-						google_ad_client: ${process.env.GOOGLE_CODE_ID},
+						google_ad_client: ${process.env.GOOGLE_ADSENSE_ID},
 						enable_page_level_ads: true
 						});
 	 				`}

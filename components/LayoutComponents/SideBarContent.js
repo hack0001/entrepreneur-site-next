@@ -31,7 +31,7 @@ const SideBarContent = ({
 			{showAd && !cpcAd && (
 				<div>
 					<Adsense
-						client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="6792782716"
 						currentUrlPath={currentUrlPath}
 					/>
@@ -57,7 +57,7 @@ const SideBarContent = ({
 							{index === 2 && showAd && (
 								<div>
 									<Adsense
-										client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+										client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 										slot="1753150973"
 										currentUrlPath={currentUrlPath}
 									/>
@@ -86,7 +86,7 @@ const SideBarContent = ({
 			{showAd && !cpcAd && (
 				<div className={styles.wrapperDiv}>
 					<Adsense
-						client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="5116619443"
 						currentUrlPath={currentUrlPath}
 					/>

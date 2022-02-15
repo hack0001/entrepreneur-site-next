@@ -187,7 +187,7 @@ const QuizDetails = ({
 									<div className={styles.openingButton}>
 										<div className={styles.adsenseWrapper}>
 											<Adsense
-												client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+												client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 												slot="4560498904"
 												responsive={true}
 												currentUrlPath={currentUrlPath}

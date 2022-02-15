@@ -58,7 +58,7 @@ const QuickSlides = ({
 			<div>
 				{/* <!-- QuickViewHeadlineBottom --> */}
 				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 					slot="3049705177"
 					responsive={true}
 					adStyle={"adHeadline"}
@@ -122,7 +122,7 @@ const QuickSlides = ({
 				<div className={styles.adWrapper}>
 					{!slideAffiliateLink && !affiliateLinkCode && (
 						<Adsense
-							client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+							client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 							slot="1874540097"
 							responsive={true}
 							adStyle={"default"}
@@ -189,7 +189,7 @@ const QuickSlides = ({
 			<div className={styles.adWrapper}>
 				{!slideAffiliateLink && !affiliateLinkCode && (
 					<Adsense
-						client={`ca-pub-${process.env.GOOGLE_CODE_ID}`}
+						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="1874540097"
 						responsive={true}
 						adStyle={"default"}
