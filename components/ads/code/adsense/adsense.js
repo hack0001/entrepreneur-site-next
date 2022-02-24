@@ -30,12 +30,6 @@ const Adsense = ({
 				top: sticky ? 70 : null,
 			}}
 		>
-			<Script
-				id={currentUrlPath}
-				async
-				crossOrigin="anonymous"
-				src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-			/>
 			<div className={styles[adWrap]}>
 				<div className={styles[adWrapperStyle]}>
 					<div className={styles.advert}>ADVERTISEMENT</div>

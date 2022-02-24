@@ -1,8 +1,9 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import PropTypes from "prop-types";
 import Embed from "../../Embed/Embed";
 import { UPDATE_QUIZ_VOTES } from "../../../graphql/indivQuiz";
 import QuizButton from "../../Button/QuizButton";
+import NoLinkButton from "@components/Button/NoLinkButton";
 import QuickViewButton from "../../Button/QuickViewButton";
 import LongAnswer from "./LongAnswer";
 import ProgressBar from "@components/progressBar/progressBar";
@@ -36,6 +37,8 @@ const Questions = ({
 	const [loading, setLoading] = useState(false);
 	const { handleState } = useContext(Context);
 	const questionDetails = questionData[0];
+	const topTitleRef = useRef();
+
 	const {
 		answerImage,
 		answerImageAlt,
@@ -70,6 +73,13 @@ const Questions = ({
 	useEffect(() => {
 		setLoading(false);
 	}, [answerImage]);
+
+	useEffect(() => {
+		if (process.env.NODE_ENV !== "development") {
+			const y = topTitleRef.current.getBoundingClientRect().top;
+			window.scrollTo({ top: y - 65, behaviour: "smooth" });
+		}
+	}, [position]);
 
 	const answerClick = (index, answer, answerDetail, correct, totalVotes) => {
 		const answerType = correct
@@ -108,18 +118,7 @@ const Questions = ({
 	if (loading) return <SingleLoader />;
 
 	return (
-		<div className={styles.bookendWrapper}>
-			<div className={styles.adsenseWrapper}>
-				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-					slot="3992688547"
-					responsive={true}
-					currentUrlPath={currentUrlPath}
-					adStyle={"adHeadline"}
-					adWrapperStyle={"adTopHeadline"}
-					adWrap={"adHeadWrap"}
-				/>
-			</div>
+		<div className={styles.bookendWrapper} ref={topTitleRef}>
 			<div className={styles.sectionHeader}>
 				<span className={styles.questionPosition}>{questionPosition}</span>
 				{question}
@@ -163,21 +162,19 @@ const Questions = ({
 					</div>
 				)}
 			</div>
+			<div className={styles.adBelowImageWrapper}>
+				{/* QuestionsUnderImage */}
+				<Adsense
+					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
+					slot="3528223454"
+					responsive={true}
+					currentUrlPath={currentUrlPath}
+				/>
+			</div>
 			<div className={styles.sectionHeaderScore}>
 				Current Score: {currentScore}
 			</div>
 
-			{/* <!-- MobileQuizAd - MidRange --> */}
-			<div className={styles.mobileAdsenseWrapper}>
-				<div>
-					<Adsense
-						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-						slot="5962809597"
-						responsive={true}
-						currentUrlPath={currentUrlPath}
-					/>
-				</div>
-			</div>
 			<div className={styles.answerWrap}>
 				<QuizButton
 					answerInfo={answerInfo}
@@ -208,6 +205,8 @@ const Questions = ({
 			/>
 			<div className={styles.adsenseWrapper}>
 				<div>
+					{/* QuestionsBottom */}
+
 					<Adsense
 						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="9944544648"
@@ -215,10 +214,21 @@ const Questions = ({
 						currentUrlPath={currentUrlPath}
 					/>
 				</div>
-				{showAnswer && (
-					<>
+				<>
+					{!showAnswer && (
+						<NoLinkButton
+							label={"Select An Answer"}
+							handler={e => {
+								setShowAnswer(false);
+								setButtonDisabled(false);
+								setSelected(false);
+								setCorrect(false);
+							}}
+						/>
+					)}
+					{showAnswer && (
 						<QuickViewButton
-							label="Next"
+							label={"Next"}
 							imgSrc={
 								nextQuestionData[0]
 									? nextQuestionData[0].questionImage
@@ -253,16 +263,17 @@ const Questions = ({
 							queryLinkCheck={queryLinkCheck}
 							query={query}
 						/>
-						<div>
-							<Adsense
-								client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-								slot="9944544648"
-								responsive={true}
-								currentUrlPath={currentUrlPath}
-							/>
-						</div>
-					</>
-				)}
+					)}
+
+					<div>
+						<Adsense
+							client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
+							slot="9944544648"
+							responsive={true}
+							currentUrlPath={currentUrlPath}
+						/>
+					</div>
+				</>
 			</div>
 		</div>
 	);

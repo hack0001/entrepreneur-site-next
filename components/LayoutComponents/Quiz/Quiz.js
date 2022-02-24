@@ -87,16 +87,18 @@ const QuizDetails = ({
 		const updatePercentageCheck = percentage.map(marker => {
 			if (currentPercentage >= marker.percentile && !marker.percentileCheck) {
 				//Track the Percentage Viewed in Tag Manager
-				if (window) {
-					window.dataLayer.push({
-						event: "quiz_percentage",
-						percentage: currentPercentage,
-						percentile: marker.percentile,
-						percentageCheck: marker.percentileCheck,
-						category,
-						currentScore: currentScore,
-						currentScorePercentage: currentScorePercentage,
-					});
+				if (typeof window !== "undefined") {
+					if (window.dataLayer) {
+						window.dataLayer.push({
+							event: "quiz_percentage",
+							percentage: currentPercentage,
+							percentile: marker.percentile,
+							percentageCheck: marker.percentileCheck,
+							category,
+							currentScore: currentScore,
+							currentScorePercentage: currentScorePercentage,
+						});
+					}
 				}
 
 				return {
@@ -186,6 +188,7 @@ const QuizDetails = ({
 								{position === "opening" && (
 									<div className={styles.openingButton}>
 										<div className={styles.adsenseWrapper}>
+											{/* QuestionHoriz */}
 											<Adsense
 												client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 												slot="4560498904"
@@ -385,9 +388,11 @@ const QuizDetails = ({
 					pinterestPinLink={pinterestPinLink}
 				/>
 			</LazyLoad>
-			<LazyLoad once={true}>
-				<ScrollUpButton />
-			</LazyLoad>
+			{!cpcMarker && (
+				<LazyLoad once={true}>
+					<ScrollUpButton />
+				</LazyLoad>
+			)}
 			<LazyLoad once={true}>
 				<hr className={styles.break} />
 				<ShareButtonHoriz

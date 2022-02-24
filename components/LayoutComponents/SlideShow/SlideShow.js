@@ -82,14 +82,16 @@ const SlideDetails = ({
 		const updatePercentageCheck = percentage.map(marker => {
 			if (currentPercentage >= marker.percentile && !marker.percentileCheck) {
 				// Track the Percentage Viewed in Tag Manager
-				if (window) {
-					window.dataLayer.push({
-						event: "slideshow_percentage",
-						percentage: currentPercentage,
-						percentile: marker.percentile,
-						percentageCheck: marker.percentileCheck,
-						category,
-					});
+				if (typeof window !== "undefined") {
+					if (window.dataLayer) {
+						window.dataLayer.push({
+							event: "slideshow_percentage",
+							percentage: currentPercentage,
+							percentile: marker.percentile,
+							percentageCheck: marker.percentileCheck,
+							category,
+						});
+					}
 				}
 
 				return {
@@ -235,14 +237,17 @@ const SlideDetails = ({
 								progressBar={progressBar}
 							/>
 						)}
-						<div>
-							<Adsense
-								client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-								slot="7104500257"
-								responsive={true}
-								currentUrlPath={currentUrlPath}
-							/>
-						</div>
+						{/* SlideBottomSquare */}
+						{position !== "opening" && (
+							<div>
+								<Adsense
+									client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
+									slot="7104500257"
+									responsive={true}
+									currentUrlPath={currentUrlPath}
+								/>
+							</div>
+						)}
 					</div>
 				</>
 			)}
@@ -279,6 +284,7 @@ const SlideDetails = ({
 						priority={true}
 					/>
 					<div>
+						{/* SlideHorizTop */}
 						<Adsense
 							client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 							slot="8433059648"
@@ -319,12 +325,14 @@ const SlideDetails = ({
 						priority={false}
 					/>
 					<div>
+						{/* SlideShowBottomHoriz */}
 						<Adsense
 							client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 							slot="3467673426"
 							currentUrlPath={currentUrlPath}
 						/>
 					</div>
+
 					{nextContent[0] && (
 						<QuickViewButton
 							label={"Next"}
@@ -352,9 +360,11 @@ const SlideDetails = ({
 				/>
 			</LazyLoad>
 
-			<LazyLoad once={true}>
-				<ScrollUpButton />
-			</LazyLoad>
+			{!cpcMarker && (
+				<LazyLoad once={true}>
+					<ScrollUpButton />
+				</LazyLoad>
+			)}
 			<LazyLoad once={true}>
 				<SectionBar title={`Share`} titleColor="#111" titleSize="1rem" />
 				<ShareButtonHoriz

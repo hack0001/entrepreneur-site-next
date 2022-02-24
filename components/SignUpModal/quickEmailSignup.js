@@ -63,12 +63,14 @@ const SignUpModal = ({ queryLinkCheck, query }) => {
 		};
 
 		//Track the Email Signup in Tag Manager Manually
-		if (window) {
-			window.dataLayer.push({
-				event: "track_email_signup",
-				email: formData.email,
-				signupType: "quickEmail",
-			});
+		if (typeof window !== "undefined") {
+			if (window.dataLayer) {
+				window.dataLayer.push({
+					event: "track_email_signup",
+					email: formData.email,
+					signupType: "quickEmail",
+				});
+			}
 		}
 		try {
 			const mutationData = {

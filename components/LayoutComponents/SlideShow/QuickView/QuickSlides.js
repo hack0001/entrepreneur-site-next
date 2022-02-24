@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import Embed from "../../../Embed/Embed";
 import QuickViewButton from "../../../Button/QuickViewButton";
@@ -43,43 +43,29 @@ const QuickSlides = ({
 		slideCallToAction,
 		callToAction,
 	} = slideDetails;
-	const slideImageEmbed = slideDetails[`slideImage-embed`];
+	// const slideImageEmbed = slideDetails[`slideImage-embed`];
 	const showNumber = countdown ? total - slidePosition + 1 : slidePosition;
 	const [loading, setLoading] = useState(false);
+	const topTitleRef = useRef();
 
 	useEffect(() => {
 		setLoading(false);
+		if (process.env.NODE_ENV !== "development") {
+			const y = topTitleRef.current.getBoundingClientRect().top;
+			window.scrollTo({ top: y - 65, behaviour: "smooth" });
+		}
 	}, [slideImage]);
 
 	if (loading) return <SingleLoader />;
 
 	return (
-		<div className={styles.bookendWrapper}>
-			<div>
-				{/* <!-- QuickViewHeadlineBottom --> */}
-				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-					slot="3049705177"
-					responsive={true}
-					adStyle={"adHeadline"}
-					adWrapperStyle={"adTopHeadline"}
-					adWrap={"adHeadWrap"}
-					currentUrlPath={currentUrlPath}
-				/>
-			</div>
+		<div className={styles.bookendWrapper} ref={topTitleRef}>
 			<h2 className={styles.sectionHeader}>
 				{showNumbers && (
 					<span className={styles.slidePosition}>{showNumber}</span>
 				)}
 				{slide}
 			</h2>
-			<h3 className={styles.sectionBrief}>{slideComment}</h3>
-			<div className={styles.deskSectionParagraph}>
-				<Reader
-					value={slideDetails.slideDetails[0].children}
-					quickView={true}
-				/>
-			</div>
 			<div>
 				<Embed
 					embed={slideDetails["slideImage-embed"]}
@@ -96,6 +82,23 @@ const QuickSlides = ({
 					priority={true}
 				/>
 			</div>
+			<h3 className={styles.sectionBrief}>{slideComment}</h3>
+			<div className={styles.belowImageAd}>
+				<Adsense
+					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
+					slot="1004155983"
+					responsive={true}
+					adStyle={"default"}
+					currentUrlPath={currentUrlPath}
+				/>
+			</div>
+
+			<div className={styles.deskSectionParagraph}>
+				<Reader
+					value={slideDetails.slideDetails[0].children}
+					quickView={true}
+				/>
+			</div>
 			<div>
 				{progressBar && (
 					<div className={styles.progressWrapper}>
@@ -103,73 +106,43 @@ const QuickSlides = ({
 					</div>
 				)}
 			</div>
+
 			<div className={styles.mobileSection}>
 				<div className={styles.mobSectionParagraph}>
 					<Reader
 						value={slideDetails.slideDetails[0].children}
 						quickView={true}
 					/>
-					<div>
-						{slideAffiliateLink && affiliateLinkCode && (
-							<AdWrapper
-								adCode={affiliateLinkCode}
-								callToActionMarker={slideCallToAction}
-								callToAction={callToAction}
-							/>
-						)}
-					</div>
-				</div>
-				<div className={styles.adWrapper}>
-					{!slideAffiliateLink && !affiliateLinkCode && (
-						<Adsense
-							client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-							slot="1874540097"
-							responsive={true}
-							adStyle={"default"}
-							currentUrlPath={currentUrlPath}
-						/>
-					)}
-				</div>
-				<div>
-					{cpcMarker && (
-						<QuickViewButton
-							label="Next"
-							imgSrc={
-								nextSlideData[0] ? nextSlideData[0].slideImage : linkImage
-							}
-							href={nextHref}
-							imagePath={
-								nextSlideData[0] ? nextSlideData[0].slideImagePath : ""
-							}
-							refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
-							imageAlt={
-								nextSlideData[0]
-									? nextSlideData[0].slideImageAlt
-									: "Next Slide Image"
-							}
-							imageCrop={
-								nextSlideData[0]
-									? nextSlideData[0].slideImageCrop
-									: slideImageCrop
-							}
-							imageCropInfo={
-								nextSlideData[0]
-									? nextSlideData[0].slideImageCropInfo
-									: slideImageCropInfo
-							}
-							imageEmbed={
-								nextSlideData[0] ? nextSlideData[0]["slideImage-embed"] : false
-							}
-							optionalTitle={
-								nextSlideData[0] && showNextTitle ? nextSlideData[0].slide : ""
-							}
-							cpcMarker={cpcMarker}
-							queryLinkCheck={queryLinkCheck}
-							query={query}
-						/>
-					)}
 				</div>
 			</div>
+
+			<QuickViewButton
+				label="Next"
+				imgSrc={nextSlideData[0] ? nextSlideData[0].slideImage : linkImage}
+				href={nextHref}
+				imagePath={nextSlideData[0] ? nextSlideData[0].slideImagePath : ""}
+				refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
+				imageAlt={
+					nextSlideData[0] ? nextSlideData[0].slideImageAlt : "Next Slide Image"
+				}
+				imageCrop={
+					nextSlideData[0] ? nextSlideData[0].slideImageCrop : slideImageCrop
+				}
+				imageCropInfo={
+					nextSlideData[0]
+						? nextSlideData[0].slideImageCropInfo
+						: slideImageCropInfo
+				}
+				imageEmbed={
+					nextSlideData[0] ? nextSlideData[0]["slideImage-embed"] : false
+				}
+				optionalTitle={
+					nextSlideData[0] && showNextTitle ? nextSlideData[0].slide : ""
+				}
+				cpcMarker={cpcMarker}
+				queryLinkCheck={queryLinkCheck}
+				query={query}
+			/>
 
 			<div className={styles.bottomSectionParagraph}>
 				{bottomSlideDetails && (
@@ -185,8 +158,8 @@ const QuickSlides = ({
 					)}
 				</div>
 			</div>
-
 			<div className={styles.adWrapper}>
+				{/* QuickViewBottom */}
 				{!slideAffiliateLink && !affiliateLinkCode && (
 					<Adsense
 						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
@@ -197,37 +170,34 @@ const QuickSlides = ({
 					/>
 				)}
 			</div>
-			{cpcMarker && (
-				<QuickViewButton
-					label="Next"
-					imgSrc={nextSlideData[0] ? nextSlideData[0].slideImage : linkImage}
-					href={nextHref}
-					imagePath={nextSlideData[0] ? nextSlideData[0].slideImagePath : ""}
-					refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
-					imageAlt={
-						nextSlideData[0]
-							? nextSlideData[0].slideImageAlt
-							: "Next Slide Image"
-					}
-					imageCrop={
-						nextSlideData[0] ? nextSlideData[0].slideImageCrop : slideImageCrop
-					}
-					imageCropInfo={
-						nextSlideData[0]
-							? nextSlideData[0].slideImageCropInfo
-							: slideImageCropInfo
-					}
-					imageEmbed={
-						nextSlideData[0] ? nextSlideData[0]["slideImage-embed"] : false
-					}
-					optionalTitle={
-						nextSlideData[0] && showNextTitle ? nextSlideData[0].slide : ""
-					}
-					cpcMarker={cpcMarker}
-					queryLinkCheck={queryLinkCheck}
-					query={query}
-				/>
-			)}
+
+			<QuickViewButton
+				label="Next"
+				imgSrc={nextSlideData[0] ? nextSlideData[0].slideImage : linkImage}
+				href={nextHref}
+				imagePath={nextSlideData[0] ? nextSlideData[0].slideImagePath : ""}
+				refPath={`/[category]/[url]/slideshow/[slideId]/slides/[slideContentId]`}
+				imageAlt={
+					nextSlideData[0] ? nextSlideData[0].slideImageAlt : "Next Slide Image"
+				}
+				imageCrop={
+					nextSlideData[0] ? nextSlideData[0].slideImageCrop : slideImageCrop
+				}
+				imageCropInfo={
+					nextSlideData[0]
+						? nextSlideData[0].slideImageCropInfo
+						: slideImageCropInfo
+				}
+				imageEmbed={
+					nextSlideData[0] ? nextSlideData[0]["slideImage-embed"] : false
+				}
+				optionalTitle={
+					nextSlideData[0] && showNextTitle ? nextSlideData[0].slide : ""
+				}
+				cpcMarker={cpcMarker}
+				queryLinkCheck={queryLinkCheck}
+				query={query}
+			/>
 		</div>
 	);
 };

@@ -78,17 +78,7 @@ const ArticleHead = ({
 				/>
 			</div>
 			{/* <!-- HorizBarContentTop --> */}
-			<div>
-				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-					slot={"9802692073"}
-					responsive={true}
-					currentUrlPath={currentUrlPath}
-					adStyle={"adHeadline"}
-					adWrapperStyle={"adTopHeadline"}
-					adWrap={"adHeadWrap"}
-				/>
-			</div>
+
 			<ImageLoader
 				src={headlineImage}
 				alt={headlineImageAlt}
@@ -139,6 +129,18 @@ const ArticleHead = ({
 				<Disclaimer query={query} queryLinkCheck={queryLinkCheck} />
 			)}
 			<hr className={styles.break} />
+			<div>
+				{/* HorizBarContentTop */}
+				<Adsense
+					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
+					slot={"9802692073"}
+					responsive={true}
+					currentUrlPath={currentUrlPath}
+					adStyle={"adHeadline"}
+					adWrapperStyle={"adTopHeadline"}
+					adWrap={"adHeadWrap"}
+				/>
+			</div>
 			<ArticleBody
 				content={overview}
 				url={canonical}

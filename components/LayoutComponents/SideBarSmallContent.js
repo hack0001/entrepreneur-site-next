@@ -39,15 +39,6 @@ const SideBarSmallContent = ({
 
 				return (
 					<div key={index}>
-						{index === 2 && showAd && (
-							<div className={styles.smallWrapperDiv}>
-								<Adsense
-									client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-									slot="7552272565"
-									currentUrlPath={currentUrlPath}
-								/>
-							</div>
-						)}
 						<SideBarSmallComponent
 							key={index}
 							type={type}
@@ -67,13 +58,21 @@ const SideBarSmallContent = ({
 					</div>
 				);
 			})}
+			{/* SideBarVerticalSticky */}
 			{showAd && !cpcAd && !linkedArticle && (
-				<Adsense
-					sticky={true}
-					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-					slot="5182944308"
-					currentUrlPath={currentUrlPath}
-				/>
+				<div
+					style={{
+						position: "sticky",
+						top: 70,
+					}}
+				>
+					<Adsense
+						sticky={true}
+						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
+						slot="5182944308"
+						currentUrlPath={currentUrlPath}
+					/>
+				</div>
 			)}
 			{cpcAd && (
 				<AdWrapper

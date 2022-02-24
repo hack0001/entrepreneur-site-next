@@ -55,6 +55,24 @@
     text-align: center
     text-transform: capitalize
 
+.noLinkButton
+    display: flex
+    text-decoration: none
+    outline: none
+    border: 0
+    align-items: center
+    flex-direction: row
+    justify-content: space-between
+    position: relative
+    font-size: 2.2em
+    font-weight: 700
+    color: #fefefe
+    font-family: $font
+    text-transform: uppercase
+    width: 100%
+    background: $redButton
+    padding: 1rem 0rem
+
 .quickViewImage
     width: 100%
 
@@ -72,14 +90,11 @@
     text-transform: uppercase
     width: 100%
     border-radius: 3px
-    background: $secondary
-    box-shadow: 0 1px 4px 2px rgba(16, 16, 16, 0.15)
+    background: $redButton
     overflow: hidden
     transition: all 0.2s ease
     padding: 1rem 0rem
-
-    &:hover
-        background: $primary
+    border: 0
 
 .scrollText
     font-size: 1.2rem

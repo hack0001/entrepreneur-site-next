@@ -17,17 +17,6 @@ const BookEnds = ({
 }) => {
 	return (
 		<div className={styles.bookEndWrapper}>
-			<div>
-				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-					slot="3049705177"
-					responsive={true}
-					adStyle={"adHeadline"}
-					adWrapperStyle={"adTopHeadline"}
-					adWrap={"adHeadWrap"}
-					currentUrlPath={currentUrlPath}
-				/>
-			</div>
 			<h2 className={styles.sectionHeader}>{title}</h2>
 			{position === "opening" && (
 				<div className={styles.imageWrap}>
@@ -67,8 +56,8 @@ const BookEnds = ({
 			<div className={styles.mobSectionParagraph}>
 				<Reader value={details[0].children} quickView={true} />
 			</div>
-
 			<div className={styles.adWrap}>
+				{/* QuickViewBottom */}
 				<Adsense
 					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 					slot="1874540097"

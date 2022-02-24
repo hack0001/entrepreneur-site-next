@@ -200,6 +200,7 @@ const Questions = ({
 					/>
 				</div>
 				<div className={styles.adsenseWrapper}>
+					{/* QuestionBottomSquare */}
 					<Adsense
 						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="3992688547"

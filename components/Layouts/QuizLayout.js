@@ -59,33 +59,40 @@ const Quiz = ({
 					/>
 				</article>
 				<aside className={styles.sideArticleSection}>
-					<div className={styles.sectionPadding}>
-						<SectionBar title="Quiz" titleColor="#111" titleSize="1rem" />
+					{!cpcMarker && (
+						<div className={styles.sectionPadding}>
+							<SectionBar title="Quiz" titleColor="#111" titleSize="1rem" />
+						</div>
+					)}
+					<div
+						className={styles.sideContentWrapper}
+						style={cpcMarker ? { position: "sticky", top: 70 } : {}}
+					>
+						<SideBarContent
+							data={headlineData}
+							type="article"
+							showAd={true}
+							queryLinkCheck={true}
+							query={{ ...query, utm_medium: "sidebar-quiz" }}
+							currentUrlPath={currentUrlPath}
+							showArticles={!cpcMarker}
+						/>
+						<LazyLoad once={true}>
+							<FacebookPage />
+						</LazyLoad>
+						<div className={styles.sectionPadding}>
+							<SectionBar title="Popular" titleColor="#111" titleSize="1rem" />
+						</div>
+						<SideBarSmallContent
+							data={slide.items}
+							type="slideshow"
+							showAd={false}
+							adCode={ETORO_COPY_TRADER}
+							queryLinkCheck={true}
+							query={{ ...query, utm_medium: "sidebarsmall-quiz" }}
+							currentUrlPath={currentUrlPath}
+						/>
 					</div>
-					<SideBarContent
-						data={headlineData}
-						type="article"
-						showAd={true}
-						queryLinkCheck={true}
-						query={{ ...query, utm_medium: "sidebar-quiz" }}
-						currentUrlPath={currentUrlPath}
-						showArticles={!cpcMarker}
-					/>
-					<LazyLoad once={true}>
-						<FacebookPage />
-					</LazyLoad>
-					<div className={styles.sectionPadding}>
-						<SectionBar title="Popular" titleColor="#111" titleSize="1rem" />
-					</div>
-					<SideBarSmallContent
-						data={slide.items}
-						type="slideshow"
-						showAd={true}
-						adCode={ETORO_COPY_TRADER}
-						queryLinkCheck={true}
-						query={{ ...query, utm_medium: "sidebarsmall-quiz" }}
-						currentUrlPath={currentUrlPath}
-					/>
 				</aside>
 			</main>
 		</Layout>

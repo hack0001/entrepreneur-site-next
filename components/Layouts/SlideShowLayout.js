@@ -57,37 +57,79 @@ const Slide = ({
 						setCpcMarker={setCpcMarker}
 					/>
 				</article>
-				<aside className={styles.sideArticleSection}>
-					<div className={styles.sectionPadding}>
-						<SectionBar title="Popular" titleColor="#111" titleSize="1rem" />
-					</div>
-					<div className={styles.sideContentWrapper}>
-						<SideBarContent
-							data={headlineData}
-							type="article"
-							showAd={true}
-							limit={6}
-							queryLinkCheck={true}
-							query={{ ...query, utm_medium: "sidebar-slideshow" }}
-							currentUrlPath={currentUrlPath}
-							showArticles={!cpcMarker}
-						/>
-					</div>
-					<LazyLoad once={true}>
-						<FacebookPage />
-					</LazyLoad>
-					<div className={styles.sectionPadding}>
-						<SectionBar title="Quiz" titleColor="#111" titleSize="1rem" />
-					</div>
-					<SideBarSmallContent
-						data={quiz.items}
-						type="quiz"
-						showAd={true}
-						limit={6}
-						queryLinkCheck={true}
-						query={{ ...query, utm_medium: "sidebarsmall-slideshow" }}
-						currentUrlPath={currentUrlPath}
-					/>
+				<aside
+					className={
+						cpcMarker
+							? styles.quickSideArticleSection
+							: styles.sideArticleSection
+					}
+				>
+					{!cpcMarker && (
+						<div className={styles.sectionPadding}>
+							<SectionBar title="Popular" titleColor="#111" titleSize="1rem" />
+						</div>
+					)}
+					{cpcMarker && (
+						<div
+							className={styles.sideContentWrapper}
+							style={{ position: "sticky", top: 70 }}
+						>
+							<SideBarContent
+								data={headlineData}
+								type="article"
+								showAd={true}
+								limit={6}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: "sidebar-slideshow" }}
+								currentUrlPath={currentUrlPath}
+								showArticles={!cpcMarker}
+							/>
+							<LazyLoad once={true}>
+								<FacebookPage />
+							</LazyLoad>
+							<div className={styles.sectionPadding}>
+								<SectionBar title="Quiz" titleColor="#111" titleSize="1rem" />
+							</div>
+							<SideBarSmallContent
+								data={quiz.items}
+								type="quiz"
+								showAd={cpcMarker ? false : true}
+								limit={6}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: "sidebarsmall-slideshow" }}
+								currentUrlPath={currentUrlPath}
+							/>
+						</div>
+					)}
+					{!cpcMarker && (
+						<>
+							<SideBarContent
+								data={headlineData}
+								type="article"
+								showAd={true}
+								limit={6}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: "sidebar-slideshow" }}
+								currentUrlPath={currentUrlPath}
+								showArticles={!cpcMarker}
+							/>
+							<LazyLoad once={true}>
+								<FacebookPage />
+							</LazyLoad>
+							<div className={styles.sectionPadding}>
+								<SectionBar title="Quiz" titleColor="#111" titleSize="1rem" />
+							</div>
+							<SideBarSmallContent
+								data={quiz.items}
+								type="quiz"
+								showAd={position !== "opening" ? false : true}
+								limit={6}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: "sidebarsmall-slideshow" }}
+								currentUrlPath={currentUrlPath}
+							/>
+						</>
+					)}
 				</aside>
 			</main>
 		</Layout>

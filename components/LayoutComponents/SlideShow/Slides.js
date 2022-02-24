@@ -109,6 +109,7 @@ const Slides = ({
 				<div>
 					{!slideAffiliateLink && !affiliateLinkCode && index % 3 !== 0 && (
 						<div className={slideStyles.midAdWrapper}>
+							{/* SlideBottomSquare */}
 							<Adsense
 								client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 								slot="7104500257"
@@ -155,6 +156,7 @@ const Slides = ({
 				)}
 				{index % 3 === 0 && (
 					// Responsive Horizontal Adsense Component
+					// MiddleSlidesShort
 					<div className={slideStyles.midAdWrapper}>
 						<Adsense
 							client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}

@@ -44,7 +44,8 @@ const QuickViewLayout = ({
 						query={query}
 					/>
 				</article>
-				<aside className={styles.sideArticleSection}>
+
+				<aside className={styles.quickSideArticleSection}>
 					<div className={styles.sectionPadding}>
 						<SectionBar title="Popular" titleColor="#111" titleSize="1rem" />
 					</div>

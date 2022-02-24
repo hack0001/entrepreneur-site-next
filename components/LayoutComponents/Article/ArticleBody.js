@@ -117,6 +117,7 @@ const ArticleBody = ({
 				<ScrollUpButton />
 			</LazyLoad>
 			<div>
+				{/* HorizBarContentBottom */}
 				<Adsense
 					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 					slot="8414762247"
@@ -149,6 +150,7 @@ const ArticleBody = ({
 				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
 			</LazyLoad>
 			<div>
+				{/* ArticleBottom */}
 				<Adsense
 					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 					slot="4801396157"

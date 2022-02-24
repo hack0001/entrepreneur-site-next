@@ -34,19 +34,6 @@ const QuizBookEnds = ({
 	);
 	return (
 		<div className={styles.bookEndWrapper}>
-			{positionOpening && (
-				<div className={styles.adsenseWrapper}>
-					<Adsense
-						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-						slot="5713798476"
-						responsive={true}
-						currentUrlPath={currentUrlPath}
-						adStyle={"adHeadline"}
-						adWrapperStyle={"adTopHeadline"}
-						adWrap={"adHeadWrap"}
-					/>
-				</div>
-			)}
 			{positionClosing && (
 				<h2 className={`${styles.sectionHeader} section-header`}>
 					<div>
@@ -84,6 +71,7 @@ const QuizBookEnds = ({
 			</>
 			{positionClosing && (
 				<div className={styles.adsenseWrapper}>
+					{/* QuestionBottomSquare */}
 					<Adsense
 						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="3992688547"

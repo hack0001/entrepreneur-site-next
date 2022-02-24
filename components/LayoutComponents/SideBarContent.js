@@ -30,6 +30,7 @@ const SideBarContent = ({
 			)}
 			{showAd && !cpcAd && (
 				<div>
+					{/* SideBarSquareTop */}
 					<Adsense
 						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="6792782716"
@@ -56,6 +57,7 @@ const SideBarContent = ({
 						<Fragment key={index}>
 							{index === 2 && showAd && (
 								<div>
+									{/* SideBarSquareMid */}
 									<Adsense
 										client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 										slot="1753150973"
@@ -80,15 +82,18 @@ const SideBarContent = ({
 						</Fragment>
 					);
 				})}
+
 			{cpcAd && (
 				<AdWrapper adCode={cpcAd.displayAd} callToActionMarker={false} />
 			)}
 			{showAd && !cpcAd && (
 				<div className={styles.wrapperDiv}>
+					{/* <!-- SideBarx300x600 --> */}
 					<Adsense
 						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-						slot="5116619443"
+						slot="4539635375"
 						currentUrlPath={currentUrlPath}
+						adStyle={"SideBarx300x600"}
 					/>
 				</div>
 			)}

@@ -70,19 +70,7 @@ const BookEnds = ({
 				authorName={authorName}
 				lastUpdated={lastUpdated}
 			/>
-			<div>
-				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-					slot="4672943880"
-					responsive={true}
-					adStyle={"adHeadline"}
-					adWrapperStyle={"adTopHeadline"}
-					adWrap={"adHeadWrap"}
-					currentUrlPath={currentUrlPath}
-				/>
-			</div>
-
-			<div>
+			<div className={styles.imageWrapper}>
 				<ImageLoader
 					src={headlineImage}
 					alt={headlineImageAlt}
@@ -99,9 +87,11 @@ const BookEnds = ({
 				{slideTitle && <li className={styles.sectionBrief}>{slideTitle}</li>}
 				{blurb && <li className={styles.sectionBrief}>{blurb}</li>}
 			</ul>
+
 			<hr className={styles.break} />
 			{cpcMarker && (
 				<div>
+					{/* QuickViewHeadlineBottom */}
 					<Adsense
 						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="3049705177"
@@ -133,6 +123,18 @@ const BookEnds = ({
 					position={"top_share_horiz"}
 				/>
 			</LazyLoad>
+			<div>
+				{/* SlideShowTopHoriz */}
+				<Adsense
+					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
+					slot="4672943880"
+					responsive={true}
+					adStyle={"adHeadline"}
+					adWrapperStyle={"adTopHeadline"}
+					adWrap={"adHeadWrap"}
+					currentUrlPath={currentUrlPath}
+				/>
+			</div>
 			{affiliateDisclaimer && (
 				<Disclaimer query={query} queryLinkCheck={queryLinkCheck} />
 			)}

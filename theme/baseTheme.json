@@ -21,5 +21,6 @@
 	"paragraphFontSize": "1.35rem",
 	"paragraphLineHeight": "2.5rem",
 	"listFormatSize": "18",
-	"listLineHeight": "1.75"
+	"listLineHeight": "1.75",
+	"redButton": "#dc1a0b"
 }
