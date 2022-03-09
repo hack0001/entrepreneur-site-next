@@ -14,6 +14,7 @@ export const ARTICLE = /* GraphQL */ `
 			schedule
 			original
 			scheduleTime
+			showContentsTable
 			affiliateDisclaimer
 			pinterestPinLink
 			pinterestLink
@@ -57,6 +58,7 @@ export const ADVERT_ARTICLE = /* GraphQL */ `
 			schedule
 			original
 			scheduleTime
+			showContentsTable
 			createdAt
 			updatedAt
 			linkedCpc {

@@ -1,0 +1,69 @@
+@import "../../../styles//baseTheme"
+
+.contentsTitle
+    text-align: center
+    font-size: 2rem
+    font-family: $secondaryFont
+    font-weight: 900
+
+.contentWrapper
+    border: 1px solid #aaa
+    font-family: $thirdFont
+    font-size: 1.25rem
+    line-height: 2rem
+    margin: 2rem 0rem
+
+.headOne,.headTwo,.headThree,.headFour,.headFive
+    color: #1a0daa
+    margin: 0.5rem 0rem
+
+.headThree
+    padding-left: 2rem
+
+.headFour
+    padding-left: 3rem
+
+.headFive
+    padding-left: 4rem
+
+.link
+    color: #1a0daa
+    text-decoration: none
+    border-bottom: 1px solid #0521ca
+    background-color: transparent
+    text-shadow: none
+
+.link:hover
+    color: $primary
+    border-bottom: none
+    text-shadow: none
+    text-decoration: underline
+
+.list
+    list-style-type: none
+
+@media only screen and (max-width: 670px) 
+    .contentsTitle
+        font-size: 1.75rem
+
+    .contentWrapper
+        font-size: 1rem
+        line-height: 1.5rem
+        margin: 1rem 0rem
+
+    .headOne,.headTwo,.headThree,.headFour,.headFive
+        margin: 0.25rem 0rem
+        width: 100%
+
+    .list
+        padding-inline-start: 10px
+
+@media only screen and (max-width: 450px) 
+    .contentsTitle
+        font-size: 1.5rem
+
+    .headOne,.headTwo,.headThree,.headFour,.headFive
+        margin: 0.4rem 0rem
+
+    .list
+        padding-inline-start: 2%

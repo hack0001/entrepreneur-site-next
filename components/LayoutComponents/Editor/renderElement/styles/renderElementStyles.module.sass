@@ -21,6 +21,14 @@
     font-size: 1.25rem
     color: $contentFontColor
 
+.headOne::before,.headTwo::before,.headThree::before,.headFour::before,.headFive::before
+    display: block
+    content: " "
+    margin-top: -175px
+    height: 140px
+    visibility: hidden
+    pointer-events: none
+
 .headOne
     font-size: 3.75rem
     font-family: $font
@@ -134,6 +142,10 @@
         font-size: 1.1rem
         line-height: 1.7rem
         margin: 0rem 0rem 2rem 0rem
+
+    .headOne::before,.headTwo::before,.headThree::before,.headFour::before,.headFive::before
+        margin-top: -150px
+        height: 125px
 
     .headOne
         font-size: 3rem

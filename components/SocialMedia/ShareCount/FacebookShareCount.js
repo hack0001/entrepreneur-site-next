@@ -2,23 +2,23 @@ import shareCountFactory from "../utils/shareCountFactory";
 
 const getFacebookShareCount = async (shareUrl, callback) => {
 	//Using a Permanent Facebook Token
-	const endpoint = `https://graph.facebook.com/?id=${shareUrl}&fields=engagement&access_token=EAAHCkg0g64MBAHEvOM00X1InZCTN2C205k1hvGvDT4uCXODiz9UHWsX06v7LrbBZA0BMwQuZCjzVCXTE5wRhBNyIar1OCHkRDW6LVlktOYOi1u68hYUXZBPEAvagPhm5MufpVhjwhAzFZAVdrZBG2xmuDRctz5EhtcWZCJGGZBCOMZBphZA4zeEYPo53Ni3rpuuebkQm4VriTCfQZDZD`;
+	const cloudFrontDist = `${
+		process.env.CLOUDFRONT_SHARE_URL_ENDPOINT
+	}/${encodeURIComponent(JSON.stringify(shareUrl))}`;
 
 	try {
-		const data = await fetch(endpoint, {
+		const data = await fetch(cloudFrontDist, {
 			method: "GET",
 			headers: {
 				Accept: "application/json",
 			},
 		});
-
-		const facebookData = await data.text();
-		const finalData = JSON.parse(facebookData);
-		callback(
+		const finalData = await data.json();
+		const shareCountNumber =
 			finalData && finalData.engagement && finalData.engagement.share_count
 				? finalData.engagement.share_count
-				: undefined,
-		);
+				: undefined;
+		callback(shareCountNumber > 10 ? shareCountNumber : 26);
 	} catch (err) {
 		console.log("Error", err);
 	}

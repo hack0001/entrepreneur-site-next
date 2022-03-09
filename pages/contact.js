@@ -44,7 +44,7 @@ const Contact = () => {
 		if (recaptcha) {
 			const { push } = router;
 			try {
-				await prodRequest({
+				const data = await prodRequest({
 					query: createContactForm,
 					variables: {
 						input: {
@@ -54,6 +54,7 @@ const Contact = () => {
 					},
 					operationName: "CreateContactForm",
 				});
+
 				setFormData(INITIAL_STATE);
 				setErrors({
 					ERROR_STATE,
@@ -106,7 +107,7 @@ const Contact = () => {
 						<p>
 							<strong className={styles.formBlurb}>
 								If you have any questions or comments about us please contact
-								admin@derivative-media.com or enter your information below and
+								admin@derivativemedia.co.uk or enter your information below and
 								we will get back to you as soon as possible
 							</strong>
 						</p>

@@ -41,6 +41,7 @@ module.exports = {
 		FACEBOOK_PAGE_URL: process.env.FACEBOOK_PAGE_URL,
 		CLOUDFRONT_IMAGE_DOMAIN: process.env.CLOUDFRONT_IMAGE_DOMAIN,
 		GOOGLE_ADSENSE_ID: process.env.GOOGLE_ADSENSE_ID,
+		CLOUDFRONT_SHARE_URL_ENDPOINT: process.env.CLOUDFRONT_SHARE_URL_ENDPOINT,
 	},
 	async rewrites() {
 		return [

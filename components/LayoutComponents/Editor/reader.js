@@ -10,6 +10,7 @@ import Adsense from "../../ads/code/adsense/adsense";
 import Context from "@utils/Context";
 import NextButton from "@components/Button/QuickViewButton";
 import SectionBar from "../SectionBar";
+import { cleanSpaceUnderscore } from "../../helper/cleanContentTitle";
 
 const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
 	ssr: false,
@@ -18,6 +19,7 @@ const Embed = dynamic(() => import("./renderElement/embed/embed"), {
 	ssr: false,
 	loading: () => <SingleLoader />,
 });
+
 const Reader = ({ value, cpcAd, linkedArticle, query, quickView = false }) => {
 	if (typeof value.text === "string") {
 		// excapeHtml is to get rid of html tags e.g. < for $lt
@@ -109,15 +111,50 @@ const Reader = ({ value, cpcAd, linkedArticle, query, quickView = false }) => {
 						</p>
 					);
 				case "heading-one":
-					return <h1 className={styles.headOne}>{children}</h1>;
+					return (
+						<h1
+							id={cleanSpaceUnderscore(children[0])}
+							className={styles.headOne}
+						>
+							{children}
+						</h1>
+					);
 				case "heading-two":
-					return <h2 className={styles.headTwo}>{children}</h2>;
+					return (
+						<h2
+							id={cleanSpaceUnderscore(children[0])}
+							className={styles.headTwo}
+						>
+							{children}
+						</h2>
+					);
 				case "heading-three":
-					return <h3 className={styles.headThree}>{children}</h3>;
+					return (
+						<h3
+							id={cleanSpaceUnderscore(children[0])}
+							className={styles.headThree}
+						>
+							{children}
+						</h3>
+					);
 				case "heading-four":
-					return <h4 className={styles.headFour}>{children}</h4>;
+					return (
+						<h4
+							id={cleanSpaceUnderscore(children[0])}
+							className={styles.headFour}
+						>
+							{children}
+						</h4>
+					);
 				case "heading-five":
-					return <h5 className={styles.headFive}>{children}</h5>;
+					return (
+						<h5
+							id={cleanSpaceUnderscore(children[0])}
+							className={styles.headFive}
+						>
+							{children}
+						</h5>
+					);
 				case "format-align-left":
 					return <div className={styles.paraLeft}>{children}</div>;
 				case "format-align-center":

@@ -19,6 +19,8 @@ import Cookie from "js-cookie";
 import dynamic from "next/dynamic";
 import { objectCheck } from "@utils/queryHandler";
 import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
+import Contents from "@components/contents/Contents";
+
 const AdWrapper = dynamic(() => import("../../ads/adWrapper"), {
 	ssr: false,
 });
@@ -34,6 +36,7 @@ const ArticleBody = ({
 	cpcAd,
 	affiliateCallToAction,
 	callToActionMarker,
+	showContentsTable,
 }) => {
 	const value = JSON.parse(content.content);
 	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
@@ -59,6 +62,7 @@ const ArticleBody = ({
 
 	return (
 		<div className={styles.sectionPadding}>
+			{showContentsTable && <Contents value={value} />}
 			<Reader
 				value={value}
 				cpcAd={cpcAd}

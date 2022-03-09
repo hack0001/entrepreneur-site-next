@@ -43,9 +43,11 @@ const ArticleHead = ({
 		kicker,
 		showDate,
 		showAuthor,
+		showContentsTable,
 		tags,
 		urlDescription,
 	} = details[0];
+
 	const callToActionMarker = affiliateCallToAction ? true : false;
 	const canonical = `${process.env.SITE_ADDRESS}/${category}/${urlDescription}/article/${id}`;
 	return (
@@ -94,7 +96,7 @@ const ArticleHead = ({
 			/>
 			<div className={styles.bulletWrapper}>
 				{bulletHeadlines > 0 && (
-					<ul>
+					<ul className={styles.bulletList}>
 						{Object.keys(bulletHeadlinesDetails).map((bullet, index) => {
 							return (
 								<li className={styles.sectionList} key={index}>
@@ -151,6 +153,7 @@ const ArticleHead = ({
 				id={id}
 				cpcAd={cpcAd}
 				category={category}
+				showContentsTable={showContentsTable}
 				affiliateCallToAction={affiliateCallToAction}
 				callToActionMarker={callToActionMarker}
 			/>
