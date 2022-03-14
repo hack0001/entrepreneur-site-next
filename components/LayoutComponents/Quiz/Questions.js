@@ -162,19 +162,9 @@ const Questions = ({
 					</div>
 				)}
 			</div>
-			<div className={styles.adBelowImageWrapper}>
-				{/* QuestionsUnderImage */}
-				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-					slot="3528223454"
-					responsive={true}
-					currentUrlPath={currentUrlPath}
-				/>
-			</div>
 			<div className={styles.sectionHeaderScore}>
 				Current Score: {currentScore}
 			</div>
-
 			<div className={styles.answerWrap}>
 				<QuizButton
 					answerInfo={answerInfo}
@@ -194,7 +184,6 @@ const Questions = ({
 					<ProgressBar total={total} position={position} />
 				</div>
 			)}
-
 			<LongAnswer
 				showAnswer={showAnswer}
 				correct={correct}
@@ -206,7 +195,6 @@ const Questions = ({
 			<div className={styles.adsenseWrapper}>
 				<div>
 					{/* QuestionsBottom */}
-
 					<Adsense
 						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
 						slot="9944544648"
@@ -264,15 +252,6 @@ const Questions = ({
 							query={query}
 						/>
 					)}
-
-					<div>
-						<Adsense
-							client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-							slot="9944544648"
-							responsive={true}
-							currentUrlPath={currentUrlPath}
-						/>
-					</div>
 				</>
 			</div>
 		</div>

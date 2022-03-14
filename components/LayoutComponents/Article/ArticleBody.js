@@ -99,6 +99,14 @@ const ArticleBody = ({
 					/>
 				</div>
 			)}
+			<div>
+				{/* HorizBarContentBottom */}
+				<Adsense
+					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
+					slot="8414762247"
+					currentUrlPath={currentUrlPath}
+				/>
+			</div>
 			{nextContent[0] && !linkedArticle && (
 				<div className={styles.nextButtonWrapper}>
 					<QuickViewButton
@@ -120,14 +128,7 @@ const ArticleBody = ({
 			<LazyLoad once={true}>
 				<ScrollUpButton />
 			</LazyLoad>
-			<div>
-				{/* HorizBarContentBottom */}
-				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-					slot="8414762247"
-					currentUrlPath={currentUrlPath}
-				/>
-			</div>
+
 			<br />
 			<LazyLoad once={true}>
 				<SectionBar title={`Share`} titleColor="#111" titleSize="1rem" />
@@ -153,14 +154,7 @@ const ArticleBody = ({
 			<LazyLoad once={true}>
 				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
 			</LazyLoad>
-			<div>
-				{/* ArticleBottom */}
-				<Adsense
-					client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-					slot="4801396157"
-					currentUrlPath={currentUrlPath}
-				/>
-			</div>
+
 			<SectionBar title="Leave a Comment" titleColor="#111" titleSize="1rem" />
 			<FacebookComments url={url} numPostsVisible={5} orderBy="reverse_time" />
 			<LazyLoad>

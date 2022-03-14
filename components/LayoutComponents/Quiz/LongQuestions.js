@@ -199,15 +199,6 @@ const Questions = ({
 						quickView={false}
 					/>
 				</div>
-				<div className={styles.adsenseWrapper}>
-					{/* QuestionBottomSquare */}
-					<Adsense
-						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-						slot="3992688547"
-						currentUrlPath={currentUrlPath}
-						adStyle={"default"}
-					/>
-				</div>
 			</div>
 		);
 	});

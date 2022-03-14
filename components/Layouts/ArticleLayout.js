@@ -46,7 +46,7 @@ const Article = ({ id, individual, quiz, slide, url }) => {
 						data={headlineData}
 						cpcAd={cpcAd}
 						type="slideshow"
-						showAd={true}
+						showAd={false}
 						queryLinkCheck={true}
 						query={{ ...query, utm_medium: "sidebar-article" }}
 						currentUrlPath={currentUrlPath}

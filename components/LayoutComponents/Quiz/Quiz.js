@@ -271,6 +271,7 @@ const QuizDetails = ({
 						pinterestLink={pinterestLink}
 						authorName={authorName}
 					/>
+
 					<BookEnds
 						position={"opening"}
 						image={questions["opening"][0][`openingImage`]}
@@ -298,6 +299,16 @@ const QuizDetails = ({
 						priority={true}
 						cpcMarker={false}
 					/>
+					<div className={styles.adsenseWrapper}>
+						{/* QuestionHoriz */}
+						<Adsense
+							client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
+							slot="4560498904"
+							responsive={true}
+							currentUrlPath={currentUrlPath}
+							adStyle={"default"}
+						/>
+					</div>
 					<LazyLoad once={true}>
 						<hr className={styles.break} />
 						<ShareButtonHoriz
@@ -380,6 +391,17 @@ const QuizDetails = ({
 						</>
 					)}
 				</>
+			)}
+			{!cpcMarker && (
+				<div className={styles.adsenseWrapper}>
+					{/* QuestionBottomSquare */}
+					<Adsense
+						client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
+						slot="3992688547"
+						currentUrlPath={currentUrlPath}
+						adStyle={"default"}
+					/>
+				</div>
 			)}
 
 			<LazyLoad once={true}>

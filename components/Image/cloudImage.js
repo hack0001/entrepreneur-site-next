@@ -2,6 +2,9 @@ import React from "react";
 import { newImageUrl, clean } from "../helper/imageUrlHelper";
 import styles from "./styles/cloudStyles.module.sass";
 import Image from "next/image";
+const transparentDataUrl =
+	"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8ffWqGAAHtQKdEYQcUwAAAABJRU5ErkJggg==";
+
 const CloudImageComponent = ({
 	imagePath,
 	imageAlt,
@@ -59,6 +62,8 @@ const CloudImageComponent = ({
 							height={"100%"}
 							layout={"responsive"}
 							priority={priority}
+							placeholder="blur"
+							blurDataURL={transparentDataUrl}
 						/>
 					</div>
 				)}
@@ -83,6 +88,8 @@ const CloudImageComponent = ({
 									: fixedWidth
 							}
 							priority={priority}
+							placeholder="blur"
+							blurDataURL={transparentDataUrl}
 						/>
 					</div>
 				)}
@@ -101,6 +108,8 @@ const CloudImageComponent = ({
 					onLoad={onLoad}
 					layout={"fill"}
 					priority={priority}
+					placeholder="blur"
+					blurDataURL={transparentDataUrl}
 				/>
 			</div>
 		)

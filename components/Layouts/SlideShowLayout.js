@@ -13,6 +13,7 @@ import dynamic from "next/dynamic";
 import Context from "@utils/Context";
 import { objectCheck } from "@utils/queryHandler";
 import Cookie from "js-cookie";
+import { filterUnique } from "@utils/handler";
 
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
@@ -31,9 +32,10 @@ const Slide = ({
 	const queryLinkCheck = objectCheck(query);
 	const [cpcMarker, setCpcMarker] = useState(false);
 
+	const uniqueSlideshowContent = filterUnique(slide.items, [{ id }]);
 	const headlineData = individual.linkedArticle
 		? [{ ...individual.linkedArticle, type: "article" }, ...headline.items]
-		: headline.items;
+		: uniqueSlideshowContent;
 
 	useEffect(() => {
 		const cpcMarker = Cookie.get("CPC") ? JSON.parse(Cookie.get("CPC")) : false;
@@ -72,33 +74,38 @@ const Slide = ({
 					{cpcMarker && (
 						<div
 							className={styles.sideContentWrapper}
-							style={{ position: "sticky", top: 70 }}
+							style={{ position: "sticky", top: 50 }}
 						>
 							<SideBarContent
 								data={headlineData}
 								type="article"
-								showAd={true}
+								showAd={false}
 								limit={6}
 								queryLinkCheck={true}
 								query={{ ...query, utm_medium: "sidebar-slideshow" }}
 								currentUrlPath={currentUrlPath}
 								showArticles={!cpcMarker}
 							/>
-							<LazyLoad once={true}>
-								<FacebookPage />
-							</LazyLoad>
+
 							<div className={styles.sectionPadding}>
-								<SectionBar title="Quiz" titleColor="#111" titleSize="1rem" />
+								<SectionBar
+									title="Popular"
+									titleColor="#111"
+									titleSize="1rem"
+								/>
 							</div>
 							<SideBarSmallContent
-								data={quiz.items}
-								type="quiz"
+								data={uniqueSlideshowContent}
+								type="slideshow"
 								showAd={cpcMarker ? false : true}
 								limit={6}
 								queryLinkCheck={true}
 								query={{ ...query, utm_medium: "sidebarsmall-slideshow" }}
 								currentUrlPath={currentUrlPath}
 							/>
+							<LazyLoad once={true}>
+								<FacebookPage />
+							</LazyLoad>
 						</div>
 					)}
 					{!cpcMarker && (
@@ -106,7 +113,7 @@ const Slide = ({
 							<SideBarContent
 								data={headlineData}
 								type="article"
-								showAd={true}
+								showAd={false}
 								limit={6}
 								queryLinkCheck={true}
 								query={{ ...query, utm_medium: "sidebar-slideshow" }}

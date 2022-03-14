@@ -14,6 +14,7 @@ import dynamic from "next/dynamic";
 import Context from "@utils/Context";
 import { objectCheck } from "@utils/queryHandler";
 import Cookie from "js-cookie";
+import { filterUnique } from "@utils/handler";
 
 const FacebookPage = dynamic(() => import("../SocialMedia/FacebookPage"), {
 	ssr: false,
@@ -31,9 +32,11 @@ const Quiz = ({
 }) => {
 	const { query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
+	const uniqueQuizContent = filterUnique(quiz.items, [{ id }]);
 	const headlineData = individual.linkedArticle
 		? [{ ...individual.linkedArticle, type: "article" }, ...headline.items]
-		: headline.items;
+		: uniqueQuizContent;
+
 	const [cpcMarker, setCpcMarker] = useState(false);
 
 	useEffect(() => {
@@ -58,41 +61,87 @@ const Quiz = ({
 						setCpcMarker={setCpcMarker}
 					/>
 				</article>
-				<aside className={styles.sideArticleSection}>
+				<aside
+					className={
+						cpcMarker
+							? styles.quickSideArticleSection
+							: styles.sideArticleSection
+					}
+				>
 					{!cpcMarker && (
 						<div className={styles.sectionPadding}>
 							<SectionBar title="Quiz" titleColor="#111" titleSize="1rem" />
 						</div>
 					)}
-					<div
-						className={styles.sideContentWrapper}
-						style={cpcMarker ? { position: "sticky", top: 70 } : {}}
-					>
-						<SideBarContent
-							data={headlineData}
-							type="article"
-							showAd={true}
-							queryLinkCheck={true}
-							query={{ ...query, utm_medium: "sidebar-quiz" }}
-							currentUrlPath={currentUrlPath}
-							showArticles={!cpcMarker}
-						/>
-						<LazyLoad once={true}>
-							<FacebookPage />
-						</LazyLoad>
-						<div className={styles.sectionPadding}>
-							<SectionBar title="Popular" titleColor="#111" titleSize="1rem" />
+
+					{cpcMarker && (
+						<div
+							className={styles.sideContentWrapper}
+							style={{ position: "sticky", top: 50 }}
+						>
+							<SideBarContent
+								data={headlineData}
+								type="article"
+								showAd={false}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: "sidebar-quiz" }}
+								currentUrlPath={currentUrlPath}
+								showArticles={!cpcMarker}
+							/>
+
+							<div className={styles.sectionPadding}>
+								<SectionBar
+									title="Popular"
+									titleColor="#111"
+									titleSize="1rem"
+								/>
+							</div>
+							<SideBarSmallContent
+								data={slide.items}
+								type="slideshow"
+								showAd={false}
+								adCode={ETORO_COPY_TRADER}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: "sidebarsmall-quiz" }}
+								currentUrlPath={currentUrlPath}
+							/>
+							<LazyLoad once={true}>
+								<FacebookPage />
+							</LazyLoad>
 						</div>
-						<SideBarSmallContent
-							data={slide.items}
-							type="slideshow"
-							showAd={false}
-							adCode={ETORO_COPY_TRADER}
-							queryLinkCheck={true}
-							query={{ ...query, utm_medium: "sidebarsmall-quiz" }}
-							currentUrlPath={currentUrlPath}
-						/>
-					</div>
+					)}
+					{!cpcMarker && (
+						<>
+							<SideBarContent
+								data={headlineData}
+								type="article"
+								showAd={false}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: "sidebar-quiz" }}
+								currentUrlPath={currentUrlPath}
+								showArticles={!cpcMarker}
+							/>
+							<LazyLoad once={true}>
+								<FacebookPage />
+							</LazyLoad>
+							<div className={styles.sectionPadding}>
+								<SectionBar
+									title="Popular"
+									titleColor="#111"
+									titleSize="1rem"
+								/>
+							</div>
+							<SideBarSmallContent
+								data={slide.items}
+								type="slideshow"
+								showAd={true}
+								adCode={ETORO_COPY_TRADER}
+								queryLinkCheck={true}
+								query={{ ...query, utm_medium: "sidebarsmall-quiz" }}
+								currentUrlPath={currentUrlPath}
+							/>
+						</>
+					)}
 				</aside>
 			</main>
 		</Layout>

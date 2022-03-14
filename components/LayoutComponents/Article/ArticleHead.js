@@ -80,7 +80,6 @@ const ArticleHead = ({
 				/>
 			</div>
 			{/* <!-- HorizBarContentTop --> */}
-
 			<ImageLoader
 				src={headlineImage}
 				alt={headlineImageAlt}

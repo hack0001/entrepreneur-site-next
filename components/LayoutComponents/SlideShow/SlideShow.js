@@ -237,17 +237,6 @@ const SlideDetails = ({
 								progressBar={progressBar}
 							/>
 						)}
-						{/* SlideBottomSquare */}
-						{position !== "opening" && (
-							<div>
-								<Adsense
-									client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-									slot="7104500257"
-									responsive={true}
-									currentUrlPath={currentUrlPath}
-								/>
-							</div>
-						)}
 					</div>
 				</>
 			)}
@@ -283,14 +272,7 @@ const SlideDetails = ({
 						embed={bookEndOpening["openingImage-embed"]}
 						priority={true}
 					/>
-					<div>
-						{/* SlideHorizTop */}
-						<Adsense
-							client={`ca-pub-${process.env.GOOGLE_ADSENSE_ID}`}
-							slot="8433059648"
-							currentUrlPath={currentUrlPath}
-						/>
-					</div>
+
 					<Slides
 						data={slideData}
 						showNumbers={showNumbers}
