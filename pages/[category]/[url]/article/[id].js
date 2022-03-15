@@ -66,6 +66,7 @@ export async function getStaticProps(context) {
 	const [individual, quiz, slide] = await Promise.all(
 		[ARTICLE_QUERY, ...articleQuery].map(endpoint => prodGetRequest(endpoint)),
 	);
+
 	return {
 		props: { individual, quiz, slide, id, category, url },
 		// Next.js will attempt to re-generate the page:

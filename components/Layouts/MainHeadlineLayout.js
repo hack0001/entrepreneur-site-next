@@ -140,18 +140,6 @@ const MainHeadlineLayout = ({
 								titleSize="1.25rem"
 							/>
 						</div>
-						{/* <SideBarSmallContent
-							data={quiz.data.listProductionQuizs.items}
-							loading={quiz.loading}
-							type="quiz"
-							currentUrlPath={currentUrlPath}
-						/>
-						<SideBarSmallContent
-							data={headlines.data.listProductionArticles.items}
-							loading={quiz.loading}
-							type="article"
-							currentUrlPath={currentUrlPath}
-						/> */}
 						<SideBarSmallContent
 							data={slide.items}
 							queryLinkCheck={true}

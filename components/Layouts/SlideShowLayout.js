@@ -78,7 +78,7 @@ const Slide = ({
 						>
 							<SideBarContent
 								data={headlineData}
-								type="article"
+								type="slideshow"
 								showAd={false}
 								limit={6}
 								queryLinkCheck={true}
@@ -112,7 +112,7 @@ const Slide = ({
 						<>
 							<SideBarContent
 								data={headlineData}
-								type="article"
+								type="slideshow"
 								showAd={false}
 								limit={6}
 								queryLinkCheck={true}
