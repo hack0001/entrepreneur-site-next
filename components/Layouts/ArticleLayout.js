@@ -24,6 +24,8 @@ const Article = ({ id, individual, quiz, slide, url }) => {
 	const headlineData = individual.linkedArticle
 		? [{ ...individual.linkedArticle, type: "article" }, ...slide.items]
 		: slide.items;
+	const typeMarker = individual.linkedArticle ? "article" : "slideshow";
+
 	return (
 		<Layout>
 			<main className={styles.articleContainer}>
@@ -45,7 +47,7 @@ const Article = ({ id, individual, quiz, slide, url }) => {
 					<SideBarContent
 						data={headlineData}
 						cpcAd={cpcAd}
-						type="slideshow"
+						type={typeMarker}
 						showAd={false}
 						queryLinkCheck={true}
 						query={{ ...query, utm_medium: "sidebar-article" }}

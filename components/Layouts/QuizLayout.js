@@ -37,6 +37,7 @@ const Quiz = ({
 		? [{ ...individual.linkedArticle, type: "article" }, ...headline.items]
 		: uniqueQuizContent;
 
+	const typeMarker = individual.linkedArticle ? "article" : "quiz";
 	const [cpcMarker, setCpcMarker] = useState(false);
 
 	useEffect(() => {
@@ -81,7 +82,7 @@ const Quiz = ({
 						>
 							<SideBarContent
 								data={headlineData}
-								type="article"
+								type={typeMarker}
 								showAd={false}
 								queryLinkCheck={true}
 								query={{ ...query, utm_medium: "sidebar-quiz" }}
@@ -114,7 +115,7 @@ const Quiz = ({
 						<>
 							<SideBarContent
 								data={headlineData}
-								type="article"
+								type={typeMarker}
 								showAd={false}
 								queryLinkCheck={true}
 								query={{ ...query, utm_medium: "sidebar-quiz" }}
