@@ -36,7 +36,7 @@ const Slide = ({
 	const headlineData = individual.linkedArticle
 		? [{ ...individual.linkedArticle, type: "article" }, ...headline.items]
 		: uniqueSlideshowContent;
-	const typeMarker = individual.linkedArticle ? "article" : "slideshow";
+	const typeMarker = "slideshow";
 
 	useEffect(() => {
 		const cpcMarker = Cookie.get("CPC") ? JSON.parse(Cookie.get("CPC")) : false;

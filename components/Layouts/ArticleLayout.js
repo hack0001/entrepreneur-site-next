@@ -24,7 +24,7 @@ const Article = ({ id, individual, quiz, slide, url }) => {
 	const headlineData = individual.linkedArticle
 		? [{ ...individual.linkedArticle, type: "article" }, ...slide.items]
 		: slide.items;
-	const typeMarker = individual.linkedArticle ? "article" : "slideshow";
+	const typeMarker = "slideshow";
 
 	return (
 		<Layout>

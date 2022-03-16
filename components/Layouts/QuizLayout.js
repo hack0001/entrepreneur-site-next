@@ -37,7 +37,7 @@ const Quiz = ({
 		? [{ ...individual.linkedArticle, type: "article" }, ...headline.items]
 		: uniqueQuizContent;
 
-	const typeMarker = individual.linkedArticle ? "article" : "quiz";
+	const typeMarker = "quiz";
 	const [cpcMarker, setCpcMarker] = useState(false);
 
 	useEffect(() => {
