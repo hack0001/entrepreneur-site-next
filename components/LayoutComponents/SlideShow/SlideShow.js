@@ -54,8 +54,9 @@ const SlideDetails = ({
 		viewCount,
 		user,
 	} = content;
+
 	const lastUpdated = content.updatedAt;
-	const authorName = user.alias ? user.alias : "";
+	const authorName = user ? user.alias : "";
 
 	const {
 		blurb,

@@ -56,7 +56,7 @@ const QuizDetails = ({
 	} = content;
 	const nextContent = filterUnique(nextQuiz.items, filterArray);
 	const lastUpdated = content.updatedAt;
-	const authorName = user.alias ? user.alias : "";
+	const authorName = user ? user.alias : "";
 
 	const {
 		category,
