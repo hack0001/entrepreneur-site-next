@@ -34,7 +34,7 @@ const Quiz = ({
 	const queryLinkCheck = objectCheck(query);
 	const uniqueQuizContent = filterUnique(quiz.items, [{ id }]);
 	const headlineData = individual.linkedArticle
-		? [{ ...individual.linkedArticle, type: "article" }, ...headline.items]
+		? [{ ...individual.linkedArticle, type: "article" }, ...uniqueQuizContent]
 		: uniqueQuizContent;
 
 	const typeMarker = "quiz";

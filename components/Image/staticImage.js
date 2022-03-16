@@ -1,17 +1,36 @@
 import Image from "next/image";
 import { transparentDataUrl } from "./transparentUrl";
-const StaticImage = ({ styleClass, src, alt, height, width, priority }) => {
+const StaticImage = ({
+	styleClass,
+	src,
+	alt,
+	height,
+	width,
+	priority,
+	blur = false,
+}) => {
 	return (
 		<div className={styleClass}>
-			<Image
-				src={src}
-				alt={alt}
-				height={height}
-				width={width}
-				priority={priority}
-				placeholder="blur"
-				blurDataURL={transparentDataUrl}
-			/>
+			{!blur && (
+				<Image
+					src={src}
+					alt={alt}
+					height={height}
+					width={width}
+					priority={priority}
+				/>
+			)}
+			{blur && (
+				<Image
+					src={src}
+					alt={alt}
+					height={height}
+					width={width}
+					priority={priority}
+					placeholder="blur"
+					blurDataURL={transparentDataUrl}
+				/>
+			)}
 		</div>
 	);
 };

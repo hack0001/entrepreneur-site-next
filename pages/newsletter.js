@@ -107,6 +107,7 @@ const Newsletter = ({ url }) => {
 						priority={true}
 						styleClass={styles.cover}
 						alt={process.env.SITE_NAME}
+						blur={true}
 					/>
 					<form className={styles.contactForm} onSubmit={handleSubmit}>
 						<h3>

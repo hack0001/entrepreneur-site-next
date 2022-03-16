@@ -34,7 +34,10 @@ const Slide = ({
 
 	const uniqueSlideshowContent = filterUnique(slide.items, [{ id }]);
 	const headlineData = individual.linkedArticle
-		? [{ ...individual.linkedArticle, type: "article" }, ...headline.items]
+		? [
+				{ ...individual.linkedArticle, type: "article" },
+				...uniqueSlideshowContent,
+		  ]
 		: uniqueSlideshowContent;
 	const typeMarker = "slideshow";
 
