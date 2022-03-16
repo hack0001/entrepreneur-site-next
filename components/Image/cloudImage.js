@@ -2,8 +2,7 @@ import React from "react";
 import { newImageUrl, clean } from "../helper/imageUrlHelper";
 import styles from "./styles/cloudStyles.module.sass";
 import Image from "next/image";
-const transparentDataUrl =
-	"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8ffWqGAAHtQKdEYQcUwAAAABJRU5ErkJggg==";
+import { transparentDataUrl } from "./transparentUrl";
 
 const CloudImageComponent = ({
 	imagePath,

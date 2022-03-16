@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import { transparentDataUrl } from "./transparentUrl";
 const StaticImage = ({ styleClass, src, alt, height, width, priority }) => {
 	return (
 		<div className={styleClass}>
@@ -9,6 +9,8 @@ const StaticImage = ({ styleClass, src, alt, height, width, priority }) => {
 				height={height}
 				width={width}
 				priority={priority}
+				placeholder="blur"
+				blurDataURL={transparentDataUrl}
 			/>
 		</div>
 	);
