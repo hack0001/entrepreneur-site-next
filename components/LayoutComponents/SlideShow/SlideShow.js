@@ -25,6 +25,7 @@ import { objectCheck } from "@utils/queryHandler";
 import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
 import percentileMarkers from "@utils/percentageMarkers";
 import Cookie from "js-cookie";
+import getShareCount from "@components/SocialMedia/ShareCount";
 
 const SlideDetails = ({
 	content,
@@ -41,7 +42,10 @@ const SlideDetails = ({
 	const { sessionSlideIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
 	const [percentage, setPercentage] = useState(percentileMarkers);
-
+	const [shareCount, setShareCount] = useState({
+		facebookShareCount: undefined,
+		pinterestShareCount: undefined,
+	});
 	const filterArray = sessionSlideIds.concat({ id });
 	const nextContent = filterUnique(nextSlideShow.items, filterArray);
 
@@ -73,6 +77,13 @@ const SlideDetails = ({
 
 	useEffect(() => {
 		setPercentage(percentileMarkers);
+	}, [id]);
+
+	useEffect(async () => {
+		const { facebookShareCount, pinterestShareCount } = await getShareCount(
+			shareUrl,
+		);
+		setShareCount({ facebookShareCount, pinterestShareCount });
 	}, [id]);
 
 	useEffect(() => {
@@ -150,6 +161,7 @@ const SlideDetails = ({
 							lastUpdated={lastUpdated}
 							pinterestLink={pinterestLink}
 							authorName={authorName}
+							shareCounter={shareCount}
 						/>
 						{(position === "opening" || position === "closing") && (
 							<>
@@ -253,6 +265,7 @@ const SlideDetails = ({
 						lastUpdated={lastUpdated}
 						pinterestLink={pinterestLink}
 						authorName={authorName}
+						shareCounter={shareCount}
 					/>
 					<BookEnds
 						position={"opening"}
@@ -276,6 +289,7 @@ const SlideDetails = ({
 
 					<Slides
 						data={slideData}
+						shareCounter={shareCount}
 						showNumbers={showNumbers}
 						shareUrl={shareUrl}
 						image={headlineImage}
@@ -352,6 +366,7 @@ const SlideDetails = ({
 				<SectionBar title={`Share`} titleColor="#111" titleSize="1rem" />
 				<ShareButtonHoriz
 					data={closingSocialButtons}
+					shareCounter={shareCount}
 					url={shareUrl}
 					image={headlineImage}
 					headline={title}

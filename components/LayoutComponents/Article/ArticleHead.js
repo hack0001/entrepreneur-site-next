@@ -1,19 +1,21 @@
+import { useEffect, useState } from "react";
 import SectionBar from "../SectionBar";
 import PropTypes from "prop-types";
 import DynamicHeader from "../../Header/DynamicHeader";
 import ArticleBody from "./ArticleBody";
-import ShareButtonHoriz from "../../SocialMedia/ShareButtonsHoriz";
-import ShareButtonVert from "../../SocialMedia/ShareButtonsVert";
+import ShareButtonHoriz from "@components/SocialMedia/ShareButtonsHoriz";
+import ShareButtonVert from "@components/SocialMedia/ShareButtonsVert";
 import ImageLoader from "../../Loading/ImageLoader";
 import {
 	openingSocialButtons,
 	sideSocialButtons,
-} from "../../SocialMedia/data";
+} from "@components/SocialMedia/data";
 import ShowMeta from "../../showMeta/showMeta";
 import LazyLoad from "react-lazyload";
 import styles from "./styles/articleHeadStyles.module.sass";
 import Adsense from "../../ads/code/adsense/adsense";
 import Disclaimer from "../../ads/disclaimer";
+import getShareCount from "@components/SocialMedia/ShareCount";
 
 const ArticleHead = ({
 	overview,
@@ -25,6 +27,10 @@ const ArticleHead = ({
 	cpcAd,
 }) => {
 	const details = JSON.parse(overview.overview);
+	const [shareCount, setShareCount] = useState({
+		facebookShareCount: undefined,
+		pinterestShareCount: undefined,
+	});
 	const { pinterestLink, user } = overview;
 	const authorName = user ? user.alias : "";
 	const {
@@ -47,6 +53,13 @@ const ArticleHead = ({
 		tags,
 		urlDescription,
 	} = details[0];
+
+	useEffect(async () => {
+		const { facebookShareCount, pinterestShareCount } = await getShareCount(
+			canonical,
+		);
+		setShareCount({ facebookShareCount, pinterestShareCount });
+	}, [id]);
 
 	const callToActionMarker = affiliateCallToAction ? true : false;
 	const canonical = `${process.env.SITE_ADDRESS}/${category}/${urlDescription}/article/${id}`;
@@ -110,6 +123,7 @@ const ArticleHead = ({
 				<hr className={styles.break} />
 				<ShareButtonVert
 					data={sideSocialButtons}
+					shareCounter={shareCount}
 					url={canonical}
 					image={headlineImage}
 					headline={headline}
@@ -118,6 +132,7 @@ const ArticleHead = ({
 				/>
 				<ShareButtonHoriz
 					data={openingSocialButtons}
+					shareCounter={shareCount}
 					url={canonical}
 					image={headlineImage}
 					headline={headline}
@@ -145,6 +160,7 @@ const ArticleHead = ({
 			<ArticleBody
 				content={overview}
 				url={canonical}
+				shareCounter={shareCount}
 				image={headlineImage}
 				headline={headline}
 				nextSlideShow={nextSlideShow}

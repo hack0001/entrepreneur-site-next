@@ -8,6 +8,7 @@ import styles from "./styles/quizHeadlineStyles.module.sass";
 
 const QuizHeadline = ({
 	data,
+	shareCounter,
 	id,
 	position,
 	totalQuestions,
@@ -86,6 +87,7 @@ const QuizHeadline = ({
 			<LazyLoad once={true}>
 				<ShareButtonVert
 					data={sideSocialButtons}
+					shareCounter={shareCounter}
 					url={shareUrl}
 					image={headlineImage}
 					headline={title}

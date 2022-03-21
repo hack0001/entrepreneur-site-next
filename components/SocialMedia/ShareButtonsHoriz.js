@@ -6,6 +6,7 @@ import { getImagePath, newImageUrl } from "../helper/imageUrlHelper";
 import styles from "./styles/shareButtonHorizStyles.module.sass";
 const HorizontalShareButtons = ({
 	data,
+	shareCounter,
 	url,
 	image,
 	headline,
@@ -97,7 +98,7 @@ const HorizontalShareButtons = ({
 	return (
 		<div className={styles.buttonContainer}>
 			{data.map((button, index) => {
-				const { ShareButton, ShareCount } = button;
+				const { ShareButton, ShareCount, ShareCountName } = button;
 				return (
 					<div className={`button-wrapper`} key={index}>
 						<ShareButton
@@ -114,7 +115,11 @@ const HorizontalShareButtons = ({
 								<span className={styles.buttonText}>{button.text}</span>
 								{ShareCount && (
 									<span className={styles.buttonShareCount}>
-										<ShareCount className={styles.shareCount} url={url} />
+										<span className={styles.shareCount}>
+											{shareCounter[ShareCountName] > 20
+												? shareCounter[ShareCountName]
+												: ""}
+										</span>
 									</span>
 								)}
 							</div>

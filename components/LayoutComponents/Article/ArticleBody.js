@@ -31,6 +31,7 @@ const ArticleBody = ({
 	image,
 	headline,
 	brief,
+	shareCounter,
 	id,
 	nextSlideShow,
 	cpcAd,
@@ -43,7 +44,6 @@ const ArticleBody = ({
 	const queryLinkCheck = objectCheck(query);
 	const filterArray = sessionSlideIds.concat({ id });
 	const {
-		viewCount,
 		pinterestLink,
 		pinterestEmbedCode,
 		pinterestPinLink,
@@ -128,12 +128,12 @@ const ArticleBody = ({
 			<LazyLoad once={true}>
 				<ScrollUpButton />
 			</LazyLoad>
-
 			<br />
 			<LazyLoad once={true}>
 				<SectionBar title={`Share`} titleColor="#111" titleSize="1rem" />
 				<ShareButtonHoriz
 					data={closingSocialButtons}
+					shareCounter={shareCounter}
 					url={url}
 					image={image}
 					headline={headline}

@@ -13,6 +13,7 @@ const QuickHeadline = ({
 	totalSlides,
 	pinterestLink,
 	authorName,
+	shareCounter,
 }) => {
 	const {
 		blurb,
@@ -84,6 +85,7 @@ const QuickHeadline = ({
 			<LazyLoad once={true}>
 				<ShareButtonVert
 					data={sideSocialButtons}
+					shareCounter={shareCounter}
 					url={shareUrl}
 					image={headlineImage}
 					headline={title}

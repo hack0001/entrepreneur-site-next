@@ -1,10 +1,9 @@
-import shareCountFactory from "../utils/shareCountFactory";
 import objectToGetParams from "../utils/objectToGetParams";
 
-const getPinterestShareCount = async (shareUrl, callback) => {
+const getPinterestShareCount = async url => {
 	const endpoint = `https://api.pinterest.com/v1/urls/count.json`;
 	try {
-		const data = await fetch(endpoint + objectToGetParams({ url: shareUrl }), {
+		const data = await fetch(endpoint + objectToGetParams({ url }), {
 			method: "GET",
 			headers: {
 				Accept: "application/json",
@@ -14,11 +13,11 @@ const getPinterestShareCount = async (shareUrl, callback) => {
 		const pinCount = JSON.parse(
 			pinterestData.replace(/receiveCount/i, "").replace(/[()]/g, ""),
 		);
-
-		callback(pinCount.count ? pinCount.count : undefined);
+		return pinCount.count ? pinCount.count : undefined;
 	} catch (err) {
 		console.log("Error", err);
+		return err;
 	}
 };
 
-export default shareCountFactory(getPinterestShareCount);
+export default getPinterestShareCount;

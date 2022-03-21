@@ -11,6 +11,7 @@ import Adsense from "../../ads/code/adsense/adsense";
 import AdWrapper from "../../ads/adWrapper";
 const Slides = ({
 	data,
+	shareCounter,
 	showNumbers,
 	shareUrl,
 	image,
@@ -98,6 +99,7 @@ const Slides = ({
 							<SectionBar title={`Share`} titleColor="#111" titleSize="1rem" />
 							<ShareButtonHoriz
 								data={openingSocialButtons}
+								shareCounter={shareCounter}
 								url={shareUrl}
 								image={image}
 								headline={headline}

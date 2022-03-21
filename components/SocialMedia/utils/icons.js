@@ -18,7 +18,8 @@ export const facebook = {
 	text: "Share",
 	width: "40%",
 	ShareButton: FacebookShare,
-	ShareCount: FacebookShareCount,
+	ShareCount: true,
+	ShareCountName: "facebookShareCount",
 };
 
 export const twitter = {
@@ -67,7 +68,8 @@ export const pinterest = {
 	text: "Pin",
 	width: "20%",
 	ShareButton: PinterestShare,
-	ShareCount: PinterestShareCount,
+	ShareCount: true,
+	ShareCountName: "pinterestShareCount",
 };
 export const whatsapp = {
 	name: "Whatsapp",

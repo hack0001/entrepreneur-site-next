@@ -25,6 +25,7 @@ const BookEnds = ({
 	pinterestLink,
 	lastUpdated,
 	authorName,
+	shareCounter,
 }) => {
 	const {
 		headlineImage,
@@ -105,6 +106,7 @@ const BookEnds = ({
 				<SectionBar title={`Share`} titleColor="#111" titleSize="1rem" />
 				<ShareButtonVert
 					data={sideSocialButtons}
+					shareCounter={shareCounter}
 					url={canonical}
 					image={headlineImage}
 					pinterestLink={pinterestLink}
@@ -115,6 +117,7 @@ const BookEnds = ({
 			<LazyLoad once={true}>
 				<ShareButtonHoriz
 					data={openingSocialButtons}
+					shareCounter={shareCounter}
 					url={canonical}
 					image={headlineImage}
 					headline={title}

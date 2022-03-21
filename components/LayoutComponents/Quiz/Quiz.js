@@ -27,6 +27,7 @@ import { objectCheck } from "@utils/queryHandler";
 import Disclaimer from "../../ads/disclaimer";
 import PinterestEmbed from "@components/SocialMedia/pinterestEmbed";
 import percentileMarkers from "@utils/percentageMarkers";
+import getShareCount from "@components/SocialMedia/ShareCount";
 
 const QuizDetails = ({
 	content,
@@ -43,7 +44,10 @@ const QuizDetails = ({
 	const { sessionQuizIds, query, currentUrlPath } = useContext(Context);
 	const queryLinkCheck = objectCheck(query);
 	const [percentage, setPercentage] = useState(percentileMarkers);
-
+	const [shareCount, setShareCount] = useState({
+		facebookShareCount: undefined,
+		pinterestShareCount: undefined,
+	});
 	const filterArray = sessionQuizIds.concat({ id });
 	const {
 		affiliateDisclaimer,
@@ -74,6 +78,13 @@ const QuizDetails = ({
 		setCurrentScore(0);
 		setQuestionsAnswered(0);
 		setPercentage(percentileMarkers);
+	}, [id]);
+
+	useEffect(async () => {
+		const { facebookShareCount, pinterestShareCount } = await getShareCount(
+			shareUrl,
+		);
+		setShareCount({ facebookShareCount, pinterestShareCount });
 	}, [id]);
 
 	useEffect(() => {
@@ -146,6 +157,7 @@ const QuizDetails = ({
 					<div>
 						<Headline
 							data={details}
+							shareCounter={shareCount}
 							id={id}
 							position={position}
 							totalQuestions={content.numQuestions}
@@ -263,6 +275,7 @@ const QuizDetails = ({
 				<>
 					<Headline
 						data={details}
+						shareCounter={shareCount}
 						id={id}
 						position={position}
 						totalQuestions={content.numQuestions}
@@ -313,6 +326,7 @@ const QuizDetails = ({
 						<hr className={styles.break} />
 						<ShareButtonHoriz
 							data={openingSocialButtons}
+							shareCounter={shareCount}
 							url={shareUrl}
 							image={headlineImage}
 							headline={title}
@@ -419,6 +433,7 @@ const QuizDetails = ({
 				<hr className={styles.break} />
 				<ShareButtonHoriz
 					data={closingSocialButtons}
+					shareCounter={shareCount}
 					url={shareUrl}
 					image={headlineImage}
 					headline={title}

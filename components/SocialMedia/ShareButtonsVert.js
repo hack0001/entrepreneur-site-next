@@ -7,6 +7,7 @@ import { getImagePath, newImageUrl } from "../helper/imageUrlHelper";
 
 const VerticalShareButtons = ({
 	data,
+	shareCounter,
 	url,
 	image,
 	headline,
@@ -96,7 +97,7 @@ const VerticalShareButtons = ({
 		<div className={styles.buttonVerticalContainer}>
 			<div className={styles.buttonContainer}>
 				{data.map((button, index) => {
-					const { ShareButton, ShareCount } = button;
+					const { ShareButton, ShareCount, ShareCountName } = button;
 					return (
 						<ShareButton
 							className={`${styles.indivButton} indiv-button`}
@@ -111,8 +112,12 @@ const VerticalShareButtons = ({
 							<div className={styles.buttonContent}>
 								<SocialSvgFactory button={button} />
 								<span className={styles.buttonText}>{button.text}</span>
-								{ShareCount && (
-									<ShareCount className={styles.shareCount} url={url} />
+								{ShareCount && shareCounter && (
+									<span className={styles.shareCount}>
+										{shareCounter[ShareCountName] > 20
+											? shareCounter[ShareCountName]
+											: ""}
+									</span>
 								)}
 							</div>
 						</ShareButton>
