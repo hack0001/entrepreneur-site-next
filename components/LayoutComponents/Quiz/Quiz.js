@@ -453,7 +453,14 @@ const QuizDetails = ({
 				query={query}
 			/>
 			<LazyLoad once={true}>
-				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
+				<QuickEmailSignUp
+					queryLinkCheck={queryLinkCheck}
+					query={query}
+					headline={title}
+					category={category}
+					url={shareUrl}
+					contentType={"Quiz"}
+				/>
 			</LazyLoad>
 			{position === "closing" && (
 				<>

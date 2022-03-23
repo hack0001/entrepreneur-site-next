@@ -68,6 +68,9 @@ const ArticleBody = ({
 				cpcAd={cpcAd}
 				linkedArticle={linkedArticle}
 				query={query}
+				category={category}
+				headline={headline}
+				contentUrl={url}
 			/>
 			<LazyLoad once={true}>
 				<PinterestEmbed
@@ -152,7 +155,14 @@ const ArticleBody = ({
 				query={query}
 			/>
 			<LazyLoad once={true}>
-				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
+				<QuickEmailSignUp
+					queryLinkCheck={queryLinkCheck}
+					query={query}
+					headline={headline}
+					category={category}
+					url={url}
+					contentType={"Article"}
+				/>
 			</LazyLoad>
 
 			<SectionBar title="Leave a Comment" titleColor="#111" titleSize="1rem" />

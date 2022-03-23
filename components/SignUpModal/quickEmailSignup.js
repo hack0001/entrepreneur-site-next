@@ -16,7 +16,14 @@ import baseTheme from "../../theme/baseTheme.json";
 import CustomLink from "@components/Link/customLink";
 
 //Set Cookie Expiration if not signed up (in minutes)
-const SignUpModal = ({ queryLinkCheck, query }) => {
+const SignUpModal = ({
+	queryLinkCheck,
+	query,
+	headline,
+	category,
+	url,
+	contentType,
+}) => {
 	const [formData, setFormData] = useState(QUICK_INITIAL_STATE);
 	const [errors, setErrors] = useState(QUICK_ERROR_STATE);
 	const [success, setSuccess] = useState(false);
@@ -59,7 +66,12 @@ const SignUpModal = ({ queryLinkCheck, query }) => {
 			id: formData.email,
 			emailSignupSiteId: process.env.REACT_APP_SITE_ID,
 			site: "wealthmack",
+			source: "quickEmailSignup",
+			contentType: contentType,
 			popUp: false,
+			contentHeadline: headline,
+			contentCategory: category,
+			contentUrl: url,
 		};
 
 		//Track the Email Signup in Tag Manager Manually

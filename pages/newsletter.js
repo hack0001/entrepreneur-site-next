@@ -54,6 +54,9 @@ const Newsletter = ({ url }) => {
 			emailSignupSiteId: process.env.REACT_APP_SITE_ID,
 			site: "wealthmack",
 			popUp: false,
+			contentHeadline: "newsletter",
+			contentCategory: "newsletter",
+			contentUrl: "/newsletter",
 		};
 
 		try {
@@ -64,12 +67,25 @@ const Newsletter = ({ url }) => {
 			};
 
 			await manualRequest(mutationData);
-			const expiryDate = new Date(new Date().getTime() + 1 * 60 * 1000);
-			Cookie.set("wealth-cookie-email-signup", JSON.stringify(false), {
-				expires: expiryDate,
-			});
+
 			setFormData(INITIAL_STATE);
 			setSuccessMsg(true);
+
+			const expiryDate = process.env.COOKIE_ACCEPT_EXPIRY; //Days
+			Cookie.set("wealth-cookie-email-signup", JSON.stringify(false), {
+				expires: Number(expiryDate),
+			});
+
+			//Track the Email Signup in Tag Manager Manually
+			if (typeof window !== "undefined") {
+				if (window.dataLayer) {
+					window.dataLayer.push({
+						event: "track_email_signup",
+						email: formData.email,
+						signupType: "newsLettter",
+					});
+				}
+			}
 		} catch (err) {
 			console.log("Error with request", err);
 			setFormData(INITIAL_STATE);
@@ -182,7 +198,7 @@ const Newsletter = ({ url }) => {
 						)}
 						<strong>
 							*By signing up, you are subscribing to recieve newsletter from
-							Derivative Media Ltd. You data will be processed in accordance
+							Derivative Media Ltd. Your data will be processed in accordance
 							with our Privacy & Cookies Policy
 						</strong>
 					</form>

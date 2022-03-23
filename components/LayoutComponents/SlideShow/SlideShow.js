@@ -385,7 +385,14 @@ const SlideDetails = ({
 				query={query}
 			/>
 			<LazyLoad once={true}>
-				<QuickEmailSignUp queryLinkCheck={queryLinkCheck} query={query} />
+				<QuickEmailSignUp
+					queryLinkCheck={queryLinkCheck}
+					query={query}
+					headline={title}
+					category={category}
+					url={shareUrl}
+					contentType={"Slideshow"}
+				/>
 			</LazyLoad>
 			<LazyLoad once={true}>
 				<SectionBar

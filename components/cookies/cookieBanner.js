@@ -6,6 +6,7 @@ import baseTheme from "../../theme/baseTheme.json";
 import Context from "@utils/Context";
 import { objectCheck } from "@utils/queryHandler";
 import CustomLink from "@components/Link/customLink";
+const cookieTime = 60;
 
 const CookieBanner = () => {
 	const [cookie, setCookie] = useState(true);
@@ -21,10 +22,10 @@ const CookieBanner = () => {
 
 	const changeCookie = () => {
 		//set expiry to 10 minutes:- new Date(new Date().getTime() + 10 * 60 * 1000)
-		const expiryDate = process.env.COOKIE_ACCEPT_EXPIRY; //Days
+		const expiryDate = new Date(new Date().getTime() + cookieTime * 60 * 1000);
 
 		Cookie.set("cookie-accept", JSON.stringify(false), {
-			expires: Number(expiryDate),
+			expires: expiryDate,
 		});
 		setCookie(false);
 	};

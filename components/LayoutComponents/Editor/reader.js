@@ -20,7 +20,21 @@ const Embed = dynamic(() => import("./renderElement/embed/embed"), {
 	loading: () => <SingleLoader />,
 });
 
-const Reader = ({ value, cpcAd, linkedArticle, query, quickView = false }) => {
+const EmailBlock = dynamic(() => import("@components/emailBlock/emailBlock"), {
+	ssr: false,
+	loading: () => <SingleLoader />,
+});
+
+const Reader = ({
+	value,
+	cpcAd,
+	linkedArticle,
+	query,
+	quickView = false,
+	category,
+	headline,
+	contentUrl,
+}) => {
 	if (typeof value.text === "string") {
 		// excapeHtml is to get rid of html tags e.g. < for $lt
 		return value.text;
@@ -179,6 +193,16 @@ const Reader = ({ value, cpcAd, linkedArticle, query, quickView = false }) => {
 					return (
 						<LazyLoad once={true} offset={100}>
 							<Embed node={node} />
+						</LazyLoad>
+					);
+				case "email-block":
+					return (
+						<LazyLoad once={true} offset={100}>
+							<EmailBlock
+								category={category}
+								headline={headline}
+								url={contentUrl}
+							/>
 						</LazyLoad>
 					);
 				case "paid-ad":

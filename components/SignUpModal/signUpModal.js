@@ -41,9 +41,16 @@ const SignUpModal = () => {
 		const absoluteScroll = Math.abs(top - scrollUp);
 
 		const cpcMarker = Cookie.get("CPC") ? JSON.parse(Cookie.get("CPC")) : false;
+		const cookieEmailMarker = Cookie.get("wealth-cookie-email-signup")
+			? JSON.parse(Cookie.get("wealth-cookie-email-signup"))
+			: true;
 
-		if (cpcMarker) {
+		if (cpcMarker !== cpcCookie) {
 			setCpcCookie(cpcMarker);
+		}
+
+		if (cookieEmailMarker !== emailCookie) {
+			setEmailCookie(cookieEmailMarker);
 		}
 
 		if (scrollMarker > scrollUp + 500) {
