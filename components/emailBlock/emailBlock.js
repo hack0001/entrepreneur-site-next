@@ -17,6 +17,8 @@ const EmailBlock = ({ node, category, headline, url }) => {
 	const [formData, setFormData] = useState(EDITOR_EMAIL_INITIAL_STATE);
 	const [errors, setErrors] = useState(EDITOR_EMAIL_ERROR_STATE);
 	const [successMsg, setSuccessMsg] = useState(false);
+	const [loadingButton, setLoadingButton] = useState(false);
+	const [buttonText, setButtonText] = useState("JOIN NOW");
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -24,6 +26,8 @@ const EmailBlock = ({ node, category, headline, url }) => {
 			...errors,
 			badRequest: false,
 		});
+		setLoadingButton(true);
+		setButtonText("Sending");
 		setSuccessMsg(false);
 		const submitForm = {
 			...formData,
@@ -38,7 +42,7 @@ const EmailBlock = ({ node, category, headline, url }) => {
 			contentUrl: url,
 		};
 
-		//Track the Email Signup in Tag Manager Manually
+		// Track the Email Signup in Tag Manager Manually
 		if (typeof window !== "undefined") {
 			if (window.dataLayer) {
 				window.dataLayer.push({
@@ -61,8 +65,17 @@ const EmailBlock = ({ node, category, headline, url }) => {
 				expires: Number(expiryDate),
 			});
 			setFormData(EDITOR_EMAIL_INITIAL_STATE);
-			setSuccessMsg(true);
+
 			setErrors(EDITOR_EMAIL_ERROR_STATE);
+			setTimeout(() => {
+				setLoadingButton(false);
+				setButtonText("Success!🥳");
+				setSuccessMsg(true);
+			}, 2500);
+			setTimeout(() => {
+				setButtonText("Join");
+				setSuccessMsg(false);
+			}, 10000);
 		} catch (err) {
 			console.log("Error with request", err);
 			setFormData(EDITOR_EMAIL_INITIAL_STATE);
@@ -71,6 +84,8 @@ const EmailBlock = ({ node, category, headline, url }) => {
 				...errors,
 				badRequest: true,
 			});
+			setButtonText("Whoops");
+			setLoadingButton(false);
 		}
 	};
 
@@ -139,16 +154,17 @@ const EmailBlock = ({ node, category, headline, url }) => {
 								);
 							})}
 							<RippleButton
-								label={"Join"}
+								label={buttonText}
 								color={baseTheme.primary}
 								handler={null}
 								type="submit"
+								loading={loadingButton}
 							/>
 							{successMsg && (
 								<div className={emailStyles.emailDetailsMessage}>
 									<p>
-										Congratulations! You have been successfully added to our
-										Newsletter. Keep an eye out in your inbox for our latest
+										🎉🎉🎉 Congratulations! You have been successfully added to
+										our Newsletter. Keep an eye out in your inbox for our latest
 										content.
 									</p>
 								</div>
