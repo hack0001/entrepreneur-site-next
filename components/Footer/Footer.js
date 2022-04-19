@@ -66,7 +66,7 @@ const Footer = () => {
 					/>
 				</div>
 			</div>
-			<div className={styles.footerCopy}>Copyright © 2021 wealthmack.com</div>
+			<div className={styles.footerCopy}>Copyright © 2022 wealthmack.com</div>
 		</footer>
 	);
 };
